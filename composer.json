@@ -11,30 +11,7 @@
         }
     ],
     "require":{
-        "php":">=5.4.0",
-        "ext-curl":"*",
-        "bear/resource":"0.9.*",
-        "ray/di":"1.1.*",
-        "ray/aop":"1.1.*",
-        "bear/sunday":"0.9.*",
-        "bear/ace":"1.0.*",
-        "aura/input": "1.1.*",
-        "aura/view": "1.1.2",
-        "doctrine/annotations":"1.*",
-        "doctrine/cache":"1.*",
-        "doctrine/dbal":"2.3.*",
-        "guzzle/guzzle":"3.3.*",
-        "nocarrier/hal":"0.9.*",
-        "pagerfanta/pagerfanta":"1.*",
-        "smarty/smarty":"3.1.*",
-        "symfony/console":"2.0.*",
-        "symfony/http-foundation":"2.0.*",
-        "symfony/routing": "2.2.*",
-        "twitter/bootstrap":"2.*",
-        "zendframework/zend-log":"2.1.*",
-        "zendframework/zend-db": "2.1.*",
-        "zendframework/zend-stdlib": "2.1.*",
-        "classpreloader/classpreloader": "1.*"
+        "bear/framework":"*"
     },
     "require-dev":{
         "printo/printo":"0.1.*",
