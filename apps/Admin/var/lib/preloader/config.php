@@ -19,7 +19,7 @@ $config
     ->addExclusiveFilter('/PHPParser_*/')
     ->addExclusiveFilter('/Smarty*/')
     ->addExclusiveFilter('/TokenParser/')
-    ->addExclusiveFilter('/Skeleton\/Resource/')
+    ->addExclusiveFilter('/Mackstar\/Resource/')
     ->addExclusiveFilter('/AdapterTrait/');
 
 return $config;
