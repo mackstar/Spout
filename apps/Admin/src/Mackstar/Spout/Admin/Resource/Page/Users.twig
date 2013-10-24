@@ -1,5 +1,10 @@
 {% extends "layout/default.twig" %}
- 
+{% block title %}{{ title }}{% endblock %}
 {% block page %}
-  {{ text }}
+<h1>{{title}}</h1>
+<ul>	
+   {% for user in users %}
+        <li>{{ user.username|e }}</li>
+    {% endfor %}
+</ul>
 {% endblock %}

@@ -29,16 +29,8 @@ class Users extends ResourceObject
     public function onGet($id = null)
     {
         $sql = "SELECT * FROM {$this->table}";
-        if (is_null($id)) {
-            //$this->body = $this->db->fetchAll($sql);
-        } else {
-//            $sql .= " WHERE id = :id";
-//            $stmt = $this->db->prepare($sql);
-//            $stmt->bindValue('id', $id);
-//            $stmt->execute();
-//            $this->body = $stmt->fetch(PDO::FETCH_ASSOC);
-        }
-        $this['text'] = 'text';
+        $this['users'] = $this->db->fetchAll($sql);
+        $this['title'] = 'my title';
 
         return $this;
     }
