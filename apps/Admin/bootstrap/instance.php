@@ -5,7 +5,7 @@
  * @return $app  \BEAR\Sunday\Extension\Application\AppInterface
  * @global $context string configuration mode
  */
-namespace Skeleton;
+namespace Mackstar\Spout\Admin;
 
 use BEAR\Package\Provide\Application\AbstractApp;
 use BEAR\Sunday\Extension\Application\AppInterface;

@@ -10,6 +10,12 @@
             "name": "Richard McIntyre"
         }
     ],
+    "repositories": [
+        {
+            "type": "vcs",
+            "url":  "https://github.com/mackstar/BEAR.Package"
+        }
+    ],
     "require":{
         "bear/framework":"*"
     },
@@ -23,6 +29,11 @@
     "autoload":{
         "psr-0":{
             "Mackstar\\Spout": "src/"
+        }
+    },
+    "extra": {
+        "installer-paths": {
+            "apps/{$name}/": ["type:bearsunday-app"]
         }
     }
 }

@@ -1,8 +1,8 @@
 <?php
-namespace Skeleton\Resource\Page;
+namespace Admin\Resource\Page;
 
 use Ray\Di\Injector;
-use Skeleton\Module\TestModule;
+use Admin\Module\TestModule;
 
 class IndexTest extends \PHPUnit_Framework_TestCase
 {

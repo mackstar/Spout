@@ -1,0 +1,1 @@
+lessc less/bootstrap.less > ../www/css/bootstrap.min.css --compress

@@ -1,7 +1,7 @@
 <?php
 
 use Ray\Di\Injector;
-use Skeleton\Module\AppModule;
+use Admin\Module\AppModule;
 
 error_reporting(E_ALL);
 
@@ -11,7 +11,7 @@ chdir(dirname(__DIR__));
 // dev tools
 $loader = require dirname(__DIR__) . '/vendor/autoload.php';
 /** @var $loader \Composer\Autoload\ClassLoader */
-$loader->add('Skeleton', __DIR__ . '/src');
+$loader->add('Mackstar', __DIR__ . '/src');
 ini_set('error_log', sys_get_temp_dir() . 'app-test.log');
 
 // init
