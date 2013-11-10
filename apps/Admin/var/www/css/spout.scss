@@ -1,0 +1,22 @@
+$primary-color: #54AAA8;
+$secondary-color: #E7E5D7;
+$accent-color: #333333;
+$grey-color: #CCCCCC;
+
+h1, h2, h3{
+	font-family: Arial, Helmet, Freesans, sans-serif;
+	letter-spacing: -1px;
+}
+
+.tabs .secondary-nav {
+	float:right;
+	margin-left:10px;
+	margin-right:0;
+}
+
+.header{
+	> h1{
+		text-align: right;
+	}
+}
+

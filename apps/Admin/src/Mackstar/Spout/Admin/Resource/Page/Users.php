@@ -6,7 +6,6 @@ use BEAR\Resource\ResourceObject;
 use BEAR\Sunday\Inject\ResourceInject;
 use BEAR\Package\Module\Database\Dbal\Setter\DbSetterTrait;
 use BEAR\Sunday\Annotation\Db;
-use PDO;
 
 /**
  * Users

@@ -1,7 +1,7 @@
 <?php
 
 use Ray\Di\Injector;
-use Admin\Module\AppModule;
+use Mackstar\Spout\Admin\Module\AppModule;
 
 error_reporting(E_ALL);
 

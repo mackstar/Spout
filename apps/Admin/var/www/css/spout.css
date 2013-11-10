@@ -1,0 +1,16 @@
+h1, h2, h3{
+	font-family: Arial, Helmet, Freesans, sans-serif;
+	letter-spacing: -2px;
+	font-weight: bold;
+}
+
+label, .radio label, .checkbox label{
+	font-size: 1.6em;
+	font-weight: bold;
+	letter-spacing: -1px;
+}
+
+.form-group{
+	background-color: #E7E5D7;
+	border-bottom: 12px solid #333333;
+}

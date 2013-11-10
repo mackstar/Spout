@@ -6,8 +6,13 @@ nbproject
 .idea
 .project
 .settings
-*/logs/*
-*/cache/*
-
+**/logs/*
+**/log/*
+**/cache/*
+**/coverage/*
+**/bower_components/*
 vendor/*
 composer.phar
+apps/Admin/var/log/*
+*.sqlite3
+

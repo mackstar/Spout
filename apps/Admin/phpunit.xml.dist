@@ -8,7 +8,7 @@
          timeoutForSmallTests="90"
          verbose="true">
     <testsuites>
-        <testsuite name="BEAR application">
+        <testsuite name="Mackstar.Spout.Admin">
             <directory suffix="Test.php">tests</directory>
         </testsuite>
     </testsuites>

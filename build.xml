@@ -165,7 +165,30 @@
     </target>
 
     <target name="phpunit" description="Run unit tests with PHPUnit">
+        <exec executable="vendor/robmorgan/phinx/bin/phinx">
+            <arg value="migrate"/>
+            <arg value="-p" />
+            <arg value="php" />
+            <arg value="-c" />
+            <arg value="config.php" />
+            <arg value="-e" />
+            <arg value="testing" />
+        </exec>
         <exec executable="phpunit" failonerror="true"/>
+        <exec executable="phpunit" failonerror="true">
+            <arg path="apps/Admin" />
+        </exec>
+        <exec executable="vendor/robmorgan/phinx/bin/phinx">
+            <arg value="migrate"/>
+            <arg value="-p" />
+            <arg value="php" />
+            <arg value="-c" />
+            <arg value="config.php" />
+            <arg value="-e" />
+            <arg value="testing" />
+            <arg value="-t" />
+            <arg value="0" />
+        </exec>
     </target>
 
     <target name="phpcb" description="Aggregate tool output with PHP_CodeBrowser">

@@ -14,10 +14,40 @@
         {
             "type": "vcs",
             "url":  "https://github.com/mackstar/BEAR.Package"
+        },
+        {
+            "type": "vcs",
+            "url":  "https://github.com/mackstar/phinx"
         }
     ],
     "require":{
-        "bear/framework":"*"
+        "php":">=5.4.0",
+        "ext-curl":"*",
+        "bear/resource":"dev-develop",
+        "ray/di":"1.1.*",
+        "ray/aop":"1.1.*",
+        "bear/sunday":"dev-develop",
+        "bear/ace":"1.0.*",
+        "bear/package":"dev-develop",
+        "aura/input": "1.1.*",
+        "aura/view": "1.1.2",
+        "doctrine/annotations":"1.*",
+        "doctrine/cache":"1.*",
+        "doctrine/dbal":"2.3.*",
+        "doctrine/migrations": "1.0.*@dev",
+        "guzzle/guzzle":"3.3.*",
+        "nocarrier/hal":"0.9.*",
+        "pagerfanta/pagerfanta":"1.*",
+        "smarty/smarty":"3.1.*",
+        "symfony/console":"2.0.*",
+        "symfony/http-foundation":"2.0.*",
+        "symfony/routing": "2.2.*",
+        "twitter/bootstrap":"2.*",
+        "zendframework/zend-log":"2.1.*",
+        "zendframework/zend-db": "2.1.*",
+        "zendframework/zend-stdlib": "2.1.*",
+        "classpreloader/classpreloader": "1.*",
+        "robmorgan/phinx": "dev-0.2.x-dev"
     },
     "require-dev":{
         "printo/printo":"0.1.*",

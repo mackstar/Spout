@@ -1,5 +1,5 @@
 <?php
-namespace Admin\Resource\Page;
+namespace Mackstar\Spout\Admin\Test;
 
 use Ray\Di\Injector;
 use Admin\Module\TestModule;

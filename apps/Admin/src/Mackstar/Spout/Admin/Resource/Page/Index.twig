@@ -1,8 +1,5 @@
 {% extends "layout/default.twig" %}
- 
+ {block name=title}Index{/block}
 {% block page %}
-  <h1>Ponies</h1>
-  <p>
-    are awesome.
-  </p>
+	<h1>{{greeting}} (twig)</h1>
 {% endblock %}

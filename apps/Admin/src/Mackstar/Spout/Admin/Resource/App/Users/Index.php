@@ -1,24 +1,26 @@
 <?php
 
-namespace Mackstar\Spout\Admin\Resource\Users\Index;
+namespace Mackstar\Spout\Admin\Resource\App\Users;
 
 use BEAR\Resource\ResourceObject;
-use BEAR\Sunday\Inject\ResourceInject;
+use BEAR\Package\Module\Database\Dbal\Setter\DbSetterTrait;
+use BEAR\Sunday\Annotation\Db;
 
+/**
+ * Users
+ *
+ * @Db
+ */
 class Index extends ResourceObject{
 
-	use ResourceInject;
+    use DbSetterTrait;
 
-    /**
-     * @var array
-     */
-    public $body = [
-        'greeting' =>  ''
-    ];
+    protected $table = 'users';
 
     public function onGet($name = 'BEAR.Sunday')
     {
-        $this['greeting'] = 'Hello ' . $name;
+        $sql = "SELECT * FROM {$this->table}";
+        $this['users'] = $this->db->fetchAll($sql);
         return $this;
     }
 

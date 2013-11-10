@@ -7,7 +7,7 @@
          verbose="true"
 		 colors="true">
   <testsuites>
-    <testsuite name="PHP.Skelton">
+    <testsuite name="Mackstar.Spout">
       <directory suffix="Test.php">tests</directory>
     </testsuite>
   </testsuites>
