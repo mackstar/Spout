@@ -62,7 +62,7 @@ class IndexTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers Skeleton\Resource\Page\Index::onGet
+     * @covers Mackstar\Spout\Admin\Resource\Page\Index::onGet
      */
     public function testOnGet()
     {
