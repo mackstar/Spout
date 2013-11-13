@@ -17,10 +17,21 @@ class Index extends ResourceObject{
 
     protected $table = 'users';
 
-    public function onGet($name = 'BEAR.Sunday')
+    public function onGet($email = null)
     {
         $sql = "SELECT * FROM {$this->table}";
         $this['users'] = $this->db->fetchAll($sql);
+        return $this;
+    }
+
+    public function onPost(
+    	$email,
+    	$name
+ 	) {
+		$this->db->insert('users', [
+			'name' => $name,
+			'email' => $email,
+		]);
         return $this;
     }
 
