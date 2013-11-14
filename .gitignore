@@ -15,4 +15,7 @@ vendor/*
 composer.phar
 apps/Admin/var/log/*
 *.sqlite3
-
+**/build
+bower_components
+tmp
+cache.properties

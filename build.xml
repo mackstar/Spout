@@ -173,10 +173,8 @@
             <arg value="config.php" />
             <arg value="-e" />
             <arg value="testing" />
-        </exec>
-        <exec executable="phpunit" failonerror="true"/>
-        <exec executable="phpunit" failonerror="true">
-            <arg path="apps/Admin" />
+            <arg value="-t" />
+            <arg value="0" />
         </exec>
         <exec executable="vendor/robmorgan/phinx/bin/phinx">
             <arg value="migrate"/>
@@ -186,9 +184,9 @@
             <arg value="config.php" />
             <arg value="-e" />
             <arg value="testing" />
-            <arg value="-t" />
-            <arg value="0" />
         </exec>
+        <exec executable="phpunit" failonerror="true"/>
+        <exec dir="apps/Admin" executable="phpunit" failonerror="true"/>
     </target>
 
     <target name="phpcb" description="Aggregate tool output with PHP_CodeBrowser">

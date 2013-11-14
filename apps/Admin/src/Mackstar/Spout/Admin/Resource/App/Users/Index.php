@@ -5,6 +5,8 @@ namespace Mackstar\Spout\Admin\Resource\App\Users;
 use BEAR\Resource\ResourceObject;
 use BEAR\Package\Module\Database\Dbal\Setter\DbSetterTrait;
 use BEAR\Sunday\Annotation\Db;
+use Mackstar\Spout\Interfaces\SecurityInterface;
+use Ray\Di\Di\Inject;
 
 /**
  * Users
@@ -16,6 +18,14 @@ class Index extends ResourceObject{
     use DbSetterTrait;
 
     protected $table = 'users';
+    protected $security;
+
+    /**
+     *  @Inject
+     */
+    public function setSecurity(SecurityInterface $security) {
+        $this->security = $security;
+    }
 
     public function onGet($email = null)
     {
@@ -26,11 +36,14 @@ class Index extends ResourceObject{
 
     public function onPost(
     	$email,
-    	$name
+    	$name,
+        $password
  	) {
-		$this->db->insert('users', [
+		
+        $this->db->insert('users', [
 			'name' => $name,
 			'email' => $email,
+            'password' => $this->security->encrypt($password)
 		]);
         return $this;
     }
