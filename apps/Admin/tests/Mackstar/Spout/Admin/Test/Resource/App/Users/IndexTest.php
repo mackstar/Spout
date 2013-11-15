@@ -15,6 +15,13 @@ class IndexTest extends \PHPUnit_Framework_TestCase
     {
         parent::setUp();
         $this->resource = clone $GLOBALS['RESOURCE'];
+        $this->db = clone $GLOBALS['DB'];
+
+    }
+
+    public static function tearDownAfterClass()
+    {
+        $GLOBALS['DB']->exec('DELETE FROM `users` WHERE 1');
     }
 
     /**
@@ -36,11 +43,24 @@ class IndexTest extends \PHPUnit_Framework_TestCase
     public function testGetPostedUser()
     {
         // resource request
-        $page = $this->resource->get->uri('app://self/users/index')
+        $resource = $this->resource->get->uri('app://self/users/index')
+            ->eager
+            ->request();
+
+        $this->assertSame('Richard', $resource->body['users'][0]['name']);
+    }
+
+    /**
+     * @depends postUser
+     */
+    public function testGetPostedUserWithEmailQuery()
+    {
+        // resource request
+        $resource = $this->resource->get->uri('app://self/users/index')
             ->withQuery(['email' => 'richard.mackstar@gmail.com'])
             ->eager
             ->request();
 
-        $this->assertSame('Richard', $page->body['users'][0]['name']);
+        $this->assertSame('Richard', $resource->body['user']['name']);
     }
 }

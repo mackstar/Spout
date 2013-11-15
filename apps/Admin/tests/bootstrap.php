@@ -1,7 +1,8 @@
 <?php
 
-use Ray\Di\Injector;
+use Doctrine\DBAL\DriverManager;
 use Mackstar\Spout\Admin\Module\AppModule;
+use Ray\Di\Injector;
 
 error_reporting(E_ALL);
 
@@ -22,4 +23,10 @@ require_once dirname(__DIR__). '/bootstrap/autoload.php';
 $GLOBALS['APP_DIR'] = dirname(__DIR__);
 
 // set the resource client
-$GLOBALS['RESOURCE'] = Injector::create([new AppModule('test')])->getInstance('\BEAR\Resource\ResourceInterface');
+$config = require  'src/Mackstar/Spout/Admin/Module/config/test.php';
+
+$injector = Injector::create([new AppModule('test')]);
+
+$GLOBALS['RESOURCE'] = $injector->getInstance('\BEAR\Resource\ResourceInterface');
+
+$GLOBALS['DB'] = DriverManager::getConnection($config['master_db']);

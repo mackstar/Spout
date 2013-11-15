@@ -1,8 +1,5 @@
 <?php
 
-$id = isset($_SERVER['BEAR_DB_ID']) ? $_SERVER['BEAR_DB_ID'] : 'root';
-$password = isset($_SERVER['BEAR_DB_PASSWORD']) ? $_SERVER['BEAR_DB_PASSWORD'] : '';
-
 return [
     'master_db' => [
         'driver' => 'pdo_sqlite',

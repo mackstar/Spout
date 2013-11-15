@@ -2,9 +2,10 @@
 
 namespace Mackstar\Spout\Admin\Resource\App\Users;
 
-use BEAR\Resource\ResourceObject;
 use BEAR\Package\Module\Database\Dbal\Setter\DbSetterTrait;
+use BEAR\Resource\ResourceObject;
 use BEAR\Sunday\Annotation\Db;
+use BEAR\Sunday\Inject\ResourceInject;
 use Mackstar\Spout\Interfaces\SecurityInterface;
 use Ray\Di\Di\Inject;
 
@@ -13,9 +14,10 @@ use Ray\Di\Di\Inject;
  *
  * @Db
  */
-class Index extends ResourceObject{
+class Authenticate extends ResourceObject{
 
     use DbSetterTrait;
+    use ResourceInject;
 
     protected $table = 'users';
     protected $security;
@@ -25,32 +27,16 @@ class Index extends ResourceObject{
      */
     public function setSecurity(SecurityInterface $security) {
         $this->security = $security;
-    }
-
-    public function onGet($email = null)
-    {
-        $sql = "SELECT * FROM {$this->table}";
-
-        if (is_null($email)) {
-            $this['users'] = $this->db->fetchAll($sql);
-        } else {
-            $sql .= " WHERE email = :email";
-            $stmt = $this->db->prepare($sql);
-            $stmt->bindValue('email', $email);
-            $stmt->execute();
-            $this['user'] = $stmt->fetch();
-        }
-
-        return $this;
+        $sql = "SELECT * FROM {$this->table} WHERE `email` = :email";
+        $response = $this->db->fetch($sql);
     }
 
     public function onPost(
     	$email,
-    	$name,
-        $password
+    	$password
  	) {
 		
-        $this->db->insert('users', [
+        $this->db->('users', [
 			'name' => $name,
 			'email' => $email,
             'password' => $this->security->encrypt($password)
