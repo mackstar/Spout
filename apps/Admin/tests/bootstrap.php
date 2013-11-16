@@ -12,7 +12,10 @@ chdir(dirname(__DIR__));
 // dev tools
 $loader = require dirname(dirname(dirname(__DIR__))) . '/vendor/autoload.php';
 /** @var $loader \Composer\Autoload\ClassLoader */
-$loader->add('Mackstar', __DIR__ . '/src');
+//$loader->add('Mackstar', __DIR__ . '/src');
+
+$loader->add('Mackstar\Spout\Admin\Test', __DIR__ );
+
 ini_set('error_log', sys_get_temp_dir() . 'app-test.log');
 
 // init

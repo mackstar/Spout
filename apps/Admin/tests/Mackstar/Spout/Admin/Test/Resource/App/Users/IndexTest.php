@@ -1,4 +1,5 @@
 <?php
+
 namespace Mackstar\Spout\Admin\Test\Resource\App\Users;
 
 use Ray\Di\Injector;
