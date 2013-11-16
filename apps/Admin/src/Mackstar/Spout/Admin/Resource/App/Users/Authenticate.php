@@ -2,24 +2,18 @@
 
 namespace Mackstar\Spout\Admin\Resource\App\Users;
 
-use BEAR\Package\Module\Database\Dbal\Setter\DbSetterTrait;
 use BEAR\Resource\ResourceObject;
-use BEAR\Sunday\Annotation\Db;
 use BEAR\Sunday\Inject\ResourceInject;
 use Mackstar\Spout\Interfaces\SecurityInterface;
 use Ray\Di\Di\Inject;
 
 /**
- * Users
- *
- * @Db
+ * Authenticate Users
  */
 class Authenticate extends ResourceObject{
 
-    use DbSetterTrait;
     use ResourceInject;
 
-    protected $table = 'users';
     protected $security;
 
     /**
@@ -27,20 +21,22 @@ class Authenticate extends ResourceObject{
      */
     public function setSecurity(SecurityInterface $security) {
         $this->security = $security;
-        $sql = "SELECT * FROM {$this->table} WHERE `email` = :email";
-        $response = $this->db->fetch($sql);
     }
 
     public function onPost(
-    	$email,
-    	$password
- 	) {
-		
-        $this->db->('users', [
-			'name' => $name,
-			'email' => $email,
-            'password' => $this->security->encrypt($password)
-		]);
+        $email,
+        $password
+    ) {
+
+        $resource = $this->resource->get->uri('app://self/users/index')
+            ->eager
+            ->withQuery(['email' => $email])
+            ->request();
+
+        if ($this->security->match($password, $resource->body['user']['password'])) {
+            $this['user'] = $resource->body['user'];
+        }
+
         return $this;
     }
 

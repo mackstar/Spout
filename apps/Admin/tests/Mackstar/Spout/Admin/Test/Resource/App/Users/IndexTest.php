@@ -15,8 +15,6 @@ class IndexTest extends \PHPUnit_Framework_TestCase
     {
         parent::setUp();
         $this->resource = clone $GLOBALS['RESOURCE'];
-        $this->db = clone $GLOBALS['DB'];
-
     }
 
     public static function tearDownAfterClass()

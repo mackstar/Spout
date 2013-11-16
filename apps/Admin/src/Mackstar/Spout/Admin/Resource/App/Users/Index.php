@@ -45,17 +45,17 @@ class Index extends ResourceObject{
     }
 
     public function onPost(
-    	$email,
-    	$name,
+        $email,
+        $name,
         $password
- 	) {
-		
-        $this->db->insert('users', [
-			'name' => $name,
-			'email' => $email,
-            'password' => $this->security->encrypt($password)
-		]);
-        return $this;
+    ) {
+
+    $this->db->insert('users', [
+        'name' => $name,
+        'email' => $email,
+        'password' => $this->security->encrypt($password)
+    ]);
+    return $this;
     }
 
 }
