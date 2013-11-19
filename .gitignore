@@ -19,3 +19,4 @@ apps/Admin/var/log/*
 bower_components
 tmp
 cache.properties
+node_modules
