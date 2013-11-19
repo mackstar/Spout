@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" manifest="spout.appcache">
 <head>
     <meta charset="utf-8">
     <title>{% block title %}{% endblock %}</title>
@@ -16,7 +16,13 @@
   {% block page %}{% endblock %}
 
 </div>
+<script src="/js/lib/lodash.underscore.min.js"></script>
+<script src="/js/lib/jquery.js"></script>
 <script src="/js/bootstrap.min.js"></script>
+<script src="/js/lib/angular.min.js"></script>
+<script src="/js/lib/angular-ui-router.js"></script>
+<script src="/js/lib/restangular.min.js"></script>
+<script src="/js/apps/base.js"></script>
 <script src="/js/apps/users.js"></script>
 </body>
 </html>

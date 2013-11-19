@@ -2,21 +2,20 @@
 {% block title %}{{ title }}{% endblock %}
 {% block page %}
 <h1>{{title}}</h1>
-<div class="row" ng-app="users">
-  <table class="table table-hover">
-        <thead>
-          <tr>
-            <th>Username</th>
-            <th>Email</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td></td>
-            <td></td>
-          </tr>
-        </tbody>
-      </table>
-  </div>
+<div class="row" ng-app="app">
+  <table class="table table-hover" ng-controller="usersCtrl">
+    <thead>
+      <tr>
+        <th>Username</th>
+        <th>Email</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
 </div>
 {% endblock %}

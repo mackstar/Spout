@@ -44,7 +44,12 @@ if (PHP_SAPI === 'cli') {
     parse_str((isset(parse_url($uri)['query']) ? parse_url($uri)['query'] : ''), $get);
 } else {
     $pathInfo = $_SERVER['REQUEST_URI'] ? $_SERVER['REQUEST_URI'] : '/index';
-    $uri = 'app://self' . $pathInfo;
+    if(strpos($pathInfo, 'api/') === 1) {
+        $uri = 'app://self' . substr($pathInfo, 4);
+    } else {
+        $uri = 'app://self' . $pathInfo;
+    }
+    
     $get = $_GET;
 }
 
