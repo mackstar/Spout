@@ -15,6 +15,7 @@ use BEAR\Sunday\Module\Constant\NamedModule as Constant;
 use Ray\Di\AbstractModule;
 use Ray\Di\Injector;
 use Mackstar\Spout\Admin\Module\Mode\DevModule;
+use Mackstar\Spout\Admin\Module\Mode\ApiModule;
 
 /**
  * Application module
@@ -78,6 +79,7 @@ class AppModule extends AbstractModule
         if ($this->context === 'api') {
             // install api output view package
             $this->install(new HalModule($this));
+            $this->install(new ApiModule($this));
             //$this->install(new JsonModule($this));
         }
 

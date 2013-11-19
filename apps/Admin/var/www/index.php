@@ -15,7 +15,7 @@ use BEAR\Resource\Exception\ResourceNotFound as NotFound;
 //
 // Hierarchical profiler @see http://www.php.net/manual/en/book.xhprof.php
 //
-require dirname(dirname(dirname(dirname(__DIR__)))) . '/var/lib/profile.php';
+//require dirname(dirname(dirname(dirname(__DIR__)))) . '/var/lib/profile.php';
 
 //
 // Compiled preloader

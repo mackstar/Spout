@@ -1,14 +1,3 @@
-order deny,allow
-
-<Files "dev.php">
-	order allow,deny
-	deny from all
-</Files>
-<Files "dev.php">
-	order allow,deny
-	deny from all
-</Files>
-
 <IfModule mod_rewrite.c>
     # turn on rewriting
     RewriteEngine On
@@ -19,5 +8,5 @@ order deny,allow
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteCond %{REQUEST_FILENAME} !favicon.ico$
-    RewriteRule ^(.*)$ /index.php [QSA,L]
+    RewriteRule ^(.*)$ /dev.php [QSA,L]
 </IfModule>
