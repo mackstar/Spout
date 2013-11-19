@@ -1,9 +1,11 @@
 Mackstar.Spout
 =======
 A fast developer happy CMS written in BEAR.Sunday and Angular.js
----------------------------------------------
+
+
 Why do we need another PHP CMS?
 ---------------------------------------------
+
 * To create an resource centric CMS
 * To integrate Angular.js for a better experience
 * To have a fully responsive CMS
@@ -11,6 +13,7 @@ Why do we need another PHP CMS?
 * To allow overriding of core CMS activity using DI and AOP
 * To provide a platform that modern PHP developers are more comfortable developing in
 * To maximise integration with othor composer based PHP libraries
+* Everything is resource, you can manipulate anything in any REST client.
 
 Other tools
 ---------------------------------------------
