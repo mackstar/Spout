@@ -1,28 +1,68 @@
-files = [
-  JASMINE,
-  JASMINE_ADAPTER,
-  '../../var/www/*.js',
-  'tests/*.js'
-];
+module.exports = function (config) {
+  config.set({
+    basePath : '',
 
-exclude = [];
+    frameworks : ["jasmine"],
 
-// web server port
-port = 9877;
+    files : [
+      '../../var/www/js/lib/jquery.js',
+      '../../var/www/js/lib/lodash.underscore.min.js',
+      '../../var/www/js/lib/angular.min.js',
+      '../../var/www/js/lib/angular-ui-router.js',
+      '../../var/www/js/lib/angular-mocks.js',
+      '../../var/www/js/lib/restangular.min.js',
+      'tests/testBase.js',
+      '../../var/www/js/apps/**/*.js',
+	    'tests/**/*.js'
+    ],
+
+    logLevel: config.LOG_INFO,
+
+    //logLevel: config.LOG_DEBUG,
+
+    autoWatch : true,
+    colors : true,
+    port : 9877,
+    runnerPort : 9101,
+
+    browsers : ['PhantomJS'],
+
+    reporters: ['progress'],
+
+    junitReporter : {
+      outputFile : 'test_out/unit.xml',
+      suite      : 'unit'
+      //...
+    }
+  });
+}
 
 
-// cli runner port
-runnerPort = 9101;
+// frameworks = ["jasmine"]
 
-colors = true;
+// files = [
+//   '../../var/www/*.js',
+//   'tests/*.js'
+// ];
 
-logLevel = LOG_INFO;
+// exclude = [];
 
-singleRun = false;
+// // web server port
+// port = 9877;
 
-captureTimeout = 60000;
 
-browsers = ['PhantomJS'];
+// // cli runner port
+// runnerPort = 9101;
+
+// colors = true;
+
+// //logLevel = karma.LOG_INFO;
+
+// singleRun = false;
+
+// captureTimeout = 60000;
+
+// browsers = ['PhantomJS'];
 
 
 // // Karma configuration

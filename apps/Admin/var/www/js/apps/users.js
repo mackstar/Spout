@@ -1,7 +1,10 @@
+'use strict';
 
-app.controller('usersCtrl', function($scope, $rootScope, Restangular) {
+app.controller('UsersCtrl', function($scope, Restangular) {
 
-  Restangular.all('users/index').getList().then(function (data) {
-    $scope.users = data.users;
-  });
+  	Restangular.all('users/index').getList().then(function (data) {
+  		$scope.users = data.users;
+  		$scope.data = "Added";
+  	});
 });
+

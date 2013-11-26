@@ -1,4 +1,8 @@
-var app = angular.module('app', ['restangular', 'ui.router']);
+var app = angular.module('myApp', ['restangular', 'ui.router']);
+
+app.config(function($interpolateProvider) {
+  $interpolateProvider.startSymbol('{[').endSymbol(']}');
+});
 
 app.run(function(Restangular, $rootScope) {
   Restangular.setBaseUrl('/api');
@@ -25,3 +29,4 @@ app.run(function(Restangular, $rootScope) {
   // });
 
 });
+
