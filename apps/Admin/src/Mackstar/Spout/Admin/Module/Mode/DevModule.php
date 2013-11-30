@@ -14,5 +14,6 @@ class DevModule extends AbstractModule
      */
     protected function configure()
     {
+    	$this->bind('BEAR\Resource\RenderInterface')->to('BEAR\Package\Provide\ResourceView\TemplateEngineRenderer');
     }
 }

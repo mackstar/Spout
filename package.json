@@ -5,6 +5,9 @@
     "grunt": "~0.4.1",
     "grunt-contrib-jshint": "~0.6.3",
     "grunt-karma": "~0.6.2",
-    "grunt-contrib-less": "*"
+    "grunt-shell": "*",
+    "grunt-contrib-less": "*",
+    "grunt-phpunit": "~0.3.1",
+    "grunt-contrib-watch": "~0.5.3"
   }
 }

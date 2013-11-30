@@ -16,6 +16,7 @@ use Ray\Di\AbstractModule;
 use Ray\Di\Injector;
 use Mackstar\Spout\Admin\Module\Mode\DevModule;
 use Mackstar\Spout\Admin\Module\Mode\ApiModule;
+use Ray\Di\Scope;
 
 /**
  * Application module
@@ -58,6 +59,7 @@ class AppModule extends AbstractModule
      */
     protected function configure()
     {
+        
         // install core package
         $this->install(new PackageModule(new Constant($this->config), 'Mackstar\Spout\Admin\App', $this->context));
 
@@ -73,6 +75,8 @@ class AppModule extends AbstractModule
         // install develop module
         if ($this->context === 'dev') {
             $this->install(new DevModule($this));
+                    $this->bind('BEAR\Resource\InvokerInterface')->to('BEAR\Resource\Invoker')->in(Scope::SINGLETON);
+
         }
 
         // install API module

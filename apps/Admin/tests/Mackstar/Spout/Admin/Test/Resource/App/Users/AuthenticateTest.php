@@ -36,7 +36,6 @@ class AuthenticateTest extends \PHPUnit_Framework_TestCase
         	->withQuery(['email' => 'richard.mackstar@gmail.com', 'password' => 'secret'])
             ->eager
             ->request();
-
         $this->assertSame('Richard', $resource->body['user']['name']);
     }
 }
