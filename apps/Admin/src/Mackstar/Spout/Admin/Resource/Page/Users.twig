@@ -7,7 +7,7 @@
 <h1>{{title}}</h1>
 <div class="row" ng-app="spout">
 
-<div class="modal" id="myModal" ng-controller="ModalCtrl">
+<div class="modal" id="myModal">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-body">
@@ -16,6 +16,8 @@
     </div>
   </div>
 </div>
+
+<div roles-selector></div>
 
   <table class="table table-hover" ng-controller="UsersCtrl" ng-show="users">
     <thead>

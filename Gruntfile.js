@@ -86,7 +86,6 @@ module.exports = function(grunt) {
     //grunt.config(['php', 'filter'], '--filter ' + filter);
     grunt.config(['php', 'filter'], "--filter " + filter);
 
-
   });
   grunt.registerTask('default', ['karma']);
   grunt.registerTask('js', ['karma:unit']);
