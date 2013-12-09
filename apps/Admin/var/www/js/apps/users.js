@@ -27,7 +27,7 @@ app.controller('UserAddCtrl', function($scope, $rootScope, Restangular) {
     console.log($scope.user.role);
     var user = $scope.user;
     user.name = "Richard";
-    user.email = "richard.mackstar@gmail.com";
+    user.email = "richard.macksdaail.com";
     user.password = "password";
     Restangular.all('users/index').post(user).then(function() {
       console.log("Object saved OK");

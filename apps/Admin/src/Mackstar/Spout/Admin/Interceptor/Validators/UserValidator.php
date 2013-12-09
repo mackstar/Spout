@@ -6,6 +6,8 @@ use Ray\Aop\MethodInterceptor;
 use Ray\Aop\MethodInvocation;
 use Mackstar\Spout\Interfaces\ValidatorInterface;
 use Ray\Di\Di\Inject;
+use BEAR\Sunday\Inject\ResourceInject;
+
 
 class UserValidator implements MethodInterceptor
 {
@@ -13,18 +15,15 @@ class UserValidator implements MethodInterceptor
 	const NAME = 1;
     const ROLE = 2;
     const PASSWORD = 3;
+
+    use ResourceInject;
 	
 	/**
 	 * Error
 	 * 
 	 * @var array
 	 */
-	private $errors = [
-		'email' => '',
-		'name' => '',
-        'role' => '',
-        'password' => ''
-	];
+	private $errors = [];
 
     private $validator; 
 
@@ -58,6 +57,8 @@ class UserValidator implements MethodInterceptor
         if (!$validator->get('notempty')->isValid($args[self::EMAIL])) {
             $this->errors['email'] = $validator->getMessages()[0];
         }
+
+        
     	// // required title
     	// if ($args[self::TITLE] # = '') {
     	// 	$this->errors['title'] = 'title required.';
@@ -71,6 +72,11 @@ class UserValidator implements MethodInterceptor
     	if (implode('', $this->errors)  == '') {
 	    	return $invocation->proceed();
     	}
+
+        return $this->resource->get->uri('app://self/exceptions/validation')
+            ->withQuery(['errors' => $this->errors])
+            ->eager
+            ->request();
     	
         // error, modify 'GET' page with error message.
     	// $page['errors'] = $this->errors;
