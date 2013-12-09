@@ -29,7 +29,7 @@ class Users extends ResourceObject
     {
         $sql = "SELECT * FROM {$this->table}";
         $this['users'] = $this->db->fetchAll($sql);
-        $this['title'] = 'my title';
+        $this['title'] = 'Users';
 
         return $this;
     }

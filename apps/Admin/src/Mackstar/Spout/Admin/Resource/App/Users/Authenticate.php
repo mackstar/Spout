@@ -17,7 +17,7 @@ class Authenticate extends ResourceObject{
     protected $security;
 
     /**
-     *  @Inject
+     * @Inject
      */
     public function setSecurity(SecurityInterface $security) {
         $this->security = $security;

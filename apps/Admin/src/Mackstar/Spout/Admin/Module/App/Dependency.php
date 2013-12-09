@@ -4,6 +4,7 @@ namespace Mackstar\Spout\Admin\Module\App;
 
 use Ray\Di\AbstractModule;
 use Mackstar\Spout\Module\SecurityModule;
+use Mackstar\Spout\Provide\Validations\ValidationModule;
 
 
 /**
@@ -17,5 +18,6 @@ class Dependency extends AbstractModule
     protected function configure()
     {
     	$this->install(new SecurityModule($this));
+        $this->install(new ValidationModule($this));
     }
 }

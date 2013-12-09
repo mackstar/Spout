@@ -27,6 +27,6 @@ class RolesTest extends \PHPUnit_Framework_TestCase
         $page = $this->resource->get->uri('app://self/users/roles')
             ->eager
             ->request();
-        $this->assertSame(5, count($resource->body['roles']));
+        $this->assertSame(5, count($page->body['roles']));
     }
 }

@@ -51,7 +51,14 @@ if (PHP_SAPI === 'cli') {
     }
     
     $get = $_GET;
+    if (empty($get) && $rawdata = file_get_contents('php://input')) {
+        $get = (array) json_decode($rawdata);
+    }
 }
+
+//$rawdata = file_get_contents('php://input');
+
+
 
 //
 // Get the method from the router and attempt to request the resource and render.

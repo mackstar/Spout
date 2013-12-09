@@ -1,13 +1,18 @@
 {% extends "layout/default.twig" %}
 {% block title %}{{ title }}{% endblock %}
+{% block h1 %}{{ title }}{% endblock %}
 {% block page %}
 
 
 
-<h1>{{title}}</h1>
+
 <div class="row" ng-app="spout">
 
-<div class="modal" id="myModal">
+<div class="row">
+  <a class="btn btn-primary btn-lg" ng-href="#/add">Add User</a>
+</div>
+
+<div class="modal" id="myModal" ng-controller="ModalCtrl">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-body">
@@ -17,26 +22,22 @@
   </div>
 </div>
 
-<div roles-selector></div>
-
-  <table class="table table-hover" ng-controller="UsersCtrl" ng-show="users">
-    <thead>
-      <tr>
-        <th></th>
-        <th>Username</th>
-        <th>Email</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr ng-repeat="user in users">
-        <td>{[user.id]}</td>
-        <td>{[user.username]}</td>
-        <td>{[user.email]}</td>
-      </tr>
-    </tbody>
-  </table> 
-
-  
+<table class="table table-hover" ng-controller="UsersCtrl" ng-show="users">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Username</th>
+      <th>Email</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat="user in users">
+      <td>{[user.id]}</td>
+      <td>{[user.username]}</td>
+      <td>{[user.email]}</td>
+    </tr>
+  </tbody>
+</table>
 
 </div>
 {% endblock %}

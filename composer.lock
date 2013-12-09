@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "e1c38cd2492fb89fa1a9f59ba2f02477",
+    "hash": "64b372f535a27eb9bebc89ffa3c1589f",
     "packages": [
         {
             "name": "any/serializer",
@@ -490,12 +490,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/koriym/BEAR.Package.git",
-                "reference": "65dbd567dcbc0936c053997c5787d59b85094478"
+                "reference": "971e35453c948a36a750fa798a582d08216358f2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/koriym/BEAR.Package/zipball/65dbd567dcbc0936c053997c5787d59b85094478",
-                "reference": "65dbd567dcbc0936c053997c5787d59b85094478",
+                "url": "https://api.github.com/repos/koriym/BEAR.Package/zipball/971e35453c948a36a750fa798a582d08216358f2",
+                "reference": "971e35453c948a36a750fa798a582d08216358f2",
                 "shasum": ""
             },
             "require": {
@@ -516,6 +516,8 @@
                 "pagerfanta/pagerfanta": "1.*",
                 "php": ">=5.4.0",
                 "playmedia/smarty": "3.1.*",
+                "ray/aop": "dev-develop",
+                "ray/di": "dev-develop",
                 "symfony/console": "2.0.*",
                 "symfony/http-foundation": "2.0.*",
                 "symfony/routing": "2.2.*",
@@ -563,7 +565,7 @@
                 "hypermedia",
                 "rest"
             ],
-            "time": "2013-11-13 00:55:43"
+            "time": "2013-12-09 08:36:47"
         },
         {
             "name": "bear/resource",
@@ -571,12 +573,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/koriym/BEAR.Resource.git",
-                "reference": "619cc0ff9734d1c1043581d61625281ffc0ef0e8"
+                "reference": "5ea39380bfeee0a286ee7c36247b1af5a71fa025"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/koriym/BEAR.Resource/zipball/619cc0ff9734d1c1043581d61625281ffc0ef0e8",
-                "reference": "619cc0ff9734d1c1043581d61625281ffc0ef0e8",
+                "url": "https://api.github.com/repos/koriym/BEAR.Resource/zipball/5ea39380bfeee0a286ee7c36247b1af5a71fa025",
+                "reference": "5ea39380bfeee0a286ee7c36247b1af5a71fa025",
                 "shasum": ""
             },
             "require": {
@@ -586,8 +588,8 @@
                 "guzzle/guzzle": "3.3.*",
                 "nocarrier/hal": "*",
                 "php": ">=5.4.0",
-                "ray/aop": "1.1.*",
-                "ray/di": "1.1.*"
+                "ray/aop": "dev-develop",
+                "ray/di": "dev-develop"
             },
             "require-dev": {
                 "facebook/xhprof": "dev-master"
@@ -607,7 +609,7 @@
                     "name": "Akihito Koriyama",
                     "email": "akihito.koriyama@gmail.com",
                     "homepage": "https://github.com/koriym",
-                    "role": "Developer"
+                    "role": "Lead"
                 }
             ],
             "description": "Hypermedia framework for object as a service",
@@ -621,7 +623,7 @@
                 "rest",
                 "stateless"
             ],
-            "time": "2013-11-06 12:41:50"
+            "time": "2013-12-09 08:25:53"
         },
         {
             "name": "bear/sunday",
@@ -1185,12 +1187,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/migrations.git",
-                "reference": "37aacdae6507faad03c3df1624e7d3a6e6c1b388"
+                "reference": "ce2ffa17a642267d48b9df6c5eba94e9d773e22f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/migrations/zipball/37aacdae6507faad03c3df1624e7d3a6e6c1b388",
-                "reference": "37aacdae6507faad03c3df1624e7d3a6e6c1b388",
+                "url": "https://api.github.com/repos/doctrine/migrations/zipball/ce2ffa17a642267d48b9df6c5eba94e9d773e22f",
+                "reference": "ce2ffa17a642267d48b9df6c5eba94e9d773e22f",
                 "shasum": ""
             },
             "require": {
@@ -1237,7 +1239,50 @@
                 "database",
                 "migrations"
             ],
-            "time": "2013-11-10 05:33:50"
+            "time": "2013-12-03 00:28:34"
+        },
+        {
+            "name": "fuelphp/validation",
+            "version": "0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/fuelphp/validation.git",
+                "reference": "a4b0927bfc9e09925f10a5202b84099a58dccda7"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/fuelphp/validation/zipball/a4b0927bfc9e09925f10a5202b84099a58dccda7",
+                "reference": "a4b0927bfc9e09925f10a5202b84099a58dccda7",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.3"
+            },
+            "require-dev": {
+                "mockery/mockery": "0.7.*"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Fuel\\Validation": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "FuelPHP Development Team",
+                    "email": "team@fuelphp.com"
+                }
+            ],
+            "description": ".",
+            "homepage": "https://github.com/fuelphp/validation",
+            "keywords": [
+                "validation"
+            ],
+            "time": "2013-12-04 11:51:39"
         },
         {
             "name": "guzzle/guzzle",
@@ -1378,16 +1423,16 @@
         },
         {
             "name": "nocarrier/hal",
-            "version": "0.9.3",
+            "version": "0.9.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/blongden/hal.git",
-                "reference": "a15dfb2f07490e22a3faf075de0d7419fe644dec"
+                "reference": "aca65a12a718a36dcb2675eaf0cdc4d64a80f9e9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/blongden/hal/zipball/a15dfb2f07490e22a3faf075de0d7419fe644dec",
-                "reference": "a15dfb2f07490e22a3faf075de0d7419fe644dec",
+                "url": "https://api.github.com/repos/blongden/hal/zipball/aca65a12a718a36dcb2675eaf0cdc4d64a80f9e9",
+                "reference": "aca65a12a718a36dcb2675eaf0cdc4d64a80f9e9",
                 "shasum": ""
             },
             "require": {
@@ -1435,7 +1480,7 @@
                 "rest",
                 "xml"
             ],
-            "time": "2013-10-07 14:21:31"
+            "time": "2013-11-19 11:57:26"
         },
         {
             "name": "pagerfanta/pagerfanta",
@@ -1549,16 +1594,16 @@
         },
         {
             "name": "ray/aop",
-            "version": "1.1.2",
+            "version": "dev-develop",
             "source": {
                 "type": "git",
                 "url": "https://github.com/koriym/Ray.Aop.git",
-                "reference": "7a5164072dcc09584b67cb9d95ff077dc9517860"
+                "reference": "0b55699a42994934c1021c6f7d2d0e95a93d21d6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/koriym/Ray.Aop/zipball/7a5164072dcc09584b67cb9d95ff077dc9517860",
-                "reference": "7a5164072dcc09584b67cb9d95ff077dc9517860",
+                "url": "https://api.github.com/repos/koriym/Ray.Aop/zipball/0b55699a42994934c1021c6f7d2d0e95a93d21d6",
+                "reference": "0b55699a42994934c1021c6f7d2d0e95a93d21d6",
                 "shasum": ""
             },
             "require": {
@@ -1592,20 +1637,20 @@
                 "aop",
                 "aspect"
             ],
-            "time": "2013-09-22 19:03:10"
+            "time": "2013-12-08 01:12:28"
         },
         {
             "name": "ray/di",
-            "version": "1.1.2",
+            "version": "dev-develop",
             "source": {
                 "type": "git",
                 "url": "https://github.com/koriym/Ray.Di.git",
-                "reference": "8406adc9af763a4db06c03934ac63156dcf907a0"
+                "reference": "7537685ccce68605ab708c27390b51f36234320f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/koriym/Ray.Di/zipball/8406adc9af763a4db06c03934ac63156dcf907a0",
-                "reference": "8406adc9af763a4db06c03934ac63156dcf907a0",
+                "url": "https://api.github.com/repos/koriym/Ray.Di/zipball/7537685ccce68605ab708c27390b51f36234320f",
+                "reference": "7537685ccce68605ab708c27390b51f36234320f",
                 "shasum": ""
             },
             "require": {
@@ -1614,7 +1659,7 @@
                 "doctrine/cache": "1.*",
                 "nikic/php-parser": "*",
                 "php": ">=5.4.0",
-                "ray/aop": "1.1.*"
+                "ray/aop": "dev-develop"
             },
             "type": "library",
             "autoload": {
@@ -1650,7 +1695,7 @@
                 "injection",
                 "jsr"
             ],
-            "time": "2013-09-23 06:34:18"
+            "time": "2013-12-09 07:00:24"
         },
         {
             "name": "rhumsaa/uuid",
@@ -1814,17 +1859,17 @@
         },
         {
             "name": "symfony/class-loader",
-            "version": "v2.3.7",
+            "version": "v2.4.0",
             "target-dir": "Symfony/Component/ClassLoader",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/ClassLoader.git",
-                "reference": "e5f3ef7ebd965a12699984df06b2a5bd439bd2a0"
+                "reference": "6a2ebedbc780130f07b3a15363743d08eb46820c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/ClassLoader/zipball/e5f3ef7ebd965a12699984df06b2a5bd439bd2a0",
-                "reference": "e5f3ef7ebd965a12699984df06b2a5bd439bd2a0",
+                "url": "https://api.github.com/repos/symfony/ClassLoader/zipball/6a2ebedbc780130f07b3a15363743d08eb46820c",
+                "reference": "6a2ebedbc780130f07b3a15363743d08eb46820c",
                 "shasum": ""
             },
             "require": {
@@ -1836,7 +1881,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.3-dev"
+                    "dev-master": "2.4-dev"
                 }
             },
             "autoload": {
@@ -1860,21 +1905,21 @@
             ],
             "description": "Symfony ClassLoader Component",
             "homepage": "http://symfony.com",
-            "time": "2013-09-19 09:45:20"
+            "time": "2013-11-26 16:40:27"
         },
         {
             "name": "symfony/config",
-            "version": "v2.3.7",
+            "version": "v2.4.0",
             "target-dir": "Symfony/Component/Config",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/Config.git",
-                "reference": "1ced3d6c88b22df8cd1fe5209dbd6a89df362a29"
+                "reference": "16068f76c0af74968f3ad8fcec3eb90df1fde394"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/Config/zipball/1ced3d6c88b22df8cd1fe5209dbd6a89df362a29",
-                "reference": "1ced3d6c88b22df8cd1fe5209dbd6a89df362a29",
+                "url": "https://api.github.com/repos/symfony/Config/zipball/16068f76c0af74968f3ad8fcec3eb90df1fde394",
+                "reference": "16068f76c0af74968f3ad8fcec3eb90df1fde394",
                 "shasum": ""
             },
             "require": {
@@ -1884,7 +1929,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.3-dev"
+                    "dev-master": "2.4-dev"
                 }
             },
             "autoload": {
@@ -1908,7 +1953,7 @@
             ],
             "description": "Symfony Config Component",
             "homepage": "http://symfony.com",
-            "time": "2013-09-19 09:45:20"
+            "time": "2013-11-26 16:40:27"
         },
         {
             "name": "symfony/console",
@@ -1954,17 +1999,17 @@
         },
         {
             "name": "symfony/event-dispatcher",
-            "version": "v2.3.7",
+            "version": "v2.4.0",
             "target-dir": "Symfony/Component/EventDispatcher",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/EventDispatcher.git",
-                "reference": "2d8ece3c610726a73d0c95c885134efea182610e"
+                "reference": "acd1707236f6eb96fbb8d58f63d289b72ebc2f6e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/EventDispatcher/zipball/2d8ece3c610726a73d0c95c885134efea182610e",
-                "reference": "2d8ece3c610726a73d0c95c885134efea182610e",
+                "url": "https://api.github.com/repos/symfony/EventDispatcher/zipball/acd1707236f6eb96fbb8d58f63d289b72ebc2f6e",
+                "reference": "acd1707236f6eb96fbb8d58f63d289b72ebc2f6e",
                 "shasum": ""
             },
             "require": {
@@ -1980,7 +2025,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.3-dev"
+                    "dev-master": "2.4-dev"
                 }
             },
             "autoload": {
@@ -2004,21 +2049,21 @@
             ],
             "description": "Symfony EventDispatcher Component",
             "homepage": "http://symfony.com",
-            "time": "2013-10-13 06:32:10"
+            "time": "2013-12-03 14:52:22"
         },
         {
             "name": "symfony/filesystem",
-            "version": "v2.3.7",
+            "version": "v2.4.0",
             "target-dir": "Symfony/Component/Filesystem",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/Filesystem.git",
-                "reference": "2b8995042086c5552c94d33b5553c492e9cfc00e"
+                "reference": "79acd777762e81d0f3414ca25a602deeeb48240d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/Filesystem/zipball/2b8995042086c5552c94d33b5553c492e9cfc00e",
-                "reference": "2b8995042086c5552c94d33b5553c492e9cfc00e",
+                "url": "https://api.github.com/repos/symfony/Filesystem/zipball/79acd777762e81d0f3414ca25a602deeeb48240d",
+                "reference": "79acd777762e81d0f3414ca25a602deeeb48240d",
                 "shasum": ""
             },
             "require": {
@@ -2027,7 +2072,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.3-dev"
+                    "dev-master": "2.4-dev"
                 }
             },
             "autoload": {
@@ -2051,21 +2096,21 @@
             ],
             "description": "Symfony Filesystem Component",
             "homepage": "http://symfony.com",
-            "time": "2013-09-19 09:45:20"
+            "time": "2013-11-16 15:13:54"
         },
         {
             "name": "symfony/finder",
-            "version": "v2.3.7",
+            "version": "v2.4.0",
             "target-dir": "Symfony/Component/Finder",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/Finder.git",
-                "reference": "a175521f680b178e63c5d0ab87c6b046c0990c3f"
+                "reference": "72356bf0646b11af1bae666c28a639bd8ede459f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/Finder/zipball/a175521f680b178e63c5d0ab87c6b046c0990c3f",
-                "reference": "a175521f680b178e63c5d0ab87c6b046c0990c3f",
+                "url": "https://api.github.com/repos/symfony/Finder/zipball/72356bf0646b11af1bae666c28a639bd8ede459f",
+                "reference": "72356bf0646b11af1bae666c28a639bd8ede459f",
                 "shasum": ""
             },
             "require": {
@@ -2074,7 +2119,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.3-dev"
+                    "dev-master": "2.4-dev"
                 }
             },
             "autoload": {
@@ -2098,7 +2143,7 @@
             ],
             "description": "Symfony Finder Component",
             "homepage": "http://symfony.com",
-            "time": "2013-09-19 09:45:20"
+            "time": "2013-11-26 16:40:27"
         },
         {
             "name": "symfony/http-foundation",
@@ -2144,7 +2189,7 @@
         },
         {
             "name": "symfony/routing",
-            "version": "v2.2.10",
+            "version": "v2.2.11",
             "target-dir": "Symfony/Component/Routing",
             "source": {
                 "type": "git",
@@ -2202,17 +2247,17 @@
         },
         {
             "name": "symfony/yaml",
-            "version": "v2.3.7",
+            "version": "v2.4.0",
             "target-dir": "Symfony/Component/Yaml",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/Yaml.git",
-                "reference": "c1bda5b459d792cb253de12c65beba3040163b2b"
+                "reference": "1ae235a1b9d3ad3d9f3860ff20acc072df95b7f5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/Yaml/zipball/c1bda5b459d792cb253de12c65beba3040163b2b",
-                "reference": "c1bda5b459d792cb253de12c65beba3040163b2b",
+                "url": "https://api.github.com/repos/symfony/Yaml/zipball/1ae235a1b9d3ad3d9f3860ff20acc072df95b7f5",
+                "reference": "1ae235a1b9d3ad3d9f3860ff20acc072df95b7f5",
                 "shasum": ""
             },
             "require": {
@@ -2221,7 +2266,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.3-dev"
+                    "dev-master": "2.4-dev"
                 }
             },
             "autoload": {
@@ -2245,7 +2290,7 @@
             ],
             "description": "Symfony Yaml Component",
             "homepage": "http://symfony.com",
-            "time": "2013-10-17 11:48:01"
+            "time": "2013-11-26 16:40:27"
         },
         {
             "name": "twitter/bootstrap",
@@ -2318,6 +2363,53 @@
             "time": "2013-04-17 11:42:28"
         },
         {
+            "name": "zendframework/zend-i18n",
+            "version": "2.1.5",
+            "target-dir": "Zend/I18n",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/zendframework/Component_ZendI18n.git",
+                "reference": "f48c671a2b46f12f16f0b4517f039f5708d29489"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/zendframework/Component_ZendI18n/zipball/f48c671a2b46f12f16f0b4517f039f5708d29489",
+                "reference": "f48c671a2b46f12f16f0b4517f039f5708d29489",
+                "shasum": ""
+            },
+            "require": {
+                "ext-intl": "*",
+                "php": ">=5.3.3",
+                "zendframework/zend-stdlib": "self.version"
+            },
+            "suggest": {
+                "zendframework/zend-filter": "You should install this package to use the provided filters",
+                "zendframework/zend-validator": "You should install this package to use the provided validators",
+                "zendframework/zend-view": "You should install this package to use the provided view helpers"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.1-dev",
+                    "dev-develop": "2.2-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Zend\\I18n\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "keywords": [
+                "i18n",
+                "zf2"
+            ],
+            "time": "2013-04-10 18:14:09"
+        },
+        {
             "name": "zendframework/zend-log",
             "version": "2.1.5",
             "target-dir": "Zend/Log",
@@ -2368,6 +2460,49 @@
             "time": "2013-03-12 17:41:19"
         },
         {
+            "name": "zendframework/zend-servicemanager",
+            "version": "2.1.5",
+            "target-dir": "Zend/ServiceManager",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/zendframework/Component_ZendServiceManager.git",
+                "reference": "c4df163b4cd6a0605f9e789cc1d46fb2bbacf06c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/zendframework/Component_ZendServiceManager/zipball/c4df163b4cd6a0605f9e789cc1d46fb2bbacf06c",
+                "reference": "c4df163b4cd6a0605f9e789cc1d46fb2bbacf06c",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.3"
+            },
+            "suggest": {
+                "zendframework/zend-di": "Zend\\Di component"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.1-dev",
+                    "dev-develop": "2.2-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Zend\\ServiceManager\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "keywords": [
+                "servicemanager",
+                "zf2"
+            ],
+            "time": "2013-04-17 11:42:28"
+        },
+        {
             "name": "zendframework/zend-stdlib",
             "version": "2.1.5",
             "target-dir": "Zend/Stdlib",
@@ -2409,27 +2544,78 @@
                 "zf2"
             ],
             "time": "2013-04-15 11:43:47"
+        },
+        {
+            "name": "zendframework/zend-validator",
+            "version": "2.1.5",
+            "target-dir": "Zend/Validator",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/zendframework/Component_ZendValidator.git",
+                "reference": "1f75f6954bb89ecbd3d7790c82c9722cfa52e29d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/zendframework/Component_ZendValidator/zipball/1f75f6954bb89ecbd3d7790c82c9722cfa52e29d",
+                "reference": "1f75f6954bb89ecbd3d7790c82c9722cfa52e29d",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.3",
+                "zendframework/zend-i18n": "self.version",
+                "zendframework/zend-servicemanager": "self.version",
+                "zendframework/zend-stdlib": "self.version"
+            },
+            "require-dev": {
+                "zendframework/zend-math": "self.version"
+            },
+            "suggest": {
+                "zendframework/zend-db": "Zend\\Db component",
+                "zendframework/zend-math": "Zend\\Math component"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.1-dev",
+                    "dev-develop": "2.2-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Zend\\Validator\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "description": "provides a set of commonly needed validators",
+            "keywords": [
+                "validator",
+                "zf2"
+            ],
+            "time": "2013-04-04 15:00:49"
         }
     ],
     "packages-dev": [
         {
             "name": "dg/adminer-custom",
-            "version": "v1.0.0",
+            "version": "v1.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/dg/adminer-custom.git",
-                "reference": "c7ce0e546c5d8ee93fbcdb4528460ac2a741a0b3"
+                "reference": "7047037f3dbd16032c3cfa4a7091ce11fa83590a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dg/adminer-custom/zipball/c7ce0e546c5d8ee93fbcdb4528460ac2a741a0b3",
-                "reference": "c7ce0e546c5d8ee93fbcdb4528460ac2a741a0b3",
+                "url": "https://api.github.com/repos/dg/adminer-custom/zipball/7047037f3dbd16032c3cfa4a7091ce11fa83590a",
+                "reference": "7047037f3dbd16032c3cfa4a7091ce11fa83590a",
                 "shasum": ""
             },
             "type": "project",
             "notification-url": "https://packagist.org/downloads/",
             "description": "Customization for the best database management tool written in PHP, Adminer",
-            "time": "2013-07-01 12:56:59"
+            "time": "2013-10-16 10:46:14"
         },
         {
             "name": "facebook/xhprof",
@@ -2551,16 +2737,16 @@
         },
         {
             "name": "twig/twig",
-            "version": "v1.14.2",
+            "version": "v1.15.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/fabpot/Twig.git",
-                "reference": "ca445842fcea4f844d68203ffa2d00f5e3cdea64"
+                "reference": "85e4ff98000157ff753d934b9f13659a953f5666"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/fabpot/Twig/zipball/ca445842fcea4f844d68203ffa2d00f5e3cdea64",
-                "reference": "ca445842fcea4f844d68203ffa2d00f5e3cdea64",
+                "url": "https://api.github.com/repos/fabpot/Twig/zipball/85e4ff98000157ff753d934b9f13659a953f5666",
+                "reference": "85e4ff98000157ff753d934b9f13659a953f5666",
                 "shasum": ""
             },
             "require": {
@@ -2569,7 +2755,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.14-dev"
+                    "dev-master": "1.15-dev"
                 }
             },
             "autoload": {
@@ -2596,7 +2782,7 @@
             "keywords": [
                 "templating"
             ],
-            "time": "2013-10-30 08:20:53"
+            "time": "2013-12-06 07:47:10"
         }
     ],
     "aliases": [
@@ -2605,6 +2791,8 @@
     "minimum-stability": "stable",
     "stability-flags": {
         "bear/resource": 20,
+        "ray/di": 20,
+        "ray/aop": 20,
         "bear/sunday": 20,
         "bear/package": 20,
         "doctrine/migrations": 20,

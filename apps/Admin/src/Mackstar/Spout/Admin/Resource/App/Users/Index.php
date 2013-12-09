@@ -6,6 +6,7 @@ use BEAR\Resource\ResourceObject;
 use BEAR\Package\Module\Database\Dbal\Setter\DbSetterTrait;
 use BEAR\Sunday\Annotation\Db;
 use Mackstar\Spout\Interfaces\SecurityInterface;
+use Mackstar\Spout\Admin\Annotation\Form;
 use Ray\Di\Di\Inject;
 
 /**
@@ -21,7 +22,7 @@ class Index extends ResourceObject{
     protected $security;
 
     /**
-     *  @Inject
+     * @Inject
      */
     public function setSecurity(SecurityInterface $security) {
         $this->security = $security;
@@ -44,17 +45,23 @@ class Index extends ResourceObject{
         return $this;
     }
 
+    /**
+     *  @Form
+     */
     public function onPost(
         $email,
         $name,
-        $password
+        $password,
+        $role
     ) {
 
-    $this->db->insert('users', [
-        'name' => $name,
-        'email' => $email,
-        'password' => $this->security->encrypt($password)
-    ]);
+
+    // $this->db->insert('users', [
+    //     'name' => $name,
+    //     'email' => $email,
+    //     'password' => $this->security->encrypt($password),
+    //     'role_id' => $role->id
+    // ]);
     return $this;
     }
 
