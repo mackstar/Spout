@@ -9,8 +9,10 @@ use Ray\Di\Di\Inject;
 
 class UserValidator implements MethodInterceptor
 {
-	// const TITLE = 0;
-	// const BODY = 1;
+	const EMAIL = 0;
+	const NAME = 1;
+    const ROLE = 2;
+    const PASSWORD = 3;
 	
 	/**
 	 * Error
@@ -31,8 +33,6 @@ class UserValidator implements MethodInterceptor
      */
     public function setValidator(ValidatorInterface $validator)
     {
-        var_dump("setValidator");
-        exit;
         $this->validator = $validator;
     }
 	
@@ -40,14 +40,24 @@ class UserValidator implements MethodInterceptor
     {
     	$args = $invocation->getArguments();
     	$page = $invocation->getThis();
-    	var_dump("UserValidator");
-        var_dump($this->validator);
-        exit;
+    
     	// // strip tags
     	// foreach ($args as &$arg) {
     	// 	$arg = strip_tags($arg);
     	// }
+        $validator = $this->validator;
+
+        if (!$validator->get('emailaddress')->isValid($args[self::EMAIL])) {
+            $this->errors['email'] = $validator->getMessages()[0];
+        }
+
+        if (!$validator->get('notempty')->isValid($args[self::NAME])) {
+            $this->errors['name'] = $validator->getMessages()[0];
+        }
     	
+        if (!$validator->get('notempty')->isValid($args[self::EMAIL])) {
+            $this->errors['email'] = $validator->getMessages()[0];
+        }
     	// // required title
     	// if ($args[self::TITLE] # = '') {
     	// 	$this->errors['title'] = 'title required.';
@@ -58,12 +68,11 @@ class UserValidator implements MethodInterceptor
     	// 	$this->errors['body'] = 'body required.';
     	// }
     	
-    	// // valid form ?
-    	// if (implode('', $this->errors) # = '') {
-	    // 	return $invocation->proceed();
-    	// }
+    	if (implode('', $this->errors)  == '') {
+	    	return $invocation->proceed();
+    	}
     	
-     //    // error, modify 'GET' page with error message.
+        // error, modify 'GET' page with error message.
     	// $page['errors'] = $this->errors;
     	// $page['submit'] =[
     	// 	'title' => $args[self::TITLE],
