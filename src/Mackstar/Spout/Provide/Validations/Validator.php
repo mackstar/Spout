@@ -15,11 +15,25 @@ use Mackstar\Spout\Interfaces\ValidatorInterface;
  */
 class Validator implements ValidatorInterface
 {
-    private $validator;
+    private $validators;
+
+    private $currentValidator;
 
     public function __construct() {
-    	var_dump("validator");
     	$provider = new ValidatorProvider();
     	$this->validators = $provider->get();
+    }
+
+    public function get($type, $options = null) {
+    	$this->currentValidator = $this->validators[$type];
+    	return $this->currentValidator;
+    }
+
+    public function getMessages() {
+    	$messages = [];
+    	foreach($this->currentValidator->getMessages() as $key => $val) {
+    		$messages[] = $val;
+    	}
+    	return $messages;
     }
 }

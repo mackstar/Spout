@@ -32,7 +32,7 @@ class ValidatorProvider implements ProviderInterface
     	$validatorNamespace = 'Zend\\Validator\\';
     	foreach ($this->validatorClasses as $className) {
     		$fullClassName = $validatorNamespace . $className;
-    		$validators[] = new $fullClassName();
+    		$validators[strtolower($className)] = new $fullClassName();
     	}
         return $validators;
     }
