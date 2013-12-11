@@ -7,6 +7,8 @@
 namespace Mackstar\Spout\Provide\Validations;
 
 use Mackstar\Spout\Interfaces\ValidatorInterface;
+use Mackstar\Spout\Interfaces\ValidatorProviderInterface;
+use Ray\Di\Di\Inject;
 
 /**
  * Mackstar.Spout
@@ -19,8 +21,10 @@ class Validator implements ValidatorInterface
 
     private $currentValidator;
 
-    public function __construct() {
-    	$provider = new ValidatorProvider();
+    /**
+     * @Inject
+     */
+    public function __construct(ValidatorProviderInterface $provider) {
     	$this->validators = $provider->get();
     }
 

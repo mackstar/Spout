@@ -1,10 +1,10 @@
 <?php
 
-namespace Mackstar\Spout\Tools;
+namespace Mackstar\Spout\Provide\Validations;
 
 use Mackstar\Spout\Provide\Validations\ValidatorProvider;
 
-class ValidatorValidatorTest extends \PHPUnit_Framework_TestCase
+class ValidatorProviderTest extends \PHPUnit_Framework_TestCase
 {
 
     private $validator;

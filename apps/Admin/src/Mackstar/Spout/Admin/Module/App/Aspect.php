@@ -19,6 +19,7 @@ class Aspect extends AbstractModule
 
     private function installFormValidators()
     {
+        $this->requestInjection('Mackstar\Spout\Provide\Validations\Validator');
         $userValidator = $this->requestInjection('Mackstar\Spout\Admin\Interceptor\Validators\UserValidator');
         $this->bindInterceptor(
             $this->matcher->subclassesOf('Mackstar\Spout\Admin\Resource\App\Users\Index'),

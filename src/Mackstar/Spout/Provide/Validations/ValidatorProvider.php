@@ -7,14 +7,14 @@
 namespace Mackstar\Spout\Provide\Validations;
 
 use Fuel\Validation\Validator as ValidatorClass;
-use Ray\Di\ProviderInterface;
+use Mackstar\Spout\Interfaces\ValidatorProviderInterface;
 
 /**
  * Mackstar.Spout
  *
  * @package Mackstar.Spout
  */
-class ValidatorProvider implements ProviderInterface
+class ValidatorProvider implements ValidatorProviderInterface
 {
 	private $validatorClasses = [
 		'Between',
