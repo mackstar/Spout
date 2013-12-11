@@ -20,7 +20,11 @@ class AuthenticateTest extends \PHPUnit_Framework_TestCase
         $this->resource = clone $GLOBALS['RESOURCE'];
         $this->db = clone $GLOBALS['DB'];
         $this->resource->post->uri('app://self/users/index')
-            ->withQuery(['name' => 'Richard', 'email' => 'richard.mackstar@gmail.com', 'password' => 'secret'])
+            ->withQuery([
+                'name' => 'Richard', 
+                'email' => 'richard.mackstar@gmail.com', 
+                'password' => 'secret', 
+                'role' => (object)['id' => 1]])
             ->eager
             ->request();
     }

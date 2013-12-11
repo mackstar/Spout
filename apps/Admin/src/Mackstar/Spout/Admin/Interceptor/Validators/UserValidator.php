@@ -38,12 +38,6 @@ class UserValidator implements MethodInterceptor
     public function invoke(MethodInvocation $invocation)
     {
     	$args = $invocation->getArguments();
-    	$page = $invocation->getThis();
-    
-    	// // strip tags
-    	// foreach ($args as &$arg) {
-    	// 	$arg = strip_tags($arg);
-    	// }
         $validator = $this->validator;
 
         if (!$validator->get('emailaddress')->isValid($args[self::EMAIL])) {
@@ -54,20 +48,9 @@ class UserValidator implements MethodInterceptor
             $this->errors['name'] = $validator->getMessages()[0];
         }
     	
-        if (!$validator->get('notempty')->isValid($args[self::EMAIL])) {
-            $this->errors['email'] = $validator->getMessages()[0];
-        }
-
-        
-    	// // required title
-    	// if ($args[self::TITLE] # = '') {
-    	// 	$this->errors['title'] = 'title required.';
-    	// }
-    	
-    	// // required body
-    	// if ($args[self::BODY] # = '') {
-    	// 	$this->errors['body'] = 'body required.';
-    	// }
+        // if (!$validator->get('notempty')->isValid($args[self::EMAIL])) {
+        //     $this->errors['email'] = $validator->getMessages()[0];
+        // }
     	
     	if (implode('', $this->errors)  == '') {
 	    	return $invocation->proceed();
@@ -77,13 +60,5 @@ class UserValidator implements MethodInterceptor
             ->withQuery(['errors' => $this->errors])
             ->eager
             ->request();
-    	
-        // error, modify 'GET' page with error message.
-    	// $page['errors'] = $this->errors;
-    	// $page['submit'] =[
-    	// 	'title' => $args[self::TITLE],
-    	// 	'body' => $args[self::BODY]
-    	// ];
-    	// return $page->onGet();
     }
 }

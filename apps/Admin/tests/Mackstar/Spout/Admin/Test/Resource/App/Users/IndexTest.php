@@ -30,7 +30,7 @@ class IndexTest extends \PHPUnit_Framework_TestCase
     {
         // resource request
         $page = $this->resource->post->uri('app://self/users/index')
-            ->withQuery(['name' => 'Richard', 'email' => 'richard.mackstar@gmail.com', 'password' => 'secret'])
+            ->withQuery(['name' => 'Richard', 'email' => 'richard.mackstar@gmail.com', 'password' => 'secret', 'role' => 'secret'])
             ->eager
             ->request();
         $this->assertSame(200, $page->code);
