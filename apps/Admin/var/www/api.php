@@ -34,6 +34,21 @@ $context = 'api';
 $app = require dirname(dirname(__DIR__)) . '/bootstrap/instance.php';
 /* @var $app \BEAR\Package\Provide\Application\AbstractApp */
 
+function castToArray($obj) {
+    if(is_object($obj)) {
+        $obj = (array) $obj;
+    }
+    if(is_array($obj)) {
+        $new = array();
+        foreach($obj as $key => $val) {
+            $new[$key] = castToArray($val);
+        }
+    } else {
+       $new = $obj; 
+    } 
+    return $new;       
+}
+
 //
 // When using the CLI we set the router arguments needed for CLI use.
 // Otherwise just get the path directly from the globals.
@@ -52,13 +67,9 @@ if (PHP_SAPI === 'cli') {
     
     $get = $_GET;
     if (empty($get) && $rawdata = file_get_contents('php://input')) {
-        $get = (array) json_decode($rawdata);
+        $get = castToArray($rawdata);
     }
 }
-
-//$rawdata = file_get_contents('php://input');
-
-
 
 //
 // Get the method from the router and attempt to request the resource and render.

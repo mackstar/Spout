@@ -24,7 +24,7 @@ class AuthenticateTest extends \PHPUnit_Framework_TestCase
                 'name' => 'Richard', 
                 'email' => 'richard.mackstar@gmail.com', 
                 'password' => 'secret', 
-                'role' => (object)['id' => 1]])
+                'role' => ['id' => 1]])
             ->eager
             ->request();
     }

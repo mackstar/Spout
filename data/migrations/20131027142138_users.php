@@ -15,6 +15,7 @@ class Users extends AbstractMigration
         $users->addColumn('name', 'string', array('limit' => 100))
               ->addColumn('email', 'string', array('limit' => 30))
               ->addColumn('password', 'string', array('limit' => 60))
+              ->addColumn('role_id', 'string', array('limit' => 60))
               ->addIndex(array('email'), array('unique' => true))
               ->save();
     }

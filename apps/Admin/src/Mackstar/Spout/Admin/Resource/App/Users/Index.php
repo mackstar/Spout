@@ -55,11 +55,11 @@ class Index extends ResourceObject{
         $role
     ) {
 
-//'role_id' => $role->id
     $this->db->insert('users', [
         'name' => $name,
         'email' => $email,
-        'password' => $this->security->encrypt($password)
+        'password' => $this->security->encrypt($password),
+        'role_id' => $role['id']
     ]);
     return $this;
     }

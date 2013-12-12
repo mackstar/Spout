@@ -36,3 +36,13 @@ Getting started
 ```
  $ vendor/robmorgan/phinx/bin/phinx migrate -p php -c config.php -e development
 ```
+
+### Rollback
+```
+$ vendor/robmorgan/phinx/bin/phinx rollback -e testing -c config.php -t 0
+```
+
+### Environments
+* development
+* testing
+* production
