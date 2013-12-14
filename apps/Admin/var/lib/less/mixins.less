@@ -341,7 +341,8 @@
 // Panels
 // -------------------------
 .panel-variant(@border; @heading-text-color; @heading-bg-color; @heading-border;) {
-  border-color: @border;
+  background-color: @heading-bg-color;
+  padding-left: 8px;
   & > .panel-heading {
     color: @heading-text-color;
     background-color: @heading-bg-color;
@@ -349,6 +350,12 @@
     + .panel-collapse .panel-body {
       border-top-color: @border;
     }
+  }
+  & > .panel-body, & > .panel-heading{
+    border-left: 8px solid @heading-text-color;
+  }
+  & > .panel-body, & > .panel-footer, & > .panel-heading {
+    background-color: @heading-bg-color;
   }
   & > .panel-footer {
     + .panel-collapse .panel-body {

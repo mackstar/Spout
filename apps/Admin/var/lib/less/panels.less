@@ -5,16 +5,14 @@
 
 // Base class
 .panel {
-  margin-bottom: @line-height-computed;
   background-color: @panel-bg;
-  border: 1px solid transparent;
+  border-left: 8px solid transparent;
   border-radius: @panel-border-radius;
-  .box-shadow(0 1px 1px rgba(0,0,0,.05));
 }
 
 // Panel contents
 .panel-body {
-  padding: 15px;
+  padding: 5px 15px 0px 15px;
   .clearfix();
 }
 
@@ -56,19 +54,23 @@
 // watch it go full width.
 
 .panel {
+  border: 8px solid #fff;
+  padding: 8px;
   > .table {
     margin-bottom: 0;
   }
   > .panel-body + .table {
     border-top: 1px solid @table-border-color;
   }
+  > .h4 {
+    font-size: 1.5em;
+  }
 }
 
 
 // Optional heading
 .panel-heading {
-  padding: 10px 15px;
-  border-bottom: 1px solid transparent;
+  padding: 0px 15px 5px 15px;
   .border-top-radius(@panel-border-radius - 1);
 }
 
@@ -141,7 +143,7 @@
   .panel-variant(@panel-warning-border; @panel-warning-text; @panel-warning-heading-bg; @panel-warning-border);
 }
 .panel-danger {
-  .panel-variant(@panel-danger-border; @panel-danger-text; @panel-danger-heading-bg; @panel-danger-border);
+  .panel-variant(@panel-danger-text; @panel-danger-text; @panel-danger-heading-bg; @panel-danger-border);
 }
 .panel-info {
   .panel-variant(@panel-info-border; @panel-info-text; @panel-info-heading-bg; @panel-info-border);

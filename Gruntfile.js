@@ -42,6 +42,9 @@ module.exports = function(grunt) {
       options: {
         stdout: true
       },
+      css: {
+        command: "lessc apps/Admin/var/lib/less/bootstrap.less > apps/Admin/var/www/css/bootstrap.min.css --compress"
+      },
       migrate: {
         command: "vendor/robmorgan/phinx/bin/phinx --configuration=config.php migrate -e" + env,
         create: {
@@ -89,6 +92,7 @@ module.exports = function(grunt) {
   });
   grunt.registerTask('default', ['karma']);
   grunt.registerTask('js', ['karma:unit']);
+  grunt.registerTask('css', ['shell:css']);
   grunt.registerTask('phpunit', ['shell:phpunit']);
 
 

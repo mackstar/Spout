@@ -67,7 +67,7 @@ if (PHP_SAPI === 'cli') {
     
     $get = $_GET;
     if (empty($get) && $rawdata = file_get_contents('php://input')) {
-        $get = castToArray($rawdata);
+        $get = castToArray(json_decode($rawdata));
     }
 }
 

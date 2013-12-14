@@ -31,6 +31,9 @@ app.controller('UserAddCtrl', function($scope, $rootScope, Restangular) {
     user.password = "password";
     Restangular.all('users/index').post(user).then(function() {
       console.log("Object saved OK");
+    }, function(response) {
+      console.log(data);
+      console.log("There was an error saving");
     });
   }
 });

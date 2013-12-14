@@ -13,8 +13,8 @@ class UserValidator implements MethodInterceptor
 {
 	const EMAIL = 0;
 	const NAME = 1;
-    const ROLE = 2;
-    const PASSWORD = 3;
+    const PASSWORD = 2;
+    const ROLE = 3;
 
     use ResourceInject;
 	
@@ -48,10 +48,14 @@ class UserValidator implements MethodInterceptor
             $this->errors['name'] = $validator->getMessages()[0];
         }
     	
-        // if (!$validator->get('notempty')->isValid($args[self::EMAIL])) {
-        //     $this->errors['email'] = $validator->getMessages()[0];
-        // }
-    	
+        if (!$validator->get('notempty')->isValid($args[self::ROLE]['id'])) {
+            $this->errors['role'] = $validator->getMessages()[0];
+        }
+
+        if (!$validator->get('notempty')->isValid($args[self::PASSWORD])) {
+            $this->errors['password'] = $validator->getMessages()[0];
+        }
+        
     	if (implode('', $this->errors)  == '') {
 	    	return $invocation->proceed();
     	}

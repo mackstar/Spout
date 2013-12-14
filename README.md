@@ -2,7 +2,6 @@ Mackstar.Spout
 =======
 A fast developer happy CMS written in BEAR.Sunday and Angular.js
 
-
 Why do we need another PHP CMS?
 ---------------------------------------------
 
@@ -15,6 +14,11 @@ Why do we need another PHP CMS?
 * To maximise integration with othor composer based PHP libraries
 * Everything is resource, you can manipulate anything in any REST client.
 
+Contributing
+---------------------------------------------
+
+This project will be hard to get off the ground without some of you pitching in! It is about writing a CMS framework that can be extended but one that developers will love using. Spout has been designed to be easy to test and is very much 'Test driven'. 
+
 Other tools
 ---------------------------------------------
 
@@ -24,6 +28,7 @@ Other tools
  * Angular.js
  * Karma
  * Jasmine
+ * Twitter Bootstrap
 
 Requirements
 ------------
@@ -46,3 +51,9 @@ $ vendor/robmorgan/phinx/bin/phinx rollback -e testing -c config.php -t 0
 * development
 * testing
 * production
+
+### CSS
+CSS files live in `apps/Admin/var/lib/less` and you can compile the css by running
+```
+grunt css
+```
