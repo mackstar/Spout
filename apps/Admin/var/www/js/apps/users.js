@@ -32,7 +32,7 @@ app.controller('UserAddCtrl', function($scope, $rootScope, Restangular) {
     Restangular.all('users/index').post(user).then(function() {
       console.log("Object saved OK");
     }, function(response) {
-      console.log(data);
+      console.log(response);
       console.log("There was an error saving");
     });
   }

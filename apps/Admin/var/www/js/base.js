@@ -1,4 +1,4 @@
-var app = angular.module('spout', ['restangular', 'ui.router']);
+var app = angular.module('spout', ['ngRoute', 'restangular', 'ngAnimate']);
 
 app.config(function($interpolateProvider) {
   $interpolateProvider.startSymbol('{[').endSymbol(']}');
@@ -13,8 +13,10 @@ app.run(function(Restangular, $rootScope) {
   //   return data;
   // });
   Restangular.setErrorInterceptor(function(response) {
-    if (response.status && response.data.message) {
-      $rootScope.$emit('message', {message: response.data.message, status: response.status});
+    if (response.status) {
+
+      console.log("emit");
+      $rootScope.$emit('sp.message', {title: "Something was wrong", message: "Something was wrong", type: "danger"});
     }
     return response;
   });
@@ -28,32 +30,40 @@ app.run(function(Restangular, $rootScope) {
 
 });
 
-app.directive('errorWindow', function() {
+app.directive('errorWindow', function($rootScope, $timeout) {
   return {
     restrict: 'E',
-    template: '<div class="row sp-float" ng-show="title">' +
+    template: '<div class="row sp-float animate-show" ng-show="show">' +
     '<div class="col-md-8 col-md-offset-2 panel sp-panel panel-danger">' +
         '<div class="panel-heading">' +
             '<h4 class="panel-title"><span class="glyphicon glyphicon-warning-sign"></span> {{title}}</h4>' +
         '</div>' +
-        '<div class="panel-body">' +
+        '<div class="panel-body" ng-show="message">' +
             '<p>{{message}}</p>' +
         '</div>' +
     '</div>' +
 '</div>',
     link: function(scope) {
-      setTimeout(function() {
+
+      function restore() {
         scope.$apply(function() {
-          scope.title = 'Body padding required';
+          scope.show = false;
         });
-      }, 3000);
-      scope.message = 'This is moment content';
+      }
+
+      scope.show = true;
+      scope.title = "There was a validation error";
+      scope.message = "This is what went wrong.";
+
+      $rootScope.$on('sp.message', function(obj, options) {
+        scope.show = true;
+        scope.title = options.title;
+        scope.message = options.message;
+        scope.type = options.type;
+        $timeout(restore, 3000);
+      });
     }
   }
-
-
-
-    
 });
 
 app.controller('ModalCtrl', function($rootScope, $element) {
