@@ -14,9 +14,7 @@ app.run(function(Restangular, $rootScope) {
   // });
   Restangular.setErrorInterceptor(function(response) {
     if (response.status) {
-
-      console.log("emit");
-      $rootScope.$emit('sp.message', {title: "Something was wrong", message: "Something was wrong", type: "danger"});
+      $rootScope.$emit('sp.message', {title: response.data.title, message: response.data.message, type: "danger"});
     }
     return response;
   });
@@ -34,7 +32,7 @@ app.directive('errorWindow', function($rootScope, $timeout) {
   return {
     restrict: 'E',
     template: '<div class="row sp-float animate-show" ng-show="show">' +
-    '<div class="col-md-8 col-md-offset-2 panel sp-panel panel-danger">' +
+    '<div class="col-md-8 col-md-offset-2 panel sp-panel panel-{{type}}">' +
         '<div class="panel-heading">' +
             '<h4 class="panel-title"><span class="glyphicon glyphicon-warning-sign"></span> {{title}}</h4>' +
         '</div>' +
@@ -51,10 +49,6 @@ app.directive('errorWindow', function($rootScope, $timeout) {
         });
       }
 
-      scope.show = true;
-      scope.title = "There was a validation error";
-      scope.message = "This is what went wrong.";
-
       $rootScope.$on('sp.message', function(obj, options) {
         scope.show = true;
         scope.title = options.title;
@@ -66,11 +60,51 @@ app.directive('errorWindow', function($rootScope, $timeout) {
   }
 });
 
+app.service('parseFormErrors', function() {
+  return function (data, form) {
+    console.log(data.errors);
+    for(property in data.errors) {
+      form[property].$dirty = true;
+      form[property].$invalid = true;
+      form[property].$message = data.errors[property];
+    }
+    console.log(form.password.$dirty, form.email );
+  }
+});
+
+
+app.directive('formfieldErrorMsg', function() {
+
+  return {
+    restrict: 'E',
+    replace: true,
+    transclude: false,
+    scope: { field: '=' },
+    template: '<p class="help-block" ng-show="showMessage()">{{getMessage()}}</p>',
+    link: function(scope, element, attrs) {
+      var form = attrs.field.split(".")[0],
+        property = attrs.field.split(".")[1];
+      
+      scope.message = attrs.msg;
+      scope.showMessage = function () {
+        return scope.field.$dirty && scope.field.$invalid;
+      };
+
+      scope.getMessage = function() {
+        if (!scope.field.$message) {
+          return scope.message;
+        }
+        return scope.field.$message;
+      }
+
+    }
+  };
+});
+
 app.controller('ModalCtrl', function($rootScope, $element) {
   console.log("modal controller");
   $rootScope.$on('modal.open', function(){
     console.log("open");
     $($element).modal('show');
   });
-    
 });
