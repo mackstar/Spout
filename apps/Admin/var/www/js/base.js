@@ -102,9 +102,11 @@ app.directive('formfieldErrorMsg', function() {
 });
 
 app.controller('ModalCtrl', function($rootScope, $element) {
-  console.log("modal controller");
   $rootScope.$on('modal.open', function(){
-    console.log("open");
     $($element).modal('show');
+  });
+
+  $rootScope.$on('modal.close', function(){
+    $($element).modal('hide');
   });
 });

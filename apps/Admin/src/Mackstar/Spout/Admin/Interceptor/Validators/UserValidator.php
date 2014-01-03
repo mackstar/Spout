@@ -24,8 +24,6 @@ class UserValidator implements MethodInterceptor
     const ROLE = 3;
 
     use ResourceInject;
-
-    use DbSetterTrait;
     
     /**
      * Error
@@ -68,6 +66,10 @@ class UserValidator implements MethodInterceptor
         if (!$validator->get('notempty')->isValid($args[self::PASSWORD])) {
             $this->errors['password'] = $validator->getMessages()[0];
         }
+
+        if (!isset($this->errors['email']) && !$this->isUniqueEmail($args[self::EMAIL])) {
+            $this->errors['email'] = 'Email address already exists.';
+        }
         
         if (implode('', $this->errors)  == '') {
             return $invocation->proceed();
@@ -77,5 +79,15 @@ class UserValidator implements MethodInterceptor
             ->withQuery(['errors' => $this->errors])
             ->eager
             ->request();
+    }
+
+    private function isUniqueEmail($email) {
+        $result = $this->resource->get->uri('app://self/users/index')
+            ->withQuery(['email' => $email])
+            ->eager
+            ->request();
+
+        return ($result->body['user'] == false);
+
     }
 }
