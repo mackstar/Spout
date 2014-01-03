@@ -19,15 +19,20 @@
   <thead>
     <tr>
       <th></th>
-      <th>Username</th>
+      <th>Name</th>
       <th>Email</th>
+      <th></th>
     </tr>
   </thead>
   <tbody>
     <tr ng-repeat="user in users">
       <td>{[user.id]}</td>
-      <td>{[user.username]}</td>
+      <td>{[user.name]}</td>
       <td>{[user.email]}</td>
+      <th>
+        <span class="glyphicon glyphicon-trash" ng-click="delete(user)"></span>&nbsp;
+        <span class="glyphicon glyphicon-pencil"></span>
+      </th>
     </tr>
   </tbody>
 </table>

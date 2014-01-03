@@ -55,13 +55,19 @@ class Index extends ResourceObject{
         $role
     ) {
 
-    $this->db->insert('users', [
-        'name' => $name,
-        'email' => $email,
-        'password' => $this->security->encrypt($password),
-        'role_id' => $role['id']
-    ]);
-    return $this;
+        $this->db->insert('users', [
+            'name' => $name,
+            'email' => $email,
+            'password' => $this->security->encrypt($password),
+            'role_id' => $role['id']
+        ]);
+        return $this;
+    }
+
+    public function onDelete($id) {
+        $this->db->delete($this->table, ['id' => $id]);
+        $this->code = 204;
+        return $this;
     }
 
 }

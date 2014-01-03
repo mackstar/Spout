@@ -62,13 +62,11 @@ app.directive('errorWindow', function($rootScope, $timeout) {
 
 app.service('parseFormErrors', function() {
   return function (data, form) {
-    console.log(data.errors);
     for(property in data.errors) {
       form[property].$dirty = true;
       form[property].$invalid = true;
       form[property].$message = data.errors[property];
     }
-    console.log(form.password.$dirty, form.email );
   }
 });
 
