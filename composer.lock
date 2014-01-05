@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "64b372f535a27eb9bebc89ffa3c1589f",
+    "hash": "61eb36d291ee00e7f8ca1a7aca744dab",
     "packages": [
         {
             "name": "any/serializer",
@@ -490,12 +490,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/koriym/BEAR.Package.git",
-                "reference": "971e35453c948a36a750fa798a582d08216358f2"
+                "reference": "794cd11a743da72ee3116bd9f6932bc76c5a8604"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/koriym/BEAR.Package/zipball/971e35453c948a36a750fa798a582d08216358f2",
-                "reference": "971e35453c948a36a750fa798a582d08216358f2",
+                "url": "https://api.github.com/repos/koriym/BEAR.Package/zipball/794cd11a743da72ee3116bd9f6932bc76c5a8604",
+                "reference": "794cd11a743da72ee3116bd9f6932bc76c5a8604",
                 "shasum": ""
             },
             "require": {
@@ -540,6 +540,10 @@
             },
             "type": "library",
             "autoload": {
+                "files": [
+                    "src/BEAR/Package/Bootstrap/getApp.php",
+                    "src/BEAR/Package/Bootstrap/registerLoader.php"
+                ],
                 "psr-0": {
                     "BEAR\\Package": "src/"
                 }
@@ -565,7 +569,7 @@
                 "hypermedia",
                 "rest"
             ],
-            "time": "2013-12-09 08:36:47"
+            "time": "2014-01-05 12:20:45"
         },
         {
             "name": "bear/resource",
@@ -573,12 +577,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/koriym/BEAR.Resource.git",
-                "reference": "5ea39380bfeee0a286ee7c36247b1af5a71fa025"
+                "reference": "55d949eedcf9891f51ade3907cf9c0cc38af3bce"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/koriym/BEAR.Resource/zipball/5ea39380bfeee0a286ee7c36247b1af5a71fa025",
-                "reference": "5ea39380bfeee0a286ee7c36247b1af5a71fa025",
+                "url": "https://api.github.com/repos/koriym/BEAR.Resource/zipball/55d949eedcf9891f51ade3907cf9c0cc38af3bce",
+                "reference": "55d949eedcf9891f51ade3907cf9c0cc38af3bce",
                 "shasum": ""
             },
             "require": {
@@ -608,7 +612,6 @@
                 {
                     "name": "Akihito Koriyama",
                     "email": "akihito.koriyama@gmail.com",
-                    "homepage": "https://github.com/koriym",
                     "role": "Lead"
                 }
             ],
@@ -623,7 +626,7 @@
                 "rest",
                 "stateless"
             ],
-            "time": "2013-12-09 08:25:53"
+            "time": "2013-12-29 06:22:55"
         },
         {
             "name": "bear/sunday",
@@ -631,12 +634,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/koriym/BEAR.Sunday.git",
-                "reference": "bb25f9981569c879a5eaa7989f988c9a338be714"
+                "reference": "b81e2a148828f85cff83ff0614aaf6953a6094a0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/koriym/BEAR.Sunday/zipball/bb25f9981569c879a5eaa7989f988c9a338be714",
-                "reference": "bb25f9981569c879a5eaa7989f988c9a338be714",
+                "url": "https://api.github.com/repos/koriym/BEAR.Sunday/zipball/b81e2a148828f85cff83ff0614aaf6953a6094a0",
+                "reference": "b81e2a148828f85cff83ff0614aaf6953a6094a0",
                 "shasum": ""
             },
             "require": {
@@ -668,7 +671,7 @@
                 "hypermedia",
                 "rest"
             ],
-            "time": "2013-11-09 13:43:20"
+            "time": "2014-01-04 01:46:17"
         },
         {
             "name": "classpreloader/classpreloader",
@@ -716,6 +719,55 @@
                 "preload"
             ],
             "time": "2013-06-24 22:58:34"
+        },
+        {
+            "name": "danielstjules/stringy",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/danielstjules/Stringy.git",
+                "reference": "9f930262af66f3943cb5b8baa8cbc3e31bce0746"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/danielstjules/Stringy/zipball/9f930262af66f3943cb5b8baa8cbc3e31bce0746",
+                "reference": "9f930262af66f3943cb5b8baa8cbc3e31bce0746",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Stringy": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Daniel St. Jules",
+                    "email": "danielst.jules@gmail.com",
+                    "homepage": "http://www.danielstjules.com"
+                }
+            ],
+            "description": "A string manipulation library with multibyte support",
+            "homepage": "https://github.com/danielstjules/Stringy",
+            "keywords": [
+                "UTF",
+                "helpers",
+                "manipulation",
+                "methods",
+                "multibyte",
+                "string",
+                "utf-8",
+                "utility",
+                "utils"
+            ],
+            "time": "2013-12-17 02:04:30"
         },
         {
             "name": "doctrine/annotations",
@@ -1187,12 +1239,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/migrations.git",
-                "reference": "ce2ffa17a642267d48b9df6c5eba94e9d773e22f"
+                "reference": "199cb62a80c7723942d14107c23bc45168e4241c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/migrations/zipball/ce2ffa17a642267d48b9df6c5eba94e9d773e22f",
-                "reference": "ce2ffa17a642267d48b9df6c5eba94e9d773e22f",
+                "url": "https://api.github.com/repos/doctrine/migrations/zipball/199cb62a80c7723942d14107c23bc45168e4241c",
+                "reference": "199cb62a80c7723942d14107c23bc45168e4241c",
                 "shasum": ""
             },
             "require": {
@@ -1239,50 +1291,7 @@
                 "database",
                 "migrations"
             ],
-            "time": "2013-12-03 00:28:34"
-        },
-        {
-            "name": "fuelphp/validation",
-            "version": "0.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/fuelphp/validation.git",
-                "reference": "a4b0927bfc9e09925f10a5202b84099a58dccda7"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/fuelphp/validation/zipball/a4b0927bfc9e09925f10a5202b84099a58dccda7",
-                "reference": "a4b0927bfc9e09925f10a5202b84099a58dccda7",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.3.3"
-            },
-            "require-dev": {
-                "mockery/mockery": "0.7.*"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-0": {
-                    "Fuel\\Validation": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "FuelPHP Development Team",
-                    "email": "team@fuelphp.com"
-                }
-            ],
-            "description": ".",
-            "homepage": "https://github.com/fuelphp/validation",
-            "keywords": [
-                "validation"
-            ],
-            "time": "2013-12-04 11:51:39"
+            "time": "2014-01-04 09:19:33"
         },
         {
             "name": "guzzle/guzzle",
@@ -1645,12 +1654,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/koriym/Ray.Di.git",
-                "reference": "7537685ccce68605ab708c27390b51f36234320f"
+                "reference": "8c22577e7eb05dd7ba608d8acc6e5ea7b2814b20"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/koriym/Ray.Di/zipball/7537685ccce68605ab708c27390b51f36234320f",
-                "reference": "7537685ccce68605ab708c27390b51f36234320f",
+                "url": "https://api.github.com/repos/koriym/Ray.Di/zipball/8c22577e7eb05dd7ba608d8acc6e5ea7b2814b20",
+                "reference": "8c22577e7eb05dd7ba608d8acc6e5ea7b2814b20",
                 "shasum": ""
             },
             "require": {
@@ -1675,7 +1684,6 @@
                 {
                     "name": "Akihito Koriyama",
                     "email": "akihito.koriyama@gmail.com",
-                    "homepage": "https://github.com/koriym",
                     "role": "Lead"
                 },
                 {
@@ -1695,7 +1703,7 @@
                 "injection",
                 "jsr"
             ],
-            "time": "2013-12-09 07:00:24"
+            "time": "2013-12-21 01:40:10"
         },
         {
             "name": "rhumsaa/uuid",
@@ -1815,11 +1823,11 @@
         },
         {
             "name": "smarty/smarty",
-            "version": "v3.1.15",
+            "version": "v3.1.16",
             "source": {
                 "type": "svn",
                 "url": "http://smarty-php.googlecode.com/svn",
-                "reference": "/tags/v3.1.15/@4782"
+                "reference": "/tags/v3.1.16/@4802"
             },
             "require": {
                 "php": ">=5.2"
@@ -1855,11 +1863,11 @@
             "keywords": [
                 "templating"
             ],
-            "time": "2013-10-01 21:08:54"
+            "time": "2013-12-17 16:56:58"
         },
         {
             "name": "symfony/class-loader",
-            "version": "v2.4.0",
+            "version": "v2.4.1",
             "target-dir": "Symfony/Component/ClassLoader",
             "source": {
                 "type": "git",
@@ -1909,17 +1917,17 @@
         },
         {
             "name": "symfony/config",
-            "version": "v2.4.0",
+            "version": "v2.4.1",
             "target-dir": "Symfony/Component/Config",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/Config.git",
-                "reference": "16068f76c0af74968f3ad8fcec3eb90df1fde394"
+                "reference": "27d0b35879ebefcfee6d218512c32ab2d6cd6a6a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/Config/zipball/16068f76c0af74968f3ad8fcec3eb90df1fde394",
-                "reference": "16068f76c0af74968f3ad8fcec3eb90df1fde394",
+                "url": "https://api.github.com/repos/symfony/Config/zipball/27d0b35879ebefcfee6d218512c32ab2d6cd6a6a",
+                "reference": "27d0b35879ebefcfee6d218512c32ab2d6cd6a6a",
                 "shasum": ""
             },
             "require": {
@@ -1953,7 +1961,7 @@
             ],
             "description": "Symfony Config Component",
             "homepage": "http://symfony.com",
-            "time": "2013-11-26 16:40:27"
+            "time": "2014-01-01 08:14:50"
         },
         {
             "name": "symfony/console",
@@ -1999,17 +2007,17 @@
         },
         {
             "name": "symfony/event-dispatcher",
-            "version": "v2.4.0",
+            "version": "v2.4.1",
             "target-dir": "Symfony/Component/EventDispatcher",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/EventDispatcher.git",
-                "reference": "acd1707236f6eb96fbb8d58f63d289b72ebc2f6e"
+                "reference": "e3ba42f6a70554ed05749e61b829550f6ac33601"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/EventDispatcher/zipball/acd1707236f6eb96fbb8d58f63d289b72ebc2f6e",
-                "reference": "acd1707236f6eb96fbb8d58f63d289b72ebc2f6e",
+                "url": "https://api.github.com/repos/symfony/EventDispatcher/zipball/e3ba42f6a70554ed05749e61b829550f6ac33601",
+                "reference": "e3ba42f6a70554ed05749e61b829550f6ac33601",
                 "shasum": ""
             },
             "require": {
@@ -2049,21 +2057,21 @@
             ],
             "description": "Symfony EventDispatcher Component",
             "homepage": "http://symfony.com",
-            "time": "2013-12-03 14:52:22"
+            "time": "2013-12-28 08:12:03"
         },
         {
             "name": "symfony/filesystem",
-            "version": "v2.4.0",
+            "version": "v2.4.1",
             "target-dir": "Symfony/Component/Filesystem",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/Filesystem.git",
-                "reference": "79acd777762e81d0f3414ca25a602deeeb48240d"
+                "reference": "b3c3b5a8108b3e5d604dc23241b4ea84a067fc78"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/Filesystem/zipball/79acd777762e81d0f3414ca25a602deeeb48240d",
-                "reference": "79acd777762e81d0f3414ca25a602deeeb48240d",
+                "url": "https://api.github.com/repos/symfony/Filesystem/zipball/b3c3b5a8108b3e5d604dc23241b4ea84a067fc78",
+                "reference": "b3c3b5a8108b3e5d604dc23241b4ea84a067fc78",
                 "shasum": ""
             },
             "require": {
@@ -2096,21 +2104,21 @@
             ],
             "description": "Symfony Filesystem Component",
             "homepage": "http://symfony.com",
-            "time": "2013-11-16 15:13:54"
+            "time": "2013-12-31 13:43:26"
         },
         {
             "name": "symfony/finder",
-            "version": "v2.4.0",
+            "version": "v2.4.1",
             "target-dir": "Symfony/Component/Finder",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/Finder.git",
-                "reference": "72356bf0646b11af1bae666c28a639bd8ede459f"
+                "reference": "6904345cf2b3bbab1f6d6e4ce1724cb99df9f00a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/Finder/zipball/72356bf0646b11af1bae666c28a639bd8ede459f",
-                "reference": "72356bf0646b11af1bae666c28a639bd8ede459f",
+                "url": "https://api.github.com/repos/symfony/Finder/zipball/6904345cf2b3bbab1f6d6e4ce1724cb99df9f00a",
+                "reference": "6904345cf2b3bbab1f6d6e4ce1724cb99df9f00a",
                 "shasum": ""
             },
             "require": {
@@ -2143,7 +2151,7 @@
             ],
             "description": "Symfony Finder Component",
             "homepage": "http://symfony.com",
-            "time": "2013-11-26 16:40:27"
+            "time": "2014-01-01 08:14:50"
         },
         {
             "name": "symfony/http-foundation",
@@ -2247,17 +2255,17 @@
         },
         {
             "name": "symfony/yaml",
-            "version": "v2.4.0",
+            "version": "v2.4.1",
             "target-dir": "Symfony/Component/Yaml",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/Yaml.git",
-                "reference": "1ae235a1b9d3ad3d9f3860ff20acc072df95b7f5"
+                "reference": "4e1a237fc48145fae114b96458d799746ad89aa0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/Yaml/zipball/1ae235a1b9d3ad3d9f3860ff20acc072df95b7f5",
-                "reference": "1ae235a1b9d3ad3d9f3860ff20acc072df95b7f5",
+                "url": "https://api.github.com/repos/symfony/Yaml/zipball/4e1a237fc48145fae114b96458d799746ad89aa0",
+                "reference": "4e1a237fc48145fae114b96458d799746ad89aa0",
                 "shasum": ""
             },
             "require": {
@@ -2290,7 +2298,7 @@
             ],
             "description": "Symfony Yaml Component",
             "homepage": "http://symfony.com",
-            "time": "2013-11-26 16:40:27"
+            "time": "2013-12-28 08:12:03"
         },
         {
             "name": "twitter/bootstrap",
@@ -2795,6 +2803,7 @@
         "ray/aop": 20,
         "bear/sunday": 20,
         "bear/package": 20,
+        "danielstjules/stringy": 20,
         "doctrine/migrations": 20,
         "robmorgan/phinx": 20,
         "facebook/xhprof": 20

@@ -47,11 +47,13 @@ class AppModule extends AbstractModule
      */
     public function __construct($context = 'prod')
     {
-        $dir = __DIR__;
+        $appDir = dirname(dirname(dirname(dirname(dirname(__DIR__)))));
         $this->context = $context;
-        $this->config = (require "{$dir}/config/{$context}.php") + (require "{$dir}/config/prod.php");
-        $this->params = (require "{$dir}/config/params/{$context}.php") + (require "{$dir}/config/params/prod.php");
+        $this->appDir = $appDir;
+        $this->constants = (require "{$appDir}/var/conf/{$context}.php") + (require "{$appDir}/var/conf/prod.php");
+        $this->params = (require "{$appDir}/var/lib/params/{$context}.php") + (require "{$appDir}/var/lib/params/prod.php");
         parent::__construct();
+        unset($appDir);
     }
 
     /**
@@ -60,8 +62,44 @@ class AppModule extends AbstractModule
     protected function configure()
     {
         
-        // install core package
-        $this->install(new PackageModule(new Constant($this->config), 'Mackstar\Spout\Admin\App', $this->context));
+        // // install core package
+        // $this->install(new PackageModule(new Constant($this->config), 'Mackstar\Spout\Admin\App', $this->context));
+
+        // // install view package
+        // //$this->install(new SmartyModule($this));
+        // $this->install(new TwigModule($this));
+
+        // // install optional package
+        // $this->install(new SignalParamModule($this, $this->params));
+        // $this->install(new AuraFormModule);
+        // $this->install(new ResourceGraphModule($this));
+
+        // // install develop module
+        // if ($this->context === 'dev') {
+        //     $this->install(new DevModule($this));
+        //             $this->bind('BEAR\Resource\InvokerInterface')->to('BEAR\Resource\Invoker')->in(Scope::SINGLETON);
+
+        // }
+
+        // // install API module
+        // if ($this->context === 'api') {
+        //     // install api output view package
+        //     $this->install(new HalModule($this));
+        //     $this->install(new ApiModule($this));
+        //     //$this->install(new JsonModule($this));
+        // }
+
+        // // install application dependency
+        // $this->install(new App\Dependency);
+
+        // // install application aspect
+        // $this->install(new App\Aspect($this));
+
+
+        ///----- New
+
+                // install core package
+        $this->install(new PackageModule('Mackstar\Spout\Admin\App', $this->context, $this->constants));
 
         // install view package
         //$this->install(new SmartyModule($this));
@@ -75,15 +113,12 @@ class AppModule extends AbstractModule
         // install develop module
         if ($this->context === 'dev') {
             $this->install(new DevModule($this));
-                    $this->bind('BEAR\Resource\InvokerInterface')->to('BEAR\Resource\Invoker')->in(Scope::SINGLETON);
-
         }
 
         // install API module
         if ($this->context === 'api') {
             // install api output view package
             $this->install(new HalModule($this));
-            $this->install(new ApiModule($this));
             //$this->install(new JsonModule($this));
         }
 

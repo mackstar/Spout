@@ -85,7 +85,6 @@ module.exports = function(grunt) {
   });
   grunt.event.on('watch', function(action, filepath) {
     filter = mackstar.build.getPhpFileFilter(filepath);
-    console.log(filter);
     //grunt.config(['php', 'filter'], '--filter ' + filter);
     grunt.config(['php', 'filter'], "--filter " + filter);
 

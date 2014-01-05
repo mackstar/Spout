@@ -6,12 +6,12 @@ app.config(function($interpolateProvider) {
 
 app.run(function(Restangular, $rootScope) {
   Restangular.setBaseUrl('/api');
-  //Restangular.setResponseInterceptor(function(data, operation, what, request, response) {
-  //   if (data.message) {
-  //     $rootScope.$emit('message', {message: data.message});
-  //   }
-  //   return data;
-  // });
+  Restangular.setResponseInterceptor(function(data, operation, what, request, response) {
+    if (data.message) {
+      $rootScope.$emit('message', {message: data.message});
+    }
+    return data;
+  });
   Restangular.setErrorInterceptor(function(response) {
     if (response.status) {
       $rootScope.$emit('sp.message', {title: response.data.title, message: response.data.message, type: "danger"});
@@ -27,6 +27,29 @@ app.run(function(Restangular, $rootScope) {
   // });
 
 });
+
+// app.config(function(RestangularProvider) {
+
+//     // Now let's configure the response extractor for each request
+//     RestangularProvider.setResponseExtractor(function(response, operation, what, url) {
+//       // This is a get for a list
+//       var newResponse;
+//       if (operation === "getList") {
+//         // Here we're returning an Array which has one special property metadata with our extra information
+//         newResponse = response.data.data;
+//         newResponse.metadata = response.data.meta;
+//       } else {
+//         // This is an element
+//         newResponse = response.data;
+//       }
+//       return newResponse;
+//     });
+// });
+
+// RestangularProvider.configuration.getIdFromElem = function(elem) {
+//   // if route is customers ==> returns customerID
+//   return elem[_.initial(elem.route).join('') + "ID"];
+// }
 
 app.directive('errorWindow', function($rootScope, $timeout) {
   return {

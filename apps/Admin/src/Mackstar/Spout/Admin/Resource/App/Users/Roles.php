@@ -19,11 +19,24 @@ class Roles extends ResourceObject{
 
     protected $table = 'roles';
 
-    public function onGet()
+    public $headers = [
+    ];
+
+    public function onGet($id = null)
     {
-        $sql = "SELECT * FROM {$this->table} ORDER BY 'weight'";
-        $this['roles'] = $this->db->fetchAll($sql);
-        
+        $sql = "SELECT * FROM {$this->table}";
+
+        if (is_null($id)) {
+            $this['roles'] = $this->db->fetchAll($sql . ' ORDER BY \'weight\'');
+            $this->headers = ['x-model' => 'roles'];
+        } else {
+            $sql .= " WHERE id = :id";
+            $stmt = $this->db->prepare($sql);
+            $stmt->bindValue('id', $id);
+            $stmt->execute();
+            $this['role'] = $stmt->fetch();
+            $this->headers = ['x-model' => 'role'];
+        }
 
         return $this;
     }

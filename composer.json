@@ -13,22 +13,20 @@
     "repositories": [
         {
             "type": "vcs",
-            "url":  "https://github.com/mackstar/BEAR.Package"
-        },
-        {
-            "type": "vcs",
             "url":  "https://github.com/mackstar/phinx"
         }
     ],
     "require":{
         "php":">=5.4.0",
         "ext-curl":"*",
+
         "bear/resource":"dev-develop",
         "ray/di":"dev-develop",
         "ray/aop":"dev-develop",
         "bear/sunday":"dev-develop",
         "bear/ace":"1.0.*",
         "bear/package":"dev-develop",
+        "danielstjules/stringy": "dev-master",
         "aura/input": "1.1.*",
         "aura/view": "1.1.2",
         "doctrine/annotations":"1.*",
@@ -47,7 +45,6 @@
         "zendframework/zend-db": "2.1.*",
         "zendframework/zend-stdlib": "2.1.*",
         "zendframework/zend-validator": "2.1.*",
-        "fuelphp/validation": "*",
         "classpreloader/classpreloader": "1.*",
         "robmorgan/phinx": "dev-0.2.x-dev",
         "rhumsaa/uuid":"2.4"

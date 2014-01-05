@@ -14,12 +14,24 @@ class ApiModule extends AbstractModule
      */
     protected function configure()
     {
+        $this->installPasswordEncryptor();
+        $this->installModelHeaderAppender();
     }
 
     private function installPasswordEncryptor()
     {
         // bind tmp writable checker
         $hider = $this->requestInjection('\Mackstar\Spout\Admin\Interceptor\Users\PasswordHider');
+        $this->bindInterceptor(
+            $this->matcher->subclassesOf('Mackstar\Spout\Admin\Resource\App\Users\Index'),
+            $this->matcher->startWith('onGet'),
+            [$hider]
+        );
+    }
+
+    private function installModelHeaderAppender()
+    {
+        $headerAppender = $this->requestInjection('\Mackstar\Spout\Admin\Interceptor\Tools\ModelHeaderAppender');
         $this->bindInterceptor(
             $this->matcher->subclassesOf('Mackstar\Spout\Admin\Resource\App\Users\Index'),
             $this->matcher->startWith('onGet'),

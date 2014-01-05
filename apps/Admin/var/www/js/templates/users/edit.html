@@ -1,24 +1,27 @@
 <form name="userForm" novalidate>
+
   <div class="form-group" ng-class="{'has-error': userForm.name.$invalid}">
     <label for="name">Name</label>
     <input type="text" ng-model="user.name" class="form-control" name="name" placeholder="Enter the name you need this person to be know by!" required>
     <formfield-error-msg msg="Users name should not be blank" field="userForm.name" />
   </div>
+
   <div class="form-group" ng-class="{'has-error': userForm.email.$invalid}">
     <label for="email">Email</label>
     <input type="email" ng-model="user.email" name="email" class="form-control" placeholder="Enter an email address" required>
     <formfield-error-msg msg="Must be a valid email address" field="userForm.email" />
   </div>
-  <div class="form-group" ng-class="{'has-error': userForm.password.$invalid}">
+
+  <div class="form-group" ng-class="{'has-error': userForm.password.$invalid}" ng-if="addMode">
     <label for="password">Password</label>
     <input type="password" ng-model="user.password" name="password" class="form-control" ng-minlength="6" placeholder="Choose a password" required>
     <formfield-error-msg msg="Length must be at least 6 chars" field="userForm.password" />
   </div>
+
   <div class="form-group">
     <label for="roles">Role</label>
     <roles-selector />
   </div>
 
   <button type="submit" class="btn btn-default" ng-click="submit()">Submit</button>
-  </div>
 </form>

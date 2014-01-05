@@ -5,7 +5,11 @@ app.config(['$routeProvider', function($routeProvider) {
         .when('/add', { 
             templateUrl: '/js/templates/users/edit.html', 
             controller: 'UserAddCtrl'
-    })
+        })
+        .when('/edit/:email', { 
+            templateUrl: '/js/templates/users/edit.html', 
+            controller: 'UserEditCtrl'
+        });
 }]);
 
 app.controller('UsersCtrl', function($scope, Restangular, $rootScope) {
@@ -26,13 +30,46 @@ app.controller('UsersCtrl', function($scope, Restangular, $rootScope) {
     }
 });
 
-
-app.controller('UserEditCtrl', function($scope, $rootScope) {
+app.controller('UserEditCtrl', function($scope, $rootScope, $routeParams, Restangular) {
     $rootScope.$emit('modal.open', true);
+    Restangular.one("users/index").get({email: $routeParams.email}).then(function(user) {
+      console.log(user);
+      $scope.user = user;
+      $scope.selectRole($scope.user.role_id);
+      delete $scope.user.role_id;
+      $scope.submit = function() {
+        if ($scope.userForm.$invalid) {
+          $rootScope.$emit('sp.message', {title: 'Oops', message: 'The form is not yet complete', type: "danger"});
+          return;
+        }
+        record.user.put().then(function() {
+          $rootScope.$emit('sp.message', {title: 'Yeah!', message: 'User saved successfully', type: "success"});
+          // $rootScope.$emit('users.reload', true);
+          // $rootScope.$emit('modal.close', true);
+          // $location.path('/users');
+        }, function(response) {
+          parseFormErrors(response.data, $scope.userForm);
+        });
+      };
+    });
+
+    
+
+
+    // Restangular.one("users/index").put().then(function() {
+    //   $rootScope.$emit('sp.message', {title: 'Yeah!', message: 'User saved successfully', type: "success"});
+    //   $rootScope.$emit('users.reload', true);
+    //   $rootScope.$emit('modal.close', true);
+    //   $location.path('/users');
+    // }, function(response) {
+    //   parseFormErrors(response.data, $scope.userForm);
+    // });
 });
 
 app.controller('UserAddCtrl', function($scope, $rootScope, Restangular, parseFormErrors, $location) {
   $rootScope.$emit('modal.open', true);
+
+  $scope.addMode = true;
 
   $scope.user = {
     email: '',

@@ -3,6 +3,7 @@
 namespace Mackstar\Spout\Admin\Resource\App\Users;
 
 use BEAR\Resource\ResourceObject;
+use BEAR\Resource\Annotation\Link;
 use BEAR\Package\Module\Database\Dbal\Setter\DbSetterTrait;
 use BEAR\Sunday\Annotation\Db;
 use Mackstar\Spout\Interfaces\SecurityInterface;
@@ -28,6 +29,9 @@ class Index extends ResourceObject{
         $this->security = $security;
     }
 
+    /**
+     * @Link(rel="role", href="app://self/users/roles?id={role_id}")
+     */
     public function onGet($email = null)
     {
         $sql = "SELECT * FROM {$this->table}";
@@ -68,6 +72,21 @@ class Index extends ResourceObject{
         $this->db->delete($this->table, ['id' => $id]);
         $this->code = 204;
         return $this;
+    }
+
+    /**
+     *  @Form
+     */
+    public function onPut(
+        $email,
+        $name,
+        $role
+    ) {
+
+        var_dump($email,
+        $name,
+        $role);
+        exit;
     }
 
 }
