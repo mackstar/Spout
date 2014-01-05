@@ -32,10 +32,11 @@ class ApiModule extends AbstractModule
     private function installModelHeaderAppender()
     {
         $headerAppender = $this->requestInjection('\Mackstar\Spout\Admin\Interceptor\Tools\ModelHeaderAppender');
+
         $this->bindInterceptor(
-            $this->matcher->subclassesOf('Mackstar\Spout\Admin\Resource\App\Users\Index'),
+            $this->matcher->subclassesOf('BEAR\Resource\ResourceObject'),
             $this->matcher->startWith('onGet'),
-            [$hider]
+            [$headerAppender]
         );
     }
 }

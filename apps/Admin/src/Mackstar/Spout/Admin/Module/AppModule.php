@@ -115,15 +115,18 @@ class AppModule extends AbstractModule
             $this->install(new DevModule($this));
         }
 
+        
+
+        // install application dependency
+        $this->install(new App\Dependency);
+
         // install API module
         if ($this->context === 'api') {
             // install api output view package
             $this->install(new HalModule($this));
+            $this->install(new ApiModule($this));
             //$this->install(new JsonModule($this));
         }
-
-        // install application dependency
-        $this->install(new App\Dependency);
 
         // install application aspect
         $this->install(new App\Aspect($this));

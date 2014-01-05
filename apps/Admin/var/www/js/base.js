@@ -10,6 +10,9 @@ app.run(function(Restangular, $rootScope) {
     if (data.message) {
       $rootScope.$emit('message', {message: data.message});
     }
+    if (data._model) {
+      return data[data._model];
+    }
     return data;
   });
   Restangular.setErrorInterceptor(function(response) {

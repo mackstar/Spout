@@ -14,8 +14,8 @@ app.config(['$routeProvider', function($routeProvider) {
 
 app.controller('UsersCtrl', function($scope, Restangular, $rootScope) {
     function load() {
-      Restangular.all('users/index').getList().then(function (data) {
-        $scope.users = data.users;
+      Restangular.all('users/index').getList().then(function (users) {
+        $scope.users = users;
       });
     }
     $rootScope.$on('users.reload', function() {
@@ -33,7 +33,6 @@ app.controller('UsersCtrl', function($scope, Restangular, $rootScope) {
 app.controller('UserEditCtrl', function($scope, $rootScope, $routeParams, Restangular) {
     $rootScope.$emit('modal.open', true);
     Restangular.one("users/index").get({email: $routeParams.email}).then(function(user) {
-      console.log(user);
       $scope.user = user;
       $scope.selectRole($scope.user.role_id);
       delete $scope.user.role_id;
