@@ -9,8 +9,8 @@ app.directive(
 
                 template: "<select ng-model='user.role' class='form-control' ng-show='roles' ng-options='role.name for role in roles'></select>",
                 link: function ($scope) {
-                    Restangular.all('users/roles').getList().then(function (data) {
-                        $scope.roles = data.roles;
+                    Restangular.all('users/roles').getList().then(function (roles) {
+                        $scope.roles = roles;
                         $scope.selectRole();
                     });
 
