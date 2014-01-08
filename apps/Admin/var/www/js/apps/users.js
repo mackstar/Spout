@@ -12,7 +12,7 @@ app.config(['$routeProvider', function($routeProvider) {
         });
 }]);
 
-app.controller('UsersCtrl', function($scope, Restangular, $rootScope) {
+app.controller('UsersCtrl', function($scope, Restangular, $rootScope, $location) {
     function load() {
       Restangular.all('users/index').getList().then(function (users) {
         $scope.users = users;
@@ -22,8 +22,11 @@ app.controller('UsersCtrl', function($scope, Restangular, $rootScope) {
       load();
     });
     load();
+    $scope.edit = function (user) {
+      $location.path('/edit/' + user.email);
+    };
     $scope.delete = function(user) {
-      Restangular.all("users/index").remove({id: user.id}).then(function() {
+      user.remove().then(function() {
         $rootScope.$emit('sp.message', {title: 'User removed successfully', type: "success"});
         $rootScope.$emit('users.reload', true);
       });
@@ -41,7 +44,7 @@ app.controller('UserEditCtrl', function($scope, $rootScope, $routeParams, Restan
           $rootScope.$emit('sp.message', {title: 'Oops', message: 'The form is not yet complete', type: "danger"});
           return;
         }
-        record.user.put().then(function() {
+        user.put().then(function() {
           $rootScope.$emit('sp.message', {title: 'Yeah!', message: 'User saved successfully', type: "success"});
           // $rootScope.$emit('users.reload', true);
           // $rootScope.$emit('modal.close', true);

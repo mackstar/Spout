@@ -6,6 +6,10 @@ app.config(function($interpolateProvider) {
 
 app.run(function(Restangular, $rootScope) {
   Restangular.setBaseUrl('/api');
+  Restangular.configuration.getIdFromElem = function() {
+    return null
+  };
+
   Restangular.setResponseInterceptor(function(data, operation, what, request, response) {
     if (data.message) {
       $rootScope.$emit('message', {message: data.message});

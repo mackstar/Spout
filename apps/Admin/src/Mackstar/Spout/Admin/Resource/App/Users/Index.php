@@ -51,8 +51,8 @@ class Index extends ResourceObject{
     public function onPost(
         $email,
         $name,
-        $password,
-        $role
+        $role,
+        $password
     ) {
 
         $this->db->insert('users', [
@@ -76,13 +76,17 @@ class Index extends ResourceObject{
     public function onPut(
         $email,
         $name,
-        $role
+        $role,
+        $id
     ) {
 
-        var_dump($email,
-        $name,
-        $role);
-        exit;
+        $values = [
+            'email' => $email,
+            'name' => $name,
+            'role_id' => $role['id']
+        ];
+        $this->db->update($this->table, $values, ['id' => $id]);
+        return $this;
     }
 
 }

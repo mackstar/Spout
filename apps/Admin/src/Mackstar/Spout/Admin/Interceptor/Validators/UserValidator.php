@@ -20,8 +20,8 @@ class UserValidator implements MethodInterceptor
 {
     const EMAIL = 0;
     const NAME = 1;
-    const PASSWORD = 2;
-    const ROLE = 3;
+    const ROLE = 2;
+    const PASSWORD = 3;
 
     use ResourceInject;
     
@@ -44,7 +44,7 @@ class UserValidator implements MethodInterceptor
 
     public function invoke(MethodInvocation $invocation)
     {
-        $args = $invocation->getArguments();
+        (array) $args = $invocation->getArguments();
         $validator = $this->validator;
 
         if (!$validator->get('emailaddress')->isValid($args[self::EMAIL])) {
@@ -63,7 +63,7 @@ class UserValidator implements MethodInterceptor
             $this->errors['role'] = $validator->getMessages()[0];
         }
 
-        if (!$validator->get('notempty')->isValid($args[self::PASSWORD])) {
+        if (is_array($args[self::PASSWORD]) && !$validator->get('notempty')->isValid($args[self::PASSWORD])) {
             $this->errors['password'] = $validator->getMessages()[0];
         }
 
