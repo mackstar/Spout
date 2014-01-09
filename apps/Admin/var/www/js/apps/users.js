@@ -33,7 +33,7 @@ app.controller('UsersCtrl', function($scope, Restangular, $rootScope, $location)
     }
 });
 
-app.controller('UserEditCtrl', function($scope, $rootScope, $routeParams, Restangular) {
+app.controller('UserEditCtrl', function($scope, $rootScope, $routeParams, parseFormErrors, Restangular) {
     $rootScope.$emit('modal.open', true);
     Restangular.one("users/index").get({email: $routeParams.email}).then(function(user) {
       $scope.user = user;
@@ -46,26 +46,14 @@ app.controller('UserEditCtrl', function($scope, $rootScope, $routeParams, Restan
         }
         user.put().then(function() {
           $rootScope.$emit('sp.message', {title: 'Yeah!', message: 'User saved successfully', type: "success"});
-          // $rootScope.$emit('users.reload', true);
-          // $rootScope.$emit('modal.close', true);
-          // $location.path('/users');
+          $rootScope.$emit('users.reload', true);
+          $rootScope.$emit('modal.close', true);
+          $location.path('/users');
         }, function(response) {
           parseFormErrors(response.data, $scope.userForm);
         });
       };
     });
-
-    
-
-
-    // Restangular.one("users/index").put().then(function() {
-    //   $rootScope.$emit('sp.message', {title: 'Yeah!', message: 'User saved successfully', type: "success"});
-    //   $rootScope.$emit('users.reload', true);
-    //   $rootScope.$emit('modal.close', true);
-    //   $location.path('/users');
-    // }, function(response) {
-    //   parseFormErrors(response.data, $scope.userForm);
-    // });
 });
 
 app.controller('UserAddCtrl', function($scope, $rootScope, Restangular, parseFormErrors, $location) {
