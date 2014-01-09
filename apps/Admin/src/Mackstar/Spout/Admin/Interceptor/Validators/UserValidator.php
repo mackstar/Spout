@@ -22,6 +22,7 @@ class UserValidator implements MethodInterceptor
     const NAME = 1;
     const ROLE = 2;
     const PASSWORD = 3;
+    const ID = 3;
 
     use ResourceInject;
     
@@ -46,6 +47,9 @@ class UserValidator implements MethodInterceptor
     {
         (array) $args = $invocation->getArguments();
         $validator = $this->validator;
+        $method = $invocation->getMethod()->name;
+        
+        $id = ($method == 'onPut')?  $args[self::ID] : null;
 
         if (!$validator->get('emailaddress')->isValid($args[self::EMAIL])) {
             $this->errors['email'] = $validator->getMessages()[0];
@@ -63,11 +67,11 @@ class UserValidator implements MethodInterceptor
             $this->errors['role'] = $validator->getMessages()[0];
         }
 
-        if (is_array($args[self::PASSWORD]) && !$validator->get('notempty')->isValid($args[self::PASSWORD])) {
+        if ($method == 'onPost' && !$validator->get('notempty')->isValid($args[self::PASSWORD])) {
             $this->errors['password'] = $validator->getMessages()[0];
         }
 
-        if (!isset($this->errors['email']) && !$this->isUniqueEmail($args[self::EMAIL])) {
+        if (!isset($this->errors['email']) && !$this->isUniqueEmail($args[self::EMAIL], $id)) {
             $this->errors['email'] = 'Email address already exists.';
         }
         
@@ -81,13 +85,17 @@ class UserValidator implements MethodInterceptor
             ->request();
     }
 
-    private function isUniqueEmail($email) {
+    private function isUniqueEmail($email, $id) {
         $result = $this->resource->get->uri('app://self/users/index')
             ->withQuery(['email' => $email])
             ->eager
             ->request();
 
-        return ($result->body['user'] == false);
+        return (
+            $result->body['user'] == false ||
+                ($id && $result->body['user']['id'] == $id)
+
+        );
 
     }
 }
