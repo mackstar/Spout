@@ -26,6 +26,9 @@ app.controller('UsersCtrl', function($scope, Restangular, $rootScope, $location)
       $location.path('/edit/' + user.email);
     };
     $scope.delete = function(user) {
+      if (!confirm("Are you sure?")) {
+        return;
+      }
       user.remove().then(function() {
         $rootScope.$emit('sp.message', {title: 'User removed successfully', type: "success"});
         $rootScope.$emit('users.reload', true);
@@ -33,7 +36,7 @@ app.controller('UsersCtrl', function($scope, Restangular, $rootScope, $location)
     }
 });
 
-app.controller('UserEditCtrl', function($scope, $rootScope, $routeParams, parseFormErrors, Restangular) {
+app.controller('UserEditCtrl', function($scope, $rootScope, $routeParams, parseFormErrors, Restangular, $location) {
     $rootScope.$emit('modal.open', true);
     Restangular.one("users/index").get({email: $routeParams.email}).then(function(user) {
       $scope.user = user;
