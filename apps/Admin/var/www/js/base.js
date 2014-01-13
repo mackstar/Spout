@@ -61,7 +61,7 @@ app.run(function(Restangular, $rootScope) {
 app.directive('errorWindow', function($rootScope, $timeout) {
   return {
     restrict: 'E',
-    template: '<div class="row sp-float animate-show" ng-show="show">' +
+    template: '<div class="panel-container row sp-float animate-show" ng-show="show">' +
     '<div class="col-md-8 col-md-offset-2 panel sp-panel panel-{{type}}">' +
         '<div class="panel-heading">' +
             '<h4 class="panel-title"><span class="glyphicon glyphicon-warning-sign"></span> {{title}}</h4>' +
@@ -131,7 +131,7 @@ app.directive('formfieldErrorMsg', function() {
 
 app.controller('ModalCtrl', function($rootScope, $element) {
   $rootScope.$on('modal.open', function(){
-    $($element).modal('show');
+    $($element).modal('show', {backdrop: 'static', keyboard: false});
   });
 
   $rootScope.$on('modal.close', function(){

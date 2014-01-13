@@ -25,9 +25,13 @@ form{
 }
 
 .animate-show {
-  transition: opacity 1s ease-in-out;
-   -moz-transition: opacity 1s ease-in-out;
-   -webkit-transition: opacity 1s ease-in-out;
+	//border-spacing
+    -webkit-transition: opacity 1s linear;
+    -moz-transition: opacity 1s linear;
+    -ms-transition: opacity 1s linear;
+    -o-transition: opacity 1s linear;
+    transition: opacity 1s linear;
+    -webkit-transition-property: opacity !important;
 }
 
 .animate-show {
@@ -36,4 +40,16 @@ form{
  
 .animate-show.ng-hide {
   opacity:0;
+  z-index: -1;
+}
+
+.animate-show.ng-animate-active {
+	z-index: 1050;
+}
+
+#spinner { 
+	margin-right: auto;
+	margin-left: auto;
+	margin-top: 30px;
+	display: block; 
 }

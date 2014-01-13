@@ -12,6 +12,7 @@ app.directive(
                     Restangular.all('users/roles').getList().then(function (roles) {
                         $scope.roles = roles;
                         $scope.selectRole();
+                        $scope.$emit('roles.loaded', true);
                     });
 
                     $scope.selectedRole = 0;

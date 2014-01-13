@@ -1,5 +1,6 @@
 'use strict';
 
+
 app.config(['$routeProvider', function($routeProvider) {
     $routeProvider
         .when('/add', { 
@@ -38,6 +39,7 @@ app.controller('UsersCtrl', function($scope, Restangular, $rootScope, $location)
 
 app.controller('UserEditCtrl', function($scope, $rootScope, $routeParams, parseFormErrors, Restangular, $location) {
     $rootScope.$emit('modal.open', true);
+
     Restangular.one("users/index").get({email: $routeParams.email}).then(function(user) {
       $scope.user = user;
       $scope.selectRole($scope.user.role_id);
@@ -63,6 +65,10 @@ app.controller('UserAddCtrl', function($scope, $rootScope, Restangular, parseFor
   $rootScope.$emit('modal.open', true);
 
   $scope.addMode = true;
+  $scope.ready = false;
+  $scope.$on('roles.loaded', function() {
+    $scope.ready = true;
+  });
 
   $scope.user = {
     email: '',
