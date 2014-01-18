@@ -25,7 +25,6 @@ class EntityProperties extends AbstractMigration
         $stub = "INSERT INTO `entity_properties` " .
             "(`entity_type`, `property_type`, `label`, `slug`, `multiple`, `weight`, `title_field`) VALUES ";
 
-        $this->execute($stub . " ('blog', 'string', 'Title', 'title', 0, 1, 1)");
         $this->execute($stub . " ('blog', 'text', 'Body', 'body',  0, 2, 0)");
         $this->execute($stub . " ('blog', 'string', 'Meta Keywords', 'meta-keywords', 1, 3, 0)");
         $this->execute($stub . " ('blog', 'string', 'Meta Description', 'meta-description', 0, 3, 0)");

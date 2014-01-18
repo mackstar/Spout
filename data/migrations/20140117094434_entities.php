@@ -13,6 +13,7 @@ class Entities extends AbstractMigration
         $entities
             ->addColumn('slug', 'string', array('limit' => 35))
             ->addColumn('type', 'string', array('limit' => 25))
+            ->addColumn('title', 'string', array('limit' => 255))
             ->save();
     }
 
