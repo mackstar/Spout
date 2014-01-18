@@ -11,6 +11,7 @@ class Entities extends AbstractMigration
     {
         $entities = $this->table('entities');
         $entities
+            ->addColumn('slug', 'string', array('limit' => 35))
             ->addColumn('type', 'string', array('limit' => 25))
             ->save();
     }

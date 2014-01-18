@@ -14,8 +14,10 @@ class PropertyTypeText extends AbstractMigration
         $table
             ->addColumn('entity_id', 'int', array('limit' => 10))
             ->addColumn('entity_property_id', 'int', array('limit' => 10))
-            ->addColumn('value', 'string', array('limit' => 255))
+            ->addColumn('value', 'text')
+            ->addIndex(array('entity_id', 'entity_property_id'), array('unique' => false))
             ->save();
+
     }
 
     /**
