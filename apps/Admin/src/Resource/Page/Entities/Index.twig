@@ -15,24 +15,19 @@
   </div>
 </div>
 
-<table class="table table-hover" ng-controller="UsersCtrl" ng-show="users">
+<table class="table table-hover" ng-controller="EntitiesCtrl" ng-show="entities">
   <thead>
     <tr>
-      <th></th>
       <th>ID</th>
       <th>Type</th>
       <th>Title</th>
     </tr>
   </thead>
   <tbody>
-    <tr ng-repeat="user in users">
-      <td>{[entity.meta.id]}</td>
-      <td>{[entity.meta.type.name]}</td>
+    <tr ng-repeat="entity in entities">
+      <td>{[entity.id]}</td>
+      <td>{[entity.type_name]}</td>
       <td>{[entity.title]}</td>
-      <th>
-        <span class="glyphicon glyphicon-trash" ng-click="delete(user)"></span>&nbsp;
-        <span class="glyphicon glyphicon-pencil" ng-click="edit(user)"></span>
-      </th>
     </tr>
   </tbody>
 </table>

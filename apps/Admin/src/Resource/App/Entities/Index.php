@@ -24,10 +24,10 @@ class Index extends ResourceObject{
     public function onGet()
     {
 
-        $sql  = "SELECT {$this->table}.*, type.name, type.title_label FROM {$this->table} ";
+        $sql  = "SELECT {$this->table}.*, type.name as type_name, type.title_label FROM {$this->table} ";
         $sql .= "INNER JOIN entity_types AS type ";
         $sql .= "ON type.slug = {$this->table}.type";
-        $this['entity'] = $this->db->fetchAll($sql);
+        $this['entities'] = $this->db->fetchAll($sql);
 
         return $this;
     }
