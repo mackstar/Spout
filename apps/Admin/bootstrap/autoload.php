@@ -12,7 +12,7 @@ namespace Mackstar\Spout\Admin;
  */
 
 $appDir = dirname(__DIR__);
-$packageDir = dirname(dirname(dirname(__DIR__)));
+$packageDir = dirname(dirname($appDir));
 
 // Hierarchical profiler @see http://www.php.net/manual/en/book.xhprof.php
 // require dirname(dirname(dirname(dirname(__DIR__)))) . '/var/lib/profile.php';
@@ -23,9 +23,7 @@ $loader = require $packageDir . '/vendor/autoload.php';
 \BEAR\Bootstrap\registerLoader(
     $loader,
     __NAMESPACE__,
-    $appDir,
-    $packageDir
+    $appDir
 );
 
 return $loader;
-

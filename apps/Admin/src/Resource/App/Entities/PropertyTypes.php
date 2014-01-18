@@ -17,9 +17,6 @@ class PropertyTypes extends ResourceObject{
 
     protected $table = 'property_types';
 
-    public $headers = [
-    ];
-
     public function onGet($id = null)
     {
 

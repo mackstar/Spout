@@ -490,12 +490,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/koriym/BEAR.Package.git",
-                "reference": "794cd11a743da72ee3116bd9f6932bc76c5a8604"
+                "reference": "5f79afe348f35065728e68e70bb07bdf7a09779a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/koriym/BEAR.Package/zipball/794cd11a743da72ee3116bd9f6932bc76c5a8604",
-                "reference": "794cd11a743da72ee3116bd9f6932bc76c5a8604",
+                "url": "https://api.github.com/repos/koriym/BEAR.Package/zipball/5f79afe348f35065728e68e70bb07bdf7a09779a",
+                "reference": "5f79afe348f35065728e68e70bb07bdf7a09779a",
                 "shasum": ""
             },
             "require": {
@@ -518,7 +518,7 @@
                 "playmedia/smarty": "3.1.*",
                 "ray/aop": "dev-develop",
                 "ray/di": "dev-develop",
-                "symfony/console": "2.0.*",
+                "symfony/console": "*",
                 "symfony/http-foundation": "2.0.*",
                 "symfony/routing": "2.2.*",
                 "zendframework/zend-db": "2.1.*",
@@ -532,6 +532,8 @@
                 "dg/adminer-custom": "1.*",
                 "facebook/xhprof": "dev-master",
                 "firephp/firephp-core": "*",
+                "phpunit/dbunit": "1.3.*",
+                "phpunit/phpunit": "3.7.*",
                 "printo/printo": "0.1.*",
                 "twig/twig": "1.*"
             },
@@ -541,11 +543,11 @@
             "type": "library",
             "autoload": {
                 "files": [
-                    "src/BEAR/Package/Bootstrap/getApp.php",
-                    "src/BEAR/Package/Bootstrap/registerLoader.php"
+                    "src/Bootstrap/getApp.php",
+                    "src/Bootstrap/registerLoader.php"
                 ],
-                "psr-0": {
-                    "BEAR\\Package": "src/"
+                "psr-4": {
+                    "BEAR\\Package\\": "src/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -569,7 +571,7 @@
                 "hypermedia",
                 "rest"
             ],
-            "time": "2014-01-05 12:20:45"
+            "time": "2014-01-18 12:35:32"
         },
         {
             "name": "bear/resource",
@@ -577,12 +579,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/koriym/BEAR.Resource.git",
-                "reference": "55d949eedcf9891f51ade3907cf9c0cc38af3bce"
+                "reference": "4f682997b2f90e732b47d339b7764721e16f815d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/koriym/BEAR.Resource/zipball/55d949eedcf9891f51ade3907cf9c0cc38af3bce",
-                "reference": "55d949eedcf9891f51ade3907cf9c0cc38af3bce",
+                "url": "https://api.github.com/repos/koriym/BEAR.Resource/zipball/4f682997b2f90e732b47d339b7764721e16f815d",
+                "reference": "4f682997b2f90e732b47d339b7764721e16f815d",
                 "shasum": ""
             },
             "require": {
@@ -612,6 +614,7 @@
                 {
                     "name": "Akihito Koriyama",
                     "email": "akihito.koriyama@gmail.com",
+                    "homepage": "https://github.com/koriym",
                     "role": "Lead"
                 }
             ],
@@ -626,7 +629,7 @@
                 "rest",
                 "stateless"
             ],
-            "time": "2013-12-29 06:22:55"
+            "time": "2014-01-12 16:24:56"
         },
         {
             "name": "bear/sunday",
@@ -1555,16 +1558,16 @@
         },
         {
             "name": "playmedia/smarty",
-            "version": "v3.1.15",
+            "version": "v3.1.16",
             "source": {
                 "type": "git",
                 "url": "https://github.com/playmedia/Smarty.git",
-                "reference": "8981b4777edb21ce647a53e3fe6e9373dba49dc1"
+                "reference": "7a488cb72d62495118104ab449cfea9f140c0102"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/playmedia/Smarty/zipball/8981b4777edb21ce647a53e3fe6e9373dba49dc1",
-                "reference": "8981b4777edb21ce647a53e3fe6e9373dba49dc1",
+                "url": "https://api.github.com/repos/playmedia/Smarty/zipball/7a488cb72d62495118104ab449cfea9f140c0102",
+                "reference": "7a488cb72d62495118104ab449cfea9f140c0102",
                 "shasum": ""
             },
             "require": {
@@ -1599,7 +1602,7 @@
             "keywords": [
                 "templating"
             ],
-            "time": "2013-10-03 13:59:46"
+            "time": "2014-01-06 16:15:02"
         },
         {
             "name": "ray/aop",
@@ -1607,12 +1610,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/koriym/Ray.Aop.git",
-                "reference": "0b55699a42994934c1021c6f7d2d0e95a93d21d6"
+                "reference": "b8b5347d913e9af2c57916b54e5146ff078a244f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/koriym/Ray.Aop/zipball/0b55699a42994934c1021c6f7d2d0e95a93d21d6",
-                "reference": "0b55699a42994934c1021c6f7d2d0e95a93d21d6",
+                "url": "https://api.github.com/repos/koriym/Ray.Aop/zipball/b8b5347d913e9af2c57916b54e5146ff078a244f",
+                "reference": "b8b5347d913e9af2c57916b54e5146ff078a244f",
                 "shasum": ""
             },
             "require": {
@@ -1646,7 +1649,7 @@
                 "aop",
                 "aspect"
             ],
-            "time": "2013-12-08 01:12:28"
+            "time": "2014-01-18 11:02:51"
         },
         {
             "name": "ray/di",
@@ -1654,12 +1657,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/koriym/Ray.Di.git",
-                "reference": "8c22577e7eb05dd7ba608d8acc6e5ea7b2814b20"
+                "reference": "eafdb09e20c58b29dd1b443e747a31f02f053cd3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/koriym/Ray.Di/zipball/8c22577e7eb05dd7ba608d8acc6e5ea7b2814b20",
-                "reference": "8c22577e7eb05dd7ba608d8acc6e5ea7b2814b20",
+                "url": "https://api.github.com/repos/koriym/Ray.Di/zipball/eafdb09e20c58b29dd1b443e747a31f02f053cd3",
+                "reference": "eafdb09e20c58b29dd1b443e747a31f02f053cd3",
                 "shasum": ""
             },
             "require": {
@@ -1684,6 +1687,7 @@
                 {
                     "name": "Akihito Koriyama",
                     "email": "akihito.koriyama@gmail.com",
+                    "homepage": "https://github.com/koriym",
                     "role": "Lead"
                 },
                 {
@@ -1703,7 +1707,7 @@
                 "injection",
                 "jsr"
             ],
-            "time": "2013-12-21 01:40:10"
+            "time": "2014-01-18 11:48:52"
         },
         {
             "name": "rhumsaa/uuid",
@@ -2608,22 +2612,22 @@
     "packages-dev": [
         {
             "name": "dg/adminer-custom",
-            "version": "v1.0.1",
+            "version": "v1.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/dg/adminer-custom.git",
-                "reference": "7047037f3dbd16032c3cfa4a7091ce11fa83590a"
+                "reference": "d0d0f67e4aa03c3f7c1fc3898d1e179a0d22c8dc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dg/adminer-custom/zipball/7047037f3dbd16032c3cfa4a7091ce11fa83590a",
-                "reference": "7047037f3dbd16032c3cfa4a7091ce11fa83590a",
+                "url": "https://api.github.com/repos/dg/adminer-custom/zipball/d0d0f67e4aa03c3f7c1fc3898d1e179a0d22c8dc",
+                "reference": "d0d0f67e4aa03c3f7c1fc3898d1e179a0d22c8dc",
                 "shasum": ""
             },
             "type": "project",
             "notification-url": "https://packagist.org/downloads/",
             "description": "Customization for the best database management tool written in PHP, Adminer",
-            "time": "2013-10-16 10:46:14"
+            "time": "2014-01-11 20:15:20"
         },
         {
             "name": "facebook/xhprof",

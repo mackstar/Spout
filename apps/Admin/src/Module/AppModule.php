@@ -47,7 +47,7 @@ class AppModule extends AbstractModule
      */
     public function __construct($context = 'prod')
     {
-        $appDir = dirname(dirname(dirname(dirname(dirname(__DIR__)))));
+        $appDir = dirname(dirname(__DIR__));
         $this->context = $context;
         $this->appDir = $appDir;
         $this->constants = (require "{$appDir}/var/conf/{$context}.php") + (require "{$appDir}/var/conf/prod.php");
