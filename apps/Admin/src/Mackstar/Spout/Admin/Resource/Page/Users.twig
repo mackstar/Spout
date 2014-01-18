@@ -3,9 +3,9 @@
 {% block h1 %}{{ title }}{% endblock %}
 {% block page %}
 
-<a class="btn btn-primary btn-lg" ng-href="#/add">Add User</a>
+<a class="btn btn-primary btn-lg" ng-href="#/add"><span class="glyphicon glyphicon-plus"></span></a>
 
-<div class="modal" id="myModal" ng-controller="ModalCtrl">
+<div class="modal" id="myModal" ng-controller="ModalCtrl" data-keyboard="false" data-backdrop="static">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-body">

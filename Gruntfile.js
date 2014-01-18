@@ -15,7 +15,7 @@ mackstar.build.getPhpFileFilter = function(name) {
 module.exports = function(grunt) {
 
   var env = grunt.option('env') || 'development',
-    name;
+    name = grunt.option('name') || undefined;
 
   grunt.initConfig({
     php: {
@@ -47,9 +47,9 @@ module.exports = function(grunt) {
       },
       migrate: {
         command: "vendor/robmorgan/phinx/bin/phinx --configuration=config.php migrate -e" + env,
-        create: {
-          command: "vendor/robmorgan/phinx/bin/phinx --configuration=config.php -e" + env + " create " + name
-        }
+      },
+      migrate_create: {
+          command: "vendor/robmorgan/phinx/bin/phinx --configuration=config.php create " + name
       },
       phpunit_admin: {
         command: "cd apps/Admin && phpunit <%= php.filter %>"
@@ -82,6 +82,9 @@ module.exports = function(grunt) {
 
   grunt.registerTask('migrate', function() {
     grunt.task.run("shell:migrate");
+  });
+  grunt.registerTask('migrate:create', function() {
+    grunt.task.run("shell:migrate_create");
   });
   grunt.event.on('watch', function(action, filepath) {
     filter = mackstar.build.getPhpFileFilter(filepath);

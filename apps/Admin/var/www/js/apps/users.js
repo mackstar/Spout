@@ -38,12 +38,35 @@ app.controller('UsersCtrl', function($scope, Restangular, $rootScope, $location)
 });
 
 app.controller('UserEditCtrl', function($scope, $rootScope, $routeParams, parseFormErrors, Restangular, $location) {
+    var ready = false,
+      rolesLoaded = false;
+
     $rootScope.$emit('modal.open', true);
+
+    $scope.ready = function() {
+      return ready;
+    }
+
+    $scope.$on('roles.loaded', function() {
+      rolesLoaded = true;
+      if ($scope.user) {
+        ready = true;
+      }
+    });
 
     Restangular.one("users/index").get({email: $routeParams.email}).then(function(user) {
       $scope.user = user;
       $scope.selectRole($scope.user.role_id);
       delete $scope.user.role_id;
+
+      if (rolesLoaded) {
+        ready = true;
+      }
+
+      $scope.close = function() {
+        $rootScope.$emit('modal.close', true);
+        $location.path('/users');
+      }
       $scope.submit = function() {
         if ($scope.userForm.$invalid) {
           $rootScope.$emit('sp.message', {title: 'Oops', message: 'The form is not yet complete', type: "danger"});
@@ -62,13 +85,24 @@ app.controller('UserEditCtrl', function($scope, $rootScope, $routeParams, parseF
 });
 
 app.controller('UserAddCtrl', function($scope, $rootScope, Restangular, parseFormErrors, $location) {
+
+  var ready = false;
+  $scope.close = function() {
+    $rootScope.$emit('modal.close', true);
+    $location.path('/users');
+  }
+
   $rootScope.$emit('modal.open', true);
 
   $scope.addMode = true;
   $scope.ready = false;
   $scope.$on('roles.loaded', function() {
-    $scope.ready = true;
+    ready = true;
   });
+
+  $scope.ready = function() {
+    return ready;
+  }
 
   $scope.user = {
     email: '',

@@ -32,7 +32,7 @@ Although the procedural bootstrap process offers flexibility in setting up your 
 Configuration
 ----------------------------
 
-Even though there is a `config` folder with several runtime modes catered for, here you can add database settings and the like. But please do not be fooled that a configuration with an idea of state is how a BEAR.Sunday application works. 
+Even though there is a `config` folder with several runtime modes catered for, here you can add database settings and the like. But please do not be fooled that a configuration with an idea of state is how a BEAR.Sunday application works.
 
 The values in here are injected by the relevant module.
 

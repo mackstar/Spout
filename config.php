@@ -1,6 +1,6 @@
 <?php
 
-$configPath = __DIR__ . '/apps/Admin/src/Mackstar/Spout/Admin/Module/config/';
+$configPath = __DIR__ . '/apps/Admin/var/conf/';
 $prod = require($configPath . '/prod.php');
 $dev = require($configPath . '/prod.php');
 $test = require($configPath . '/test.php');

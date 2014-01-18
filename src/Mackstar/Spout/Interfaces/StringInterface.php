@@ -13,7 +13,7 @@ namespace Mackstar\Spout\Interfaces;
  */
 interface StringInterface
 {
-	public function singularize($string = null);
+    public function singularize($string = null);
 
-	public function setString($string);
+    public function setString($string);
 }

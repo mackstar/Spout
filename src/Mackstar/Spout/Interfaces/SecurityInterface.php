@@ -13,7 +13,7 @@ namespace Mackstar\Spout\Interfaces;
  */
 interface SecurityInterface
 {
-	public function encrypt($password, $salt = null);
+    public function encrypt($password, $salt = null);
 
-	public function match($password, $hash);
+    public function match($password, $hash);
 }

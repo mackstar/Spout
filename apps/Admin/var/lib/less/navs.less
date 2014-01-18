@@ -70,29 +70,16 @@
 // Give the tabs something to sit on
 .nav-tabs {
   border-bottom: 1px solid @nav-tabs-border-color;
+
+
   > li {
     float: none;
     display:inline-block;
     // Make the list-items overlay the bottom border
     margin-bottom: -1px;
 
-    // Actual tabs (as links)
-    > a {
-      margin-right: 2px;
-      line-height: @line-height-base;
-      background-color: @primary-color;
-      border: 1px solid transparent;
-      color: #fff;
-      font-size: @font-size-large;
-      font-weight: bold;
-      border-radius: @border-radius-base @border-radius-base 0 0;
-      &:hover {
-        border-color: @nav-tabs-link-hover-border-color @nav-tabs-link-hover-border-color @nav-tabs-border-color;
-      }
-    }
-
     // Active state, and it's :hover to override normal :hover
-    &.active > a {
+    &.active.link {
       &,
       &:hover,
       &:focus {
@@ -102,8 +89,45 @@
         border-bottom-color: transparent;
         cursor: default;
       }
+      &:hover {
+        background-color: @secondary-color;
+        color: @nav-tabs-active-link-hover-bg;
+      }
+    }
+
+    &.cancel.link {
+      &,
+      &:hover,
+      &:focus {
+        color: @nav-tabs-active-link-hover-color;
+        background-color: @brand-danger;
+        border: 1px solid @nav-tabs-active-link-hover-border-color;
+        border-bottom-color: transparent;
+        cursor: default;
+      }
+      &:hover {
+        color: @brand-danger;
+        background-color: @secondary-color;
+      }
     }
   }
+
+  // Actual tabs (as links)
+  > li.link {
+      margin-left: 2px;
+      padding: 4px 6px;
+      line-height: @line-height-base;
+      background-color: @primary-color;
+      border: 1px solid transparent;
+      color: #fff;
+      font-size: @font-size-large;
+      font-weight: bold;
+      border-radius: @border-radius-base @border-radius-base 0 0;
+      
+      > span {
+        font-size: 1.5em;
+      }
+    }
   // pulling this in mainly for less shorthand
   &.nav-justified {
     .nav-justified();
