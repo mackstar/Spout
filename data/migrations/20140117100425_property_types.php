@@ -9,14 +9,14 @@ class PropertyTypes extends AbstractMigration
      */
     public function up()
     {
-        $entityTypes = $this->table('property_types');
-        $entityTypes
+        $table = $this->table('property_types');
+        $table
             ->addColumn('name', 'string', array('limit' => 35)) // eg String
             ->addColumn('slug', 'string', array('limit' => 35)) // unique
             ->save();
 
-        $this->execute("INSERT INTO `entity_types` (`name`, `slug`) VALUES ('String', 'string')");
-        $this->execute("INSERT INTO `entity_types` (`name`, `slug` VALUES ('Text', 'text')");
+        $this->execute("INSERT INTO `property_types` (`name`, `slug`) VALUES ('String', 'string')");
+        $this->execute("INSERT INTO `property_types` (`name`, `slug`) VALUES ('Text', 'text')");
 
     }
 

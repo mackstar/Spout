@@ -46,10 +46,13 @@ module.exports = function(grunt) {
         command: "lessc apps/Admin/var/lib/less/bootstrap.less > apps/Admin/var/www/css/bootstrap.min.css --compress"
       },
       migrate: {
-        command: "vendor/robmorgan/phinx/bin/phinx --configuration=config.php migrate -e" + env,
+        command: "vendor/robmorgan/phinx/bin/phinx --configuration=config.php migrate -e" + env
       },
       migrate_create: {
-          command: "vendor/robmorgan/phinx/bin/phinx --configuration=config.php create " + name
+          command: "vendor/robmorgan/phinx/bin/phinx --configuration=config.php  -e" + env + "create " + name
+      },
+      migrate_rollback: {
+          command: "vendor/robmorgan/phinx/bin/phinx --configuration=config.php rollback -e" + env
       },
       phpunit_admin: {
         command: "cd apps/Admin && phpunit <%= php.filter %>"
@@ -85,6 +88,9 @@ module.exports = function(grunt) {
   });
   grunt.registerTask('migrate:create', function() {
     grunt.task.run("shell:migrate_create");
+  });
+  grunt.registerTask('migrate:rollback', function() {
+    grunt.task.run("shell:migrate_rollback");
   });
   grunt.event.on('watch', function(action, filepath) {
     filter = mackstar.build.getPhpFileFilter(filepath);

@@ -2,7 +2,7 @@
 
 use Phinx\Migration\AbstractMigration;
 
-class PropertyTypeText extends AbstractMigration
+class PropertyValuesText extends AbstractMigration
 {
     
     /**
@@ -12,8 +12,8 @@ class PropertyTypeText extends AbstractMigration
     {
         $table = $this->table('property_values_text');
         $table
-            ->addColumn('entity_id', 'int', array('limit' => 10))
-            ->addColumn('entity_property_id', 'int', array('limit' => 10))
+            ->addColumn('entity_id', 'integer', array('limit' => 10))
+            ->addColumn('entity_property_id', 'integer', array('limit' => 10))
             ->addColumn('value', 'text')
             ->addIndex(array('entity_id', 'entity_property_id'), array('unique' => false))
             ->save();

@@ -2,7 +2,7 @@
 
 use Phinx\Migration\AbstractMigration;
 
-class FieldOptions extends AbstractMigration
+class PropertyTypeOptions extends AbstractMigration
 {
     /**
      * Migrate Up.

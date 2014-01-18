@@ -14,14 +14,12 @@ class EntityTypes extends AbstractMigration
         $entityTypes
             ->addColumn('name', 'string', array('limit' => 35))
             ->addColumn('slug', 'string', array('limit' => 35))
-            ->addColumn('categories', 'int', array('limit' => 1))
-            ->addColumn('tags', 'int', array('limit' => 1))
+            ->addColumn('categories', 'integer', array('limit' => 1))
+            ->addColumn('tags', 'integer', array('limit' => 1))
             ->save();
 
         $this->execute("INSERT INTO `entity_types` (`name`, `slug`, `categories`, `tags`) " .
             "VALUES ('Blog', 'blog', 1, 1)");
-        $this->execute("INSERT INTO `entity_types` (`name`, `slug`, `categories`, `tags`) " .
-            "VALUES ('Pag', 'page', 1, 1)");
     }
 
     /**
@@ -29,6 +27,6 @@ class EntityTypes extends AbstractMigration
      */
     public function down()
     {
-        $this->dropTable('entities_types');
+        $this->dropTable('entity_types');
     }
 }
