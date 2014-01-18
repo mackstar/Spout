@@ -15,8 +15,8 @@ class PropertyTypes extends AbstractMigration
             ->addColumn('slug', 'string', array('limit' => 35)) // unique
             ->save();
 
-        $this->execute("INSERT INTO `entity_types` (`name`, `slug` VALUES ('String', 'string', 1, 1)");
-        $this->execute("INSERT INTO `entity_types` (`name`, `slug` VALUES ('String', 'string', 1, 1)");
+        $this->execute("INSERT INTO `entity_types` (`name`, `slug`) VALUES ('String', 'string')");
+        $this->execute("INSERT INTO `entity_types` (`name`, `slug` VALUES ('Text', 'text')");
 
     }
 
@@ -25,6 +25,6 @@ class PropertyTypes extends AbstractMigration
      */
     public function down()
     {
-
+        $this->dropTable('property_types');
     }
 }

@@ -9,11 +9,11 @@ class FieldOptions extends AbstractMigration
      */
     public function up()
     {
-        $table = $this->table('field_options');
+        $table = $this->table('property_type_options');
         $table
             ->addColumn('property_type', 'string', array('limit' => 35)) // slug eg image
-            ->addColumn('key', 'string', array('limit' => 35)) // 
-            ->addColumn('value', 'string', array('limit' => 35)) // The field slug
+            ->addColumn('key', 'string', array('limit' => 35)) // eg path
+            ->addColumn('value', 'string', array('limit' => 35)) // eg items
             ->save();
     }
 
@@ -22,6 +22,6 @@ class FieldOptions extends AbstractMigration
      */
     public function down()
     {
-
+        $this->dropTable('property_type_options');
     }
 }
