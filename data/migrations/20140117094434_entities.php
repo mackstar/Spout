@@ -12,9 +12,6 @@ class Entities extends AbstractMigration
         $entities = $this->table('entities');
         $entities
             ->addColumn('type', 'string', array('limit' => 25))
-            ->addColumn('meta_keywords', 'string', array('limit' => 255))
-            ->addColumn('meta_title', 'string', array('limit' => 255))
-            ->addColumn('meta_description', 'string', array('limit' => 255))
             ->save();
     }
 

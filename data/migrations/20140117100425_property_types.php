@@ -2,7 +2,7 @@
 
 use Phinx\Migration\AbstractMigration;
 
-class Fields extends AbstractMigration
+class PropertyTypes extends AbstractMigration
 {
     /**
      * Migrate Up.
@@ -13,8 +13,11 @@ class Fields extends AbstractMigration
         $entityTypes
             ->addColumn('name', 'string', array('limit' => 35)) // eg String
             ->addColumn('slug', 'string', array('limit' => 35)) // unique
-            ->addColumn('required', 'int', array('limit' => 1)) // boolean
             ->save();
+
+        $this->execute("INSERT INTO `entity_types` (`name`, `slug` VALUES ('String', 'string', 1, 1)");
+        $this->execute("INSERT INTO `entity_types` (`name`, `slug` VALUES ('String', 'string', 1, 1)");
+
     }
 
     /**

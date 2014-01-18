@@ -16,10 +16,12 @@ class EntityTypes extends AbstractMigration
             ->addColumn('slug', 'string', array('limit' => 35))
             ->addColumn('categories', 'int', array('limit' => 1))
             ->addColumn('tags', 'int', array('limit' => 1))
-            ->addColumn('meta_description', 'int', array('limit' => 1))
-            ->addColumn('meta_keywords', 'int', array('limit' => 1))
-            ->addColumn('meta_title', 'int', array('limit' => 1))
             ->save();
+
+        $this->execute("INSERT INTO `entity_types` (`name`, `slug`, `categories`, `tags`) " .
+            "VALUES ('Blog', 'blog', 1, 1)");
+        $this->execute("INSERT INTO `entity_types` (`name`, `slug`, `categories`, `tags`) " .
+            "VALUES ('Pag', 'page', 1, 1)");
     }
 
     /**
