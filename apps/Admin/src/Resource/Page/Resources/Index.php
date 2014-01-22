@@ -1,14 +1,14 @@
 <?php
 
-namespace Mackstar\Spout\Admin\Resource\Page\Entities;
+namespace Mackstar\Spout\Admin\Resource\Page\Resources;
 
 use BEAR\Resource\ResourceObject;
 use BEAR\Sunday\Inject\ResourceInject;
 
 /**
- * Entity/PropertyTypes page
+ * Resources/PropertyTypes page
  */
-class PropertyTypes extends ResourceObject
+class Index extends ResourceObject
 {
     use ResourceInject;
 
@@ -19,9 +19,8 @@ class PropertyTypes extends ResourceObject
         'greeting' =>  ''
     ];
 
-    public function onGet($name = 'BEAR.Sunday')
+    public function onGet()
     {
-        $this['greeting'] = 'Hello ' . $name;
         return $this;
     }
 }

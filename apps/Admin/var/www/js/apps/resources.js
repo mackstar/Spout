@@ -14,12 +14,12 @@ app.config(['$routeProvider', function($routeProvider) {
 
 app.controller('EntitiesCtrl', function($scope, Restangular, $rootScope, $location) {
     function load() {
-      Restangular.all('entities/index').getList().then(function (entities) {
-        $scope.entities = entities;
+      Restangular.all('resources/index').getList().then(function (reources) {
+        $scope.resources = resources;
       });
     }
     load();
-    $scope.edit = function (user) {
-      $location.path('/edit/' + user.email);
+    $scope.edit = function (resource) {
+      $location.path('/edit/' + resource.id);
     };
 });

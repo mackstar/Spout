@@ -25,4 +25,6 @@ class FieldTypes extends ResourceObject{
 
         return $this;
     }
+
+    
 }
