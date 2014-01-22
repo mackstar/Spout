@@ -2,7 +2,7 @@
 
 use Phinx\Migration\AbstractMigration;
 
-class EntityTypes extends AbstractMigration
+class ResourceTypes extends AbstractMigration
 {
 
     /**
@@ -10,7 +10,7 @@ class EntityTypes extends AbstractMigration
      */
     public function up()
     {
-        $entityTypes = $this->table('entity_types');
+        $entityTypes = $this->table('resource_types');
         $entityTypes
             ->addColumn('name', 'string', array('limit' => 35))
             ->addColumn('slug', 'string', array('limit' => 35))
@@ -19,7 +19,7 @@ class EntityTypes extends AbstractMigration
             ->addColumn('tags', 'integer', array('limit' => 1))
             ->save();
 
-        $this->execute("INSERT INTO `entity_types` (`name`, `slug`, `title_label`, `categories`, `tags`) " .
+        $this->execute("INSERT INTO `resource_types` (`name`, `slug`, `title_label`, `categories`, `tags`) " .
             "VALUES ('Blog', 'blog', 'Title', 1, 1)");
     }
 
@@ -28,6 +28,6 @@ class EntityTypes extends AbstractMigration
      */
     public function down()
     {
-        $this->dropTable('entity_types');
+        $this->dropTable('resource_types');
     }
 }

@@ -1,11 +1,12 @@
 Mackstar.Spout
 =======
-A fast developer happy CMS written in BEAR.Sunday and Angular.js
+The resource centric CMS written in BEAR.Sunday and Angular.js
 
 Why do we need another PHP CMS?
 ---------------------------------------------
 
 * To create an resource centric CMS
+* To make all pages, blog posts, menus and blocks available as resources
 * To integrate Angular.js for a better experience
 * To have a fully responsive CMS
 * To create a CMS with more speed

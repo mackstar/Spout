@@ -2,7 +2,7 @@
 
 use Phinx\Migration\AbstractMigration;
 
-class EntityProperties extends AbstractMigration
+class ResourceFields extends AbstractMigration
 {
     
     /**
@@ -10,20 +10,20 @@ class EntityProperties extends AbstractMigration
      */
     public function up()
     {
-        $table = $this->table('entity_properties');
+        $table = $this->table('resource_fields');
         $table
-            ->addColumn('entity_type', 'string', array('limit' => 35))
-            ->addColumn('property_type', 'string', array('limit' => 35))
+            ->addColumn('resource_type', 'string', array('limit' => 35))
+            ->addColumn('field_type', 'string', array('limit' => 35))
             ->addColumn('label', 'string', array('limit' => 35))
             ->addColumn('slug', 'string', array('limit' => 35))
             ->addColumn('title_field', 'integer', array('limit' => 1))
             ->addColumn('multiple', 'integer', array('limit' => 1))
             ->addColumn('weight', 'integer', array('limit' => 10))
-            ->addIndex(array('entity_type', 'slug'), array('unique' => true))
+            ->addIndex(array('field_type', 'slug'), array('unique' => true))
             ->save();
 
-        $stub = "INSERT INTO `entity_properties` " .
-            "(`entity_type`, `property_type`, `label`, `slug`, `multiple`, `weight`, `title_field`) VALUES ";
+        $stub = "INSERT INTO `resource_fields` " .
+            "(`resource_type`, `field_type`, `label`, `slug`, `multiple`, `weight`, `title_field`) VALUES ";
 
         $this->execute($stub . " ('blog', 'text', 'Body', 'body',  0, 2, 0)");
         $this->execute($stub . " ('blog', 'string', 'Meta Keywords', 'meta-keywords', 1, 3, 0)");
@@ -36,6 +36,6 @@ class EntityProperties extends AbstractMigration
      */
     public function down()
     {
-        $this->dropTable('entity_properties');
+        $this->dropTable('resource_properties');
     }
 }

@@ -26,7 +26,7 @@ require_once dirname(__DIR__). '/bootstrap/autoload.php';
 $GLOBALS['APP_DIR'] = dirname(__DIR__);
 
 // set the resource client
-$config = require  'src/Mackstar/Spout/Admin/Module/config/test.php';
+$config = require  'var/conf/test.php';
 
 $injector = Injector::create([new AppModule('test')]);
 

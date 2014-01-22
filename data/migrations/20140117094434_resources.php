@@ -2,15 +2,15 @@
 
 use Phinx\Migration\AbstractMigration;
 
-class Entities extends AbstractMigration
-{   
+class Resources extends AbstractMigration
+{
     /**
      * Migrate Up.
      */
     public function up()
     {
-        $entities = $this->table('entities');
-        $entities
+        $table = $this->table('resources');
+        $table
             ->addColumn('slug', 'string', array('limit' => 35))
             ->addColumn('type', 'string', array('limit' => 25))
             ->addColumn('title', 'string', array('limit' => 255))
@@ -22,6 +22,6 @@ class Entities extends AbstractMigration
      */
     public function down()
     {
-        $this->dropTable('entities');
+        $this->dropTable('resources');
     }
 }
