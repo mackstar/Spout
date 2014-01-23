@@ -20,7 +20,6 @@ class Types extends ResourceObject{
     public function onGet($slug = null)
     {
         $sql = "SELECT * FROM {$this->table}";
-
         if (is_null($slug)) {
             $this['types'] = $this->db->fetchAll($sql);
         } else {
@@ -29,8 +28,14 @@ class Types extends ResourceObject{
             $stmt->bindValue('slug', $slug);
             $stmt->execute();
             $this['type'] = $stmt->fetch();
-        }
 
+            $sql = "SELECT * FROM `resource_fields` WHERE `resource_type` = :slug ORDER BY `weight`";
+            $stmt = $this->db->prepare($sql);
+            $stmt->bindValue('slug', $slug);
+            $stmt->execute();
+            $this->body['type']['fields'] = $stmt->fetchAll();
+            
+        }
         return $this;
     }
 }

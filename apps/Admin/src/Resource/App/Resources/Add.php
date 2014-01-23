@@ -7,17 +7,17 @@ use BEAR\Package\Module\Database\Dbal\Setter\DbSetterTrait;
 use BEAR\Sunday\Annotation\Db;
 
 /**
- * FieldTypes
+ * Add
  *
  * @Db
  */
-class FieldTypes extends ResourceObject{
+class Add extends ResourceObject{
 
     use DbSetterTrait;
 
     protected $table = 'field_types';
 
-    public function onGet($id = null)
+    public function onGet($type)
     {
 
         $sql  = "SELECT {$this->table}.* FROM {$this->table} ";
@@ -25,4 +25,6 @@ class FieldTypes extends ResourceObject{
 
         return $this;
     }
+
+    
 }

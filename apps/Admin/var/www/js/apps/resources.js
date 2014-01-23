@@ -2,7 +2,7 @@
 
 app.config(['$routeProvider', function($routeProvider) {
     $routeProvider
-        .when('/add', { 
+        .when('/resources/types/add', { 
             templateUrl: '/js/templates/users/edit.html', 
             controller: 'UserAddCtrl'
         })
@@ -12,9 +12,9 @@ app.config(['$routeProvider', function($routeProvider) {
         });
 }]);
 
-app.controller('EntitiesCtrl', function($scope, Restangular, $rootScope, $location) {
+app.controller('ResourcesCtrl', function($scope, Restangular, $rootScope, $location) {
     function load() {
-      Restangular.all('resources/index').getList().then(function (reources) {
+      Restangular.all('resources/index').getList().then(function (resources) {
         $scope.resources = resources;
       });
     }
@@ -22,4 +22,10 @@ app.controller('EntitiesCtrl', function($scope, Restangular, $rootScope, $locati
     $scope.edit = function (resource) {
       $location.path('/edit/' + resource.id);
     };
+}).controller('ResourceTypesCtrl', function($scope, Restangular, $rootScope, $location) {
+
+    Restangular.all('resources/types').getList().then(function (resourceTypes) {
+        $scope.resourceTypes = resourceTypes;
+    });
+   
 });
