@@ -8,18 +8,13 @@
 </head>
 <body>
 
-
 <div class="container" ng-app="spout">
-
 <error-window></error-window>
-
   <div class="row header">
     <div class="col-md-8"><img src="/img/logo.png"></div>
     <div class="col-md-4"><h1>{% block h1 %}{% endblock %}</h1></div>
   </div>
-
   {% block page %}{% endblock %}
-
 </div>
 <script src="/js/lib/lodash.underscore.min.js"></script>
 <script src="/js/lib/jquery.js"></script>

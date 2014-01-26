@@ -119,7 +119,7 @@ app.directive('formfieldErrorMsg', function() {
       };
 
       scope.getMessage = function() {
-        if (!scope.field.$message) {
+        if (!scope.field && !scope.field.$message) {
           return scope.message;
         }
         return scope.field.$message;

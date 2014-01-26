@@ -1,19 +1,30 @@
-<img src="/img/spinner.gif" width="64" height="64" ng-show="!ready()" id="spinner" />
-
 <div ng-show="ready()" class="row">
-  <h1> Add a {{}}
+
+ 
   <ul class="nav nav-tabs">
+    <li><h3>Add a {[resourceType.name]} Resource </h3></li>
     <li class="active link" ng-click="submit()"><span class="glyphicon glyphicon-ok"></span></li>
     <li class="cancel link" ng-click="close()"><span class="glyphicon glyphicon-remove"></span></li>
   </ul>
-
+  
   <form name="resourceForm" novalidate>
-
-    <div class="form-group" ng-class="{'has-error': userForm.name.$invalid}">
-      <label for="name">{{resourceType.title_label}}</label>
-      <input type="text" ng-model="user.name" class="form-control" name="name" placeholder="Enter the {{resourceType.title_label}}" required>
-      <formfield-error-msg msg="{{resourceType.title_label}} should not be blank" field="resourceForm.title" />
+    <div class="form-group" ng-class="{'has-error': resourceForm.title.$invalid}">
+      <label for="name">{[resourceType.title_label]}</label>
+      <input type="text" ng-model="resource.title" class="form-control" name="title" placeholder="Must not be blank." required>
+      <formfield-error-msg msg="{[resourceType.title_label]} should not be blank" field="resourceForm.title" />
+    </div>
+    <div class="form-group" ng-class="{'has-error': resourceForm.slug.$invalid}">
+      <label for="name">Slug</label>
+      <input type="text" ng-model="resource.slug" class="form-control" name="slug" placeholder="Must be unique for this resource type." required>
+      <formfield-error-msg msg="Slug should not be blank" field="resourceForm.slug" />
     </div>
 
+    <div ng-repeat="field in resourceType.fields">
+      <div sp-field field="field" resource="resource"></div>
+    </div>
+
+
   </form>
+
+
 </div>

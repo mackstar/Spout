@@ -3,12 +3,18 @@
 {% block h1 %}{{ title }}{% endblock %}
 {% block page %}
 
+<script>
+window.Spout = window.Spout || {}
+window.Spout.resourceTypes = {{ resource_types|json_encode(constant('JSON_PRETTY_PRINT'))|raw }}
+</script>
+
+
 <div class="btn-group" ng-controller="ResourceTypesCtrl">
   <button type="button" class="btn btn-default dropdown-toggle  btn-lg" data-toggle="dropdown">
     <span class="glyphicon glyphicon-plus"></span> Add Resource
   </button>
   <ul class="dropdown-menu" role="menu">
-    <li ng-repeat="resourceType in resourceTypes"><a href="#">{[resourceType.name]}</a></li>
+    <li ng-repeat="resourceType in resourceTypes"><a ng-href="#/resources/add/{[resourceType.slug]}">{[resourceType.name]}</a></li>
   </ul>
   <button type="button" class="btn btn-default btn-lg">
     <span class="glyphicon glyphicon-plus"></span> Resource Type

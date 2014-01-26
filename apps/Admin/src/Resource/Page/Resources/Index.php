@@ -16,11 +16,17 @@ class Index extends ResourceObject
      * @var array
      */
     public $body = [
-        'greeting' =>  ''
+        'resource_types' =>  ''
     ];
 
     public function onGet()
     {
+        $this['resource_types'] = $this->resource
+            ->get
+            ->uri('app://self/resources/types')
+            ->eager
+            ->request()['types'];
+
         return $this;
     }
 }

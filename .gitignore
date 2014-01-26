@@ -20,3 +20,4 @@ bower_components
 tmp
 cache.properties
 node_modules
+.idea/
