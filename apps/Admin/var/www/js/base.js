@@ -129,6 +129,34 @@ app.directive('formfieldErrorMsg', function() {
   };
 });
 
+app.directive('spSlugTitle', function() {
+
+  return {
+    restrict: 'A',
+    replace: false,
+    transclude: false,
+    link: function(scope, element) {
+      var stop = false,
+          slug;
+
+      scope.$watch('resource.title', function() {
+        if (stop) {
+          return;
+        }
+        slug = scope.resource.title.toLowerCase().replace(/[^a-z]/g, "-");
+        scope.resource.slug = slug;
+      });
+
+      scope.$watch('resource.slug', function() {
+        if(scope.resource.slug != slug) {
+          stop = true;
+        }
+      });
+
+    }
+  };
+});
+
 app.controller('ModalCtrl', function($rootScope, $element) {
   $rootScope.$on('modal.open', function(){
     $($element).modal('show', {backdrop: 'static', keyboard: false});
