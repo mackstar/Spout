@@ -45,24 +45,48 @@ app.controller('ResourcesCtrl', function($scope, Restangular, $rootScope, $locat
 
    
 });
-app.directive('spField', function() {
+app.directive('spField', function($compile) {
+
+  var fieldTemplate = 
+    '<div sp-string-field ng-if="isType(\'string\')"></div>' +
+    '<div sp-text-field ng-if="isType(\'text\')"></div>';
 
   return {
     replace: true,
     transclude: false,
-    scope: { field: '=', resource: '=' },
-    template: '<div class="form-group" ng-class="{\'has-error\': resourceForm[{[field.slug]}].$invalid}">' +
-    '<label for="name">{[field.label]}</label>' +
-    '<div sp-string-field field="field" resource="resource" ng-if="isType(\'string\')"></div>' +
-    '<div sp-text-field field="field" resource="resource" ng-if="isType(\'text\')"></div>' +
-    '</div>',
+    template: function() {
+        return '<div class="form-group" ng-class="{\'has-error\': resourceForm[{[field.slug]}].$invalid}">' +
+        '<label for="name">{[field.label]}</label>' +
+    fieldTemplate +
+    '<label ng-show="field.multiple" class="multiple-buttons"><span class="glyphicon glyphicon-minus-sign" ng-show="showMinusButton()" ng-click="removeField()"></span> <span class="glyphicon glyphicon-plus-sign" ng-click="addField()"></span></label>' +
+    '</div>'; },
     link: function(scope, element, attrs) {
-            scope.isType = function (fieldType) {
+        scope.isType = function (fieldType) {
             if (fieldType === scope.field.field_type) {
                 return true;
             }
             return false;
         }
+        if (scope.field.multiple === "0") {
+            return;
+        };
+
+        scope.keys = [0];
+        scope.resource.fields[scope.field.slug] = [];
+
+        scope.showMinusButton = function () {
+            return (scope.keys.length > 1);
+        }
+
+        scope.removeField = function () {
+            scope.keys.splice(scope.keys.length - 1, 1);
+        }
+
+        scope.addField = function () {
+            scope.keys.push(scope.keys.length);
+        }
+
+
     }
   }
 });
@@ -72,11 +96,13 @@ app.directive('spStringField', function() {
   return {
     replace: true,
     transclude: true,
-    scope: { field: '=', resource: '=' },
-    template: '<input type="text" ng-model="resource.fields[field.slug]" class="form-control" name="{[field.slug]}" required />',
+    template: '<div ng-switch="field.multiple">' + 
+    '<div ng-switch-when="1"><div ng-repeat="key in keys" class="multiple">' + 
+        '<input type="text" ng-model="resource.fields[field.slug][key]" class="form-control" />' +
+    '</div></div>' +
+    '<input type="text" ng-model="resource.fields[field.slug]" class="form-control" ng-switch-default required />' +
+    '</div>',
     link: function(scope, element, attrs) {
-        console.log(scope.field);
-        console.log(scope.resource);
     }
   }
 });
@@ -86,10 +112,8 @@ app.directive('spTextField', function() {
   return {
     replace: true,
     transclude: true,
-    scope: { field: '=', resource: '=' },
     template: '<textarea class="form-control" name="{[field.slug]}" rows="6"></textarea>',
     link: function(scope, element, attrs) {
-        console.log(scope.field);
     }
   }
 });
