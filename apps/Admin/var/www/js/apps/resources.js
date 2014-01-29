@@ -39,8 +39,14 @@ app.controller('ResourcesCtrl', function($scope, Restangular, $rootScope, $locat
         }
     });
 
+
+
     $scope.submit = function () {
-      console.log($scope.resource);
+        $scope.resource.type = $scope.resourceType;
+        Restangular.all('resources/index').post($scope.resource).then(function () {
+            console.log("posted");
+            
+        });
     };
 
    
