@@ -32,6 +32,7 @@ class Detail extends ResourceObject{
             ->withQuery(['slug' => $resource['type']])
             ->request();
 
+        $resource['title_label'] = $type->body['type']['title_label'];
         $fieldTypes = [];
         $map = [];
         $resource['fields'] = [];

@@ -140,7 +140,7 @@ app.directive('spSlugTitle', function() {
           slug;
 
       scope.$watch('resource.title', function() {
-        if (stop) {
+        if (stop || typeof scope.resource.title === 'undefined') {
           return;
         }
         slug = scope.resource.title.toLowerCase().replace(/[^a-z]/g, "-");

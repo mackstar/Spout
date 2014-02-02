@@ -38,4 +38,27 @@ class Types extends ResourceObject{
         }
         return $this;
     }
+
+    public function onPost($name, $slug, $title_label, $resource_fields)
+    {
+        $this->db->beginTransaction();
+
+        try{
+            $this->db->insert('resource_types', compact(['name', 'slug', 'title_label']));
+            foreach($resource_fields as $resource_field) {
+                $resource_field['field_type'] = $resource_field['field_type']['slug'];
+                $resource_field['resource_type'] = $slug;
+                $this->db->insert('resource_fields', $resource_field);
+            }
+            $this->db->commit();
+
+        } catch(\Exception $e) {
+            $this->db->rollback();
+            echo $e->getMessage();
+            exit;
+        }
+
+        return $this;
+    }
+    
 }

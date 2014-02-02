@@ -1,6 +1,4 @@
 <div ng-show="ready()" class="row">
-
- 
   <ul class="nav nav-tabs">
     <li><h3>Add a {[resourceType.name]} Resource </h3></li>
     <li class="active link" ng-click="submit()"><span class="glyphicon glyphicon-ok"></span></li>
@@ -22,9 +20,5 @@
     <div ng-repeat="field in resourceType.fields">
       <div sp-field field="field" resource="resource"></div>
     </div>
-
-
   </form>
-
-
 </div>

@@ -11,17 +11,17 @@ use BEAR\Sunday\Annotation\Db;
  *
  * @Db
  */
-class FieldTypes extends ResourceObject{
+class ResourceFields extends ResourceObject{
 
     use DbSetterTrait;
 
-    protected $table = 'field_types';
+    protected $table = 'resource_fields';
 
-    public function onGet($id = null)
+    public function onGet($id)
     {
 
         $sql  = "SELECT {$this->table}.* FROM {$this->table} ";
-        $this['fieldtypes'] = $this->db->fetchAll($sql);
+        $this['resources'] = $this->db->fetchAll($sql);
 
         return $this;
     }

@@ -1,0 +1,59 @@
+<div class="row">
+  <ul class="nav nav-tabs">
+    <li><h3>Add a resource type </h3></li>
+    <li class="active link" ng-click="submit()"><span class="glyphicon glyphicon-ok"></span></li>
+    <li class="cancel link" ng-click="close()"><span class="glyphicon glyphicon-remove"></span></li>
+  </ul>
+
+  <form name="resourceTypesForm" novalidate>
+    <div class="form-group" ng-class="{'has-error': type.name.$invalid}">
+      <label for="name">Name</label>
+      <input type="text" ng-model="type.name" name="name" class="form-control" placeholder="Must not be blank." required>
+      <formfield-error-msg msg="Name should not be blank" field="resourceTypesForm.name" />
+    </div>
+    <div class="form-group" ng-class="{'has-error': type.slug.$invalid}">
+      <label for="slug">Slug</label>
+      <input type="text" ng-model="type.slug" name="slug" class="form-control" placeholder="Must not be blank." required>
+      <formfield-error-msg msg="Slug should not be blank" field="resourceTypesForm.slug" />
+    </div>
+
+    <div class="form-group" ng-class="{'has-error': type.title_label.$invalid}">
+      <label for="title_label">Title Label</label>
+      <input type="text" ng-model="type.title_label" name="title_label" class="form-control" placeholder="Must not be blank." required>
+      <formfield-error-msg msg="Slug should not be blank" field="resourceTypesForm.slug" />
+    </div>
+
+    <div class="btn-group form-group">
+      <button type="button" class="btn btn-default dropdown-toggle btn-lg" data-toggle="dropdown">
+        <span class="glyphicon glyphicon-plus"></span> Add Field
+      </button>
+      <ul class="dropdown-menu" role="menu">
+        <li ng-repeat="fieldtype in fieldtypes"><a ng-click="addField(fieldtype)">{[fieldtype.name]}</a></li>
+      </ul>
+    </div>
+
+
+    <div class="form-inline" ng-repeat="resource_field in type.resource_fields">
+      <div class="checkbox">
+        <label class="multiple-buttons" ng-click="removeField($index)"><span class="glyphicon glyphicon-minus-sign"></span>&nbsp;</label>
+      </div>
+      <div class="form-group">
+        <label class="sr-only">Label</label>
+        <input type="text" ng-model="resource_field.label" class="form-control" placeholder="Field Label">
+      </div>
+      <div class="form-group">
+        <label class="sr-only">Key</label>
+        <input type="text" ng-model="resource_field.slug" class="form-control" placeholder="Key - a unique identifier for this field">
+      </div>
+      <div class="checkbox">
+        <label>
+          <input type="checkbox" ng-model="resource_field.multiple" ng-true-value="1" ng-false-value="0"> Multiple?
+        </label>
+      </div>
+      {[resource_field.multiple]}
+      <div class="checkbox">
+        <label>| Type: {[resource_field.field_type.name]}</label>
+      </div>
+    </div>
+  </form>
+</div>
