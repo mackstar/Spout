@@ -118,7 +118,7 @@ app.directive('spTextField', function() {
   return {
     replace: true,
     transclude: true,
-    template: '<textarea class="form-control" name="{[field.slug]}" rows="6"></textarea>',
+    template: '<textarea class="form-control" ng-model="resource.fields[field.slug]" rows="6" ></textarea>',
     link: function(scope, element, attrs) {
     }
   }

@@ -13,9 +13,9 @@ class FieldValuesString extends AbstractMigration
         $table = $this->table('field_values_string');
         $table
             ->addColumn('resource_id', 'integer', array('limit' => 10))
-            ->addColumn('resource_property_id', 'integer', array('limit' => 10))
+            ->addColumn('resource_field_id', 'integer', array('limit' => 10))
             ->addColumn('value', 'string', array('limit' => 255))
-            ->addIndex(array('resource_id'), array('unique' => false))
+            ->addIndex(array('resource_id'))
             ->save();
     }
 

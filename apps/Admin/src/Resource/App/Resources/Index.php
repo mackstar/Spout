@@ -25,7 +25,6 @@ class Index extends ResourceObject{
      */
     public function onGet()
     {
-
         $sql  = "SELECT {$this->table}.*, type.name as type_name, type.title_label FROM {$this->table} ";
         $sql .= "INNER JOIN resource_types AS type ";
         $sql .= "ON type.slug = {$this->table}.type";
@@ -36,7 +35,6 @@ class Index extends ResourceObject{
 
     public function onPost($type, $title, $slug, $fields)
     {
-        
         $resource = $this->resource->get->uri('app://self/resources/types')
             ->eager
             ->withQuery(['slug' => $type['slug']])
@@ -45,13 +43,41 @@ class Index extends ResourceObject{
         $this->db->beginTransaction();
 
         try{
-            $this->db->insert('resources', ['title' => 'title', 'type' => $type['name'], 'slug' => $slug]);
-            var_dump($this->db->lastInsertId());
+            $this->db->insert('resources', ['title' => 'title', 'type' => $type['slug'], 'slug' => $slug]);
+            $resourceId = $this->db->lastInsertId();
+
+            foreach($resource->body['type']['fields'] as $field){
+                $table = 'field_values_' . $field['field_type'];
+
+                if (!isset($fields[$field['slug']])) {
+                    continue;
+                }
+
+                // Single field insert
+                if ($field['multiple'] == '0') {
+                    $this->db->insert($table, [
+                        'value' => $fields[$field['slug']],
+                        'resource_field_id' => $field['id'],
+                        'resource_id' => $resourceId
+                    ]); 
+
+                // Multiple field insert
+                } else {
+                    foreach($fields[$field['slug']] as $value) {
+                        $this->db->insert($table, [
+                            'value' => $value,
+                            'resource_field_id' => $field['id'],
+                            'resource_id' => $resourceId
+                        ]);
+                    }
+                }
+            }
             $this->db->commit();
 
         } catch(\Exception $e) {
-            var_dump("rolled back");
             $this->db->rollback();
+            echo $e->getMessage();
+            exit;
         }
         
 
