@@ -75,6 +75,7 @@ if (PHP_SAPI === 'cli') {
 // Get the method from the router and attempt to request the resource and render.
 // On failure trigger the error handler.
 //
+
 try {
     list($method,) = $app->router->match();
     $app->page = $app->resource->$method->uri($uri)->withQuery($get)->eager->request();

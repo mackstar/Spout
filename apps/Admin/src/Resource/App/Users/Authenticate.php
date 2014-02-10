@@ -3,18 +3,23 @@
 namespace Mackstar\Spout\Admin\Resource\App\Users;
 
 use BEAR\Resource\ResourceObject;
+use BEAR\Package\Module\Database\Dbal\Setter\DbSetterTrait;
 use BEAR\Sunday\Inject\ResourceInject;
+use BEAR\Sunday\Annotation\Db;
 use Mackstar\Spout\Interfaces\SecurityInterface;
 use Ray\Di\Di\Inject;
 
 /**
  * Authenticate Users
+ *
+ * @Db
  */
 class Authenticate extends ResourceObject{
 
-    use ResourceInject;
+    use DbSetterTrait;
 
     protected $security;
+    protected $table = 'users';
 
     /**
      * @Inject
@@ -28,13 +33,18 @@ class Authenticate extends ResourceObject{
         $password
     ) {
 
-        $resource = $this->resource->get->uri('app://self/users/index')
-            ->eager
-            ->withQuery(['email' => $email])
-            ->request();
+        $sql = "SELECT * FROM {$this->table} WHERE email = :email";
+        $stmt = $this->db->prepare($sql);
+        $stmt->bindValue('email', $email);
+        $stmt->execute();
+        $user = $stmt->fetch();
 
-        if ($this->security->match($password, $resource->body['user']['password'])) {
-            $this['user'] = $resource->body['user'];
+        if ($user && $this->security->match($password, $user['password'])) {
+            unset($user['password']);
+            $this['user'] = $user;
+        } else {
+            $this->code = 400;
+            $this['message'] = 'Your aucthentication details didn\'t match.';
         }
 
         return $this;

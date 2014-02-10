@@ -32,12 +32,14 @@ window.Spout.resourceTypes = {{ resource_types|json_encode(constant('JSON_PRETTY
   </div>
 </div>
 
-<table class="table table-hover" ng-controller="ResourcesCtrl" ng-show="resources">
+<div ng-controller="ResourcesCtrl" ng-show="resources">
+<table class="table table-hover">
   <thead>
     <tr>
       <th>ID</th>
       <th>Type</th>
       <th>Title</th>
+      <th>&nbsp;</th>
     </tr>
   </thead>
   <tbody>
@@ -45,9 +47,16 @@ window.Spout.resourceTypes = {{ resource_types|json_encode(constant('JSON_PRETTY
       <td>{[resource.id]}</td>
       <td>{[resource.type_name]}</td>
       <td>{[resource.title]}</td>
+      <td>
+        <span class="glyphicon glyphicon-trash" ng-click="delete(resource)"></span>&nbsp;
+        <span class="glyphicon glyphicon-pencil" ng-click="edit(resource)"></span>
+      </td>
     </tr>
   </tbody>
 </table>
+<pagination total-items="resources._pager.total" page="resources._pager.current" items-per-page="resources._pager.maxPerPage"></pagination>
+
+</div>
 
 {% endblock %}
 

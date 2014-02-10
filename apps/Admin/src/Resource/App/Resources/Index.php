@@ -11,7 +11,7 @@ use BEAR\Sunday\Annotation\DbPager;
 use PDO;
 
 /**
- * PropertyTypes
+ * Resources Index
  *
  * @Db
  */
@@ -24,7 +24,7 @@ class Index extends ResourceObject{
 
     /**
      * @Link(rel="type", href="app://self/entities/types?slug={slug}")
-     * @DbPager(2)
+     * @DbPager(5)
      */
     public function onGet()
     {
@@ -39,13 +39,35 @@ class Index extends ResourceObject{
         return $this;
     }
 
+    public function onDelete($id, $type)
+    {
+        $resource = $this->getType($type);
+        $this->db->beginTransaction();
+
+        try{
+            $this->db->delete($this->table, ['id' => $id]);
+            $fieldTypes = [];
+            foreach ($resource->body['type']['fields'] as $field) {
+                if(!in_array($field['field_type'], $fieldTypes)) {
+                    $fieldTypes[] = $field['field_type'];
+                    $this->db->delete('field_values_' . $field['field_type'], ['resource_id' => $id]);
+                }
+
+            }
+            $this->db->commit();
+        } catch(\Exception $e) {
+            $this->db->rollback();
+            echo $e->getMessage();
+            exit;
+        }
+
+
+        return $this;
+    }
+
     public function onPost($type, $title, $slug, $fields)
     {
-        $resource = $this->resource->get->uri('app://self/resources/types')
-            ->eager
-            ->withQuery(['slug' => $type['slug']])
-            ->request();
-
+        $resource = $this->getType($type['slug']);
         $this->db->beginTransaction();
 
         try{
@@ -88,5 +110,12 @@ class Index extends ResourceObject{
         
 
         return $this;
+    }
+
+    private function getType($slug) {
+        return $this->resource->get->uri('app://self/resources/types')
+            ->eager
+            ->withQuery(['slug' => $slug])
+            ->request();
     }
 }

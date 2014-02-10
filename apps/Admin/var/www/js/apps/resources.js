@@ -13,15 +13,32 @@ app.config(['$routeProvider', function($routeProvider) {
 }]);
 
 app.controller('ResourcesCtrl', function($scope, Restangular, $rootScope, $location) {
-    function load() {
-      Restangular.all('resources/index').getList().then(function (resources) {
+    function load(page) {
+      Restangular.all('resources/index').getList({'_start': page}).then(function (resources) {
         $scope.resources = resources;
       });
     }
-    load();
+    load(1);
     $scope.edit = function (resource) {
       $location.path('/edit/' + resource.id);
     };
+    $rootScope.$on('resources.reload', function() {
+      load();
+    });
+    $scope.$watch('resources._pager.current', function(page){
+        load(page);
+    });
+
+    $scope.delete = function(resource) {
+      if (!confirm("Are you sure?")) {
+        return;
+      }
+      resource.remove().then(function() {
+        $rootScope.$emit('sp.message', {title: 'Resource removed successfully', type: "success"});
+        console.log($scope.resources._pager.current);
+        load($scope.resources._pager.current);
+      });
+    }
 
 }).controller('ResourceTypesCtrl', function($scope, Restangular, $rootScope, $location) {
 
@@ -32,6 +49,11 @@ app.controller('ResourcesCtrl', function($scope, Restangular, $rootScope, $locat
 
     $scope.resource = { fields: {} };
 
+    $scope.close = function() {
+        $rootScope.$emit('modal.close', true);
+        $location.path('/resources');
+    }
+
     Restangular.one('resources/types').get({slug:$routeParams.slug}).then(function (resourceType) {
         $scope.resourceType = resourceType;
         $scope.ready = function() {
@@ -39,16 +61,14 @@ app.controller('ResourcesCtrl', function($scope, Restangular, $rootScope, $locat
         }
     });
 
-
-
     $scope.submit = function () {
         $scope.resource.type = $scope.resourceType;
         Restangular.all('resources/index').post($scope.resource).then(function () {
-            console.log("posted");
-            
+            $rootScope.$emit('sp.message', {title: 'User added successfully', type: "success"});
+            $rootScope.$emit('modal.close', true);
+            $rootScope.$emit('resources.reload', true);
         });
     };
-
    
 });
 app.directive('spField', function($compile) {

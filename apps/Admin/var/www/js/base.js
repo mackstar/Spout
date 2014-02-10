@@ -1,4 +1,4 @@
-var app = angular.module('spout', ['ngRoute', 'restangular', 'ngAnimate']);
+var app = angular.module('spout', ['ngRoute', 'restangular', 'ngAnimate', 'ui.bootstrap']);
 
 app.config(function($interpolateProvider) {
   $interpolateProvider.startSymbol('{[').endSymbol(']}');
@@ -13,6 +13,9 @@ app.run(function(Restangular, $rootScope) {
   Restangular.setResponseInterceptor(function(data, operation, what, request, response) {
     if (data.message) {
       $rootScope.$emit('message', {message: data.message});
+    }
+    if (data._model && data._pager) {
+      data[data._model]._pager = data._pager;
     }
     if (data._model) {
       return data[data._model];

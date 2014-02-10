@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "61eb36d291ee00e7f8ca1a7aca744dab",
+    "hash": "05a32390101133abe243ec208e616fc1",
     "packages": [
         {
             "name": "any/serializer",
@@ -213,16 +213,16 @@
         },
         {
             "name": "aura/router",
-            "version": "1.0.0",
+            "version": "1.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/auraphp/Aura.Router.git",
-                "reference": "3a2a45fbb621729d572427b2a7b1d5859bc07789"
+                "reference": "624adb4546dadbf60dd303d78a94ff865fdd1e70"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/auraphp/Aura.Router/zipball/3a2a45fbb621729d572427b2a7b1d5859bc07789",
-                "reference": "3a2a45fbb621729d572427b2a7b1d5859bc07789",
+                "url": "https://api.github.com/repos/auraphp/Aura.Router/zipball/624adb4546dadbf60dd303d78a94ff865fdd1e70",
+                "reference": "624adb4546dadbf60dd303d78a94ff865fdd1e70",
                 "shasum": ""
             },
             "require": {
@@ -237,7 +237,7 @@
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
-                "BSD"
+                "BSD-2-Clause"
             ],
             "authors": [
                 {
@@ -253,16 +253,24 @@
                 {
                     "name": "Aura.Router Contributors",
                     "homepage": "https://github.com/auraphp/Aura.Router/contributors"
+                },
+                {
+                    "name": "George Papadopoulos",
+                    "email": "g.papadopg@gmail.com"
+                },
+                {
+                    "name": "Jon Elofson",
+                    "email": "jon.elofson@gmail.com"
                 }
             ],
             "description": "The Aura Router package implements web routing; given a URI path and a copy of $_SERVER, it will extract controller, action, and parameter values for a specific route.",
-            "homepage": "http://auraphp.github.com/Aura.Router",
+            "homepage": "http://auraphp.com/Aura.Router",
             "keywords": [
                 "route",
                 "router",
                 "routing"
             ],
-            "time": "2012-11-28 00:00:00"
+            "time": "2013-09-10 00:00:00"
         },
         {
             "name": "aura/signal",
@@ -323,6 +331,62 @@
                 "signal slots"
             ],
             "time": "2013-09-10 00:00:00"
+        },
+        {
+            "name": "aura/sql",
+            "version": "dev-develop-2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/auraphp/Aura.Sql.git",
+                "reference": "9c6509b350c10129979a2e0b8407ebbde68749cc"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/auraphp/Aura.Sql/zipball/9c6509b350c10129979a2e0b8407ebbde68749cc",
+                "reference": "9c6509b350c10129979a2e0b8407ebbde68749cc",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "type": "library",
+            "extra": {
+                "aura": {
+                    "type": "library"
+                },
+                "branch-alias": {
+                    "dev-develop-2": "2.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Aura\\Sql\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-2-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Aura.Sql Contributors",
+                    "homepage": "https://github.com/auraphp/Aura.Sql/contributors"
+                }
+            ],
+            "description": "A PDO extension that provides lazy connections, array quoting, identifier quoting, query profiling, value binding, and convenience methods for common fetch styles. Because it extends PDO, existing code that uses PDO can use this without any changes to the existing code.",
+            "homepage": "https://github.com/auraphp/Aura.Sql/releases",
+            "keywords": [
+                "mysql",
+                "pdo",
+                "pgsql",
+                "postgres",
+                "postgresql",
+                "sql server",
+                "sqlite",
+                "sqlserver",
+                "sqlsrv"
+            ],
+            "time": "2014-01-31 20:45:05"
         },
         {
             "name": "aura/view",
@@ -490,52 +554,48 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/koriym/BEAR.Package.git",
-                "reference": "5f79afe348f35065728e68e70bb07bdf7a09779a"
+                "reference": "c5ac3c93c0943d04806d5db267e917808d1cfad2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/koriym/BEAR.Package/zipball/5f79afe348f35065728e68e70bb07bdf7a09779a",
-                "reference": "5f79afe348f35065728e68e70bb07bdf7a09779a",
+                "url": "https://api.github.com/repos/koriym/BEAR.Package/zipball/c5ac3c93c0943d04806d5db267e917808d1cfad2",
+                "reference": "c5ac3c93c0943d04806d5db267e917808d1cfad2",
                 "shasum": ""
             },
             "require": {
-                "aura/input": "1.1.*",
-                "aura/router": "1.0.*",
-                "aura/view": "1.1.2",
+                "aura/input": "1.*",
+                "aura/router": "1.*",
+                "aura/sql": "2.*@dev",
+                "aura/view": "1.*",
                 "aura/web": "1.*",
-                "bear/ace": "1.0.*",
                 "bear/resource": "dev-develop",
                 "bear/sunday": "dev-develop",
-                "classpreloader/classpreloader": "1.*",
-                "doctrine/annotations": "1.*",
-                "doctrine/cache": "1.*",
-                "doctrine/dbal": "2.3.*",
-                "ext-curl": "*",
-                "guzzle/guzzle": "3.3.*",
-                "nocarrier/hal": "0.9.*",
+                "doctrine/dbal": "2.*",
+                "koriym/fusion-cache": "*",
                 "pagerfanta/pagerfanta": "1.*",
                 "php": ">=5.4.0",
-                "playmedia/smarty": "3.1.*",
+                "playmedia/smarty": "3.*",
                 "ray/aop": "dev-develop",
                 "ray/di": "dev-develop",
-                "symfony/console": "*",
-                "symfony/http-foundation": "2.0.*",
-                "symfony/routing": "2.2.*",
-                "zendframework/zend-db": "2.1.*",
-                "zendframework/zend-log": "2.1.*",
-                "zendframework/zend-stdlib": "2.1.*"
+                "symfony/http-foundation": "2.*",
+                "symfony/routing": "2.*",
+                "twig/twig": "1.*"
             },
             "provide": {
-                "bear/framework": "0.8.0"
+                "bear/framework": "0.9.0"
             },
             "require-dev": {
+                "bear/ace": "1.*",
+                "classpreloader/classpreloader": "dev-wrap-namespace",
                 "dg/adminer-custom": "1.*",
                 "facebook/xhprof": "dev-master",
                 "firephp/firephp-core": "*",
                 "phpunit/dbunit": "1.3.*",
                 "phpunit/phpunit": "3.7.*",
-                "printo/printo": "0.1.*",
-                "twig/twig": "1.*"
+                "printo/printo": "0.*",
+                "zendframework/zend-db": "2.*",
+                "zendframework/zend-log": "2.*",
+                "zendframework/zend-stdlib": "2.*"
             },
             "suggest": {
                 "bear/phptal-module": "PHPTAL template-engine module"
@@ -571,7 +631,7 @@
                 "hypermedia",
                 "rest"
             ],
-            "time": "2014-01-18 12:35:32"
+            "time": "2014-02-04 15:24:14"
         },
         {
             "name": "bear/resource",
@@ -579,19 +639,19 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/koriym/BEAR.Resource.git",
-                "reference": "4f682997b2f90e732b47d339b7764721e16f815d"
+                "reference": "0f54ef8bc04edcb54702330bf8ceb245872ed275"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/koriym/BEAR.Resource/zipball/4f682997b2f90e732b47d339b7764721e16f815d",
-                "reference": "4f682997b2f90e732b47d339b7764721e16f815d",
+                "url": "https://api.github.com/repos/koriym/BEAR.Resource/zipball/0f54ef8bc04edcb54702330bf8ceb245872ed275",
+                "reference": "0f54ef8bc04edcb54702330bf8ceb245872ed275",
                 "shasum": ""
             },
             "require": {
                 "any/serializer": "*",
                 "aura/signal": "1.*",
                 "doctrine/cache": "1.*",
-                "guzzle/guzzle": "3.3.*",
+                "guzzle/guzzle": "3.*",
                 "nocarrier/hal": "*",
                 "php": ">=5.4.0",
                 "ray/aop": "dev-develop",
@@ -629,7 +689,7 @@
                 "rest",
                 "stateless"
             ],
-            "time": "2014-01-12 16:24:56"
+            "time": "2014-02-02 16:08:02"
         },
         {
             "name": "bear/sunday",
@@ -637,17 +697,20 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/koriym/BEAR.Sunday.git",
-                "reference": "b81e2a148828f85cff83ff0614aaf6953a6094a0"
+                "reference": "af5854477284ecbf62a8d0b859dcfaf520c545b8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/koriym/BEAR.Sunday/zipball/b81e2a148828f85cff83ff0614aaf6953a6094a0",
-                "reference": "b81e2a148828f85cff83ff0614aaf6953a6094a0",
+                "url": "https://api.github.com/repos/koriym/BEAR.Sunday/zipball/af5854477284ecbf62a8d0b859dcfaf520c545b8",
+                "reference": "af5854477284ecbf62a8d0b859dcfaf520c545b8",
                 "shasum": ""
             },
             "require": {
                 "bear/resource": "dev-develop",
-                "php": ">=5.4.0"
+                "php": ">=5.4.0",
+                "psr/log": "1.*",
+                "ray/aop": "dev-develop",
+                "ray/di": "dev-develop"
             },
             "type": "library",
             "autoload": {
@@ -674,7 +737,7 @@
                 "hypermedia",
                 "rest"
             ],
-            "time": "2014-01-04 01:46:17"
+            "time": "2014-01-21 11:53:58"
         },
         {
             "name": "classpreloader/classpreloader",
@@ -729,12 +792,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/danielstjules/Stringy.git",
-                "reference": "9f930262af66f3943cb5b8baa8cbc3e31bce0746"
+                "reference": "1c13f2ad7e758b18e5d7edda5f54f5a57d0c8f1d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/danielstjules/Stringy/zipball/9f930262af66f3943cb5b8baa8cbc3e31bce0746",
-                "reference": "9f930262af66f3943cb5b8baa8cbc3e31bce0746",
+                "url": "https://api.github.com/repos/danielstjules/Stringy/zipball/1c13f2ad7e758b18e5d7edda5f54f5a57d0c8f1d",
+                "reference": "1c13f2ad7e758b18e5d7edda5f54f5a57d0c8f1d",
                 "shasum": ""
             },
             "require": {
@@ -770,7 +833,7 @@
                 "utility",
                 "utils"
             ],
-            "time": "2013-12-17 02:04:30"
+            "time": "2014-02-04 04:41:57"
         },
         {
             "name": "doctrine/annotations",
@@ -919,16 +982,16 @@
         },
         {
             "name": "doctrine/collections",
-            "version": "v1.1",
+            "version": "v1.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/collections.git",
-                "reference": "560f29c39cfcfbcd210e5d549d993a39d898b04b"
+                "reference": "b99c5c46c87126201899afe88ec490a25eedd6a2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/collections/zipball/560f29c39cfcfbcd210e5d549d993a39d898b04b",
-                "reference": "560f29c39cfcfbcd210e5d549d993a39d898b04b",
+                "url": "https://api.github.com/repos/doctrine/collections/zipball/b99c5c46c87126201899afe88ec490a25eedd6a2",
+                "reference": "b99c5c46c87126201899afe88ec490a25eedd6a2",
                 "shasum": ""
             },
             "require": {
@@ -937,7 +1000,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.1.x-dev"
+                    "dev-master": "1.2.x-dev"
                 }
             },
             "autoload": {
@@ -953,7 +1016,8 @@
                 {
                     "name": "Jonathan Wage",
                     "email": "jonwage@gmail.com",
-                    "homepage": "http://www.jwage.com/"
+                    "homepage": "http://www.jwage.com/",
+                    "role": "Creator"
                 },
                 {
                     "name": "Guilherme Blanco",
@@ -982,7 +1046,7 @@
                 "collections",
                 "iterator"
             ],
-            "time": "2013-03-07 12:15:54"
+            "time": "2014-02-03 23:07:43"
         },
         {
             "name": "doctrine/common",
@@ -1242,12 +1306,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/migrations.git",
-                "reference": "199cb62a80c7723942d14107c23bc45168e4241c"
+                "reference": "0742fc7167a4deedaabc8639849a3e71082999f1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/migrations/zipball/199cb62a80c7723942d14107c23bc45168e4241c",
-                "reference": "199cb62a80c7723942d14107c23bc45168e4241c",
+                "url": "https://api.github.com/repos/doctrine/migrations/zipball/0742fc7167a4deedaabc8639849a3e71082999f1",
+                "reference": "0742fc7167a4deedaabc8639849a3e71082999f1",
                 "shasum": ""
             },
             "require": {
@@ -1294,7 +1358,7 @@
                 "database",
                 "migrations"
             ],
-            "time": "2014-01-04 09:19:33"
+            "time": "2014-01-20 11:29:43"
         },
         {
             "name": "guzzle/guzzle",
@@ -1388,6 +1452,49 @@
                 "web service"
             ],
             "time": "2013-03-10 23:05:38"
+        },
+        {
+            "name": "koriym/fusion-cache",
+            "version": "0.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/koriym/Koriym.FusionCache.git",
+                "reference": "916584d20e4c544eb3ac0f88b2a6fc1aecba1038"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/koriym/Koriym.FusionCache/zipball/916584d20e4c544eb3ac0f88b2a6fc1aecba1038",
+                "reference": "916584d20e4c544eb3ac0f88b2a6fc1aecba1038",
+                "shasum": ""
+            },
+            "require": {
+                "doctrine/cache": "1.*"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Koriym\\FusionCache": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Akihito Koriyama",
+                    "email": "akihito.koriyama@gmail.com",
+                    "homepage": "https://github.com/koriym",
+                    "role": "Lead"
+                }
+            ],
+            "description": "Memory+File hybrid cache",
+            "homepage": "https://github.com/koriym/Koriym.FusionCache",
+            "keywords": [
+                "cache",
+                "doctrine"
+            ],
+            "time": "2014-01-26 02:46:50"
         },
         {
             "name": "nikic/php-parser",
@@ -1605,17 +1712,55 @@
             "time": "2014-01-06 16:15:02"
         },
         {
+            "name": "psr/log",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/php-fig/log.git",
+                "reference": "fe0936ee26643249e916849d48e3a51d5f5e278b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/php-fig/log/zipball/fe0936ee26643249e916849d48e3a51d5f5e278b",
+                "reference": "fe0936ee26643249e916849d48e3a51d5f5e278b",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Psr\\Log\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "PHP-FIG",
+                    "homepage": "http://www.php-fig.org/"
+                }
+            ],
+            "description": "Common interface for logging libraries",
+            "keywords": [
+                "log",
+                "psr",
+                "psr-3"
+            ],
+            "time": "2012-12-21 11:40:51"
+        },
+        {
             "name": "ray/aop",
             "version": "dev-develop",
             "source": {
                 "type": "git",
                 "url": "https://github.com/koriym/Ray.Aop.git",
-                "reference": "b8b5347d913e9af2c57916b54e5146ff078a244f"
+                "reference": "20ba76380f01dfec12ccee7867b6d97247de5e27"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/koriym/Ray.Aop/zipball/b8b5347d913e9af2c57916b54e5146ff078a244f",
-                "reference": "b8b5347d913e9af2c57916b54e5146ff078a244f",
+                "url": "https://api.github.com/repos/koriym/Ray.Aop/zipball/20ba76380f01dfec12ccee7867b6d97247de5e27",
+                "reference": "20ba76380f01dfec12ccee7867b6d97247de5e27",
                 "shasum": ""
             },
             "require": {
@@ -1649,7 +1794,7 @@
                 "aop",
                 "aspect"
             ],
-            "time": "2014-01-18 11:02:51"
+            "time": "2014-01-29 19:50:29"
         },
         {
             "name": "ray/di",
@@ -1657,12 +1802,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/koriym/Ray.Di.git",
-                "reference": "eafdb09e20c58b29dd1b443e747a31f02f053cd3"
+                "reference": "4333cba477880d6aa3907bac7defa9d009b51506"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/koriym/Ray.Di/zipball/eafdb09e20c58b29dd1b443e747a31f02f053cd3",
-                "reference": "eafdb09e20c58b29dd1b443e747a31f02f053cd3",
+                "url": "https://api.github.com/repos/koriym/Ray.Di/zipball/4333cba477880d6aa3907bac7defa9d009b51506",
+                "reference": "4333cba477880d6aa3907bac7defa9d009b51506",
                 "shasum": ""
             },
             "require": {
@@ -1707,7 +1852,7 @@
                 "injection",
                 "jsr"
             ],
-            "time": "2014-01-18 11:48:52"
+            "time": "2014-02-03 11:22:58"
         },
         {
             "name": "rhumsaa/uuid",
@@ -1770,16 +1915,16 @@
         },
         {
             "name": "robmorgan/phinx",
-            "version": "dev-0.2.x-dev",
+            "version": "v0.3.0",
             "source": {
                 "type": "git",
-                "url": "https://github.com/mackstar/phinx.git",
-                "reference": "000a9e3b6f981dfa0b08722b9d9260062ab8bd94"
+                "url": "https://github.com/robmorgan/phinx.git",
+                "reference": "cd1bb7e26df3cccd32f0fedfd8fb6939c8c858c0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/mackstar/phinx/zipball/000a9e3b6f981dfa0b08722b9d9260062ab8bd94",
-                "reference": "000a9e3b6f981dfa0b08722b9d9260062ab8bd94",
+                "url": "https://api.github.com/repos/robmorgan/phinx/zipball/cd1bb7e26df3cccd32f0fedfd8fb6939c8c858c0",
+                "reference": "cd1bb7e26df3cccd32f0fedfd8fb6939c8c858c0",
                 "shasum": ""
             },
             "require": {
@@ -1790,7 +1935,8 @@
                 "symfony/yaml": "2.*"
             },
             "require-dev": {
-                "phpunit/phpunit": "3.7.*"
+                "phpunit/phpunit": "3.7.*",
+                "squizlabs/php_codesniffer": "dev-phpcs-fixer"
             },
             "bin": [
                 "bin/phinx"
@@ -1801,6 +1947,7 @@
                     "Phinx": "src/"
                 }
             },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -1820,10 +1967,7 @@
                 "migrations",
                 "phinx"
             ],
-            "support": {
-                "source": "https://github.com/mackstar/phinx/tree/0.2.x-dev"
-            },
-            "time": "2013-11-10 17:52:19"
+            "time": "2014-02-01 19:47:06"
         },
         {
             "name": "smarty/smarty",
@@ -2305,6 +2449,55 @@
             "time": "2013-12-28 08:12:03"
         },
         {
+            "name": "twig/twig",
+            "version": "v1.15.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/fabpot/Twig.git",
+                "reference": "85e4ff98000157ff753d934b9f13659a953f5666"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/fabpot/Twig/zipball/85e4ff98000157ff753d934b9f13659a953f5666",
+                "reference": "85e4ff98000157ff753d934b9f13659a953f5666",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.2.4"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.15-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Twig_": "lib/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com"
+                },
+                {
+                    "name": "Armin Ronacher",
+                    "email": "armin.ronacher@active-4.com"
+                }
+            ],
+            "description": "Twig, the flexible, fast, and secure template language for PHP",
+            "homepage": "http://twig.sensiolabs.org",
+            "keywords": [
+                "templating"
+            ],
+            "time": "2013-12-06 07:47:10"
+        },
+        {
             "name": "twitter/bootstrap",
             "version": "v2.3.2",
             "source": {
@@ -2612,22 +2805,22 @@
     "packages-dev": [
         {
             "name": "dg/adminer-custom",
-            "version": "v1.1.0",
+            "version": "v1.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/dg/adminer-custom.git",
-                "reference": "d0d0f67e4aa03c3f7c1fc3898d1e179a0d22c8dc"
+                "reference": "aeed2dbc97bdaf134efded1e8e2869f079d70b4b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dg/adminer-custom/zipball/d0d0f67e4aa03c3f7c1fc3898d1e179a0d22c8dc",
-                "reference": "d0d0f67e4aa03c3f7c1fc3898d1e179a0d22c8dc",
+                "url": "https://api.github.com/repos/dg/adminer-custom/zipball/aeed2dbc97bdaf134efded1e8e2869f079d70b4b",
+                "reference": "aeed2dbc97bdaf134efded1e8e2869f079d70b4b",
                 "shasum": ""
             },
             "type": "project",
             "notification-url": "https://packagist.org/downloads/",
             "description": "Customization for the best database management tool written in PHP, Adminer",
-            "time": "2014-01-11 20:15:20"
+            "time": "2014-02-01 21:30:36"
         },
         {
             "name": "facebook/xhprof",
@@ -2746,55 +2939,6 @@
                 "object graph"
             ],
             "time": "2013-10-21 13:32:23"
-        },
-        {
-            "name": "twig/twig",
-            "version": "v1.15.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/fabpot/Twig.git",
-                "reference": "85e4ff98000157ff753d934b9f13659a953f5666"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/fabpot/Twig/zipball/85e4ff98000157ff753d934b9f13659a953f5666",
-                "reference": "85e4ff98000157ff753d934b9f13659a953f5666",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.2.4"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "1.15-dev"
-                }
-            },
-            "autoload": {
-                "psr-0": {
-                    "Twig_": "lib/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "BSD-3-Clause"
-            ],
-            "authors": [
-                {
-                    "name": "Fabien Potencier",
-                    "email": "fabien@symfony.com"
-                },
-                {
-                    "name": "Armin Ronacher",
-                    "email": "armin.ronacher@active-4.com"
-                }
-            ],
-            "description": "Twig, the flexible, fast, and secure template language for PHP",
-            "homepage": "http://twig.sensiolabs.org",
-            "keywords": [
-                "templating"
-            ],
-            "time": "2013-12-06 07:47:10"
         }
     ],
     "aliases": [
@@ -2803,13 +2947,13 @@
     "minimum-stability": "stable",
     "stability-flags": {
         "bear/resource": 20,
+        "aura/sql": 20,
         "ray/di": 20,
         "ray/aop": 20,
         "bear/sunday": 20,
         "bear/package": 20,
         "danielstjules/stringy": 20,
         "doctrine/migrations": 20,
-        "robmorgan/phinx": 20,
         "facebook/xhprof": 20
     },
     "platform": {

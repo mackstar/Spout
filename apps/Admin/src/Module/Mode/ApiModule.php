@@ -16,6 +16,7 @@ class ApiModule extends AbstractModule
     {
         $this->installPasswordEncryptor();
         $this->installModelHeaderAppender();
+        //$this->installPagerAppender();
     }
 
     private function installPasswordEncryptor()
@@ -39,4 +40,17 @@ class ApiModule extends AbstractModule
             [$headerAppender]
         );
     }
+
+    // private function installPagerAppender()
+    // {
+    //     $pagerAppender = $this->requestInjection('\Mackstar\Spout\Admin\Interceptor\Tools\PagerAppender');
+
+    //     $this->bindInterceptor(
+    //         $this->matcher->subclassesOf('BEAR\Resource\ResourceObject'),
+    //         $this->matcher->startWith('onGet'),
+    //         [$pagerAppender]
+    //     );
+    // }
+
+
 }

@@ -16,6 +16,7 @@ use Ray\Di\AbstractModule;
 use Ray\Di\Injector;
 use Mackstar\Spout\Admin\Module\Mode\DevModule;
 use Mackstar\Spout\Admin\Module\Mode\ApiModule;
+use Mackstar\Spout\Admin\Module\App\OuterApiAspect;
 use Ray\Di\Scope;
 
 /**
@@ -99,6 +100,7 @@ class AppModule extends AbstractModule
         ///----- New
 
                 // install core package
+
         $this->install(new PackageModule('Mackstar\Spout\Admin\App', $this->context, $this->constants));
 
         // install view package
@@ -120,16 +122,19 @@ class AppModule extends AbstractModule
         // install application dependency
         $this->install(new App\Dependency);
 
+        // install application aspect
+        $this->install(new App\Aspect($this));
+
         // install API module
         if ($this->context === 'api') {
             // install api output view package
             $this->install(new HalModule($this));
             $this->install(new ApiModule($this));
+            $this->install(new OuterApiAspect());
             //$this->install(new JsonModule($this));
         }
 
-        // install application aspect
-        $this->install(new App\Aspect($this));
+        
 
     }
 }

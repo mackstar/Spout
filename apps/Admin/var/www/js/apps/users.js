@@ -26,6 +26,7 @@ app.controller('UsersCtrl', function($scope, Restangular, $rootScope, $location)
     $scope.edit = function (user) {
       $location.path('/edit/' + user.email);
     };
+    //
     $scope.delete = function(user) {
       if (!confirm("Are you sure?")) {
         return;

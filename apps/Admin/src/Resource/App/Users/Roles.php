@@ -28,14 +28,12 @@ class Roles extends ResourceObject{
 
         if (is_null($id)) {
             $this['roles'] = $this->db->fetchAll($sql . ' ORDER BY \'weight\'');
-            $this->headers = ['x-model' => 'roles'];
         } else {
             $sql .= " WHERE id = :id";
             $stmt = $this->db->prepare($sql);
             $stmt->bindValue('id', $id);
             $stmt->execute();
             $this['role'] = $stmt->fetch();
-            $this->headers = ['x-model' => 'role'];
         }
 
         return $this;
