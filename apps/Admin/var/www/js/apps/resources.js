@@ -6,27 +6,31 @@ app.config(['$routeProvider', function($routeProvider) {
             templateUrl: '/js/templates/users/edit.html', 
             controller: 'UserAddCtrl'
         })
-        .when('/resources/add/:slug', { 
+        .when('/resources/edit/:type/:slug/:id', { 
             templateUrl: '/js/templates/resources/add.html', 
-            controller: 'ResourceAddCtrl'
+            controller: 'ResourceEditCtrl'
         });
 }]);
 
 app.controller('ResourcesCtrl', function($scope, Restangular, $rootScope, $location) {
+    var current;
     function load(page) {
+      console.log("load", page);
+      current = parseInt(page);
       Restangular.all('resources/index').getList({'_start': page}).then(function (resources) {
         $scope.resources = resources;
       });
     }
     load(1);
+
     $scope.edit = function (resource) {
-      $location.path('/edit/' + resource.id);
+      $location.path('/resources/edit/' + resource.type + '/' + resource.slug + '/' + resource.id);
     };
-    $rootScope.$on('resources.reload', function() {
-      load();
-    });
     $scope.$watch('resources._pager.current', function(page){
-        load(page);
+        console.log("watch", page);
+        if (current !== parseInt(page) && page !== undefined) {
+            load(page);
+        }
     });
 
     $scope.delete = function(resource) {
@@ -70,7 +74,41 @@ app.controller('ResourcesCtrl', function($scope, Restangular, $rootScope, $locat
         });
     };
    
-});
+}).controller('ResourceEditCtrl', function($scope, Restangular, $routeParams, $location, $rootScope) {
+    $rootScope.$emit('modal.open', true);
+
+    Restangular.one('resources/types').get({slug:$routeParams.type}).then(function (resourceType) {
+        $scope.resourceType = resourceType;
+        $scope.ready = function() {
+            return true;
+        }
+    });
+
+    $scope.resource = { fields: {} };
+
+    $scope.close = function() {
+        $rootScope.$emit('modal.close', true);
+        $location.path('/resources');
+    }
+
+
+    Restangular.one('resources/detail').get({id:$routeParams.id}).then(function (resource) {
+        //$scope.resourceType = resourceType;
+        console.log(resource);
+
+        $scope.resource = resource;
+    });
+
+    $scope.submit = function () {
+        $scope.resource.type = $scope.resourceType;
+        Restangular.all('resources/index').post($scope.resource).then(function () {
+            $rootScope.$emit('sp.message', {title: 'User added successfully', type: "success"});
+            $rootScope.$emit('modal.close', true);
+            $rootScope.$emit('resources.reload', true);
+        });
+    };
+   
+});;
 app.directive('spField', function($compile) {
 
   var fieldTemplate = 

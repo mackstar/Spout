@@ -74,6 +74,7 @@ class Detail extends ResourceObject{
         		}
         	}
         }
+        $this['_model'] = 'resource';
         $this['resource'] = $resource;
         return $this;
     }
