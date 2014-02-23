@@ -5,6 +5,7 @@ namespace Mackstar\Spout\Admin\Resource\App\Resources;
 use BEAR\Resource\ResourceObject;
 use BEAR\Package\Module\Database\Dbal\Setter\DbSetterTrait;
 use BEAR\Sunday\Annotation\Db;
+use BEAR\Sunday\Annotation\Transactional;
 
 /**
  * PropertyTypes
@@ -16,6 +17,7 @@ class Types extends ResourceObject{
     use DbSetterTrait;
 
     protected $table = 'resource_types';
+    protected $resourceFieldsTable = 'resource_fields';
 
     public function onGet($slug = null)
     {
@@ -29,7 +31,7 @@ class Types extends ResourceObject{
             $stmt->execute();
             $this['type'] = $stmt->fetch();
 
-            $sql = "SELECT * FROM `resource_fields` WHERE `resource_type` = :slug ORDER BY `weight`";
+            $sql = "SELECT * FROM `{$this->$resourceFieldsTable}` WHERE `resource_type` = :slug ORDER BY `weight`";
             $stmt = $this->db->prepare($sql);
             $stmt->bindValue('slug', $slug);
             $stmt->execute();
@@ -38,6 +40,7 @@ class Types extends ResourceObject{
         }
         return $this;
     }
+
 
     public function onPost($name, $slug, $title_label, $resource_fields)
     {
@@ -58,6 +61,18 @@ class Types extends ResourceObject{
             exit;
         }
 
+        return $this;
+    }
+
+    /**
+     * @Transactional
+     */
+    public function onDelete($slug)
+    {
+        
+        $this->db->delete($this->table, ['slug' => $slug]);
+        $this->db->delete($this->resourceFieldsTable, ['resource_type' => $slug]);
+        $this->code = 204;
         return $this;
     }
     

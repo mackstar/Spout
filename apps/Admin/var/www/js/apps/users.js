@@ -1,6 +1,5 @@
 'use strict';
 
-
 app.config(['$routeProvider', function($routeProvider) {
     $routeProvider
         .when('/add', { 
@@ -26,7 +25,7 @@ app.controller('UsersCtrl', function($scope, Restangular, $rootScope, $location)
     $scope.edit = function (user) {
       $location.path('/edit/' + user.email);
     };
-    //
+    
     $scope.delete = function(user) {
       if (!confirm("Are you sure?")) {
         return;
@@ -68,6 +67,7 @@ app.controller('UserEditCtrl', function($scope, $rootScope, $routeParams, parseF
         $rootScope.$emit('modal.close', true);
         $location.path('/users');
       }
+
       $scope.submit = function() {
         if ($scope.userForm.$invalid) {
           $rootScope.$emit('sp.message', {title: 'Oops', message: 'The form is not yet complete', type: "danger"});
@@ -88,15 +88,12 @@ app.controller('UserEditCtrl', function($scope, $rootScope, $routeParams, parseF
 app.controller('UserAddCtrl', function($scope, $rootScope, Restangular, parseFormErrors, $location) {
 
   var ready = false;
-  $scope.close = function() {
-    $rootScope.$emit('modal.close', true);
-    $location.path('/users');
-  }
 
   $rootScope.$emit('modal.open', true);
 
   $scope.addMode = true;
   $scope.ready = false;
+
   $scope.$on('roles.loaded', function() {
     ready = true;
   });
@@ -105,13 +102,18 @@ app.controller('UserAddCtrl', function($scope, $rootScope, Restangular, parseFor
     return ready;
   }
 
+  $scope.close = function() {
+    $rootScope.$emit('modal.close', true);
+    $location.path('/users');
+  }
+
   $scope.user = {
     email: '',
     password: '',
     name: ''
   }
-  $scope.submit = function() {
 
+  $scope.submit = function() {
     if ($scope.userForm.$invalid) {
       $rootScope.$emit('sp.message', {title: 'Oops', message: 'The form is not yet complete', type: "danger"});
       return;

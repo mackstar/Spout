@@ -74,7 +74,7 @@ app.controller('ResourcesCtrl', function($scope, Restangular, $rootScope, $locat
         });
     };
    
-}).controller('ResourceEditCtrl', function($scope, Restangular, $routeParams, $location, $rootScope) {
+}).controller('ResourceEditCtrl', function($scope, Restangular, $routeParams, $location, $rootScope, $timeout) {
     $rootScope.$emit('modal.open', true);
 
     Restangular.one('resources/types').get({slug:$routeParams.type}).then(function (resourceType) {
@@ -91,13 +91,15 @@ app.controller('ResourcesCtrl', function($scope, Restangular, $rootScope, $locat
         $location.path('/resources');
     }
 
+    $timeout(function() {
+        Restangular.one('resources/detail').get({id:$routeParams.id}).then(function (resource) {
+            //$scope.resourceType = resourceType;
+            console.log(resource);
+            parseResourceObject(resource);
+            $scope.resource = resource;
+        });
+    }, 0);
 
-    Restangular.one('resources/detail').get({id:$routeParams.id}).then(function (resource) {
-        //$scope.resourceType = resourceType;
-        console.log(resource);
-
-        $scope.resource = resource;
-    });
 
     $scope.submit = function () {
         $scope.resource.type = $scope.resourceType;
@@ -108,7 +110,21 @@ app.controller('ResourcesCtrl', function($scope, Restangular, $rootScope, $locat
         });
     };
    
-});;
+});
+
+function parseResourceObject(resource) {
+    angular.forEach(resource.fields, function(object, key) {
+        console.log(object);
+        if (object && typeof object.value === 'string') {
+            resource.fields[key] = object.value;
+        }
+        if (object && object.values) {
+            resource.fields[key] = object.values;
+        }
+        console.log(typeof resource.fields[key]);
+    });
+}
+
 app.directive('spField', function($compile) {
 
   var fieldTemplate = 

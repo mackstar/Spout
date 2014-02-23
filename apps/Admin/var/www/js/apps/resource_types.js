@@ -15,15 +15,21 @@ app.controller('TypesCtrl', function($scope, Restangular, $rootScope, $location)
       });
     }
     load();
-    // $scope.edit = function (resource) {
-    //   $location.path('/edit/' + resource.id);
-    // };
+    $rootScope.$on('types.reload', function() {
+        load();
+    });
+    $scope.delete = function (type) {
+      type.remove().then(function() {
+        $rootScope.$emit('sp.message', {title: 'Type removed successfully', type: "success"});
+        $rootScope.$emit('types.reload', true);
+      });
+    };
 
 }).controller('TypesAddCtrl', function($scope, Restangular, $routeParams, $location, $rootScope) {
 
     $rootScope.$emit('modal.open', true);
     $scope.type = {
-    	title_label: 'Title'
+        title_label: 'Title'
     };
     $scope.type.resource_fields = [];
 
@@ -32,15 +38,15 @@ app.controller('TypesCtrl', function($scope, Restangular, $rootScope, $location)
     });
 
     $scope.addField = function (field) {
-    	$scope.type.resource_fields.push({
-    		field_type: field,
+        $scope.type.resource_fields.push({
+            field_type: field,
             multiple: 0,
-    		weight: ($scope.type.resource_fields.length + 1)
-    	});
+            weight: ($scope.type.resource_fields.length + 1)
+        });
     }
 
     $scope.removeField = function (index) {
-    	$scope.resource_fields.splice(index, 1);
+        $scope.resource_fields.splice(index, 1);
     }
 
     $scope.submit = function () {
@@ -49,6 +55,4 @@ app.controller('TypesCtrl', function($scope, Restangular, $rootScope, $location)
             
         });
     };
-
-   
 });

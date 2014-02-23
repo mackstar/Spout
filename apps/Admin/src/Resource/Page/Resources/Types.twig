@@ -22,6 +22,7 @@
       <th>Type</th>
       <th>Slug</th>
       <th>Title</th>
+      <th></th>
     </tr>
   </thead>
   <tbody>
@@ -30,6 +31,9 @@
       <td>{[type.name]}</td>
       <td>{[type.slug]}</td>
       <td>{[type.title_label]}</td>
+      <td>
+        <span class="glyphicon glyphicon-trash" ng-click="delete(type)"></span>&nbsp;
+      </td>
     </tr>
   </tbody>
 </table>

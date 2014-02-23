@@ -23,7 +23,7 @@ app.run(function(Restangular, $rootScope) {
     return data;
   });
   Restangular.setErrorInterceptor(function(response) {
-    if (response.status) {
+    if (response.status && response.data.title) {
       $rootScope.$emit('sp.message', {title: response.data.title, message: response.data.message, type: "danger"});
     }
     return response;
@@ -103,26 +103,27 @@ app.service('parseFormErrors', function() {
   }
 });
 
-
 app.directive('formfieldErrorMsg', function() {
+  //ng-show="showMessage()">
 
   return {
     restrict: 'E',
     replace: true,
     transclude: false,
     scope: { field: '=' },
+
     template: '<p class="help-block" ng-show="showMessage()">{{getMessage()}}</p>',
     link: function(scope, element, attrs) {
       var form = attrs.field.split(".")[0],
         property = attrs.field.split(".")[1];
-      
+
       scope.message = attrs.msg;
       scope.showMessage = function () {
         return scope.field.$dirty && scope.field.$invalid;
       };
 
       scope.getMessage = function() {
-        if (!scope.field && !scope.field.$message) {
+        if (!scope.field || !scope.field.$message) {
           return scope.message;
         }
         return scope.field.$message;
@@ -138,20 +139,26 @@ app.directive('spSlugTitle', function() {
     restrict: 'A',
     replace: false,
     transclude: false,
-    link: function(scope, element) {
+    scope: {model: '='},
+    link: function(scope, element, attrs) {
       var stop = false,
-          slug;
+          slug,
+          src = attrs.spSlugTitle || 'title';
 
-      scope.$watch('resource.title', function() {
-        if (stop || typeof scope.resource.title === 'undefined') {
+
+          console.log(src);
+
+
+      scope.$watch('model.' + src, function() {
+        if (stop || typeof scope.model[src] === 'undefined') {
           return;
         }
-        slug = scope.resource.title.toLowerCase().replace(/[^a-z]/g, "-");
-        scope.resource.slug = slug;
+        slug = scope.model[src].toLowerCase().replace(/[^a-z0-9]/g, "-");
+        scope.model.slug = slug;
       });
 
-      scope.$watch('resource.slug', function() {
-        if(scope.resource.slug != slug) {
+      scope.$watch('model.slug', function() {
+        if(scope.model.slug != slug) {
           stop = true;
         }
       });

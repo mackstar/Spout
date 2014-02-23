@@ -17,13 +17,10 @@ describe('Users App', function() {
     }));
  
     it('should recieve a list of users on load', function() {
-    	httpBackend.flush();
-        expect(scope.users.length).toBe(2);
-    });
-
-    it('should load en edit screen when edit clicked', function() {
         httpBackend.flush();
         expect(scope.users.length).toBe(2);
     });
+
   });
+
 });

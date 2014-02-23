@@ -6,21 +6,21 @@
   </ul>
 
   <form name="resourceTypesForm" novalidate>
-    <div class="form-group" ng-class="{'has-error': type.name.$invalid}">
+    <div class="form-group" ng-class="{'has-error': resourceTypesForm.name.$invalid}">
       <label for="name">Name</label>
       <input type="text" ng-model="type.name" name="name" class="form-control" placeholder="Must not be blank." required>
       <formfield-error-msg msg="Name should not be blank" field="resourceTypesForm.name" />
     </div>
-    <div class="form-group" ng-class="{'has-error': type.slug.$invalid}">
+    <div class="form-group" ng-class="{'has-error': resourceTypesForm.slug.$invalid}">
       <label for="slug">Slug</label>
-      <input type="text" ng-model="type.slug" name="slug" class="form-control" placeholder="Must not be blank." required>
+      <input type="text" sp-slug-title="name" model="type" ng-model="type.slug" name="slug" class="form-control" placeholder="Must not be blank." required>
       <formfield-error-msg msg="Slug should not be blank" field="resourceTypesForm.slug" />
     </div>
 
-    <div class="form-group" ng-class="{'has-error': type.title_label.$invalid}">
+    <div class="form-group" ng-class="{'has-error': resourceTypesForm.title_label.$invalid}">
       <label for="title_label">Title Label</label>
       <input type="text" ng-model="type.title_label" name="title_label" class="form-control" placeholder="Must not be blank." required>
-      <formfield-error-msg msg="Slug should not be blank" field="resourceTypesForm.slug" />
+      <formfield-error-msg msg="Slug should not be blank" field="resourceTypesForm.title_label" />
     </div>
 
     <div class="btn-group form-group">
@@ -33,7 +33,7 @@
     </div>
 
 
-    <div class="form-inline" ng-repeat="resource_field in type.resource_fields">
+    <div class="form-inline" ng-repeat="resource_field in resourceTypesForm.resource_fields">
       <div class="checkbox">
         <label class="multiple-buttons" ng-click="removeField($index)"><span class="glyphicon glyphicon-minus-sign"></span>&nbsp;</label>
       </div>

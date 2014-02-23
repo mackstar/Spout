@@ -10,7 +10,7 @@ use Ray\Aop\ReflectiveMethodInvocation;
 class UserValidatorTest extends \PHPUnit_Framework_TestCase
 {
 
-    public function testHidesPasswordsForSingleUser()
+    public function testErrorsWhenNoEmailIsPassedIn()
     {
         $interceptor = new UserValidator;
         $interceptor->setValidator(new Validator(new ValidatorProvider));

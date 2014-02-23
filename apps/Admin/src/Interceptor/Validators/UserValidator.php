@@ -4,17 +4,13 @@ namespace Mackstar\Spout\Admin\Interceptor\Validators;
 
 use BEAR\Sunday\Inject\ResourceInject;
 use BEAR\Package\Module\Database\Dbal\Setter\DbSetterTrait;
-use BEAR\Sunday\Annotation\Db;
 use Ray\Aop\MethodInterceptor;
 use Ray\Aop\MethodInvocation;
 use Mackstar\Spout\Interfaces\ValidatorInterface;
 use Ray\Di\Di\Inject;
 
-
 /**
  * UserValidator
- *
- * @Db
  */
 class UserValidator implements MethodInterceptor
 {
@@ -27,12 +23,17 @@ class UserValidator implements MethodInterceptor
     use ResourceInject;
     
     /**
-     * Error
+     * Errors
      * 
      * @var array
      */
     private $errors = [];
 
+    /**
+     * Error
+     * 
+     * @var validator
+     */
     private $validator; 
 
     /**
@@ -50,10 +51,6 @@ class UserValidator implements MethodInterceptor
         $method = $invocation->getMethod()->name;
         
         $id = ($method == 'onPut')?  $args[self::ID] : null;
-
-        if (!$validator->get('emailaddress')->isValid($args[self::EMAIL])) {
-            $this->errors['email'] = $validator->getMessages()[0];
-        }
 
         if (!$validator->get('emailaddress')->isValid($args[self::EMAIL])) {
             $this->errors['email'] = $validator->getMessages()[0];

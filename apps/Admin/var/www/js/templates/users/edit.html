@@ -1,6 +1,7 @@
 <img src="/img/spinner.gif" width="64" height="64" ng-show="!ready()" id="spinner" />
 
 <div ng-show="ready()" class="row">
+
   <ul class="nav nav-tabs">
     <li class="active link" ng-click="submit()"><span class="glyphicon glyphicon-ok"></span></li>
     <li class="cancel link" ng-click="close()"><span class="glyphicon glyphicon-remove"></span></li>
@@ -25,9 +26,11 @@
       <input type="password" ng-model="user.password" name="password" class="form-control" ng-minlength="6" placeholder="Choose a password" required>
       <formfield-error-msg msg="Length must be at least 6 chars" field="userForm.password" />
     </div>
+
     <div class="form-group">
       <label for="roles">Role</label>
       <roles-selector />
     </div>
+
   </form>
 </div>
