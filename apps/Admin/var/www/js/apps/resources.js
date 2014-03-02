@@ -6,6 +6,10 @@ app.config(['$routeProvider', function($routeProvider) {
             templateUrl: '/js/templates/users/edit.html', 
             controller: 'UserAddCtrl'
         })
+        .when('/resources/add/:slug', {
+            templateUrl: '/js/templates/resources/add.html', 
+            controller: 'ResourceAddCtrl'
+        })
         .when('/resources/edit/:type/:slug/:id', { 
             templateUrl: '/js/templates/resources/add.html', 
             controller: 'ResourceEditCtrl'
@@ -15,7 +19,6 @@ app.config(['$routeProvider', function($routeProvider) {
 app.controller('ResourcesCtrl', function($scope, Restangular, $rootScope, $location) {
     var current;
     function load(page) {
-      console.log("load", page);
       current = parseInt(page);
       Restangular.all('resources/index').getList({'_start': page}).then(function (resources) {
         $scope.resources = resources;
@@ -27,7 +30,6 @@ app.controller('ResourcesCtrl', function($scope, Restangular, $rootScope, $locat
       $location.path('/resources/edit/' + resource.type + '/' + resource.slug + '/' + resource.id);
     };
     $scope.$watch('resources._pager.current', function(page){
-        console.log("watch", page);
         if (current !== parseInt(page) && page !== undefined) {
             load(page);
         }
@@ -39,7 +41,6 @@ app.controller('ResourcesCtrl', function($scope, Restangular, $rootScope, $locat
       }
       resource.remove().then(function() {
         $rootScope.$emit('sp.message', {title: 'Resource removed successfully', type: "success"});
-        console.log($scope.resources._pager.current);
         load($scope.resources._pager.current);
       });
     }

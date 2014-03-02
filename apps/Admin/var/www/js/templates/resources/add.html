@@ -13,7 +13,7 @@
     </div>
     <div class="form-group" ng-class="{'has-error': resourceForm.slug.$invalid}">
       <label for="name">Slug</label>
-      <input type="text" ng-model="resource.slug" class="form-control" name="slug" placeholder="Must be unique for this resource type." required sp-slug-title>
+      <input type="text" ng-model="resource.slug" model="resource" class="form-control" name="slug" placeholder="Must be unique for this resource type." required sp-slug-title>
       <formfield-error-msg msg="Slug should not be blank" field="resourceForm.slug" />
     </div>
 

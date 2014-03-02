@@ -38,6 +38,7 @@ app.controller('TypesCtrl', function($scope, Restangular, $rootScope, $location)
     });
 
     $scope.addField = function (field) {
+
         $scope.type.resource_fields.push({
             field_type: field,
             multiple: 0,

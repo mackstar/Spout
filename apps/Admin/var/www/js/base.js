@@ -104,7 +104,6 @@ app.service('parseFormErrors', function() {
 });
 
 app.directive('formfieldErrorMsg', function() {
-  //ng-show="showMessage()">
 
   return {
     restrict: 'E',
@@ -145,12 +144,8 @@ app.directive('spSlugTitle', function() {
           slug,
           src = attrs.spSlugTitle || 'title';
 
-
-          console.log(src);
-
-
       scope.$watch('model.' + src, function() {
-        if (stop || typeof scope.model[src] === 'undefined') {
+        if (stop || typeof scope.model === 'undefined' || typeof scope.model[src] === 'undefined') {
           return;
         }
         slug = scope.model[src].toLowerCase().replace(/[^a-z0-9]/g, "-");
@@ -158,7 +153,7 @@ app.directive('spSlugTitle', function() {
       });
 
       scope.$watch('model.slug', function() {
-        if(scope.model.slug != slug) {
+        if(typeof scope.model != 'undefined' && scope.model.slug != slug) {
           stop = true;
         }
       });

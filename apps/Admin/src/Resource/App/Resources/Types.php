@@ -31,7 +31,7 @@ class Types extends ResourceObject{
             $stmt->execute();
             $this['type'] = $stmt->fetch();
 
-            $sql = "SELECT * FROM `{$this->$resourceFieldsTable}` WHERE `resource_type` = :slug ORDER BY `weight`";
+            $sql = "SELECT * FROM `{$this->resourceFieldsTable}` WHERE `resource_type` = :slug ORDER BY `weight`";
             $stmt = $this->db->prepare($sql);
             $stmt->bindValue('slug', $slug);
             $stmt->execute();
