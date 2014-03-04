@@ -5,16 +5,18 @@ module.exports = function (config) {
     frameworks : ["jasmine"],
 
     files : [
+
       '../../var/www/js/lib/jquery.js',
       '../../var/www/js/lib/lodash.underscore.min.js',
-      '../../var/www/js/lib/angular.min.js',
+      '../../var/www/js/lib/angular.js',
+      '../../var/www/js/lib/angular-route.js',
       '../../var/www/js/lib/angular-ui-router.js',
       '../../var/www/js/lib/angular-mocks.js',
       '../../var/www/js/lib/restangular.min.js',
       'tests/testBase.js',
       '../../var/www/js/apps/**/*.js',
       '../../var/www/js/directives/**/*.js',
-	    'tests/**/*.js'
+      'tests/**/*.js'
     ],
 
     logLevel: config.LOG_INFO,

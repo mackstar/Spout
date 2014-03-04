@@ -22,6 +22,7 @@ app.run(function(Restangular, $rootScope) {
     }
     return data;
   });
+
   Restangular.setErrorInterceptor(function(response) {
     if (response.status && response.data.title) {
       $rootScope.$emit('sp.message', {title: response.data.title, message: response.data.message, type: "danger"});

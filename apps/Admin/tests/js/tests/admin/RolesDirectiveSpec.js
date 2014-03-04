@@ -7,23 +7,25 @@ describe('Roles Directive', function() {
     beforeEach(function () {
         angular.mock.module('Application');
         inject(
-            function ($rootScope, $compile, _$httpBackend_) {
-                var element = angular.element('<roles-selector />'),
-                    httpBackend = _$httpBackend_;
+            function ($rootScope, $compile, $injector) {
+                var element = angular.element('<roles-selector />');
+                httpBackend = $injector.get('$httpBackend');
 
                 httpBackend.whenGET('/users/roles').respond(
-                    '{"roles":[{"id":1, "name": "Admin"},{"id":2, "name": "Contributor"}]}'
+                    '{[{"id": 1, "name": "Admin"},{"id": 2, "name": "Contributor"}], "_model": "roles"}'
                 );
                 scope = $rootScope;
                 $compile(element)(scope);
                 scope.$digest();
                 $element = $(element);
-                httpBackend.flush();
             }
         );
+        httpBackend.flush();
     });
 
     it('should have a select menu', function() {
+        
+
         expect($element.prop("tagName")).toEqual('SELECT');
         expect($element.find("option").length).toBe(2);
     });

@@ -59,6 +59,7 @@ require $appDir . '/bin/clear.php';
 //
 list($method, $pagePath, $query) = $app->router->match();
 
+
 //
 // An attempt to request the page resource is made along with setting the response with the resource itself.
 // Upon failure the exception handler will be triggered.
@@ -66,6 +67,7 @@ list($method, $pagePath, $query) = $app->router->match();
 try {
     $app->page = $app->resource->$method->uri('page://self/' . $pagePath)->withQuery($query)->eager->request();
     $app->response->setResource($app->page)->render()->send();
+    var_dump($app->response->body);
     exit(0);
 } catch (Exception $e) {
     $app->exceptionHandler->handle($e);

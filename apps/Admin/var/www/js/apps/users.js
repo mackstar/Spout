@@ -15,6 +15,7 @@ app.config(['$routeProvider', function($routeProvider) {
 app.controller('UsersCtrl', function($scope, Restangular, $rootScope, $location) {
     function load() {
       Restangular.all('users/index').getList().then(function (users) {
+        console.log(users[0]);
         $scope.users = users;
       });
     }
@@ -118,6 +119,7 @@ app.controller('UserAddCtrl', function($scope, $rootScope, Restangular, parseFor
       $rootScope.$emit('sp.message', {title: 'Oops', message: 'The form is not yet complete', type: "danger"});
       return;
     }
+
     Restangular.all('users/index').post($scope.user).then(function() {
       $rootScope.$emit('sp.message', {title: 'Yeah!', message: 'User saved successfully', type: "success"});
       $rootScope.$emit('users.reload', true);
