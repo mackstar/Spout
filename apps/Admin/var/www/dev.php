@@ -67,7 +67,6 @@ list($method, $pagePath, $query) = $app->router->match();
 try {
     $app->page = $app->resource->$method->uri('page://self/' . $pagePath)->withQuery($query)->eager->request();
     $app->response->setResource($app->page)->render()->send();
-    var_dump($app->response->body);
     exit(0);
 } catch (Exception $e) {
     $app->exceptionHandler->handle($e);
