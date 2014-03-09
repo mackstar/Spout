@@ -12,7 +12,7 @@ describe('Roles Directive', function() {
                 httpBackend = $injector.get('$httpBackend');
 
                 httpBackend.whenGET('/users/roles').respond(
-                    '{[{"id": 1, "name": "Admin"},{"id": 2, "name": "Contributor"}], "_model": "roles"}'
+                    '{"roles": [{"id": 1, "name": "Admin"},{"id": 2, "name": "Contributor"}], "_model": "roles"}'
                 );
                 scope = $rootScope;
                 $compile(element)(scope);

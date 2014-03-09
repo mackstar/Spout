@@ -1,4 +1,4 @@
-var app = angular.module('spout', ['ngRoute', 'restangular', 'ngAnimate', 'ui.bootstrap']);
+var app = angular.module('spout', ['ngRoute', 'restangular', 'ngAnimate', 'ui.bootstrap', 'ui.router']);
 
 app.config(function($interpolateProvider) {
   $interpolateProvider.startSymbol('{[').endSymbol(']}');

@@ -65,7 +65,7 @@ list($method, $pagePath, $query) = $app->router->match();
 // Upon failure the exception handler will be triggered.
 //
 try {
-    $app->page = $app->resource->$method->uri('page://self/' . $pagePath)->withQuery($query)->eager->request();
+    $app->page = $app->resource->$method->uri('page://self' . $pagePath)->withQuery($query)->eager->request();
     $app->response->setResource($app->page)->render()->send();
     exit(0);
 } catch (Exception $e) {

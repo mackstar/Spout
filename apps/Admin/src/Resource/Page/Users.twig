@@ -15,27 +15,7 @@
   </div>
 </div>
 
-<table class="table table-hover" ng-controller="UsersCtrl" ng-show="users">
-  <thead>
-    <tr>
-      <th></th>
-      <th>Name</th>
-      <th>Email</th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr ng-repeat="user in users">
-      <td>{[user.id]}</td>
-      <td>{[user.name]}</td>
-      <td>{[user.email]}</td>
-      <th>
-        <span class="glyphicon glyphicon-trash" ng-click="delete(user)"></span>&nbsp;
-        <span class="glyphicon glyphicon-pencil" ng-click="edit(user)"></span>
-      </th>
-    </tr>
-  </tbody>
-</table>
+
 
 {% endblock %}
 

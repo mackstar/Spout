@@ -15,8 +15,6 @@ describe('Users App', function() {
                 httpBackend = _$httpBackend_;
                 httpBackend.whenGET('/users/index').respond(
                     '{"users": [{"id":1,"name":"tester"},{"id":2,"name":"tester2"}], "_model": "users"}'
-
-                    //'{[{"id":1, "name": "Admin"},{"id":2, "name": "Contributor"}], "_model": "roles"}'
                 );
                 UsersCtrl = $controller('UsersCtrl', {$scope: scope});
             }

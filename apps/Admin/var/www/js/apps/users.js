@@ -1,30 +1,52 @@
+
 'use strict';
 
-app.config(['$routeProvider', function($routeProvider) {
-    $routeProvider
-        .when('/add', { 
-            templateUrl: '/js/templates/users/edit.html', 
+app.config(['$stateProvider', function($stateProvider) {
+    $stateProvider.state('users', {
+        url: "/users",
+        templateUrl: '/js/templates/users/index.html',
+        controller: 'UsersCtrl',
+        resolve: {
+          users: ['Restangular', function (Restangular) {
+            return Restangular.all('users/index').getList();
+          }],
+          roles: ['Restangular', function (Restangular) {
+            return Restangular.all('users/roles').getList();
+          }]
+        }
+    }).state('users.edit', {
+      url: "/edit/:email",
+      templateUrl: '/js/templates/users/edit.html',
+      controller: 'UserEditCtrl',
+      resolve: {
+        user: ['Restangular', '$stateParams', function (Restangular, $stateParams) {
+          return Restangular.one("users/index").get({email: $stateParams.email})
+        }]
+      }
+    }).state('users.add', {
+      url: "/add",
+      templateUrl: '/js/templates/users/edit.html',
+      controller: 'UserAddCtrl'
+    })
+    .state('users.test', {
+      url: "/test",
+      onEnter: function($stateParams, $state, $modal) {
+        $modal.open({
+            templateUrl: "/js/templates/users/edit.html",
             controller: 'UserAddCtrl'
-        })
-        .when('/edit/:email', { 
-            templateUrl: '/js/templates/users/edit.html', 
-            controller: 'UserEditCtrl'
+        }).result.then(function(route) {
+          return $state.transitionTo(route);
         });
+    }
+    });
 }]);
 
-app.controller('UsersCtrl', function($scope, Restangular, $rootScope, $location) {
-    function load() {
-      Restangular.all('users/index').getList().then(function (users) {
-        console.log(users[0]);
-        $scope.users = users;
-      });
-    }
-    $rootScope.$on('users.reload', function() {
-      load();
-    });
-    load();
+
+
+app.controller('UsersCtrl', function($scope, $location, users, roles) {
+    $scope.users = users;
     $scope.edit = function (user) {
-      $location.path('/edit/' + user.email);
+      $location.path('/users/edit/' + user.email);
     };
     
     $scope.delete = function(user) {
@@ -36,38 +58,32 @@ app.controller('UsersCtrl', function($scope, Restangular, $rootScope, $location)
         $rootScope.$emit('users.reload', true);
       });
     }
+    $scope.close = function() {
+      $rootScope.$emit('modal.close', true);
+      $location.path('/users');
+    }
 });
 
-app.controller('UserEditCtrl', function($scope, $rootScope, $routeParams, parseFormErrors, Restangular, $location) {
-    var ready = false,
-      rolesLoaded = false;
 
-    $rootScope.$emit('modal.open', true);
+var ModalInstanceCtrl = function ($scope, $modalInstance, items) {
 
-    $scope.ready = function() {
-      return ready;
-    }
+  $scope.items = items;
+  $scope.selected = {
+    item: $scope.items[0]
+  };
 
-    $scope.$on('roles.loaded', function() {
-      rolesLoaded = true;
-      if ($scope.user) {
-        ready = true;
-      }
-    });
+  $scope.ok = function () {
+    $modalInstance.close($scope.selected.item);
+  };
 
-    Restangular.one("users/index").get({email: $routeParams.email}).then(function(user) {
+  $scope.cancel = function () {
+    $modalInstance.dismiss('cancel');
+  };
+};
+
+
+app.controller('UserEditCtrl', function($scope, parseFormErrors, user, Restangular) {
       $scope.user = user;
-      $scope.selectRole($scope.user.role_id);
-      delete $scope.user.role_id;
-
-      if (rolesLoaded) {
-        ready = true;
-      }
-
-      $scope.close = function() {
-        $rootScope.$emit('modal.close', true);
-        $location.path('/users');
-      }
 
       $scope.submit = function() {
         if ($scope.userForm.$invalid) {
@@ -83,35 +99,20 @@ app.controller('UserEditCtrl', function($scope, $rootScope, $routeParams, parseF
           parseFormErrors(response.data, $scope.userForm);
         });
       };
-    });
 });
 
-app.controller('UserAddCtrl', function($scope, $rootScope, Restangular, parseFormErrors, $location) {
-
-  var ready = false;
-
-  $rootScope.$emit('modal.open', true);
+app.controller('UserAddCtrl', function($scope, Restangular, parseFormErrors, $location, $modalInstance) {
 
   $scope.addMode = true;
-  $scope.ready = false;
-
-  $scope.$on('roles.loaded', function() {
-    ready = true;
-  });
-
-  $scope.ready = function() {
-    return ready;
-  }
-
-  $scope.close = function() {
-    $rootScope.$emit('modal.close', true);
-    $location.path('/users');
-  }
 
   $scope.user = {
     email: '',
     password: '',
     name: ''
+  }
+
+  $scope.close = function() {
+    $modalInstance.close("users");
   }
 
   $scope.submit = function() {
@@ -130,5 +131,3 @@ app.controller('UserAddCtrl', function($scope, $rootScope, Restangular, parseFor
     });
   }
 });
-
-
