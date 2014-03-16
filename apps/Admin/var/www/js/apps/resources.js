@@ -102,7 +102,8 @@ app.controller('ResourcesCtrl', function($scope, resources, types) {
     $scope.submit = function () {
         $scope.resource.type = $scope.type;
         Restangular.all('resources/index').post($scope.resource).then(function () {
-            $rootScope.$emit('sp.message', {title: 'User added successfully', type: "success"});
+            $scope.close();
+            $rootScope.$emit('sp.message', {title: 'Resource added successfully', type: "success"});
         });
     };
 
