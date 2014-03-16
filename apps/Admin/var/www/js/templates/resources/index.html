@@ -1,0 +1,41 @@
+<div class="btn-group">
+  <button type="button" class="btn btn-default dropdown-toggle  btn-lg" data-toggle="dropdown">
+    <span class="glyphicon glyphicon-plus"></span> Add Resource
+  </button>
+  <ul class="dropdown-menu" role="menu">
+    <li ng-repeat="type in types">
+      <a ui-sref="resources.type.add({slug: type.slug})">{[type.name]}</a>
+    </li>
+  </ul>
+  <button type="button" class="btn btn-default btn-lg">
+    <span class="glyphicon glyphicon-plus"></span> Resource Type
+  </button>
+</div>
+
+
+<div ng-show="resources">
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Type</th>
+      <th>Title</th>
+      <th>&nbsp;</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat="resource in resources">
+      <td>{[resource.id]}</td>
+      <td>{[resource.type_name]}</td>
+      <td>{[resource.title]}</td>
+      <td>
+        <span class="glyphicon glyphicon-trash" ng-click="delete(resource)"></span>&nbsp;
+        <span class="glyphicon glyphicon-pencil" ng-click="edit(resource)"></span>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<pagination total-items="resources._pager.total" page="resources._pager.current" items-per-page="resources._pager.maxPerPage"></pagination>
+</div>
+
+<div ui-view></div>

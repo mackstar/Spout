@@ -1,28 +1,29 @@
 <div class="row">
 
+
   <ul class="nav nav-tabs">
-    <li class="active link" ng-click="submit()"><span class="glyphicon glyphicon-ok"></span></li>
+    <li class="active link" ng-click="submit(userForm)"><span class="glyphicon glyphicon-ok"></span></li>
     <li class="cancel link" ng-click="close()"><span class="glyphicon glyphicon-remove"></span></li>
   </ul>
 
-  <form name="userForm" novalidate>
+  <form name="form.user" novalidate>
 
-    <div class="form-group" ng-class="{'has-error': userForm.name.$invalid}">
+    <div class="form-group" ng-class="{'has-error': form.user.name.$invalid}">
       <label for="name">Name</label>
       <input type="text" ng-model="user.name" class="form-control" name="name" placeholder="Enter the name you need this person to be know by!" required>
-      <formfield-error-msg msg="Users name should not be blank" field="userForm.name" />
+      <formfield-error-msg msg="Users name should not be blank" field="form.user.name" />
     </div>
 
-    <div class="form-group" ng-class="{'has-error': userForm.email.$invalid}">
+    <div class="form-group" ng-class="{'has-error': form.user.email.$invalid}">
       <label for="email">Email</label>
       <input type="email" ng-model="user.email" name="email" class="form-control" placeholder="Enter an email address" required>
-      <formfield-error-msg msg="Must be a valid email address" field="userForm.email" />
+      <formfield-error-msg msg="Must be a valid email address" field="form.user.email" />
     </div>
 
-    <div class="form-group" ng-class="{'has-error': userForm.password.$invalid}" ng-if="addMode">
+    <div class="form-group" ng-class="{'has-error': form.user.password.$invalid}" ng-if="addMode">
       <label for="password">Password</label>
       <input type="password" ng-model="user.password" name="password" class="form-control" ng-minlength="6" placeholder="Choose a password" required>
-      <formfield-error-msg msg="Length must be at least 6 chars" field="userForm.password" />
+      <formfield-error-msg msg="Length must be at least 6 chars" field="form.user.password" />
     </div>
 
     <div class="form-group">

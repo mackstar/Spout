@@ -1,23 +1,7 @@
 {% extends "layout/default.twig" %}
 {% block title %}{{ title }}{% endblock %}
 {% block h1 %}{{ title }}{% endblock %}
-{% block page %}
 
-<a class="btn btn-primary btn-lg" ng-href="#/add"><span class="glyphicon glyphicon-plus"></span></a>
-
-<div class="modal" id="myModal" ng-controller="ModalCtrl" data-keyboard="false" data-backdrop="static">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-body">
-        <div ng-view></div>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-
-{% endblock %}
 
 {% block js %}
 <script src="/js/apps/users.js"></script>

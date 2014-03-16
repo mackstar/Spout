@@ -1,20 +1,20 @@
-<div ng-show="ready()" class="row">
+<div class="row">
   <ul class="nav nav-tabs">
     <li><h3>Add a {[resourceType.name]} Resource </h3></li>
     <li class="active link" ng-click="submit()"><span class="glyphicon glyphicon-ok"></span></li>
+
     <li class="cancel link" ng-click="close()"><span class="glyphicon glyphicon-remove"></span></li>
   </ul>
-
-  <form name="resourceForm" novalidate>
-    <div class="form-group" ng-class="{'has-error': resourceForm.title.$invalid}">
+  <form name="form.resource" novalidate>
+    <div class="form-group" ng-class="{'has-error': form.resource.title.$invalid}">
       <label for="name">{[resourceType.title_label]}</label>
       <input type="text" ng-model="resource.title" class="form-control" name="title" placeholder="Must not be blank." required>
-      <formfield-error-msg msg="{[resourceType.title_label]} should not be blank" field="resourceForm.title" />
+      <formfield-error-msg msg="{[resourceType.title_label]} should not be blank" field="form.resource.title" />
     </div>
-    <div class="form-group" ng-class="{'has-error': resourceForm.slug.$invalid}">
+    <div class="form-group" ng-class="{'has-error': form.resource.slug.$invalid}">
       <label for="name">Slug</label>
       <input type="text" ng-model="resource.slug" model="resource" class="form-control" name="slug" placeholder="Must be unique for this resource type." required sp-slug-title>
-      <formfield-error-msg msg="Slug should not be blank" field="resourceForm.slug" />
+      <formfield-error-msg msg="Slug should not be blank" field="form.resource.slug" />
     </div>
 
     <div ng-repeat="field in resourceType.fields">

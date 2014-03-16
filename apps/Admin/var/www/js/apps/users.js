@@ -14,39 +14,49 @@ app.config(['$stateProvider', function($stateProvider) {
             return Restangular.all('users/roles').getList();
           }]
         }
-    }).state('users.edit', {
-      url: "/edit/:email",
-      templateUrl: '/js/templates/users/edit.html',
-      controller: 'UserEditCtrl',
+    }).state('users.user', {
+      url: "/user/:email",
+      template: "<div ui-view></div>",
+      controller: 'UserCtrl',
       resolve: {
         user: ['Restangular', '$stateParams', function (Restangular, $stateParams) {
           return Restangular.one("users/index").get({email: $stateParams.email})
         }]
       }
+    })
+    .state('users.user.edit', {
+      url: "/edit",
+      controller: 'ModalCtrl',
+      resolve: {
+        options: function () {
+          return {
+            templateUrl: "/js/templates/users/edit.html",
+            controller: 'UserEditCtrl',
+            onComplete: 'users'
+          }
+        }
+      }
     }).state('users.add', {
       url: "/add",
-      templateUrl: '/js/templates/users/edit.html',
-      controller: 'UserAddCtrl'
-    })
-    .state('users.test', {
-      url: "/test",
-      onEnter: function($stateParams, $state, $modal) {
-        $modal.open({
+      controller: 'ModalCtrl',
+      resolve: {
+        options: function () {
+          return {
             templateUrl: "/js/templates/users/edit.html",
-            controller: 'UserAddCtrl'
-        }).result.then(function(route) {
-          return $state.transitionTo(route);
-        });
-    }
-    });
+            controller: 'UserAddCtrl',
+            onComplete: 'users'
+          }
+        }
+      } 
+  });
 }]);
 
-
-
 app.controller('UsersCtrl', function($scope, $location, users, roles) {
+
+    $scope.roles = roles;
     $scope.users = users;
     $scope.edit = function (user) {
-      $location.path('/users/edit/' + user.email);
+      $location.path('/users/user/' + user.email + '/edit');
     };
     
     $scope.delete = function(user) {
@@ -58,52 +68,35 @@ app.controller('UsersCtrl', function($scope, $location, users, roles) {
         $rootScope.$emit('users.reload', true);
       });
     }
-    $scope.close = function() {
-      $rootScope.$emit('modal.close', true);
-      $location.path('/users');
-    }
+});
+
+app.controller('UserCtrl', function($scope, user) {
+  $scope.user = user;
 });
 
 
-var ModalInstanceCtrl = function ($scope, $modalInstance, items) {
+app.controller('UserEditCtrl', function($scope, parseFormErrors, $modalInstance, $rootScope) {
 
-  $scope.items = items;
-  $scope.selected = {
-    item: $scope.items[0]
-  };
+  $scope.form = {};
 
-  $scope.ok = function () {
-    $modalInstance.close($scope.selected.item);
-  };
-
-  $scope.cancel = function () {
-    $modalInstance.dismiss('cancel');
-  };
-};
-
-
-app.controller('UserEditCtrl', function($scope, parseFormErrors, user, Restangular) {
-      $scope.user = user;
-
-      $scope.submit = function() {
-        if ($scope.userForm.$invalid) {
-          $rootScope.$emit('sp.message', {title: 'Oops', message: 'The form is not yet complete', type: "danger"});
-          return;
-        }
-        user.put().then(function() {
-          $rootScope.$emit('sp.message', {title: 'Yeah!', message: 'User saved successfully', type: "success"});
-          $rootScope.$emit('users.reload', true);
-          $rootScope.$emit('modal.close', true);
-          $location.path('/users');
+    $scope.submit = function() {
+      console.log($scope);
+      if ($scope.form.user.$invalid) {
+        $rootScope.$emit('sp.message', {title: 'Oops', message: 'The form is not yet complete', type: "danger"});
+        return;
+      }
+      $scope.user.put().then(function() {
+        $rootScope.$emit('sp.message', {title: 'Yeah!', message: 'User saved successfully', type: "success"});
+        $modalInstance.close();
         }, function(response) {
-          parseFormErrors(response.data, $scope.userForm);
-        });
-      };
+        parseFormErrors(response.data, $scope.userForm);
+      });
+    };
 });
 
-app.controller('UserAddCtrl', function($scope, Restangular, parseFormErrors, $location, $modalInstance) {
-
+app.controller('UserAddCtrl', function($scope, Restangular, parseFormErrors, $modalInstance) {
   $scope.addMode = true;
+
 
   $scope.user = {
     email: '',
@@ -112,20 +105,17 @@ app.controller('UserAddCtrl', function($scope, Restangular, parseFormErrors, $lo
   }
 
   $scope.close = function() {
-    $modalInstance.close("users");
+    $modalInstance.close();
   }
 
   $scope.submit = function() {
-    if ($scope.userForm.$invalid) {
+    if (form.resource.$invalid) {
       $rootScope.$emit('sp.message', {title: 'Oops', message: 'The form is not yet complete', type: "danger"});
       return;
     }
 
     Restangular.all('users/index').post($scope.user).then(function() {
-      $rootScope.$emit('sp.message', {title: 'Yeah!', message: 'User saved successfully', type: "success"});
-      $rootScope.$emit('users.reload', true);
-      $rootScope.$emit('modal.close', true);
-      $location.path('/users');
+      $modalInstance.close("users");
     }, function(response) {
       parseFormErrors(response.data, $scope.userForm);
     });

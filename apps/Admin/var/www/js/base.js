@@ -4,6 +4,9 @@ app.config(function($interpolateProvider) {
   $interpolateProvider.startSymbol('{[').endSymbol(']}');
 });
 
+
+
+
 app.run(function(Restangular, $rootScope) {
   Restangular.setBaseUrl('/api');
   Restangular.configuration.getIdFromElem = function() {
@@ -163,12 +166,16 @@ app.directive('spSlugTitle', function() {
   };
 });
 
-app.controller('ModalCtrl', function($rootScope, $element) {
-  $rootScope.$on('modal.open', function(){
-    $($element).modal('show', {backdrop: 'static', keyboard: false});
+app.controller('ModalCtrl', function($scope, options, $modal, $state) {
+
+  $scope.form = {};
+
+  options.scope = $scope;
+
+  $modal.open(options).result.then(function() {
+    return $state.transitionTo(options.onComplete);
   });
 
-  $rootScope.$on('modal.close', function(){
-    $($element).modal('hide');
-  });
+
+
 });

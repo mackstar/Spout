@@ -1,39 +1,57 @@
 'use strict';
 
-app.config(['$routeProvider', function($routeProvider) {
-    $routeProvider
-        .when('/resources/types/add', { 
-            templateUrl: '/js/templates/users/edit.html', 
-            controller: 'UserAddCtrl'
-        })
-        .when('/resources/add/:slug', {
-            templateUrl: '/js/templates/resources/add.html', 
-            controller: 'ResourceAddCtrl'
-        })
-        .when('/resources/edit/:type/:slug/:id', { 
-            templateUrl: '/js/templates/resources/add.html', 
-            controller: 'ResourceEditCtrl'
-        });
+app.config(['$stateProvider', function($stateProvider) {
+    $stateProvider.state('resources', {
+        url: "/resources",
+        templateUrl: '/js/templates/resources/index.html',
+        controller: 'ResourcesCtrl',
+        resolve: {
+          resources: ['Restangular', function (Restangular) {
+            return Restangular.all('resources/index').getList();
+          }],
+          resourceTypes: ['Restangular', function (Restangular) {
+            return Restangular.all('resources/types').getList();
+          }]
+        }
+    })
+    .state('resources.type', {
+      url: "/type/:slug",
+      template: "<div ui-view></div>",
+      controller: 'ResourceCtrl',
+      resolve: {
+        type: ['Restangular', '$stateParams', function (Restangular, $stateParams) {
+          return Restangular.one("resources/types").get({slug: $stateParams.slug})
+        }]
+      }
+    })
+    .state('resources.type.add', {
+        url: "/add",
+        controller: 'ModalCtrl',
+        resolve: {
+            options: function () {
+                return {
+                    templateUrl: "/js/templates/resources/add.html",
+                    controller: 'ResourceAddCtrl',
+                    onComplete: 'resources'
+              }
+            }
+        }
+    });
 }]);
 
-app.controller('ResourcesCtrl', function($scope, Restangular, $rootScope, $location) {
+app.controller('ResourcesCtrl', function($scope, $location, resources, resourceTypes) {
     var current;
-    function load(page) {
-      current = parseInt(page);
-      Restangular.all('resources/index').getList({'_start': page}).then(function (resources) {
-        $scope.resources = resources;
-      });
-    }
-    load(1);
+    $scope.types = resourceTypes;
+    $scope.resources = resources;
 
     $scope.edit = function (resource) {
       $location.path('/resources/edit/' + resource.type + '/' + resource.slug + '/' + resource.id);
     };
-    $scope.$watch('resources._pager.current', function(page){
-        if (current !== parseInt(page) && page !== undefined) {
-            load(page);
-        }
-    });
+    // $scope.$watch('resources._pager.current', function(page){
+    //     if (current !== parseInt(page) && page !== undefined) {
+    //         $location.path('/resources/' + page);
+    //     }
+    // });
 
     $scope.delete = function(resource) {
       if (!confirm("Are you sure?")) {
@@ -45,77 +63,60 @@ app.controller('ResourcesCtrl', function($scope, Restangular, $rootScope, $locat
       });
     }
 
-}).controller('ResourceTypesCtrl', function($scope, Restangular, $rootScope, $location) {
+}).controller('ResourceCtrl', function($scope, type) {
+    $scope.type = type;
+}).controller('ResourceAddCtrl', function($scope, Restangular, $modalInstance, $rootScope) {
 
-    $scope.resourceTypes = window.Spout.resourceTypes;
-   
-}).controller('ResourceAddCtrl', function($scope, Restangular, $routeParams, $location, $rootScope) {
-    $rootScope.$emit('modal.open', true);
-
-    $scope.resource = { fields: {} };
-
-    $scope.close = function() {
-        $rootScope.$emit('modal.close', true);
-        $location.path('/resources');
-    }
-
-    Restangular.one('resources/types').get({slug:$routeParams.slug}).then(function (resourceType) {
-        $scope.resourceType = resourceType;
-        $scope.ready = function() {
-            return true;
-        }
-    });
+    $scope.close = $modalInstance.close;
 
     $scope.submit = function () {
-        $scope.resource.type = $scope.resourceType;
+        $scope.resource.type = $scope.type;
         Restangular.all('resources/index').post($scope.resource).then(function () {
             $rootScope.$emit('sp.message', {title: 'User added successfully', type: "success"});
-            $rootScope.$emit('modal.close', true);
-            $rootScope.$emit('resources.reload', true);
         });
     };
-   
-}).controller('ResourceEditCtrl', function($scope, Restangular, $routeParams, $location, $rootScope, $timeout) {
-    $rootScope.$emit('modal.open', true);
-
-    Restangular.one('resources/types').get({slug:$routeParams.type}).then(function (resourceType) {
-        $scope.resourceType = resourceType;
-        $scope.ready = function() {
-            return true;
-        }
-    });
-
-    $scope.resource = { fields: {} };
-
-    $scope.close = function() {
-        $rootScope.$emit('modal.close', true);
-        $location.path('/resources');
-    }
-
-    $timeout(function() {
-        Restangular.one('resources/detail').get({id:$routeParams.id}).then(function (resource) {
-            //$scope.resourceType = resourceType;
-            console.log(resource);
-            parseResourceObject(resource);
-            $scope.resource = resource;
-        });
-    }, 0);
-
-
-    $scope.submit = function () {
-        $scope.resource.type = $scope.resourceType;
-        Restangular.all('resources/index').post($scope.resource).then(function () {
-            $rootScope.$emit('sp.message', {title: 'User added successfully', type: "success"});
-            $rootScope.$emit('modal.close', true);
-            $rootScope.$emit('resources.reload', true);
-        });
-    };
-   
 });
+   
+// }).controller('ResourceEditCtrl', function($scope, Restangular, $routeParams, $location, $rootScope, $timeout) {
+//     $rootScope.$emit('modal.open', true);
+
+//     Restangular.one('resources/types').get({slug:$routeParams.type}).then(function (resourceType) {
+//         $scope.resourceType = resourceType;
+//         $scope.ready = function() {
+//             return true;
+//         }
+//     });
+
+//     $scope.resource = { fields: {} };
+
+//     $scope.close = function() {
+//         $rootScope.$emit('modal.close', true);
+//         $location.path('/resources');
+//     }
+
+//     $timeout(function() {
+//         Restangular.one('resources/detail').get({id:$routeParams.id}).then(function (resource) {
+//             //$scope.resourceType = resourceType;
+//             console.log(resource);
+//             parseResourceObject(resource);
+//             $scope.resource = resource;
+//         });
+//     }, 0);
+
+
+//     $scope.submit = function () {
+//         $scope.resource.type = $scope.resourceType;
+//         Restangular.all('resources/index').post($scope.resource).then(function () {
+//             $rootScope.$emit('sp.message', {title: 'User added successfully', type: "success"});
+//             $rootScope.$emit('modal.close', true);
+//             $rootScope.$emit('resources.reload', true);
+//         });
+//     };
+   
+// });
 
 function parseResourceObject(resource) {
     angular.forEach(resource.fields, function(object, key) {
-        console.log(object);
         if (object && typeof object.value === 'string') {
             resource.fields[key] = object.value;
         }
@@ -166,8 +167,6 @@ app.directive('spField', function($compile) {
         scope.addField = function () {
             scope.keys.push(scope.keys.length);
         }
-
-
     }
   }
 });
