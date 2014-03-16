@@ -4,14 +4,13 @@
   </button>
   <ul class="dropdown-menu" role="menu">
     <li ng-repeat="type in types">
-      <a ui-sref="resources.type.add({slug: type.slug})">{[type.name]}</a>
+      <a ui-sref="resources.type.add({type: type.slug})">{[type.name]}</a>
     </li>
   </ul>
   <button type="button" class="btn btn-default btn-lg">
     <span class="glyphicon glyphicon-plus"></span> Resource Type
   </button>
 </div>
-
 
 <div ng-show="resources">
 <table class="table table-hover">
@@ -30,7 +29,7 @@
       <td>{[resource.title]}</td>
       <td>
         <span class="glyphicon glyphicon-trash" ng-click="delete(resource)"></span>&nbsp;
-        <span class="glyphicon glyphicon-pencil" ng-click="edit(resource)"></span>
+        <span class="glyphicon glyphicon-pencil" ui-sref="resources.type.resource.edit({id:resource.id, slug:resource.slug, type:resource.type})"></span>
       </td>
     </tr>
   </tbody>

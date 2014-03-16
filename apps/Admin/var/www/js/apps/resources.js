@@ -9,18 +9,18 @@ app.config(['$stateProvider', function($stateProvider) {
           resources: ['Restangular', function (Restangular) {
             return Restangular.all('resources/index').getList();
           }],
-          resourceTypes: ['Restangular', function (Restangular) {
+          types: ['Restangular', function (Restangular) {
             return Restangular.all('resources/types').getList();
           }]
         }
     })
     .state('resources.type', {
-      url: "/type/:slug",
+      url: "/type/:type",
       template: "<div ui-view></div>",
-      controller: 'ResourceCtrl',
+      controller: 'ResourceTypeCtrl',
       resolve: {
         type: ['Restangular', '$stateParams', function (Restangular, $stateParams) {
-          return Restangular.one("resources/types").get({slug: $stateParams.slug})
+          return Restangular.one("resources/types").get({slug: $stateParams.type})
         }]
       }
     })
@@ -36,12 +36,38 @@ app.config(['$stateProvider', function($stateProvider) {
               }
             }
         }
-    });
+    })
+    .state('resources.type.resource', {
+        url: "/resource/:slug/:id",
+        template: "<div ui-view></div>",
+        controller: 'ResourceCtrl',
+        resolve: {
+            resource: ['Restangular', '$stateParams', function (Restangular, $stateParams) {
+                return Restangular.one("resources/types").get({slug: $stateParams.id})
+            }]
+        }
+    })
+    .state('resources.type.resource.edit', {
+        url: "/edit",
+        controller: 'ModalCtrl',
+        resolve: {
+            options: function () {
+                return {
+                    templateUrl: "/js/templates/resources/add.html",
+                    controller: 'ResourceEditCtrl',
+                    onComplete: 'resources'
+                }
+            }
+        }
+    })
+
+    //Restangular.one('resources/detail').get({id:$routeParams.id}).then(function (resource)
+    ;
 }]);
 
-app.controller('ResourcesCtrl', function($scope, $location, resources, resourceTypes) {
+app.controller('ResourcesCtrl', function($scope, resources, types) {
     var current;
-    $scope.types = resourceTypes;
+    $scope.types = types;
     $scope.resources = resources;
 
     $scope.edit = function (resource) {
@@ -63,11 +89,15 @@ app.controller('ResourcesCtrl', function($scope, $location, resources, resourceT
       });
     }
 
-}).controller('ResourceCtrl', function($scope, type) {
+}).controller('ResourceCtrl', function($scope, resource) {
+    $scope.resource = resource;
+}).controller('ResourceTypeCtrl', function($scope, type) {
     $scope.type = type;
 }).controller('ResourceAddCtrl', function($scope, Restangular, $modalInstance, $rootScope) {
 
     $scope.close = $modalInstance.close;
+
+    $scope.resource = { fields: {}};
 
     $scope.submit = function () {
         $scope.resource.type = $scope.type;
@@ -75,45 +105,34 @@ app.controller('ResourcesCtrl', function($scope, $location, resources, resourceT
             $rootScope.$emit('sp.message', {title: 'User added successfully', type: "success"});
         });
     };
+
+}).controller('ResourceEditCtrl', function($scope, Restangular, $modalInstance, $rootScope, $timeout) {
+
+
+    $scope.close = $modalInstance.close;
+
+
+    //            parseResourceObject(resource);
+
+
+    // $timeout(function() {
+    //     Restangular.one('resources/detail').get({id:$routeParams.id}).then(function (resource) {
+    //         //$scope.resourceType = resourceType;
+    //         console.log(resource);
+    //         $scope.resource = resource;
+    //     });
+    // }, 0);
+
+
+    $scope.submit = function () {
+        $scope.resource.type = $scope.resourceType;
+        Restangular.all('resources/index').post($scope.resource).then(function () {
+            $rootScope.$emit('sp.message', {title: 'User added successfully', type: "success"});
+            $rootScope.$emit('resources.reload', true);
+        });
+    };
+   
 });
-   
-// }).controller('ResourceEditCtrl', function($scope, Restangular, $routeParams, $location, $rootScope, $timeout) {
-//     $rootScope.$emit('modal.open', true);
-
-//     Restangular.one('resources/types').get({slug:$routeParams.type}).then(function (resourceType) {
-//         $scope.resourceType = resourceType;
-//         $scope.ready = function() {
-//             return true;
-//         }
-//     });
-
-//     $scope.resource = { fields: {} };
-
-//     $scope.close = function() {
-//         $rootScope.$emit('modal.close', true);
-//         $location.path('/resources');
-//     }
-
-//     $timeout(function() {
-//         Restangular.one('resources/detail').get({id:$routeParams.id}).then(function (resource) {
-//             //$scope.resourceType = resourceType;
-//             console.log(resource);
-//             parseResourceObject(resource);
-//             $scope.resource = resource;
-//         });
-//     }, 0);
-
-
-//     $scope.submit = function () {
-//         $scope.resource.type = $scope.resourceType;
-//         Restangular.all('resources/index').post($scope.resource).then(function () {
-//             $rootScope.$emit('sp.message', {title: 'User added successfully', type: "success"});
-//             $rootScope.$emit('modal.close', true);
-//             $rootScope.$emit('resources.reload', true);
-//         });
-//     };
-   
-// });
 
 function parseResourceObject(resource) {
     angular.forEach(resource.fields, function(object, key) {
@@ -137,7 +156,7 @@ app.directive('spField', function($compile) {
     replace: true,
     transclude: false,
     template: function() {
-        return '<div class="form-group" ng-class="{\'has-error\': resourceForm[{[field.slug]}].$invalid}">' +
+        return '<div class="form-group" ng-class="{\'has-error\': form.resource[{[field.slug]}].$invalid}">' +
         '<label for="name">{[field.label]}</label>' +
     fieldTemplate +
     '<label ng-show="field.multiple" class="multiple-buttons"><span class="glyphicon glyphicon-minus-sign" ng-show="showMinusButton()" ng-click="removeField()"></span> <span class="glyphicon glyphicon-plus-sign" ng-click="addField()"></span></label>' +
