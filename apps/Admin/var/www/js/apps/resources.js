@@ -2,12 +2,12 @@
 
 app.config(['$stateProvider', function($stateProvider) {
     $stateProvider.state('resources', {
-        url: "/resources",
+        url: "/resources/:start",
         templateUrl: '/js/templates/resources/index.html',
         controller: 'ResourcesCtrl',
         resolve: {
-          resources: ['Restangular', function (Restangular) {
-            return Restangular.all('resources/index').getList();
+          resources: ['Restangular', '$stateParams', function (Restangular, $stateParams) {
+            return Restangular.all('resources/index').getList({_start:$stateParams.start});
           }],
           types: ['Restangular', function (Restangular) {
             return Restangular.all('resources/types').getList();
@@ -65,19 +65,16 @@ app.config(['$stateProvider', function($stateProvider) {
     ;
 }]);
 
-app.controller('ResourcesCtrl', function($scope, resources, types) {
+app.controller('ResourcesCtrl', function($scope, resources, types, $state) {
     var current;
     $scope.types = types;
     $scope.resources = resources;
 
-    $scope.edit = function (resource) {
-      $location.path('/resources/edit/' + resource.type + '/' + resource.slug + '/' + resource.id);
-    };
-    // $scope.$watch('resources._pager.current', function(page){
-    //     if (current !== parseInt(page) && page !== undefined) {
-    //         $location.path('/resources/' + page);
-    //     }
-    // });
+    $scope.$watch('resources._pager.current', function(page){
+        if (current !== parseInt(page) && page !== undefined) {
+            $state.go('resources', {start: page})
+        }
+    });
 
     $scope.delete = function(resource) {
       if (!confirm("Are you sure?")) {
