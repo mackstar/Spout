@@ -173,7 +173,7 @@ app.controller('ModalCtrl', function($scope, options, $modal, $state) {
   options.scope = $scope;
 
   $modal.open(options).result.then(function() {
-    return $state.transitionTo(options.onComplete);
+    return $state.go(options.onComplete);
   });
 
 
