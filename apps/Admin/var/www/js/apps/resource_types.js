@@ -1,44 +1,65 @@
 'use strict';
 
-app.config(['$routeProvider', function($routeProvider) {
-    $routeProvider
-        .when('/resources/types/add', { 
-            templateUrl: '/js/templates/resources/types/add.html', 
-            controller: 'TypesAddCtrl'
-        });
+app.config(['$stateProvider', function($stateProvider) {
+    $stateProvider.state('resource-types', {
+        url: "/resource/types",
+        templateUrl: '/js/templates/resources/types/index.html',
+        controller: 'ResourceTypesCtrl',
+        resolve: {
+          types: ['Restangular', function (Restangular) {
+            return Restangular.all('resources/types').getList()
+          }]
+        }
+    })
+    .state('resource-types.resolve', {
+      url: "/resolve",
+      template: "<div ui-view></div>",
+      controller: 'ResourceTypesResolveCtrl',
+      resolve: {
+        fieldtypes: ['Restangular', function (Restangular) {
+          return Restangular.all('resources/fieldtypes').getList();
+        }]
+      }
+    })
+    .state('resource-types.resolve.add', {
+        url: "/add",
+        controller: 'ModalCtrl',
+        resolve: {
+            options: function () {
+                return {
+                    templateUrl: "/js/templates/resources/types/add.html",
+                    controller: 'ResourceTypesAddCtrl',
+                    onComplete: 'resource-types'
+                }
+            }
+        }
+    })
 }]);
 
-app.controller('TypesCtrl', function($scope, Restangular, $rootScope, $location) {
-    function load() {
-      Restangular.all('resources/types').getList().then(function (types) {
-        $scope.types = types;
-      });
-    }
-    load();
-    $rootScope.$on('types.reload', function() {
-        load();
-    });
+app.controller('ResourceTypesResolveCtrl', function($scope, fieldtypes) {
+    $scope.fieldtypes = fieldtypes;
+});
+app.controller('ResourceTypesCtrl', function($scope, $rootScope, types) {
+    $scope.types = types;
     $scope.delete = function (type) {
       type.remove().then(function() {
         $rootScope.$emit('sp.message', {title: 'Type removed successfully', type: "success"});
         $rootScope.$emit('types.reload', true);
       });
     };
+});
+app.controller('ResourceTypesAddCtrl', function($scope, Restangular, $rootScope, $modalInstance) {
 
-}).controller('TypesAddCtrl', function($scope, Restangular, $routeParams, $location, $rootScope) {
 
-    $rootScope.$emit('modal.open', true);
+    $scope.form = {};
     $scope.type = {
         title_label: 'Title'
     };
+
+
     $scope.type.resource_fields = [];
 
-    Restangular.one('resources/fieldtypes').get({slug:$routeParams.slug}).then(function (fieldtypes) {
-        $scope.fieldtypes = fieldtypes;
-    });
-
     $scope.addField = function (field) {
-
         $scope.type.resource_fields.push({
             field_type: field,
             multiple: 0,
@@ -47,12 +68,16 @@ app.controller('TypesCtrl', function($scope, Restangular, $rootScope, $location)
     }
 
     $scope.removeField = function (index) {
-        $scope.resource_fields.splice(index, 1);
+        $scope.type.resource_fields.splice(index, 1);
+    }
+
+    $scope.close = function() {
+        $modalInstance.close();
     }
 
     $scope.submit = function () {
         Restangular.all('resources/types').post($scope.type).then(function () {
-            console.log($scope.resource_fields);
+            console.log($scope.type.resource_fields);
             
         });
     };

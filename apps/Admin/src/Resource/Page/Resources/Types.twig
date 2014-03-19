@@ -1,44 +1,6 @@
 {% extends "layout/default.twig" %}
 {% block title %}{{ title }}{% endblock %}
 {% block h1 %}{{ title }}{% endblock %}
-{% block page %}
-
-<a class="btn btn-primary btn-lg" ng-href="#/resources/types/add"><span class="glyphicon glyphicon-plus"></span></a>
-
-<div class="modal" id="myModal" ng-controller="ModalCtrl" data-keyboard="false" data-backdrop="static">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-body">
-        <div ng-view></div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<table class="table table-hover" ng-controller="TypesCtrl" ng-show="types">
-  <thead>
-    <tr>
-      <th>ID</th>
-      <th>Type</th>
-      <th>Slug</th>
-      <th>Title</th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr ng-repeat="type in types">
-      <td>{[type.id]}</td>
-      <td>{[type.name]}</td>
-      <td>{[type.slug]}</td>
-      <td>{[type.title_label]}</td>
-      <td>
-        <span class="glyphicon glyphicon-trash" ng-click="delete(type)"></span>&nbsp;
-      </td>
-    </tr>
-  </tbody>
-</table>
-
-{% endblock %}
 
 {% block js %}
 <script src="/js/apps/resource_types.js"></script>

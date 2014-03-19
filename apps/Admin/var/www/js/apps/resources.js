@@ -15,12 +15,12 @@ app.config(['$stateProvider', function($stateProvider) {
         }
     })
     .state('resources.type', {
-      url: "/type/:type",
-      template: "<div ui-view></div>",
-      controller: 'ResourceTypeCtrl',
-      resolve: {
+        url: "/type/:type",
+        template: "<div ui-view></div>",
+        controller: 'ResourceTypeResolveCtrl',
+        resolve: {
         type: ['Restangular', '$stateParams', function (Restangular, $stateParams) {
-          return Restangular.one("resources/types").get({slug: $stateParams.type})
+            return Restangular.one("resources/types").get({slug: $stateParams.type})
         }]
       }
     })
@@ -43,7 +43,9 @@ app.config(['$stateProvider', function($stateProvider) {
         controller: 'ResourceCtrl',
         resolve: {
             resource: ['Restangular', '$stateParams', function (Restangular, $stateParams) {
-                return Restangular.one("resources/types").get({slug: $stateParams.id})
+                //Restangular.one('resources/detail').get({id:$routeParams.id}).then(function (resource)
+
+                //return Restangular.one("resources/types").get({slug: $stateParams.id})
             }]
         }
     })
@@ -61,12 +63,10 @@ app.config(['$stateProvider', function($stateProvider) {
         }
     })
 
-    //Restangular.one('resources/detail').get({id:$routeParams.id}).then(function (resource)
     ;
 }]);
 
 app.controller('ResourcesCtrl', function($scope, resources, types, $state) {
-    var current;
     $scope.types = types;
     $scope.resources = resources;
 
@@ -82,13 +82,12 @@ app.controller('ResourcesCtrl', function($scope, resources, types, $state) {
       }
       resource.remove().then(function() {
         $rootScope.$emit('sp.message', {title: 'Resource removed successfully', type: "success"});
-        load($scope.resources._pager.current);
       });
     }
 
 }).controller('ResourceCtrl', function($scope, resource) {
     $scope.resource = resource;
-}).controller('ResourceTypeCtrl', function($scope, type) {
+}).controller('ResourceTypeResolveCtrl', function($scope, type) {
     $scope.type = type;
 }).controller('ResourceAddCtrl', function($scope, Restangular, $modalInstance, $rootScope) {
 
@@ -111,16 +110,6 @@ app.controller('ResourcesCtrl', function($scope, resources, types, $state) {
 
 
     //            parseResourceObject(resource);
-
-
-    // $timeout(function() {
-    //     Restangular.one('resources/detail').get({id:$routeParams.id}).then(function (resource) {
-    //         //$scope.resourceType = resourceType;
-    //         console.log(resource);
-    //         $scope.resource = resource;
-    //     });
-    // }, 0);
-
 
     $scope.submit = function () {
         $scope.resource.type = $scope.resourceType;

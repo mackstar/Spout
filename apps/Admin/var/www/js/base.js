@@ -168,6 +168,7 @@ app.directive('spSlugTitle', function() {
 
 app.controller('ModalCtrl', function($scope, options, $modal, $state) {
 
+  console.log("modal controller");
   $scope.form = {};
 
   options.scope = $scope;

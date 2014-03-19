@@ -5,22 +5,22 @@
     <li class="cancel link" ng-click="close()"><span class="glyphicon glyphicon-remove"></span></li>
   </ul>
 
-  <form name="resourceTypesForm" novalidate>
-    <div class="form-group" ng-class="{'has-error': resourceTypesForm.name.$invalid}">
+  <form name="form.resource-types" novalidate>
+    <div class="form-group" ng-class="{'has-error': form.resource-types.name.$invalid}">
       <label for="name">Name</label>
       <input type="text" ng-model="type.name" name="name" class="form-control" placeholder="Must not be blank." required>
-      <formfield-error-msg msg="Name should not be blank" field="resourceTypesForm.name" />
+      <formfield-error-msg msg="Name should not be blank" field="form.resource-types.name" />
     </div>
-    <div class="form-group" ng-class="{'has-error': resourceTypesForm.slug.$invalid}">
+    <div class="form-group" ng-class="{'has-error': form.resource-types.slug.$invalid}">
       <label for="slug">Slug</label>
       <input type="text" sp-slug-title="name" model="type" ng-model="type.slug" name="slug" class="form-control" placeholder="Must not be blank." required>
-      <formfield-error-msg msg="Slug should not be blank" field="resourceTypesForm.slug" />
+      <formfield-error-msg msg="Slug should not be blank" field="form.resource-types.slug" />
     </div>
 
-    <div class="form-group" ng-class="{'has-error': resourceTypesForm.title_label.$invalid}">
+    <div class="form-group" ng-class="{'has-error': form.resource-types.title_label.$invalid}">
       <label for="title_label">Title Label</label>
       <input type="text" ng-model="type.title_label" name="title_label" class="form-control" placeholder="Must not be blank." required>
-      <formfield-error-msg msg="Slug should not be blank" field="resourceTypesForm.title_label" />
+      <formfield-error-msg msg="Slug should not be blank" field="form.resource-types.title_label" />
     </div>
 
     <div class="btn-group form-group">
