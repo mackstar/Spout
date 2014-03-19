@@ -1,0 +1,28 @@
+<a class="btn btn-primary btn-lg" ui-sref="resource-types.resolve.add">
+  <span class="glyphicon glyphicon-plus"></span>
+</a>
+
+<table class="table table-hover" ng-show="types">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Type</th>
+      <th>Slug</th>
+      <th>Title</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat="type in types">
+      <td>{[type.id]}</td>
+      <td>{[type.name]}</td>
+      <td>{[type.slug]}</td>
+      <td>{[type.title_label]}</td>
+      <td>
+        <span class="glyphicon glyphicon-trash" ng-click="delete(type)"></span>&nbsp;
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<div ui-view></div>
