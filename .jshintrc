@@ -20,6 +20,7 @@
         "document": true,
         "define": true,
         "window": true,
+        "app": true,
         "host": true,
         "describe": false,
         "xdescribe": false,
@@ -33,6 +34,7 @@
         "url": false,
         "jasmine": false,
         "sinon": false,
-        "Globalize": false
+        "Globalize": false,
+        "confirm": false
     }
 }
