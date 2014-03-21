@@ -27,7 +27,7 @@ app.config(['$stateProvider', function ($stateProvider) {
       resolve: {
         options: function () {
           return {
-            templateUrl: "/js/templates/resources/types/add.html",
+            templateUrl: "/js/templates/resources/types/form.html",
             controller: 'ResourceTypesAddCtrl',
             onComplete: 'resource-types'
           };
@@ -50,13 +50,10 @@ app.controller('ResourceTypesCtrl', function ($scope, $rootScope, types) {
 });
 app.controller('ResourceTypesAddCtrl', function ($scope, Restangular, $rootScope, $modalInstance) {
 
-
   $scope.form = {};
   $scope.type = {
     title_label: 'Title'
   };
-
-
   $scope.type.resource_fields = [];
 
   $scope.addField = function (field) {
@@ -71,14 +68,12 @@ app.controller('ResourceTypesAddCtrl', function ($scope, Restangular, $rootScope
     $scope.type.resource_fields.splice(index, 1);
   };
 
-  $scope.close = function () {
-    $modalInstance.close();
-  };
+  $scope.close = $modalInstance.close;
 
   $scope.submit = function () {
     Restangular.all('resources/types').post($scope.type).then(function () {
-      console.log($scope.type.resource_fields);
-
+      $scope.close();
+      $rootScope.$emit('sp.message', {title: 'Added resource type successfully', type: "success"});
     });
   };
 });

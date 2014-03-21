@@ -1,16 +1,15 @@
+'use strict';
+
 var app = angular.module('spout', ['ngRoute', 'restangular', 'ngAnimate', 'ui.bootstrap', 'ui.router']);
 
 app.config(function($interpolateProvider) {
   $interpolateProvider.startSymbol('{[').endSymbol(']}');
 });
 
-
-
-
 app.run(function(Restangular, $rootScope) {
   Restangular.setBaseUrl('/api');
   Restangular.configuration.getIdFromElem = function() {
-    return null
+    return null;
   };
 
   Restangular.setResponseInterceptor(function(data, operation, what, request, response) {
@@ -94,7 +93,7 @@ app.directive('errorWindow', function($rootScope, $timeout) {
         $timeout(restore, 3000);
       });
     }
-  }
+  };
 });
 
 app.service('parseFormErrors', function() {
@@ -104,7 +103,7 @@ app.service('parseFormErrors', function() {
       form[property].$invalid = true;
       form[property].$message = data.errors[property];
     }
-  }
+  };
 });
 
 app.directive('formfieldErrorMsg', function() {
@@ -130,12 +129,15 @@ app.directive('formfieldErrorMsg', function() {
           return scope.message;
         }
         return scope.field.$message;
-      }
+      };
 
     }
   };
 });
 
+/*
+ * A directive that creates a slug from a given title.
+ */
 app.directive('spSlugTitle', function() {
 
   return {
@@ -149,15 +151,13 @@ app.directive('spSlugTitle', function() {
           src = attrs.spSlugTitle || 'title';
 
       scope.$watch('model.' + src, function() {
-        if (stop || typeof scope.model === 'undefined' || typeof scope.model[src] === 'undefined') {
-          return;
-        }
+        if (stop || typeof scope.model === 'undefined' || typeof scope.model[src] === 'undefined') return;
         slug = scope.model[src].toLowerCase().replace(/[^a-z0-9]/g, "-");
         scope.model.slug = slug;
       });
 
       scope.$watch('model.slug', function() {
-        if(typeof scope.model != 'undefined' && scope.model.slug != slug) {
+        if(typeof scope.model !== 'undefined' && scope.model.slug !== slug) {
           stop = true;
         }
       });
@@ -168,15 +168,10 @@ app.directive('spSlugTitle', function() {
 
 app.controller('ModalCtrl', function($scope, options, $modal, $state) {
 
-  console.log("modal controller");
   $scope.form = {};
-
   options.scope = $scope;
-
   $modal.open(options).result.then(function() {
     return $state.go(options.onComplete);
   });
-
-
 
 });
