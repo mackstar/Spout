@@ -24,6 +24,7 @@ class Users extends ResourceObject
 
     /**
      * @param int $id
+     * @return $this
      */
     public function onGet($id = null)
     {

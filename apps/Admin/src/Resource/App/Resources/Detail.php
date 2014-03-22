@@ -27,7 +27,7 @@ class Detail extends ResourceObject{
         $stmt->execute();
         $resource = $stmt->fetch();
 
-        try{
+        try {
             $type = $this->resource->get->uri('app://self/resources/types')
                 ->eager
                 ->withQuery(['slug' => $resource['type']])
@@ -36,13 +36,11 @@ class Detail extends ResourceObject{
             var_dump(get_class($this->resource));
         }
 
-
-
         $resource['title_label'] = $type->body['type']['title_label'];
         $fieldTypes = [];
         $map = [];
         $resource['fields'] = [];
-        foreach($type->body['type']['fields'] as $resourceField) {
+        foreach ($type->body['type']['fields'] as $resourceField) {
             $map[$resourceField['id']] = $resourceField['slug'];
             $fieldType = $resourceField['field_type'];
             $slug = $resourceField['slug'];
@@ -52,7 +50,7 @@ class Detail extends ResourceObject{
             ];
             if ($resourceField['multiple'] == '1') {
                 $resource['fields'][$slug]['values'] = [];
-                unset($resource['fields'][$slug]['value']); 
+                unset($resource['fields'][$slug]['value']);
             }
             $resource['fields']['slug'] = '';
             if (!in_array($fieldType, $fieldTypes)) {
@@ -69,7 +67,7 @@ class Detail extends ResourceObject{
             $fieldTypeRows[] = $stmt->fetchAll();
         }
 
-        foreach($fieldTypeRows as $rows) {
+        foreach ($fieldTypeRows as $rows) {
             foreach ($rows as $row) {
                 $slug = $map[$row['resource_field_id']];
 

@@ -44,23 +44,14 @@ class Index extends ResourceObject{
         $resource = $this->getType($type);
         $this->db->beginTransaction();
 
-        try{
+        try {
             $this->db->delete($this->table, ['id' => $id]);
-            $fieldTypes = [];
-            foreach ($resource->body['type']['fields'] as $field) {
-                if(!in_array($field['field_type'], $fieldTypes)) {
-                    $fieldTypes[] = $field['field_type'];
-                    $this->db->delete('field_values_' . $field['field_type'], ['resource_id' => $id]);
-                }
-
-            }
+            $this->deleteFields($id, $resource);
             $this->db->commit();
-        } catch(\Exception $e) {
+        } catch (\Exception $e) {
             $this->db->rollback();
             echo $e->getMessage();
-            exit;
         }
-
 
         return $this;
     }
@@ -70,49 +61,98 @@ class Index extends ResourceObject{
         $resource = $this->getType($type['slug']);
         $this->db->beginTransaction();
 
-        try{
+        try {
             $this->db->insert('resources', ['title' => $title, 'type' => $type['slug'], 'slug' => $slug]);
-            $resourceId = $this->db->lastInsertId();
-
-            foreach($resource->body['type']['fields'] as $field){
-                $table = 'field_values_' . $field['field_type'];
-
-                if (!isset($fields[$field['slug']])) {
-                    continue;
-                }
-
-                // Single field insert
-                if ($field['multiple'] == '0') {
-                    $this->db->insert($table, [
-                        'value' => $fields[$field['slug']],
-                        'resource_field_id' => $field['id'],
-                        'resource_id' => $resourceId
-                    ]); 
-
-                // Multiple field insert
-                } else {
-                    foreach($fields[$field['slug']] as $value) {
-                        $this->db->insert($table, [
-                            'value' => $value,
-                            'resource_field_id' => $field['id'],
-                            'resource_id' => $resourceId
-                        ]);
-                    }
-                }
-            }
+            $id = $this->db->lastInsertId();
+            $this->insertFields($resource, $fields, $id);
             $this->db->commit();
 
-        } catch(\Exception $e) {
+        } catch (\Exception $e) {
             $this->db->rollback();
             echo $e->getMessage();
-            exit;
         }
-        
 
         return $this;
     }
 
-    private function getType($slug) {
+
+    /**
+     * Updates resource by
+     *  - Updating main resource - this will be title and slug only
+     *  - Iterating through fields deleting and reinserting the data in correct field type
+     *
+     * @todo add versioning.
+     *
+     * @param $id
+     * @param $type
+     * @param $title
+     * @param $slug
+     * @param $fields
+     * @return $this
+     */
+    public function onPut($id, $type, $title, $slug, $fields)
+    {
+        $resource = $this->getType($type['slug']);
+        $this->db->beginTransaction();
+
+        try {
+            $this->db->update('resources', ['title' => $title, 'slug' => $slug], ['id' => $id]);
+            $this->deleteFields($id, $resource);
+            $this->insertFields($resource, $fields, $id);
+            $this->db->commit();
+
+        } catch (\Exception $e) {
+            $this->db->rollback();
+            echo $e->getMessage();
+        }
+
+        return $this;
+    }
+
+    private function insertFields($resource, $fields, $id)
+    {
+        foreach ($resource->body['type']['fields'] as $field) {
+            $table = 'field_values_' . $field['field_type'];
+
+            if (!isset($fields[$field['slug']])) {
+                continue;
+            }
+
+            // Single field insert
+            if ($field['multiple'] == '0') {
+                $this->db->insert($table, [
+                    'value' => $fields[$field['slug']],
+                    'resource_field_id' => $field['id'],
+                    'resource_id' => $id
+                ]);
+
+            } else {
+
+                // Multiple field insert
+                foreach ($fields[$field['slug']] as $value) {
+                    $this->db->insert($table, [
+                        'value' => $value,
+                        'resource_field_id' => $field['id'],
+                        'resource_id' => $id
+                    ]);
+                }
+            }
+        }
+    }
+
+    private function deleteFields($id, $resource)
+    {
+        $fieldTypes = [];
+        foreach ($resource->body['type']['fields'] as $field) {
+            if (!in_array($field['field_type'], $fieldTypes)) {
+                $fieldTypes[] = $field['field_type'];
+                $this->db->delete('field_values_' . $field['field_type'], ['resource_id' => $id]);
+            }
+        }
+    }
+
+    private function getType($slug)
+    {
         return $this->resource->get->uri('app://self/resources/types')
             ->eager
             ->withQuery(['slug' => $slug])

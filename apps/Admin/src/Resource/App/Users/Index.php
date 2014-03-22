@@ -24,7 +24,8 @@ class Index extends ResourceObject{
     /**
      * @Inject
      */
-    public function setSecurity(SecurityInterface $security) {
+    public function setSecurity(SecurityInterface $security)
+    {
         $this->security = $security;
     }
 
@@ -64,7 +65,8 @@ class Index extends ResourceObject{
         return $this;
     }
 
-    public function onDelete($id) {
+    public function onDelete($id)
+    {
         $this->db->delete($this->table, ['id' => $id]);
         $this->code = 204;
         return $this;
