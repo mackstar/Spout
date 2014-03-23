@@ -48,6 +48,7 @@ app.directive('spField', function() {
       };
 
       scope.removeField = function () {
+        scope.resource.fields[scope.field.slug].splice(scope.keys.length - 1, 1);
         scope.keys.splice(scope.keys.length - 1, 1);
       };
 
