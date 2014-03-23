@@ -48,9 +48,10 @@ app.controller('ResourceEditCtrl', function($scope, Restangular, $modalInstance,
 
   $scope.submit = function () {
     $scope.resource.type = $scope.type;
+    $scope.resource.route = 'resources/index';
     $scope.resource.put().then(function () {
+      $scope.close();
       $rootScope.$emit('sp.message', {title: 'User added successfully', type: "success"});
-      $rootScope.$emit('resources.reload', true);
     });
   };
 
