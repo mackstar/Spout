@@ -171,7 +171,7 @@ app.controller('ModalCtrl', function($scope, options, $modal, $state) {
   $scope.form = {};
   options.scope = $scope;
   $modal.open(options).result.then(function() {
-    return $state.go(options.onComplete);
+    return $state.go(options.onComplete, {}, {reload:true});
   });
 
 });
