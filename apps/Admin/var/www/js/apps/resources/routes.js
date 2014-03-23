@@ -1,6 +1,9 @@
 'use strict';
 
-app.config(['$stateProvider', function($stateProvider) {
+app.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
+
+  $urlRouterProvider.otherwise('/resources/1');
+
   $stateProvider.state('resources', {
     url: "/resources/:start",
     templateUrl: '/js/templates/resources/index.html',

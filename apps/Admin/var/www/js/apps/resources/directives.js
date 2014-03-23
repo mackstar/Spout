@@ -32,7 +32,6 @@ app.directive('spField', function() {
         return;
       }
 
-
       scope.keys = [0];
 
       if (!Array.isArray(scope.resource.fields[scope.field.slug])) {
@@ -48,8 +47,9 @@ app.directive('spField', function() {
       };
 
       scope.removeField = function () {
-        scope.resource.fields[scope.field.slug].splice(scope.keys.length - 1, 1);
-        scope.keys.splice(scope.keys.length - 1, 1);
+        var fieldCount = scope.keys.length - 1;
+        scope.resource.fields[scope.field.slug].splice(fieldCount, 1);
+        scope.keys.splice(fieldCount, 1);
       };
 
       scope.addField = function () {
