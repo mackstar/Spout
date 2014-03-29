@@ -51,7 +51,7 @@ app.controller('ResourceEditCtrl', function($scope, Restangular, $modalInstance,
     $scope.resource.route = 'resources/index';
     $scope.resource.put().then(function () {
       $scope.close();
-      $rootScope.$emit('sp.message', {title: 'User added successfully', type: "success"});
+      $rootScope.$emit('sp.message', {title: 'Resource created successfully', type: "success"});
     });
   };
 

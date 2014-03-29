@@ -6,7 +6,7 @@ use Ray\Di\AbstractModule;
 use Mackstar\Spout\Module\SecurityModule;
 use Mackstar\Spout\Module\StringModule;
 use Mackstar\Spout\Provide\Validations\ValidationModule;
-
+use Mackstar\Spout\Provide\Session\SessionModule;
 
 /**
  * Application Dependency
@@ -18,8 +18,9 @@ class Dependency extends AbstractModule
      */
     protected function configure()
     {
-    	$this->install(new SecurityModule($this));
-    	$this->install(new StringModule($this));
+        $this->install(new SecurityModule($this));
+        $this->install(new StringModule($this));
         $this->install(new ValidationModule($this));
+        $this->install(new SessionModule($this));
     }
 }

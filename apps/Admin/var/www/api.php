@@ -34,19 +34,20 @@ $context = 'api';
 $app = require dirname(dirname(__DIR__)) . '/bootstrap/instance.php';
 /* @var $app \BEAR\Package\Provide\Application\AbstractApp */
 
-function castToArray($obj) {
-    if(is_object($obj)) {
+function castToArray($obj)
+{
+    if (is_object($obj)) {
         $obj = (array) $obj;
     }
-    if(is_array($obj)) {
+    if (is_array($obj)) {
         $new = array();
-        foreach($obj as $key => $val) {
+        foreach ($obj as $key => $val) {
             $new[$key] = castToArray($val);
         }
     } else {
-       $new = $obj; 
-    } 
-    return $new;       
+        $new = $obj;
+    }
+    return $new;
 }
 
 //
@@ -59,7 +60,7 @@ if (PHP_SAPI === 'cli') {
     parse_str((isset(parse_url($uri)['query']) ? parse_url($uri)['query'] : ''), $get);
 } else {
     $pathInfo = $_SERVER['REQUEST_URI'] ? $_SERVER['REQUEST_URI'] : '/index';
-    if(strpos($pathInfo, 'api/') === 1) {
+    if (strpos($pathInfo, 'api/') === 1) {
         $uri = 'app://self' . substr($pathInfo, 4);
     } else {
         $uri = 'app://self' . $pathInfo;
@@ -89,7 +90,7 @@ try {
     goto ERROR;
 } catch (Exception $e) {
     $code = 503;
-    $body = 'Service Unavailable';
+    $body = 'Service Unavailable: ' . $e->getMessage();
     error_log((string)$e);
     goto ERROR;
 }

@@ -1,0 +1,20 @@
+<h1>Please login...</h1>
+<div class="row">
+    <ul class="nav nav-tabs">
+        <li class="active link" ng-click="submit()"><span class="glyphicon glyphicon-ok"></span></li>
+    </ul>
+    <form name="form.login" novalidate>
+        <div class="form-group" ng-class="{'has-error': form.login.email.$invalid}">
+            <label for="email">Email</label>
+            <input type="email" id="email" ng-model="login.email" class="form-control" name="email" placeholder="Enter the email you have registered with us." required>
+            <formfield-error-msg msg="Must be a valid email address" field="form.login.email" />
+        </div>
+        <div class="form-group" ng-class="{'has-error': form.login.password.$invalid}">
+            <label for="password">Password</label>
+            <input type="password" id="password" ng-model="login.password" name="password" class="form-control" ng-minlength="6" placeholder="Click the arrow when you are done." required>
+            <formfield-error-msg msg="Length must be at least 6 chars" field="form.login.password" />
+        </div>
+    </form>
+</div>
+
+

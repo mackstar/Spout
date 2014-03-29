@@ -78,8 +78,9 @@ app.controller('UserEditCtrl', function ($scope, parseFormErrors, $modalInstance
 
   $scope.form = {};
 
+  $scope.close = $modalInstance.close;
+
   $scope.submit = function () {
-    console.log($scope);
     if ($scope.form.user.$invalid) {
       $rootScope.$emit('sp.message', {title: 'Oops', message: 'The form is not yet complete', type: "danger"});
       return;
@@ -97,6 +98,8 @@ app.controller('UserAddCtrl', function ($scope, Restangular, parseFormErrors, $m
   $scope.addMode = true;
   $scope.form = {};
 
+  console.log("controller");
+
 
   $scope.user = {
     email: '',
@@ -104,12 +107,11 @@ app.controller('UserAddCtrl', function ($scope, Restangular, parseFormErrors, $m
     name: ''
   };
 
-  $scope.close = function () {
-    $modalInstance.close();
-  };
+  $scope.close = $modalInstance.close;
 
   $scope.submit = function () {
-    if ($scope.form.resource.$invalid) {
+    console.log("submit");
+    if ($scope.form.user.$invalid) {
       $rootScope.$emit('sp.message', {title: 'Oops', message: 'The form is not yet complete', type: "danger"});
       return;
     }

@@ -25,13 +25,6 @@ use Ray\Di\Scope;
 class AppModule extends AbstractModule
 {
     /**
-     * Constants
-     *
-     * @var array
-     */
-    private $config;
-
-    /**
      * @var array
      */
     private $params = [];
@@ -62,49 +55,11 @@ class AppModule extends AbstractModule
      */
     protected function configure()
     {
-        
-        // // install core package
-        // $this->install(new PackageModule(new Constant($this->config), 'Mackstar\Spout\Admin\App', $this->context));
-
-        // // install view package
-        // //$this->install(new SmartyModule($this));
-        // $this->install(new TwigModule($this));
-
-        // // install optional package
-        // $this->install(new SignalParamModule($this, $this->params));
-        // $this->install(new AuraFormModule);
-        // $this->install(new ResourceGraphModule($this));
-
-        // // install develop module
-        // if ($this->context === 'dev') {
-        //     $this->install(new DevModule($this));
-        //             $this->bind('BEAR\Resource\InvokerInterface')->to('BEAR\Resource\Invoker')->in(Scope::SINGLETON);
-
-        // }
-
-        // // install API module
-        // if ($this->context === 'api') {
-        //     // install api output view package
-        //     $this->install(new HalModule($this));
-        //     $this->install(new ApiModule($this));
-        //     //$this->install(new JsonModule($this));
-        // }
-
-        // // install application dependency
-        // $this->install(new App\Dependency);
-
-        // // install application aspect
-        // $this->install(new App\Aspect($this));
-
-
-        ///----- New
-
-                // install core package
+        // install core package
 
         $this->install(new PackageModule('Mackstar\Spout\Admin\App', $this->context, $this->constants));
 
         // install view package
-        //$this->install(new SmartyModule($this));
         $this->install(new TwigModule($this));
 
         // install optional package
@@ -116,8 +71,6 @@ class AppModule extends AbstractModule
         if ($this->context === 'dev') {
             $this->install(new DevModule($this));
         }
-
-        
 
         // install application dependency
         $this->install(new App\Dependency);
@@ -133,8 +86,5 @@ class AppModule extends AbstractModule
             $this->install(new OuterApiAspect());
             //$this->install(new JsonModule($this));
         }
-
-        
-
     }
 }

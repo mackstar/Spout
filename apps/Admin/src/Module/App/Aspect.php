@@ -14,7 +14,8 @@ class Aspect extends AbstractModule
 
     protected function configure()
     {
-    	$this->installFormValidators();
+        $this->installFormValidators();
+        $this->installUserSessionAppender();
     }
 
     private function installFormValidators()
@@ -23,8 +24,19 @@ class Aspect extends AbstractModule
         $userValidator = $this->requestInjection('Mackstar\Spout\Admin\Interceptor\Validators\UserValidator');
         $this->bindInterceptor(
             $this->matcher->subclassesOf('Mackstar\Spout\Admin\Resource\App\Users\Index'),
-       	    $this->matcher->annotatedWith('Mackstar\Spout\Admin\Annotation\Form'),
+            $this->matcher->annotatedWith('Mackstar\Spout\Admin\Annotation\Form'),
             [$userValidator]
+        );
+    }
+
+    private function installUserSessionAppender()
+    {
+        $session = $this->requestInjection('\Mackstar\Spout\Admin\Interceptor\Users\Session');
+
+        $this->bindInterceptor(
+            $this->matcher->subclassesOf('Mackstar\Spout\Admin\Resource\Page\Resources\Index'),
+            $this->matcher->startWith('onGet'),
+            [$session]
         );
     }
 }

@@ -12,7 +12,8 @@ app.run(function(Restangular, $rootScope) {
     return null;
   };
 
-  Restangular.setResponseInterceptor(function(data, operation, what, request, response) {
+  Restangular.setResponseInterceptor(function(data) {
+    console.log(data);
     if (data.message) {
       $rootScope.$emit('message', {message: data.message});
     }
@@ -26,6 +27,7 @@ app.run(function(Restangular, $rootScope) {
   });
 
   Restangular.setErrorInterceptor(function(response) {
+    console.log(response);
     if (response.status && response.data.title) {
       $rootScope.$emit('sp.message', {title: response.data.title, message: response.data.message, type: "danger"});
     }

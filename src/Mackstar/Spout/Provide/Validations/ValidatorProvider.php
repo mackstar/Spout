@@ -16,24 +16,25 @@ use Mackstar\Spout\Interfaces\ValidatorProviderInterface;
  */
 class ValidatorProvider implements ValidatorProviderInterface
 {
-	private $validatorClasses = [
-		'Between',
-		'Date',
-		'EmailAddress',
-		'LessThan',
-		'NotEmpty',
-		'StringLength',
-		'Uri',
-		'Ip'
-	];
+    private $validatorClasses = [
+        'Between',
+        'Date',
+        'EmailAddress',
+        'LessThan',
+        'NotEmpty',
+        'StringLength',
+        'Uri',
+        'Ip'
+    ];
 
-    public function get() {
-    	$validators = [];
-    	$validatorNamespace = 'Zend\\Validator\\';
-    	foreach ($this->validatorClasses as $className) {
-    		$fullClassName = $validatorNamespace . $className;
-    		$validators[strtolower($className)] = new $fullClassName();
-    	}
+    public function get()
+    {
+        $validators = [];
+        $validatorNamespace = 'Zend\\Validator\\';
+        foreach ($this->validatorClasses as $className) {
+            $fullClassName = $validatorNamespace . $className;
+            $validators[strtolower($className)] = new $fullClassName();
+        }
         return $validators;
     }
 }

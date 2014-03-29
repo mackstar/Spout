@@ -15,18 +15,14 @@ use Ray\Di\AbstractModule;
  */
 class ValidationModule extends AbstractModule
 {
-	public function configure() {
-
-		$this
+    public function configure()
+    {
+        $this
             ->bind('Mackstar\Spout\Interfaces\ValidatorProviderInterface')
             ->to('Mackstar\Spout\Provide\Validations\ValidatorProvider');
-            
+
         $this
             ->bind('Mackstar\Spout\Interfaces\ValidatorInterface')
             ->to('Mackstar\Spout\Provide\Validations\Validator');
-
-		
-
-
-	}
+    }
 }
