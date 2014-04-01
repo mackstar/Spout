@@ -1,6 +1,6 @@
 'use strict';
 
-app.controller('ResourcesCtrl', function($scope, resources, types, $state, $rootScope) {
+app.controller('ResourcesCtrl', function($scope, resources, types, $state, $stateParams, $rootScope) {
   $scope.types = types;
   $scope.resources = resources;
 
@@ -15,7 +15,8 @@ app.controller('ResourcesCtrl', function($scope, resources, types, $state, $root
       return;
     }
     resource.remove().then(function() {
-      $rootScope.$emit('sp.message', {title: 'Resource removed successfully', type: "success"});
+        $rootScope.$emit('sp.message', {title: 'Resource removed successfully', type: "success"});
+        $state.go('resources', {start: $stateParams.start}, {reload:true});
     });
   };
 });
@@ -51,7 +52,7 @@ app.controller('ResourceEditCtrl', function($scope, Restangular, $modalInstance,
     $scope.resource.route = 'resources/index';
     $scope.resource.put().then(function () {
       $scope.close();
-      $rootScope.$emit('sp.message', {title: 'Resource created successfully', type: "success"});
+      $rootScope.$emit('sp.message', {title: 'Resource edited successfully', type: "success"});
     });
   };
 
@@ -63,7 +64,6 @@ function parseResourceObject(resource) {
       resource.fields[key] = object.value;
     }
     if (object && object.values) {
-      console.log(object, key, resource);
       resource.fields[key] = object.values;
     }
   });

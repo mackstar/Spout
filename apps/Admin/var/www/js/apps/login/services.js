@@ -9,7 +9,6 @@ app.factory('CurrentUserService', [function() {
 }]);
 
 app.run(function ($rootScope, $state, CurrentUserService) {
-    console.log(CurrentUserService);
     $rootScope.$on("$stateChangeStart", function(event, toState){
       if (toState.authenticate && !CurrentUserService.isLoggedIn){
         // User isn’t authenticated
