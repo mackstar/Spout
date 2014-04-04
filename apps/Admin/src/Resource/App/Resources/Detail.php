@@ -12,14 +12,15 @@ use BEAR\Sunday\Inject\ResourceInject;
  *
  * @Db
  */
-class Detail extends ResourceObject{
+class Detail extends ResourceObject
+{
 
     use DbSetterTrait;
     use ResourceInject;
 
     protected $table = 'resources';
 
-    public function onGet($id=null)
+    public function onGet($id = null)
     {
         $sql = "SELECT {$this->table}.* FROM {$this->table} WHERE {$this->table}.`id` = :id";
         $stmt = $this->db->prepare($sql);
@@ -32,7 +33,7 @@ class Detail extends ResourceObject{
                 ->eager
                 ->withQuery(['slug' => $resource['type']])
                 ->request();
-        } catch(\Exception $e) {
+        } catch (\Exception $e) {
             var_dump(get_class($this->resource));
         }
 

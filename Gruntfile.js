@@ -49,7 +49,7 @@ module.exports = function(grunt) {
         command: "vendor/robmorgan/phinx/bin/phinx --configuration=config.php migrate -e" + env
       },
       migrate_create: {
-          command: "vendor/robmorgan/phinx/bin/phinx --configuration=config.php  -e" + env + "create " + name
+          command: "vendor/robmorgan/phinx/bin/phinx --configuration=config.php create " + name
       },
       migrate_rollback: {
           command: "vendor/robmorgan/phinx/bin/phinx --configuration=config.php rollback -e" + env

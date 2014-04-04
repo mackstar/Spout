@@ -1,6 +1,6 @@
 <?php
 
-namespace Mackstar\Spout\Admin\Resource\App\Resources;
+namespace Mackstar\Spout\Admin\Resource\App\Menus;
 
 use BEAR\Resource\ResourceObject;
 use BEAR\Package\Module\Database\Dbal\Setter\DbSetterTrait;
@@ -11,13 +11,13 @@ use BEAR\Sunday\Annotation\Db;
  *
  * @Db
  */
-class Add extends ResourceObject{
+class Links extends ResourceObject{
 
     use DbSetterTrait;
 
-    protected $table = 'field_types';
+    protected $table = 'links';
 
-    public function onGet()
+    public function onPost($user)
     {
 
         $sql  = "SELECT {$this->table}.* FROM {$this->table} ";
@@ -26,5 +26,12 @@ class Add extends ResourceObject{
         return $this;
     }
 
-    
+    public function onGet()
+    {
+        $sql = "SELECT * FROM {$this->table}";
+        $this['menus'] = $this->db->fetchAll($sql);
+        return $this;
+    }
+
+
 }

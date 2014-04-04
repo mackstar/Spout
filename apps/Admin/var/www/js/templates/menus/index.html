@@ -1,0 +1,32 @@
+<h1>Menus</h1>
+
+<div class="row">
+    <div class="col-md-2">
+        <ul class="nav nav-pills nav-stacked">
+            <li class="active"><a href="#">Home</a></li>
+            <li><a href="#">Profile</a></li>
+            <li><a href="#">Messages</a></li>
+        </ul>
+    </div>
+    <div class="col-md-7"></div>
+    <div class="col-md-3" ng-controller="MenusAddCtrl">
+        <ul class="nav nav-tabs">
+            <li><h3>Add Menu </h3></li>
+            <li class="active link" ng-click="submit()">
+                <span class="glyphicon glyphicon-ok"></span>
+            </li>
+        </ul>
+        <form name="form.menu" novalidate>
+            <div class="form-group" ng-class="{'has-error': form.menu.name.$invalid}">
+                <label for="menu-name">Name</label>
+                <input type="text" ng-model="menu.name" name="name" class="form-control" id="menu-name" placeholder="Human Friendly Name" required>
+                <formfield-error-msg msg="Name Cannot Be Blank" field="form.menu.name" />
+            </div>
+            <div class="form-group" ng-class="{'has-error': form.menu.slug.$invalid}">
+                <label for="menu-slug">Slug</label>
+                <input type="text" ng-model="menu.slug" model="menu" name="slug" class="form-control" id="menu-slug" placeholder="Indentifier" sp-slug-title="name" required>
+                <formfield-error-msg msg="Slug Cannot Be Blank" field="form.menu.slug" />
+            </div>
+        </form>
+    </div>
+</div>
