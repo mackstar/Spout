@@ -9,19 +9,19 @@
 
     <div class="form-group" ng-class="{'has-error': form.user.name.$invalid}">
       <label for="name">Name</label>
-      <input type="text" ng-model="user.name" class="form-control" name="name" placeholder="Enter the name you need this person to be know by!" required>
+      <input type="text" id="name" ng-model="user.name" class="form-control" name="name" placeholder="Enter the name you need this person to be know by!" required>
       <formfield-error-msg msg="Users name should not be blank" field="form.user.name" />
     </div>
 
     <div class="form-group" ng-class="{'has-error': form.user.email.$invalid}">
       <label for="email">Email</label>
-      <input type="email" ng-model="user.email" name="email" class="form-control" placeholder="Enter an email address" required>
+      <input type="email" id="email" ng-model="user.email" name="email" class="form-control" placeholder="Enter an email address" required>
       <formfield-error-msg msg="Must be a valid email address" field="form.user.email" />
     </div>
 
     <div class="form-group" ng-class="{'has-error': form.user.password.$invalid}" ng-if="addMode">
       <label for="password">Password</label>
-      <input type="password" ng-model="user.password" name="password" class="form-control" ng-minlength="6" placeholder="Choose a password" required>
+      <input type="password" id="password" ng-model="user.password" name="password" class="form-control" ng-minlength="6" placeholder="Choose a password" required>
       <formfield-error-msg msg="Length must be at least 6 chars" field="form.user.password" />
     </div>
 

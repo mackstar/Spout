@@ -17,7 +17,7 @@ class Links extends ResourceObject{
 
     protected $table = 'links';
 
-    public function onPost($user)
+    public function onPost($menu)
     {
 
         $sql  = "SELECT {$this->table}.* FROM {$this->table} ";
@@ -26,10 +26,10 @@ class Links extends ResourceObject{
         return $this;
     }
 
-    public function onGet()
+    public function onGet($menu)
     {
-        $sql = "SELECT * FROM {$this->table}";
-        $this['menus'] = $this->db->fetchAll($sql);
+        $sql = "SELECT * FROM {$this->table} WHERE `menu` = '{$slug}'";
+        $this['links'] = $this->db->fetchAll($sql);
         return $this;
     }
 

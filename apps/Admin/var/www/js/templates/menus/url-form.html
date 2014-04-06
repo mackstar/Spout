@@ -1,0 +1,23 @@
+<div class="row">
+    <ul class="nav nav-tabs">
+        <li><h3>Add a Link </h3></li>
+        <li class="active link" ng-click="submit()">
+            <span class="glyphicon glyphicon-ok"></span>
+        </li>
+        <li class="cancel link" ng-click="close()">
+            <span class="glyphicon glyphicon-remove"></span>
+        </li>
+    </ul>
+    <form name="form.link" novalidate>
+        <div class="form-group" ng-class="{'has-error': form.link.name.$invalid}">
+            <label for="name">Link Text</label>
+            <input type="text" ng-model="link.name" class="form-control" id="name" name="name" placeholder="Link Text" required>
+            <formfield-error-msg msg="Should not be blank" field="form.link.name" />
+        </div>
+        <div class="form-group" ng-class="{'has-error': form.link.url.$invalid}">
+            <label for="slug">URL</label>
+            <input type="text" ng-model="link.url" model="resource"  id="slug" class="form-control" name="url" placeholder="Can either start with http:// or a / for local links" required sp-slug-title>
+            <formfield-error-msg msg="URL should not be blank" field="form.link.url" />
+        </div>
+    </form>
+</div>

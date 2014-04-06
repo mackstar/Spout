@@ -52,7 +52,7 @@ module.exports = function(grunt) {
           command: "vendor/robmorgan/phinx/bin/phinx --configuration=config.php create " + name
       },
       migrate_rollback: {
-          command: "vendor/robmorgan/phinx/bin/phinx --configuration=config.php rollback -e" + env
+          command: "vendor/robmorgan/phinx/bin/phinx --configuration=config.php rollback -e " + env
       },
       phpunit_admin: {
         command: "cd apps/Admin && phpunit <%= php.filter %>"

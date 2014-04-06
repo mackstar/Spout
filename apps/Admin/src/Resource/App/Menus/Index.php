@@ -38,5 +38,12 @@ class Index extends ResourceObject
         return $this;
     }
 
+    public function onDelete($slug)
+    {
+        $this->db->delete($this->table, ['slug' => $slug]);
+        $this->code = 204;
+        return $this;
+    }
+
 
 }

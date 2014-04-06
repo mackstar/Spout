@@ -1,0 +1,12 @@
+<div class="btn-group">
+    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+        Add Link <span class="caret"></span>
+    </button>
+    <ul class="dropdown-menu" role="menu">
+        <li><a ui-sref="menus.links.add-url({slug:menu.slug})">Add URL</a></li>
+        <li><a ui-sref="menus.links.add-url">Add Resource</a></li>
+        <li><a ui-sref="menus.links.add-url">Add Index</a></li>
+    </ul>
+</div>
+
+<div ui-view></div>

@@ -11,7 +11,7 @@ app.controller('LoginCtrl', function($scope, $rootScope, authentication, $state,
     authentication.post($scope.login).then(function(user) {
       CurrentUserService.isLoggedIn = true;
       CurrentUserService.user = Restangular.stripRestangular(user);
-      $rootScope.$emit('sp.message', {title: 'Yeah!', message: 'You have successfully logged in', type: "danger"});
+      $rootScope.$emit('sp.message', {title: 'Yeah!', message: 'You have successfully logged in', type: "success"});
       $state.go("dashboard");
     });
   };

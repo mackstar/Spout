@@ -11,12 +11,12 @@
   <form name="form.resource" novalidate>
     <div class="form-group" ng-class="{'has-error': form.resource.title.$invalid}">
       <label for="title">{[type.title_label]}</label>
-      <input type="text" ng-model="resource.title" class="form-control" name="title" placeholder="Must not be blank." required>
+      <input type="text" ng-model="resource.title" class="form-control" id="title" name="title" placeholder="Must not be blank." required>
       <formfield-error-msg msg="{[type.title_label]} should not be blank" field="form.resource.title" />
     </div>
     <div class="form-group" ng-class="{'has-error': form.resource.slug.$invalid}">
       <label for="slug">Slug</label>
-      <input type="text" ng-model="resource.slug" model="resource" class="form-control" name="slug" placeholder="Must be unique for this resource type." required sp-slug-title>
+      <input type="text" ng-model="resource.slug" model="resource"  id="slug" class="form-control" name="slug" placeholder="Must be unique for this resource type." required sp-slug-title>
       <formfield-error-msg msg="Slug should not be blank" field="form.resource.slug" />
     </div>
     <div ng-repeat="field in type.fields">

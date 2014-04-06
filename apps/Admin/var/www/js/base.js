@@ -138,10 +138,12 @@ app.directive('spSlugTitle', function() {
 
 app.controller('ModalCtrl', function($scope, options, $modal, $state) {
 
+  var onCompleteOptions = options.onCompleteOptions || {};
   $scope.form = {};
   options.scope = $scope;
+
   $modal.open(options).result.then(function() {
-    return $state.go(options.onComplete, {}, {reload:true});
+    return $state.go(options.onComplete, onCompleteOptions, {reload:true});
   });
 
 });
