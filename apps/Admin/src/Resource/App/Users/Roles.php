@@ -5,7 +5,6 @@ namespace Mackstar\Spout\Admin\Resource\App\Users;
 use BEAR\Resource\ResourceObject;
 use BEAR\Package\Module\Database\Dbal\Setter\DbSetterTrait;
 use BEAR\Sunday\Annotation\Db;
-use Mackstar\Spout\Interfaces\SecurityInterface;
 use Ray\Di\Di\Inject;
 
 /**
