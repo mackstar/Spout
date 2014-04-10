@@ -5,8 +5,7 @@ namespace Mackstar\Spout\Admin\Interceptor\Users;
 use Ray\Aop\MethodInterceptor;
 use Ray\Aop\MethodInvocation;
 use Ray\Di\Di\Inject;
-use Symfony\Component\HttpFoundation\Session as PhpSession;
-
+use Symfony\Component\HttpFoundation\Session\Session as PhpSession;
 class Session implements MethodInterceptor
 {
 

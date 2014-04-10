@@ -11,7 +11,6 @@ use BEAR\Package\Provide\ResourceView;
 use BEAR\Package\Provide\ResourceView\HalModule;
 use BEAR\Package\Provide\TemplateEngine\Twig\TwigModule;
 use BEAR\Sunday\Module as SundayModule;
-use BEAR\Sunday\Module\Constant\NamedModule as Constant;
 use Ray\Di\AbstractModule;
 use Ray\Di\Injector;
 use Mackstar\Spout\Admin\Module\Mode\DevModule;
@@ -25,6 +24,13 @@ use Ray\Di\Scope;
 class AppModule extends AbstractModule
 {
     /**
+     * Constants
+     *
+     * @var array
+     */
+    private $constants;
+
+    /**
      * @var array
      */
     private $params = [];
@@ -33,6 +39,8 @@ class AppModule extends AbstractModule
      * @var string
      */
     private $context;
+
+    private $appDir;
 
     /**
      * @param string $context
@@ -47,7 +55,6 @@ class AppModule extends AbstractModule
         $this->constants = (require "{$appDir}/var/conf/{$context}.php") + (require "{$appDir}/var/conf/prod.php");
         $this->params = (require "{$appDir}/var/lib/params/{$context}.php") + (require "{$appDir}/var/lib/params/prod.php");
         parent::__construct();
-        unset($appDir);
     }
 
     /**
@@ -65,12 +72,6 @@ class AppModule extends AbstractModule
         // install optional package
         $this->install(new SignalParamModule($this, $this->params));
         $this->install(new AuraFormModule);
-        $this->install(new ResourceGraphModule($this));
-
-        // install develop module
-        if ($this->context === 'dev') {
-            $this->install(new DevModule($this));
-        }
 
         // install application dependency
         $this->install(new App\Dependency);
@@ -84,7 +85,6 @@ class AppModule extends AbstractModule
             $this->install(new HalModule($this));
             $this->install(new ApiModule($this));
             $this->install(new OuterApiAspect());
-            //$this->install(new JsonModule($this));
         }
     }
 }

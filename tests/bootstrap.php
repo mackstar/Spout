@@ -2,4 +2,4 @@
 
 $loader = require dirname(__DIR__) . '/vendor/autoload.php';
 /** @var $loader \Composer\Autoload\ClassLoader */
-$loader->add('Mackstar\Spout', [__DIR__]);
+$loader->addPsr4('Mackstar\Spout\\', [__DIR__]);
