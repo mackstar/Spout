@@ -31,20 +31,18 @@ $appDir = dirname(dirname(__DIR__));
 $context = 'dev';
 $app = require $appDir . '/bootstrap/instance.php';
 /* @var $app \BEAR\Package\Provide\Application\AbstractApp */
-$dev = new Dev;
-$dev
+$devHtml = (new Dev)
     ->iniSet()
     ->loadDevFunctions()
     ->registerFatalErrorHandler()
     ->registerExceptionHandler("{$appDir}/var/log")
     ->registerSyntaxErrorEdit()
     ->setApp($app, $appDir)
-    ->serviceDevWeb();
-
-// When using the built in file-server when directly accessing files the app instance will not be created and
-// and the script will be exited.
-if ($dev->isDirectStaticFileAccess()) {
-    return false;
+    ->getDevHtml();
+if ($devHtml) {
+    http_response_code(200);
+    echo $devHtml;
+    exit(0);
 }
 
 //
@@ -64,7 +62,7 @@ list($method, $pagePath, $query) = $app->router->match();
 // Upon failure the exception handler will be triggered.
 //
 try {
-    $app->page = $app->resource->$method->uri('page://self/' . $pagePath)->withQuery($query)->eager->request();
+    $app->page = $app->resource->$method->uri('page://self' . $pagePath)->withQuery($query)->eager->request();
     $app->response->setResource($app->page)->render()->send();
     exit(0);
 } catch (Exception $e) {

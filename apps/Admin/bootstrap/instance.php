@@ -7,7 +7,14 @@
  */
 namespace Mackstar\Spout\Admin;
 
+use BEAR\Package\Bootstrap\Bootstrap;
+
 require_once __DIR__ . '/autoload.php';
 
-$context = isset($context) ? $context : 'prod';
-return \BEAR\Bootstrap\getApp(__NAMESPACE__, $context, dirname(__DIR__) . '/var/tmp');
+$app = Bootstrap::getApp(
+    __NAMESPACE__,
+    isset($context) ? $context : 'prod',
+    dirname(__DIR__) . '/var/tmp'
+);
+
+return $app;

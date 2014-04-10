@@ -11,50 +11,21 @@
         }
     ],
     "require":{
-        "aura/input": "1.1.*",
-        "aura/router":"2.*@dev",
-        "aura/sql": "2.*@dev",
-        "aura/view": "1.1.2",
-        "aura/web":"dev-develop-2",
-        "bear/ace":"1.0.*",
         "bear/package":"dev-develop",
-        "bear/resource":"dev-develop",
-        "bear/sunday":"dev-develop",
-        "classpreloader/classpreloader": "1.*",
-        "danielstjules/stringy": "dev-master",
-        "doctrine/annotations":"1.*",
-        "doctrine/cache":"1.*",
-        "doctrine/dbal":"2.3.*",
-        "doctrine/migrations": "1.0.*@dev",
-        "ext-curl":"*",
-        "guzzle/guzzle":"3.3.*",
-        "nocarrier/hal":"0.9.*",
-        "pagerfanta/pagerfanta":"1.*",
-        "php":">=5.4.0",
-        "ray/aop":"dev-develop",
-        "ray/di":"dev-develop",
+        "danielstjules/stringy": "1.*",
+        "doctrine/migrations": "1.0.*",
         "rhumsaa/uuid":"2.4",
         "robmorgan/phinx": "*",
-        "smarty/smarty":"3.1.*",
-        "symfony/console":"2.0.*",
-        "symfony/http-foundation":"2.0.*",
-        "symfony/routing": "2.2.*",
-        "twitter/bootstrap":"2.*",
-        "zendframework/zend-db": "2.1.*",
-        "zendframework/zend-log":"2.1.*",
-        "zendframework/zend-stdlib": "2.1.*",
         "zendframework/zend-validator": "2.1.*"
     },
     "require-dev":{
-        "printo/printo":"0.1.*",
-        "facebook/xhprof":"dev-master",
-        "firephp/firephp-core":"*",
-        "dg/adminer-custom": "1.*",
-        "twig/twig":"1.*"
+        "bear/dev-package":"dev-master"
     },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
     "autoload":{
-        "psr-0":{
-            "Mackstar\\Spout": "src/"
+        "psr-4":{
+            "Mackstar\\Spout\\": "src/"
         }
     },
     "extra": {
