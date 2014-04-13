@@ -4,7 +4,7 @@ app.controller('MenusCtrl', function($scope, $state, menus) {
   $scope.menus = menus;
 
   $scope.remove = function(menu) {
-    var index = $scope.menus.indexOf( menu );
+    var index = $scope.menus.indexOf(menu);
     if (confirm("Are you sure you want to destroy this menu?")) {
       $scope.menus[index].remove({slug: menu.slug}).then(function() {
         $scope.menus.splice(index, 1);
@@ -31,19 +31,59 @@ app.controller('MenusAddCtrl', function($scope, $rootScope) {
   };
 });
 
-app.controller('MenuLinksCtrl', function ($scope, $stateParams) {
+app.controller('MenuLinksCtrl', function ($scope, $stateParams, links) {
+  $scope.links = links;
   angular.forEach($scope.menus, function (menu) {
     if (menu.slug === $stateParams.slug) {
       $scope.menu = menu;
     }
   });
 
+  $scope.delete = function(link) {
+    var index = $scope.links.indexOf(link);
+    if (confirm("Are you sure you want to remove this link?")) {
+      link.remove().then(function() {
+        $scope.links.splice(index, 1);
+      });
+    }
+  };
 });
 
-app.controller('MenuAddUrlLinkCtrl', function($scope, $modalInstance) {
+
+app.controller('MenuEditLinkCtrl', function($scope, $modalInstance, $rootScope, $filter, $stateParams) {
+  $scope.close = $modalInstance.close;
+  $scope.link = $filter('findById')($scope.links, $stateParams.id);
+
+
+  $scope.submit = function() {
+    if ($scope.form.link.$invalid) {
+      $rootScope.$emit('sp.message', {title: 'Oops', message: 'Form not yet complete.', type: "danger"});
+      return;
+    }
+    $scope.link.put().then(function () {
+      $rootScope.$emit('sp.message', {title: 'Yeah!', message: 'Link Updated.', type: "success"});
+      $scope.close();
+    });
+  };
+});
+
+app.controller('MenuAddLinkCtrl', function($scope, $modalInstance, $rootScope) {
   $scope.close = $modalInstance.close;
   $scope.link = {
     menu: $scope.menu.slug,
     type: 'url'
-  }
+  };
+
+  $scope.submit = function() {
+    if ($scope.form.link.$invalid) {
+      $rootScope.$emit('sp.message', {title: 'Oops', message: 'Form not yet complete.', type: "danger"});
+      return;
+    }
+    $scope.links.post($scope.link).then(function () {
+      $scope.links.push($scope.link);
+      $rootScope.$emit('sp.message', {title: 'Yeah!', message: 'Menu added.', type: "success"});
+      $scope.close();
+    });
+
+  };
 });

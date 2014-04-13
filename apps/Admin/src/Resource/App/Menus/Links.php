@@ -17,20 +17,47 @@ class Links extends ResourceObject{
 
     protected $table = 'links';
 
-    public function onPost($menu)
+    public function onPost($menu, $name, $url, $type)
+    {
+        $this->db->insert($this->table, [
+            'menu' => $menu,
+            'name' => $name,
+            'url' => $url,
+            'type' => $type
+        ]);
+        return $this;
+
+    }
+
+    public function onGet($menu, $id = null)
     {
 
-        $sql  = "SELECT {$this->table}.* FROM {$this->table} ";
-        $this['resources'] = $this->db->fetchAll($sql);
+        if ($id) {
+            $stmt = $this->db->executeQuery("SELECT * FROM {$this->table} WHERE id = ?", array($id));
+            $this['link'] = $stmt->fetch();
+        }
+        if (!$id) {
+            $stmt = $this->db->executeQuery("SELECT * FROM {$this->table} WHERE menu = ?", array($menu));
+            $this['links'] = $stmt->fetchAll();
+        }
 
         return $this;
     }
 
-    public function onGet($menu)
+    public function onDelete($id, $menu = null)
     {
-        $sql = "SELECT * FROM {$this->table} WHERE `menu` = '{$slug}'";
-        $this['links'] = $this->db->fetchAll($sql);
+        $removal = ['id' => $id];
+        if ($menu) {
+            $removal = ['menu' => $menu];
+        }
+        $this->db->delete($this->table, $removal);
+        $this->code = 204;
         return $this;
+    }
+
+    public function onPut($id, $name, $url)
+    {
+        $this->db->update($this->table, ['name' => $name, 'url' => $url], ['id' => $id]);
     }
 
 

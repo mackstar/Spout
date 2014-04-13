@@ -147,3 +147,16 @@ app.controller('ModalCtrl', function($scope, options, $modal, $state) {
   });
 
 });
+
+app.filter('findById', function() {
+  return function(input, id) {
+    var i = 0,
+        length = input.length;
+    for (; i<length; i++) {
+      if (+input[i].id === +id) {
+        return input[i];
+      }
+    }
+    return null;
+  };
+});

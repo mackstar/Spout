@@ -12,10 +12,10 @@ class Links extends AbstractMigration
         $table = $this->table('links');
         $table
             ->addColumn('name', 'string', array('limit' => 35))
-            ->addColumn('url', 'string', array('limit' => 100))
+            ->addColumn('url', 'string', array('limit' => 100, 'default' => null))
             ->addColumn('type', 'string', array('limit' => 8)) // resource, index, url
-            ->addColumn('resource', 'string', array('limit' => 35)) // Slug
-            ->addColumn('resource_type', 'string', array('limit' => 35)) // Resource type slug
+            ->addColumn('resource', 'string', array('limit' => 35, 'default' => null)) // Slug
+            ->addColumn('resource_type', 'string', array('limit' => 35, 'default' => null)) // Resource type slug
             ->addColumn('weight', 'integer', array('limit' => 3))
             ->addColumn('depth', 'integer', array('limit' => 2))
             ->addColumn('parent_id', 'integer', array('limit' => 3))

@@ -9,4 +9,14 @@
     </ul>
 </div>
 
+<ul class="list-group">
+
+    <li class="list-group-item" ng-repeat="link in links">
+    {[link.name]}
+        <span class="badge" ui-sref="menus.links.edit({id: link.id, slug: link.menu})"><span class="glyphicon glyphicon-pencil"></span></span>
+        <span class="badge" ng-click="delete(link)"><span class="glyphicon glyphicon-trash"></span></span>
+    </li>
+</ul>
+
+
 <div ui-view></div>

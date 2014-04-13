@@ -55,7 +55,6 @@ app.controller('ResourceEditCtrl', function($scope, Restangular, $modalInstance,
       $rootScope.$emit('sp.message', {title: 'Resource edited successfully', type: "success"});
     });
   };
-
 });
 
 function parseResourceObject(resource) {

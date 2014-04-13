@@ -16,12 +16,26 @@ app.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $ur
     url: "/links/:slug",
     templateUrl: '/js/templates/menus/links.html',
     authenticate: true,
-    controller: 'MenuLinksCtrl'
-//    resolve: {
-//      links: ['Restangular', function (Restangular, $stateParams) {
-//        return Restangular.all('menus/links').getList({menu:$stateParams});
-//      }]
-//    }
+    controller: 'MenuLinksCtrl',
+    resolve: {
+      links: ['Restangular', '$stateParams', function (Restangular, $stateParams) {
+        return Restangular.all('menus/links').getList({menu:$stateParams.slug});
+      }]
+    }
+  }).state('menus.links.edit', {
+    url: "/edit/:id",
+    authenticate: true,
+    controller: 'ModalCtrl',
+    resolve: {
+      options: ['$stateParams', function ($stateParams) {
+        return {
+          templateUrl: "/js/templates/menus/url-form.html",
+          controller: 'MenuEditLinkCtrl',
+          onComplete: 'menus.links',
+          onCompleteOptions: { slug: $stateParams.slug }
+        };
+      }]
+    }
   }).state('menus.links.add-url', {
     url: "/add/url",
     controller: 'ModalCtrl',
@@ -29,7 +43,7 @@ app.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $ur
       options: ['$stateParams', function ($stateParams) {
         return {
           templateUrl: "/js/templates/menus/url-form.html",
-          controller: 'MenuAddUrlLinkCtrl',
+          controller: 'MenuAddLinkCtrl',
           onComplete: 'menus.links',
           onCompleteOptions: { slug: $stateParams.slug }
         };
