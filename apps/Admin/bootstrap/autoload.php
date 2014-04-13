@@ -1,29 +1,15 @@
 <?php
-
 namespace Mackstar\Spout\Admin;
 
-/**
- * Autoloader
- *
- * @return $app \Composer\Autoload\ClassLoader
- *
- * @global $appDir
- * @global $packageDir
- */
+use BEAR\Package\Bootstrap\Bootstrap;
 
 $appDir = dirname(__DIR__);
-$packageDir = dirname(dirname($appDir));
+$packageDir = dirname(dirname(dirname(__DIR__)));
+$baseDir = file_exists($appDir . '/vendor/autoload.php') ? $appDir : $packageDir;
+$loader = require $baseDir . '/vendor/autoload.php';
 
-// Hierarchical profiler @see http://www.php.net/manual/en/book.xhprof.php
-// require dirname(dirname(dirname(dirname(__DIR__)))) . '/var/lib/profile.php';
-
-$loader = require $packageDir . '/vendor/autoload.php';
-/** @var $loader \Composer\Autoload\ClassLoader */
-
-\BEAR\Bootstrap\registerLoader(
+Bootstrap::registerLoader(
     $loader,
     __NAMESPACE__,
-    $appDir
+    dirname(__DIR__)
 );
-
-return $loader;

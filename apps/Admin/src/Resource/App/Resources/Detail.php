@@ -58,7 +58,6 @@ class Detail extends ResourceObject
                 $fieldTypes[] = $fieldType;
             }
         }
-        $values = [];
         foreach ($fieldTypes as $fieldType) {
             $table = 'field_values_' . $fieldType;
             $sql = "SELECT $table.* FROM $table WHERE $table.`resource_id` = :id";

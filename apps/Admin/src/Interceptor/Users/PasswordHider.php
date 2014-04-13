@@ -21,7 +21,7 @@ class PasswordHider implements MethodInterceptor
 
     private function removeFromArrayRecord(&$body)
     {
-        foreach ($body as $key => &$records) {
+        foreach ($body as &$records) {
             if (!isset($records[0]) || !is_array($records[0])) {
                 continue;
             }
@@ -33,7 +33,7 @@ class PasswordHider implements MethodInterceptor
 
     private function removeFromSingleRecord(&$body)
     {
-        foreach ($body as $key => &$record) {
+        foreach ($body as &$record) {
             if (isset($record[0]) && is_array($record[0])) {
                 continue;
             }
