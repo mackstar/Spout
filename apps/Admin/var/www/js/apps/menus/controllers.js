@@ -31,8 +31,50 @@ app.controller('MenusAddCtrl', function($scope, $rootScope) {
   };
 });
 
-app.controller('MenuLinksCtrl', function ($scope, $stateParams, links) {
+app.controller('MenuLinksCtrl', function ($scope, $stateParams, $rootScope, links) {
+
+  var i = links.length - 1;
+
+  if ($stateParams.parent) {
+    for (; i >= 0; i--) {
+      if (links[i].parent_id !== $stateParams.parent) {
+        links.splice(i, 1);
+      }
+    }
+  }
+
+  if (!$stateParams.parent) {
+    for (; i >= 0; i--) {
+      if (links[i].parent_id && links[i].parent_id != 0) {
+        links.splice(i, 1);
+      }
+    }
+  }
+
   $scope.links = links;
+
+  var items = window.document.getElementById("go-list");
+  new Sortable(items, {
+      group: "go-list",
+      onUpdate: function (evt) {
+          var reorderedLinks = [];
+          angular.forEach(items.getElementsByTagName("li"), function(li, index) {
+              var id = li.getAttribute("data-link-id");
+              angular.forEach($scope.links, function(link) {
+                if(link.id === id) {
+                    reorderedLinks.push({
+                        id: id,
+                        weight: +index
+                    });
+                }
+              });
+          });
+          $rootScope.$emit('spout.loading', {status: true});
+          $scope.links.customPUT({links: reorderedLinks}, 'reorder').then(function() {
+            $rootScope.$emit('spout.loading', {status: false});
+          });
+      }
+  });
   angular.forEach($scope.menus, function (menu) {
     if (menu.slug === $stateParams.slug) {
       $scope.menu = menu;
@@ -49,11 +91,9 @@ app.controller('MenuLinksCtrl', function ($scope, $stateParams, links) {
   };
 });
 
-
 app.controller('MenuEditLinkCtrl', function($scope, $modalInstance, $rootScope, $filter, $stateParams) {
   $scope.close = $modalInstance.close;
   $scope.link = $filter('findById')($scope.links, $stateParams.id);
-
 
   $scope.submit = function() {
     if ($scope.form.link.$invalid) {
@@ -67,11 +107,13 @@ app.controller('MenuEditLinkCtrl', function($scope, $modalInstance, $rootScope, 
   };
 });
 
-app.controller('MenuAddLinkCtrl', function($scope, $modalInstance, $rootScope) {
+app.controller('MenuAddLinkCtrl', function($scope, $modalInstance, $rootScope, $stateParams) {
   $scope.close = $modalInstance.close;
   $scope.link = {
     menu: $scope.menu.slug,
-    type: 'url'
+    type: 'url',
+    parent_id: $stateParams.parent || 0,
+    weight: 999
   };
 
   $scope.submit = function() {

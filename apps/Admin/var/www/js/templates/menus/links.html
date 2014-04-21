@@ -3,20 +3,30 @@
         Add Link <span class="caret"></span>
     </button>
     <ul class="dropdown-menu" role="menu">
-        <li><a ui-sref="menus.links.add-url({slug:menu.slug})">Add URL</a></li>
+        <li><a ui-sref="menus.links.add">Add URL</a></li>
         <li><a ui-sref="menus.links.add-url">Add Resource</a></li>
         <li><a ui-sref="menus.links.add-url">Add Index</a></li>
     </ul>
 </div>
 
-<ul class="list-group">
+<ul class="list-group" id="go-list" ng-show="links.length">
 
-    <li class="list-group-item" ng-repeat="link in links">
-    {[link.name]}
-        <span class="badge" ui-sref="menus.links.edit({id: link.id, slug: link.menu})"><span class="glyphicon glyphicon-pencil"></span></span>
-        <span class="badge" ng-click="delete(link)"><span class="glyphicon glyphicon-trash"></span></span>
+    <li class="list-group-item" ng-repeat="link in links" data-link-id="{[link.id ]}">
+        <span class="glyphicon glyphicon-move active" tooltip="Re-Order" tooltip-placement="bottom"></span> {[link.name]}
+        <span class="badge" ui-sref="menus.links.edit({id: link.id, slug: link.menu})">
+            <span class="glyphicon glyphicon-pencil" tooltip="Edit" tooltip-placement="bottom"></span>
+        </span>
+        <span class="badge" ng-click="delete(link)">
+            <span class="glyphicon glyphicon-trash" tooltip="Delete" tooltip-placement="bottom"></span>
+        </span>
+        <span class="badge" ui-sref="menus.links({parent: link.id })">
+            <span class="glyphicon glyphicon-folder-open" tooltip="Submenu" tooltip-placement="bottom"></span>
+        </span>
     </li>
+
 </ul>
+
+<p class="text-center lead" ng-show="!links.length">No menu/sub-menu items present.</p>
 
 
 <div ui-view></div>
