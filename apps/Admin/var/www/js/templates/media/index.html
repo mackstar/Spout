@@ -1,0 +1,15 @@
+<h1>Media</h1>
+
+<div class="row">
+    <div class="col-md-8">
+        <ul>
+            <li ng-repeat="document in documents">
+                <sp-media-image document="document" />
+            </li>
+        </ul>
+    </div>
+    <div class="col-md-4">
+        <div class="well well-lg" sp-file-dropzone="[image/png, image/jpeg, image/gif]"><p class="h3">Upload Here</p></div>
+    </div>
+
+</div>
