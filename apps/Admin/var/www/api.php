@@ -66,7 +66,7 @@ if (PHP_SAPI === 'cli') {
         $uri = 'app://self' . $pathInfo;
     }
     
-    $get = $_GET;
+    $get = array_merge($_GET, $_FILES);
     if (empty($get) && $rawdata = file_get_contents('php://input')) {
         $get = castToArray(json_decode($rawdata));
     }

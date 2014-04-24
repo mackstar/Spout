@@ -31,22 +31,19 @@ $appDir = dirname(dirname(__DIR__));
 $context = 'dev';
 $app = require $appDir . '/bootstrap/instance.php';
 /* @var $app \BEAR\Package\Provide\Application\AbstractApp */
-$dev = new Dev;
-$dev
+$devHtml = (new Dev)
     ->iniSet()
     ->loadDevFunctions()
     ->registerFatalErrorHandler()
     ->registerExceptionHandler("{$appDir}/var/log")
     ->registerSyntaxErrorEdit()
     ->setApp($app, $appDir)
-    ->serviceDevWeb();
-
-// When using the built in file-server when directly accessing files the app instance will not be created and
-// and the script will be exited.
-if ($dev->isDirectStaticFileAccess()) {
-    return false;
+    ->getDevHtml();
+if ($devHtml) {
+    http_response_code(200);
+    echo $devHtml;
+    exit(0);
 }
-
 //
 // The cache is cleared on each request via the following script. We understand that you may want to debug
 // your application with caching turned on. When doing so just comment out the following.

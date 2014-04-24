@@ -1,4 +1,4 @@
-app.directive('spFileDropzone', function() {
+app.directive('spFileDropzone', function(Restangular) {
   return {
     restrict: 'A',
     link: function(scope, element, attrs) {
@@ -51,6 +51,15 @@ app.directive('spFileDropzone', function() {
         type = file.type;
         size = file.size;
         reader.readAsDataURL(file);
+
+        var formData = new FormData();
+        formData.append('name', file.name);
+        formData.append('file', file);
+
+
+        Restangular.all('media')
+          .withHttpConfig({transformRequest: angular.identity})
+          .customPOST(formData, 'index', undefined, {'Content-Type': undefined});
         return false;
       });
     }
