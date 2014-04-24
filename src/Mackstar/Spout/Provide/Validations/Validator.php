@@ -24,20 +24,23 @@ class Validator implements ValidatorInterface
     /**
      * @Inject
      */
-    public function __construct(ValidatorProviderInterface $provider) {
-    	$this->validators = $provider->get();
+    public function __construct(ValidatorProviderInterface $provider)
+    {
+        $this->validators = $provider->get();
     }
 
-    public function get($type, $options = null) {
-    	$this->currentValidator = $this->validators[$type];
-    	return $this->currentValidator;
+    public function get($type, $options = null)
+    {
+        $this->currentValidator = $this->validators[$type];
+        return $this->currentValidator;
     }
 
-    public function getMessages() {
-    	$messages = [];
-    	foreach($this->currentValidator->getMessages() as $key => $val) {
-    		$messages[] = $val;
-    	}
-    	return $messages;
+    public function getMessages()
+    {
+        $messages = [];
+        foreach ($this->currentValidator->getMessages() as $key => $val) {
+            $messages[] = $val;
+        }
+        return $messages;
     }
-}
+    }
