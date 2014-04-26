@@ -7,13 +7,10 @@
 namespace Mackstar\Spout\Interfaces;
 
 /**
- * Mackstar.Spout
- *
- * @package Mackstar.Spout
+ * Interface StringInterface
+ * @package Mackstar\Spout\Interfaces
  */
 interface StringInterface
 {
-    public function singularize($string = null);
 
-    public function setString($string);
 }
