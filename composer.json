@@ -1,6 +1,7 @@
 {
     "name": "mackstar/spout",
     "description":"A BEAR.Sunday based CMS",
+    "license": "MIT",
     "keywords":[
     	"PHP",
     	"CMS"
