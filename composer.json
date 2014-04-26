@@ -16,7 +16,8 @@
         "doctrine/migrations": "1.0.*",
         "rhumsaa/uuid":"2.4",
         "robmorgan/phinx": "*",
-        "zendframework/zend-validator": "2.1.*"
+        "zendframework/zend-validator": "2.1.*",
+        "symfony/http-foundation": "~2.4"
     },
     "require-dev":{
         "bear/dev-package":"dev-master"

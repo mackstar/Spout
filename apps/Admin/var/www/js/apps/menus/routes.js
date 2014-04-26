@@ -13,7 +13,7 @@ app.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $ur
       }]
     }
   }).state('menus.links', {
-    url: "/links/:slug",
+    url: "/links/:slug/:parent",
     templateUrl: '/js/templates/menus/links.html',
     authenticate: true,
     controller: 'MenuLinksCtrl',
@@ -36,8 +36,8 @@ app.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $ur
         };
       }]
     }
-  }).state('menus.links.add-url', {
-    url: "/add/url",
+  }).state('menus.links.add', {
+    url: "/add",
     controller: 'ModalCtrl',
     resolve: {
       options: ['$stateParams', function ($stateParams) {

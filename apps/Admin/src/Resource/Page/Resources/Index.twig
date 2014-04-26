@@ -3,10 +3,17 @@
 {% block h1 %}{{ title }}{% endblock %}
 
 {% block js %}
+    <style>
+        .dragOver {
+            background-color:sienna;
+            min-height: 40px;
+        }
+    </style>
 <script>
 window.sp = {};
 window.sp.user = {{ _user|json_encode(constant('JSON_PRETTY_PRINT'))|raw }};
 </script>
+<script src="/js/lib/sortable.js"></script>
 <script src="/js/apps/login/routes.js"></script>
 <script src="/js/apps/login/controllers.js"></script>
 <script src="/js/apps/login/services.js"></script>
@@ -15,4 +22,7 @@ window.sp.user = {{ _user|json_encode(constant('JSON_PRETTY_PRINT'))|raw }};
 <script src="/js/apps/resources/directives.js"></script>
 <script src="/js/apps/menus/routes.js"></script>
 <script src="/js/apps/menus/controllers.js"></script>
+<script src="/js/apps/media/routes.js"></script>
+<script src="/js/apps/media/directives.js"></script>
+<script src="/js/apps/media/controllers.js"></script>
 {% endblock %}

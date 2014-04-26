@@ -17,13 +17,15 @@ class Links extends ResourceObject{
 
     protected $table = 'links';
 
-    public function onPost($menu, $name, $url, $type)
+    public function onPost($menu, $name, $url, $type, $parent_id, $weight)
     {
         $this->db->insert($this->table, [
             'menu' => $menu,
             'name' => $name,
             'url' => $url,
-            'type' => $type
+            'type' => $type,
+            'weight' => $weight,
+            'parent_id' => $parent_id
         ]);
         return $this;
 
@@ -37,7 +39,7 @@ class Links extends ResourceObject{
             $this['link'] = $stmt->fetch();
         }
         if (!$id) {
-            $stmt = $this->db->executeQuery("SELECT * FROM {$this->table} WHERE menu = ?", array($menu));
+            $stmt = $this->db->executeQuery("SELECT * FROM {$this->table} WHERE menu = ? ORDER BY `weight`", array($menu));
             $this['links'] = $stmt->fetchAll();
         }
 
@@ -47,9 +49,13 @@ class Links extends ResourceObject{
     public function onDelete($id, $menu = null)
     {
         $removal = ['id' => $id];
-        if ($menu) {
-            $removal = ['menu' => $menu];
-        }
+
+        /**
+         * I cant remember why I added this.
+         */
+        //if ($menu) {
+        //    $removal = ['menu' => $menu];
+        //}
         $this->db->delete($this->table, $removal);
         $this->code = 204;
         return $this;

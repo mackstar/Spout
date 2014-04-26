@@ -44,7 +44,6 @@ if ($devHtml) {
     echo $devHtml;
     exit(0);
 }
-
 //
 // The cache is cleared on each request via the following script. We understand that you may want to debug
 // your application with caching turned on. When doing so just comment out the following.

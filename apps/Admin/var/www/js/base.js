@@ -160,3 +160,27 @@ app.filter('findById', function() {
     return null;
   };
 });
+
+app.directive('spLoadingSpinner', function ($rootScope) {
+
+  return {
+    restrict: 'E',
+    replace: true,
+    scope: {},
+    template: '<div style="padding-top: 10px"><img src="/img/spinner.gif" ng-show="loading" /></div>',
+    link: function(scope) {
+
+      scope.loading = false;
+
+      $rootScope.$on('spout.loading', function(event, options){
+        scope.loading = options.status;
+      });
+      $rootScope.$on('$stateChangeStart', function(){
+        scope.loading = true;
+      });
+      $rootScope.$on('$stateChangeSuccess', function(){
+        scope.loading = false;
+      });
+    }
+  };
+});
