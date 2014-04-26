@@ -149,7 +149,7 @@
                 {
                     "name": "Akihito Koriyama",
                     "email": "akihito.koriyama@gmail.com",
-                    "role": "Lead"
+                    "role": "Developer"
                 },
                 {
                     "name": "Aura.Input Contributors",
@@ -307,7 +307,7 @@
                 {
                     "name": "Akihito Koriyama",
                     "email": "akihito.koriyama@gmail.com",
-                    "role": "Lead"
+                    "role": "Developer"
                 }
             ],
             "description": "A SignalSlots/EventHandler implementation for PHP; with it, we can invoke handlers (\"slots\" or \"hooks\") whenever an object sends a signal (\"notification\" or \"event\") to the signal manager.",
@@ -444,12 +444,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/auraphp/Aura.Web.git",
-                "reference": "a3870d1a16ecd3ab6c4807165ac5196384da62cd"
+                "reference": "45d3121f4d881e267557a3ab669a565c0849f952"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/auraphp/Aura.Web/zipball/a3870d1a16ecd3ab6c4807165ac5196384da62cd",
-                "reference": "a3870d1a16ecd3ab6c4807165ac5196384da62cd",
+                "url": "https://api.github.com/repos/auraphp/Aura.Web/zipball/45d3121f4d881e267557a3ab669a565c0849f952",
+                "reference": "45d3121f4d881e267557a3ab669a565c0849f952",
                 "shasum": ""
             },
             "require": {
@@ -489,7 +489,7 @@
                 "request",
                 "response"
             ],
-            "time": "2014-04-01 20:12:34"
+            "time": "2014-04-18 21:02:40"
         },
         {
             "name": "bear/package",
@@ -497,12 +497,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/koriym/BEAR.Package.git",
-                "reference": "dbd73f25e2f5cf0cfe08e20ae9cb57243f04feb6"
+                "reference": "d838a87e563913a66e75dce31e1082ce3037de65"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/koriym/BEAR.Package/zipball/dbd73f25e2f5cf0cfe08e20ae9cb57243f04feb6",
-                "reference": "dbd73f25e2f5cf0cfe08e20ae9cb57243f04feb6",
+                "url": "https://api.github.com/repos/koriym/BEAR.Package/zipball/d838a87e563913a66e75dce31e1082ce3037de65",
+                "reference": "d838a87e563913a66e75dce31e1082ce3037de65",
                 "shasum": ""
             },
             "require": {
@@ -524,6 +524,7 @@
                 "bear/framework": "0.9.0"
             },
             "require-dev": {
+                "bear/demo-apps": "dev-master",
                 "bear/dev-package": "*"
             },
             "suggest": {
@@ -561,7 +562,7 @@
                 "hypermedia",
                 "rest"
             ],
-            "time": "2014-04-10 09:14:08"
+            "time": "2014-04-22 08:18:41"
         },
         {
             "name": "bear/resource",
@@ -669,16 +670,16 @@
         },
         {
             "name": "danielstjules/stringy",
-            "version": "1.5.0",
+            "version": "1.5.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/danielstjules/Stringy.git",
-                "reference": "8d961e25d09f946b463c0581e927a963f3578647"
+                "reference": "7600549abc0261f469445c89e47ee63aff3b32f8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/danielstjules/Stringy/zipball/8d961e25d09f946b463c0581e927a963f3578647",
-                "reference": "8d961e25d09f946b463c0581e927a963f3578647",
+                "url": "https://api.github.com/repos/danielstjules/Stringy/zipball/7600549abc0261f469445c89e47ee63aff3b32f8",
+                "reference": "7600549abc0261f469445c89e47ee63aff3b32f8",
                 "shasum": ""
             },
             "require": {
@@ -720,7 +721,7 @@
                 "utility",
                 "utils"
             ],
-            "time": "2014-03-19 23:25:00"
+            "time": "2014-04-19 15:03:05"
         },
         {
             "name": "doctrine/annotations",
@@ -760,10 +761,9 @@
             ],
             "authors": [
                 {
-                    "name": "Jonathan H. Wage",
+                    "name": "Jonathan Wage",
                     "email": "jonwage@gmail.com",
-                    "homepage": "http://www.jwage.com/",
-                    "role": "Creator"
+                    "homepage": "http://www.jwage.com/"
                 },
                 {
                     "name": "Guilherme Blanco",
@@ -835,7 +835,7 @@
             ],
             "authors": [
                 {
-                    "name": "Jonathan H. Wage",
+                    "name": "Jonathan Wage",
                     "email": "jonwage@gmail.com",
                     "homepage": "http://www.jwage.com/",
                     "role": "Creator"
@@ -977,8 +977,7 @@
                 {
                     "name": "Jonathan Wage",
                     "email": "jonwage@gmail.com",
-                    "homepage": "http://www.jwage.com/",
-                    "role": "Creator"
+                    "homepage": "http://www.jwage.com/"
                 },
                 {
                     "name": "Guilherme Blanco",
@@ -1108,8 +1107,7 @@
                 {
                     "name": "Jonathan Wage",
                     "email": "jonwage@gmail.com",
-                    "homepage": "http://www.jwage.com/",
-                    "role": "Creator"
+                    "homepage": "http://www.jwage.com/"
                 },
                 {
                     "name": "Guilherme Blanco",
@@ -1250,22 +1248,22 @@
         },
         {
             "name": "guzzle/guzzle",
-            "version": "v3.8.1",
+            "version": "v3.9.0",
             "source": {
                 "type": "git",
-                "url": "https://github.com/guzzle/guzzle.git",
-                "reference": "4de0618a01b34aa1c8c33a3f13f396dcd3882eba"
+                "url": "https://github.com/guzzle/guzzle3.git",
+                "reference": "e4d12d7d6acccf75a5e504114e2df9195e494108"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/guzzle/guzzle/zipball/4de0618a01b34aa1c8c33a3f13f396dcd3882eba",
-                "reference": "4de0618a01b34aa1c8c33a3f13f396dcd3882eba",
+                "url": "https://api.github.com/repos/guzzle/guzzle3/zipball/e4d12d7d6acccf75a5e504114e2df9195e494108",
+                "reference": "e4d12d7d6acccf75a5e504114e2df9195e494108",
                 "shasum": ""
             },
             "require": {
                 "ext-curl": "*",
                 "php": ">=5.3.3",
-                "symfony/event-dispatcher": ">=2.1"
+                "symfony/event-dispatcher": "~2.1"
             },
             "replace": {
                 "guzzle/batch": "self.version",
@@ -1292,13 +1290,13 @@
                 "guzzle/stream": "self.version"
             },
             "require-dev": {
-                "doctrine/cache": "*",
-                "monolog/monolog": "1.*",
+                "doctrine/cache": "~1.3",
+                "monolog/monolog": "~1.0",
                 "phpunit/phpunit": "3.7.*",
-                "psr/log": "1.0.*",
-                "symfony/class-loader": "*",
-                "zendframework/zend-cache": "<2.3",
-                "zendframework/zend-log": "<2.3"
+                "psr/log": "~1.0",
+                "symfony/class-loader": "~2.1",
+                "zendframework/zend-cache": "2.*,<2.3",
+                "zendframework/zend-log": "2.*,<2.3"
             },
             "type": "library",
             "extra": {
@@ -1338,7 +1336,7 @@
                 "rest",
                 "web service"
             ],
-            "time": "2014-01-28 22:29:15"
+            "time": "2014-04-23 21:43:40"
         },
         {
             "name": "koriym/fusion-cache",
@@ -1371,7 +1369,6 @@
                 {
                     "name": "Akihito Koriyama",
                     "email": "akihito.koriyama@gmail.com",
-                    "homepage": "https://github.com/koriym",
                     "role": "Lead"
                 }
             ],
@@ -1719,6 +1716,7 @@
                 {
                     "name": "Akihito Koriyama",
                     "email": "akihito.koriyama@gmail.com",
+                    "homepage": "https://github.com/koriym",
                     "role": "Lead"
                 },
                 {
@@ -1787,8 +1785,7 @@
                 },
                 {
                     "name": "Ben Ramsey",
-                    "homepage": "http://benramsey.com",
-                    "role": "Developer"
+                    "homepage": "http://benramsey.com"
                 }
             ],
             "description": "A PHP 5.3+ library for generating RFC 4122 version 1, 3, 4, and 5 universally unique identifiers (UUID).",
@@ -2414,6 +2411,7 @@
                 {
                     "name": "Akihito Koriyama",
                     "email": "akihito.koriyama@gmail.com",
+                    "homepage": "https://github.com/koriym",
                     "role": "Lead"
                 }
             ],
@@ -2431,20 +2429,20 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/koriym/BEAR.DevPackage.git",
-                "reference": "4e3cef2afe98d19fd16aa79c26712f501325158a"
+                "reference": "600b5f4eb4fde84fb1d47a73584e186dcb581249"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/koriym/BEAR.DevPackage/zipball/4e3cef2afe98d19fd16aa79c26712f501325158a",
-                "reference": "4e3cef2afe98d19fd16aa79c26712f501325158a",
+                "url": "https://api.github.com/repos/koriym/BEAR.DevPackage/zipball/600b5f4eb4fde84fb1d47a73584e186dcb581249",
+                "reference": "600b5f4eb4fde84fb1d47a73584e186dcb581249",
                 "shasum": ""
             },
             "require": {
                 "bear/ace": "1.*",
-                "classpreloader/classpreloader": "dev-master",
+                "classpreloader/classpreloader": "1.*",
                 "dg/adminer-custom": "1.*",
                 "facebook/xhprof": "dev-master",
-                "firephp/firephp-core": "*",
+                "firephp/firephp-core": "0.*",
                 "phpunit/dbunit": "1.3.*",
                 "phpunit/phpunit": "3.7.*",
                 "printo/printo": "0.*",
@@ -2452,7 +2450,7 @@
                 "zendframework/zend-log": "2.*",
                 "zendframework/zend-stdlib": "2.*"
             },
-            "type": "library",
+            "type": "metapackage",
             "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "BSD-3-Clause"
@@ -2465,11 +2463,11 @@
                 }
             ],
             "description": "dev-require packages for BEAR.Package",
-            "time": "2014-03-26 18:03:10"
+            "time": "2014-04-18 04:43:02"
         },
         {
             "name": "classpreloader/classpreloader",
-            "version": "dev-master",
+            "version": "1.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/mtdowling/ClassPreloader.git",
@@ -2516,22 +2514,22 @@
         },
         {
             "name": "dg/adminer-custom",
-            "version": "v1.2.0",
+            "version": "v1.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/dg/adminer-custom.git",
-                "reference": "aeed2dbc97bdaf134efded1e8e2869f079d70b4b"
+                "reference": "75ec829dd3a17e0074bec94e56b3c0a75ce1711a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dg/adminer-custom/zipball/aeed2dbc97bdaf134efded1e8e2869f079d70b4b",
-                "reference": "aeed2dbc97bdaf134efded1e8e2869f079d70b4b",
+                "url": "https://api.github.com/repos/dg/adminer-custom/zipball/75ec829dd3a17e0074bec94e56b3c0a75ce1711a",
+                "reference": "75ec829dd3a17e0074bec94e56b3c0a75ce1711a",
                 "shasum": ""
             },
             "type": "project",
             "notification-url": "https://packagist.org/downloads/",
             "description": "Customization for the best database management tool written in PHP, Adminer",
-            "time": "2014-02-01 21:30:36"
+            "time": "2014-04-18 22:01:23"
         },
         {
             "name": "facebook/xhprof",
@@ -2539,12 +2537,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/facebook/xhprof.git",
-                "reference": "ec8b884ffdae5dfa5e1e271ab6762115123989c5"
+                "reference": "0a7a5f69f5d762c34056164eb08dd13d41156015"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/facebook/xhprof/zipball/ec8b884ffdae5dfa5e1e271ab6762115123989c5",
-                "reference": "ec8b884ffdae5dfa5e1e271ab6762115123989c5",
+                "url": "https://api.github.com/repos/facebook/xhprof/zipball/0a7a5f69f5d762c34056164eb08dd13d41156015",
+                "reference": "0a7a5f69f5d762c34056164eb08dd13d41156015",
                 "shasum": ""
             },
             "require": {
@@ -2567,7 +2565,7 @@
                 "performance",
                 "profiling"
             ],
-            "time": "2013-08-09 16:22:45"
+            "time": "2014-04-22 20:02:16"
         },
         {
             "name": "firephp/firephp-core",
@@ -2910,16 +2908,16 @@
         },
         {
             "name": "phpunit/phpunit",
-            "version": "3.7.34",
+            "version": "3.7.35",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "248d6ce95e6ca7f0e3135252c0b984bbe1f52f19"
+                "reference": "83f9537e46346f75ed6925441ac259453213c7cc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/248d6ce95e6ca7f0e3135252c0b984bbe1f52f19",
-                "reference": "248d6ce95e6ca7f0e3135252c0b984bbe1f52f19",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/83f9537e46346f75ed6925441ac259453213c7cc",
+                "reference": "83f9537e46346f75ed6925441ac259453213c7cc",
                 "shasum": ""
             },
             "require": {
@@ -2980,7 +2978,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2014-03-28 11:04:36"
+            "time": "2014-04-21 06:25:54"
         },
         {
             "name": "phpunit/phpunit-mock-objects",
@@ -3066,7 +3064,7 @@
                     "name": "Akihito Koriyama",
                     "email": "akihito.koriyama@gmail.com",
                     "homepage": "https://github.com/koriym",
-                    "role": "Lead"
+                    "role": "Developer"
                 }
             ],
             "description": "An object graph visualizer.",
@@ -3128,17 +3126,17 @@
         },
         {
             "name": "zendframework/zend-db",
-            "version": "2.3.0",
+            "version": "2.3.1",
             "target-dir": "Zend/Db",
             "source": {
                 "type": "git",
                 "url": "https://github.com/zendframework/Component_ZendDb.git",
-                "reference": "37d573ea83b9573e2247c36fac7b370283ca673e"
+                "reference": "29bb7f1ceacb32fa3e1c122bc3d14da6490aba2c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/zendframework/Component_ZendDb/zipball/37d573ea83b9573e2247c36fac7b370283ca673e",
-                "reference": "37d573ea83b9573e2247c36fac7b370283ca673e",
+                "url": "https://api.github.com/repos/zendframework/Component_ZendDb/zipball/29bb7f1ceacb32fa3e1c122bc3d14da6490aba2c",
+                "reference": "29bb7f1ceacb32fa3e1c122bc3d14da6490aba2c",
                 "shasum": ""
             },
             "require": {
@@ -3157,8 +3155,8 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.2-dev",
-                    "dev-develop": "2.3-dev"
+                    "dev-master": "2.3-dev",
+                    "dev-develop": "2.4-dev"
                 }
             },
             "autoload": {
@@ -3174,7 +3172,7 @@
                 "db",
                 "zf2"
             ],
-            "time": "2014-03-12 17:04:30"
+            "time": "2014-04-15 15:29:07"
         },
         {
             "name": "zendframework/zend-log",
