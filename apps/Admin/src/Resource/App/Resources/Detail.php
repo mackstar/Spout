@@ -34,10 +34,14 @@ class Detail extends ResourceObject
                 ->withQuery(['slug' => $resource['type']])
                 ->request();
         } catch (\Exception $e) {
-            var_dump(get_class($this->resource));
+            var_dump("error:");
+            echo($e->getTraceAsString());
         }
 
-        $resource['title_label'] = $type->body['type']['title_label'];
+        var_dump($type);
+        exit;
+
+        $resource['title_label'] = $resource['type']['title_label'];
         $fieldTypes = [];
         $map = [];
         $resource['fields'] = [];

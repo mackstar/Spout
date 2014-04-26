@@ -28,7 +28,7 @@ $appDir = dirname(dirname(__DIR__));
 
 // Here we get an application instance by setting a $context variable such as (prod, dev, api)
 // the dev instance provides debugging tools and defaults to help you the development of your application.
-$context = 'dev';
+$context = 'prod';
 $app = require $appDir . '/bootstrap/instance.php';
 /* @var $app \BEAR\Package\Provide\Application\AbstractApp */
 $devHtml = (new Dev)

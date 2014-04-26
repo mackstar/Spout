@@ -5,6 +5,8 @@ namespace Mackstar\Spout\Admin\Resource\App\Media;
 use BEAR\Resource\ResourceObject;
 use BEAR\Package\Module\Database\Dbal\Setter\DbSetterTrait;
 use BEAR\Sunday\Annotation\Db;
+use Ray\Di\Di\Inject;
+use Ray\Di\Di\Named;
 
 /**
  * Add
@@ -18,7 +20,24 @@ class Index extends ResourceObject
 
     protected $table = 'menus';
 
+    protected $uploadDir;
 
+    /**
+     * @param $uploadDir
+     *
+     * @Inject
+     * @Named("upload_dir")
+     */
+    public function setUploadDir($uploadDir)
+    {
+        $this->uploadDir = $uploadDir;
+    }
+
+    /**
+     * @param $file
+     * @return $this
+     * @throws \Exception
+     */
     public function onPost(
         $file
     ) {

@@ -7,7 +7,7 @@ use BEAR\Package\Module\Database\Dbal\Setter\DbSetterTrait;
 use BEAR\Sunday\Inject\ResourceInject;
 use BEAR\Sunday\Annotation\Db;
 use Mackstar\Spout\Interfaces\SecurityInterface;
-use Symfony\Component\HttpFoundation\Session;
+use Symfony\Component\HttpFoundation\Session\Session;
 use Ray\Di\Di\Inject;
 
 /**

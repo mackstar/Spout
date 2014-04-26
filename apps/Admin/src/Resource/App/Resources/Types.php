@@ -28,6 +28,8 @@ class Types extends ResourceObject
         } else {
             $sql .= " WHERE slug = :slug";
             $stmt = $this->db->prepare($sql);
+
+
             $stmt->bindValue('slug', $slug);
             $stmt->execute();
             $this['type'] = $stmt->fetch();
