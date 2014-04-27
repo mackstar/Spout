@@ -57,19 +57,31 @@ class Index extends ResourceObject
         if (!$file['error'] && is_uploaded_file($file['tmp_name'])) {
 
             $uuid = $this->uuid;
+            $uuidDir = substr($uuid, 0, 2);
+            $targetDir = $this->uploadDir . '/media/' . $uuidDir;
+            $fileName = $uuid. '_' . $file['name'];
+            $target = $targetDir . '/' . $fileName;
+            $suffix = pathinfo($fileName, PATHINFO_EXTENSION);
 
-            $targetDir = $this->uploadDir . '/media/' . $uuid;
-            $target = $targetDir . '/' . $file['name'];
-            mkdir($targetDir);
+            if (!is_dir($targetDir)) {
+                mkdir($targetDir);
+            }
 
             if (!@move_uploaded_file($file['tmp_name'], $target)) {
                 $error = error_get_last();
                 throw new \Exception(sprintf('Could not move the file "%s" to "%s" (%s)', $file['tmp_name'], $target, strip_tags($error['message'])));
             }
 
-
             @chmod($target, 0666 & ~umask());
         }
+
+        $this->db->insert('media', [
+            'uuid' => $uuid,
+            'directory' => $uuidDir,
+            'file' => $fileName,
+            'type' => 'media',
+            'suffix' => $suffix
+        ]);
 
         return $this;
     }
