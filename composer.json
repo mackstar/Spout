@@ -14,9 +14,9 @@
     "require":{
         "bear/package":"dev-develop",
         "danielstjules/stringy": "1.*",
-        "doctrine/migrations": "1.0.*",
         "rhumsaa/uuid":"2.4",
         "robmorgan/phinx": "*",
+        "imagine/imagine": "v0.5.0",
         "zendframework/zend-validator": "2.1.*"
     },
     "require-dev":{
