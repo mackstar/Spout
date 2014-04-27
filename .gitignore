@@ -21,3 +21,4 @@ tmp
 cache.properties
 node_modules
 .idea/
+apps/Admin/var/www/uploads/*
