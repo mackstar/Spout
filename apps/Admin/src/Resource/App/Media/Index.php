@@ -19,7 +19,7 @@ class Index extends ResourceObject
 
     use DbSetterTrait;
 
-    protected $table = 'menus';
+    protected $table = 'media';
 
     protected $uploadDir;
 
@@ -69,13 +69,18 @@ class Index extends ResourceObject
 
             if (!@move_uploaded_file($file['tmp_name'], $target)) {
                 $error = error_get_last();
-                throw new \Exception(sprintf('Could not move the file "%s" to "%s" (%s)', $file['tmp_name'], $target, strip_tags($error['message'])));
+                throw new \Exception(sprintf(
+                    'Could not move the file "%s" to "%s" (%s)',
+                    $file['tmp_name'],
+                    $target,
+                    strip_tags($error['message'])
+                ));
             }
 
             @chmod($target, 0666 & ~umask());
         }
 
-        $this->db->insert('media', [
+        $this->db->insert($this->table, [
             'uuid' => $uuid,
             'directory' => $uuidDir,
             'file' => $fileName,
@@ -83,6 +88,13 @@ class Index extends ResourceObject
             'suffix' => $suffix
         ]);
 
+        return $this;
+    }
+
+    public function onGet()
+    {
+        $sql = "SELECT * FROM {$this->table}";
+        $this['media'] = $this->db->fetchAll($sql);
         return $this;
     }
 

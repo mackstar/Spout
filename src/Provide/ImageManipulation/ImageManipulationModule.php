@@ -7,6 +7,7 @@
 namespace Mackstar\Spout\Provide\ImageManipulation;
 
 use Ray\Di\AbstractModule;
+use Ray\Di\Scope;
 
 /**
  * Mackstar.Spout
@@ -20,7 +21,7 @@ class ImageManipulationModule extends AbstractModule
 
         $this
             ->bind('Mackstar\Spout\Interfaces\ImageManipulationInterface')
-            ->toProvider('Mackstar\Spout\Provide\ImageManipulationProvider')
+            ->to('Mackstar\Spout\Provide\ImageManipulation\Imagine')
             ->in(Scope::SINGLETON);
 
     }

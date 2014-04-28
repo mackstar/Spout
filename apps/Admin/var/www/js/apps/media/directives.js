@@ -1,3 +1,5 @@
+'use strict';
+
 app.directive('spFileDropzone', function(Restangular) {
   return {
     restrict: 'A',
@@ -64,4 +66,38 @@ app.directive('spFileDropzone', function(Restangular) {
       });
     }
   };
+});
+
+
+app.directive('spThumbnail', function (Restangular) {
+  console.log("item");
+  return {
+    restrict: 'E',
+    template: '<img src="{[image]}" />',
+    scope: { media: "=media"},
+    link: function(scope, element, attrs) {
+
+      var src = '/uploads/media/' + scope.media.directory + '/140x140_' + scope.media.file,
+        img = new Image();
+
+      scope.image = "/img/spinner.gif";
+
+      function loadImage() {
+          scope.image = src;
+      }
+
+      img.src = src;
+      img.onerror = function() {
+        Restangular.all('media/resize').post({media: scope.media, height: 140, width: 140}).then(function() {
+          loadImage();
+        });
+      };
+      img.onload = function() {
+        scope.$apply(function() {
+          loadImage();
+        });
+      };
+
+    }
+  }
 });

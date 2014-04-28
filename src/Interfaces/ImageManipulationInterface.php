@@ -13,6 +13,5 @@ namespace Mackstar\Spout\Interfaces;
  */
 interface ImageManipulationInterface
 {
-    public function open($image);
-
+    public function resize($source, $target, $width, $height);
 }
