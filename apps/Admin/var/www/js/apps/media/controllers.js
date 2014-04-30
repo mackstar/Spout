@@ -5,6 +5,11 @@ app.controller('MediaCtrl', function($scope, $rootScope, media) {
   $scope.menu = {};
   $scope.form = {};
   $scope.media = media;
+  $scope.selectedMedia = null;
+
+  $scope.select = function (mediaItem) {
+    $scope.selectedMedia = mediaItem;
+  };
 
   $scope.submit = function (media) {
 

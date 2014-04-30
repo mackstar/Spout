@@ -56,7 +56,7 @@ class Index extends ResourceObject
     ) {
         if (!$file['error'] && is_uploaded_file($file['tmp_name'])) {
 
-            $uuid = $this->uuid;
+            $uuid = (string) $this->uuid;
             $uuidDir = substr($uuid, 0, 2);
             $targetDir = $this->uploadDir . '/media/' . $uuidDir;
             $fileName = $uuid. '_' . $file['name'];
@@ -80,13 +80,18 @@ class Index extends ResourceObject
             @chmod($target, 0666 & ~umask());
         }
 
-        $this->db->insert($this->table, [
+        $media = [
             'uuid' => $uuid,
             'directory' => $uuidDir,
             'file' => $fileName,
             'type' => 'media',
             'suffix' => $suffix
-        ]);
+        ];
+
+        $this->db->insert($this->table, $media);
+
+        $this['media'] = $media;
+        $this['_model'] = 'media';
 
         return $this;
     }

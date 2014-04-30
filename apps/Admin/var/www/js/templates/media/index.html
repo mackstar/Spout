@@ -2,14 +2,32 @@
 
 <div class="row">
     <div class="col-md-8">
-       <span ng-repeat="mediaItem in media">
-            <p>Item</p>
-           {[item]}
-            <sp-thumbnail media="mediaItem"></sp-thumbnail>
+       <span ng-repeat="mediaItem in media" class="sp__media-thumbnail">
+            <sp-thumbnail media="mediaItem" ng-click="select()"></sp-thumbnail>
        </span>
     </div>
     <div class="col-md-4">
-        <div class="well well-lg" sp-file-dropzone="[image/png, image/jpeg, image/gif]"><p class="h3">Upload Here</p></div>
+        <div class="well well-lg" sp-file-dropzone="[image/png, image/jpeg, image/gif]">
+            <p class="h2 text-center" ng-show="!uploading">Upload Here</p>
+            <p class="h2 text-center" ng-show="uploading"><span class="glyphicon glyphicon-refresh"></span></p>
+        </div>
+        <ul class="nav nav-tabs">
+            <li><h3>Add Menu </h3></li>
+            <li class="active link" ng-click="submit()">
+                <span class="glyphicon glyphicon-ok"></span>
+            </li>
+        </ul>
+        <form name="form.media" novalidate>
+            <h3>{[selectedMedia.]}</h3>
+            <div class="form-group">
+                <label for="menu-name">Title</label>
+                <input type="text" ng-model="selectedMedia.title" name="name" class="form-control" id="menu-name" placeholder="A title for this image" required>
+            </div>
+            <div class="form-group">
+                <p class="h1"><a href="javascript:;"><span class="glyphicon glyphicon-trash"></span> Trash it..</a></p>
+            </div>
+        </form>
     </div>
+
 
 </div>

@@ -8,9 +8,8 @@ app.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $ur
     controller: 'MediaCtrl',
     resolve: {
       media: ['Restangular', function (Restangular) {
-         return Restangular.all('media/index').getList();;
-       }
-      ]
+        return Restangular.all('media/index').getList();
+      }]
     }
   });
 }]);

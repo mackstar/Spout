@@ -34,6 +34,8 @@ app.directive('spFileDropzone', function(Restangular) {
       element.bind('dragenter', processDragOverOrEnter);
       return element.bind('drop', function(event) {
         var file, name, reader, size, type;
+
+        scope.uploading = true;
         if (event != null) {
           event.preventDefault();
         }
@@ -59,9 +61,13 @@ app.directive('spFileDropzone', function(Restangular) {
         formData.append('file', file);
 
 
+
         Restangular.all('media')
           .withHttpConfig({transformRequest: angular.identity})
-          .customPOST(formData, 'index', undefined, {'Content-Type': undefined});
+          .customPOST(formData, 'index', undefined, {'Content-Type': undefined}).then(function(mediaItem) {
+            scope.media.unshift(mediaItem);
+            scope.uploading = false;
+          });
         return false;
       });
     }
@@ -70,20 +76,18 @@ app.directive('spFileDropzone', function(Restangular) {
 
 
 app.directive('spThumbnail', function (Restangular) {
-  console.log("item");
   return {
     restrict: 'E',
-    template: '<img src="{[image]}" />',
+    template: "<img src='/img/spinner.gif' />",
     scope: { media: "=media"},
+    replace: true,
     link: function(scope, element, attrs) {
 
       var src = '/uploads/media/' + scope.media.directory + '/140x140_' + scope.media.file,
         img = new Image();
 
-      scope.image = "/img/spinner.gif";
-
       function loadImage() {
-          scope.image = src;
+          element[0].src = src;
       }
 
       img.src = src;
@@ -96,6 +100,10 @@ app.directive('spThumbnail', function (Restangular) {
         scope.$apply(function() {
           loadImage();
         });
+      };
+
+      scope.select = function () {
+        element[0].addClass("selected");
       };
 
     }
