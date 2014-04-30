@@ -90,6 +90,15 @@ app.directive('spThumbnail', function (Restangular) {
           element[0].src = src;
       }
 
+      scope.$watch('media', function (media) {
+        if (media.selected) {
+          element.parent().addClass("selected");
+        }
+        if (media.selected === false) {
+          element.parent().removeClass("selected");
+        }
+      }, true);
+
       img.src = src;
       img.onerror = function() {
         Restangular.all('media/resize').post({media: scope.media, height: 140, width: 140}).then(function() {
@@ -101,11 +110,6 @@ app.directive('spThumbnail', function (Restangular) {
           loadImage();
         });
       };
-
-      scope.select = function () {
-        element[0].addClass("selected");
-      };
-
     }
   }
 });

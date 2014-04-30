@@ -8,7 +8,11 @@ app.controller('MediaCtrl', function($scope, $rootScope, media) {
   $scope.selectedMedia = null;
 
   $scope.select = function (mediaItem) {
+    if ($scope.selectedMedia) {
+      $scope.selectedMedia.selected = false;
+    }
     $scope.selectedMedia = mediaItem;
+    mediaItem.selected = true;
   };
 
   $scope.submit = function (media) {
