@@ -17,7 +17,7 @@ class UserValidatorTest extends \PHPUnit_Framework_TestCase
         $interceptor->setResource(clone $GLOBALS['RESOURCE']);
 
         $target = array(new \Mackstar\Spout\Admin\Resource\App\Users\Index, 'onPost');
-        $args = ['','','',''];
+        $args = ['','',['id' => ''],''];
         $invocation = new ReflectiveMethodInvocation($target, $args, [$interceptor]);
         $result = $interceptor->invoke($invocation);
         $this->assertEquals($result->code, 400);
