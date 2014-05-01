@@ -44,6 +44,4 @@ class Index extends ResourceObject
         $this->code = 204;
         return $this;
     }
-
-
 }

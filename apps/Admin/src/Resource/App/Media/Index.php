@@ -103,4 +103,28 @@ class Index extends ResourceObject
         return $this;
     }
 
+    public function onDelete($uuid, $directory)
+    {
+        $dir = $this->uploadDir . '/media/' . $directory;
+        $files = scandir($dir);
+        foreach ($files as $file) {
+            if (strpos($file, $uuid) !== false) {
+                unlink($dir. '/' . $file);
+            }
+        }
+        $files = scandir($dir);
+        if (count($files) === 0) {
+            rmdir($dir);
+        }
+
+        $this->db->delete($this->table, ['uuid' => $uuid]);
+        $this->code = 204;
+    }
+
+    public function onPut($uuid, $title)
+    {
+        $this->db->update($this->table, ['title' => $title], ['uuid' => $uuid]);
+        return $this;
+    }
+
 }

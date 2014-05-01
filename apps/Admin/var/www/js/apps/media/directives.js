@@ -65,6 +65,8 @@ app.directive('spFileDropzone', function(Restangular) {
         Restangular.all('media')
           .withHttpConfig({transformRequest: angular.identity})
           .customPOST(formData, 'index', undefined, {'Content-Type': undefined}).then(function(mediaItem) {
+            mediaItem.route = "media/index";
+            mediaItem.selected = true;
             scope.media.unshift(mediaItem);
             scope.uploading = false;
           });
@@ -78,7 +80,7 @@ app.directive('spFileDropzone', function(Restangular) {
 app.directive('spThumbnail', function (Restangular) {
   return {
     restrict: 'E',
-    template: "<img src='/img/spinner.gif' />",
+    template: "<img src='/img/spinner.gif' ng-click='select()' />",
     scope: { media: "=media"},
     replace: true,
     link: function(scope, element, attrs) {
@@ -90,14 +92,24 @@ app.directive('spThumbnail', function (Restangular) {
           element[0].src = src;
       }
 
-      scope.$watch('media', function (media) {
-        if (media.selected) {
+      scope.select = function () {
+        if (!scope.media.selected) {
+          scope.media.selected = true;
+          return;
+        }
+        scope.media.selected = false;
+      }
+
+      scope.$watch('media.selected', function (selected, previouslySelected) {
+        if (selected) {
           element.parent().addClass("selected");
+          scope.$parent.$emit("sp.media-selected", scope.media);
         }
-        if (media.selected === false) {
+        if (!selected && previouslySelected) {
           element.parent().removeClass("selected");
+          scope.$parent.$emit("sp.media-deselected", scope.media);
         }
-      }, true);
+      });
 
       img.src = src;
       img.onerror = function() {
