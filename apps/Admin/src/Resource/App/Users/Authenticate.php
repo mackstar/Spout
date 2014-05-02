@@ -55,11 +55,12 @@ class Authenticate extends ResourceObject
             $this->session->set('user', $user);
             $this['user'] = $user;
             $this['_model'] = 'user';
-        } else {
-            $this->code = 400;
-            $this['title'] = 'Unable to login.';
-            $this['message'] = 'Your authentication details didn\'t match.';
+            return $this;
         }
+
+        $this->code = 400;
+        $this['title'] = 'Unable to login.';
+        $this['message'] = 'Your authentication details didn\'t match.';
         return $this;
     }
 
