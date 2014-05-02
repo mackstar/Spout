@@ -18,7 +18,13 @@ class FieldTypes extends AbstractMigration
 
         $this->execute("INSERT INTO `field_types` (`name`, `slug`) VALUES ('String', 'string')");
         $this->execute("INSERT INTO `field_types` (`name`, `slug`) VALUES ('Text', 'text')");
-
+        $this->execute("INSERT INTO `field_types` (`name`, `slug`) VALUES ('Media', 'media')");
+        $this->execute("INSERT INTO `field_types` (`name`, `slug`) VALUES ('Resource', 'resource')");
+        $this->execute("INSERT INTO `field_types` (`name`, `slug`) VALUES ('Resource Index', 'index')");
+        $this->execute("INSERT INTO `field_types` (`name`, `slug`) VALUES ('Date', 'date')");
+        $this->execute("INSERT INTO `field_types` (`name`, `slug`) VALUES ('Time', 'time')");
+        $this->execute("INSERT INTO `field_types` (`name`, `slug`) VALUES ('Date Time', 'datetime')");
+        $this->execute("INSERT INTO `field_types` (`name`, `slug`) VALUES ('Boolean', 'boolean')");
     }
 
     /**
