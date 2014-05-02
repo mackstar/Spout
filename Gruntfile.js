@@ -77,8 +77,7 @@ module.exports = function(grunt) {
     }
   });
 
-  // grunt.loadNpmTasks('grunt-contrib-uglify');
-  // grunt.loadNpmTasks('grunt-contrib-jshint');
+
   grunt.loadNpmTasks('grunt-karma');
   grunt.loadNpmTasks('grunt-shell');
   grunt.loadNpmTasks('grunt-contrib-watch');
@@ -94,7 +93,6 @@ module.exports = function(grunt) {
   });
   grunt.event.on('watch', function(action, filepath) {
     filter = mackstar.build.getPhpFileFilter(filepath);
-    //grunt.config(['php', 'filter'], '--filter ' + filter);
     grunt.config(['php', 'filter'], "--filter " + filter);
 
   });

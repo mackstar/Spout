@@ -38,7 +38,97 @@ Requirements
 Getting started
 ---------------
 
-### Install project
+## Installation
+
+Edit database configuration files in `apps/Admin/var/conf/{environment}.php` to match up to your database.
+
+### Database
+
+####SQLite
+
+```
+<?php
+
+$config = [
+    'driver' => 'pdo_sqlite',
+    'path' => '../../test_db.sqlite3', // sets DB location to root path
+    'charset' => 'UTF8'
+];
+
+return [
+    'master_db' => $config,
+    'slave_db' => $config
+];
+```
+
+####MySql
+
+My `production.php` file looks something like this:
+
+```
+// @Named($key) => instance
+$config = [
+    // database
+    'master_db' => [
+        'driver' => 'pdo_mysql',
+        'host' => 'localhost',
+        'dbname' => 'spout',
+        'user' => $id,
+        'password' => $password,
+        'charset' => 'UTF8'
+    ],
+    'slave_db' => [
+        'driver' => 'pdo_mysql',
+        'host' => 'localhost',
+        'dbname' => 'spout',
+        'user' => $slaveId,
+        'password' => $slavePassword,
+        'charset' => 'UTF8'
+    ],
+    // constants
+    'app_name' => __NAMESPACE__,
+    'tmp_dir' => "{$appDir}/var/tmp",
+    'log_dir' => "{$appDir}/var/log",
+    'lib_dir' => "{$appDir}/var/lib",
+    'upload_dir' => "{$appDir}/var/www/uploads"
+];
+
+
+return $config;
+```
+
+```
+<?php
+
+$config = [
+    'driver' => 'pdo_sqlite',
+    'path' => '../../test_db.sqlite3',
+    'charset' => 'UTF8'
+];
+
+return [
+    'master_db' => $config,
+    'slave_db' => $config
+];
+```
+
+### Apache
+
+Set your `DocumentRoot` to `"/Users/MackstarMBA/Sites/Mackstar.Spout/apps/Admin/var/www"`
+
+### Command line - from project root.
+
+```
+$ npm install -g grunt-cli
+$ npm install
+$ grunt migrate -env={environment} // By default this is development
+$ grunt phpunit // to run PHP tests
+$ grunt karma // to run Javascript tests
+```
+
+
+
+### Migration
 ```
  $ vendor/robmorgan/phinx/bin/phinx migrate -p php -c config.php -e development
 ```
