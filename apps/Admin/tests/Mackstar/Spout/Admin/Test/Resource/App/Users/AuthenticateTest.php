@@ -2,7 +2,10 @@
 
 namespace Mackstar\Spout\Admin\Test\Resource\App\Users;
 
+use Mackstar\Spout\Provide\Session\MockSessionProvider;
+use Mackstar\Spout\Tools\Security;
 use Ray\Di\Injector;
+use Mackstar\Spout\Admin\Resource\App\Users\Authenticate;
 use Admin\Module\TestModule;
 
 class AuthenticateTest extends \PHPUnit_Framework_TestCase
@@ -36,10 +39,11 @@ class AuthenticateTest extends \PHPUnit_Framework_TestCase
 
     public function testAuthenticatedUser()
     {
-        $resource = $this->resource->post->uri('app://self/users/authenticate')
-        	->withQuery(['email' => 'richard.mackstar@gmail.com', 'password' => 'secret'])
-            ->eager
-            ->request();
+        $resource = new Authenticate();
+        $resource->setDb($this->db);
+        $resource->setSession((new MockSessionProvider())->get());
+        $resource->setSecurity(new Security);
+        $resource->onPost('richard.mackstar@gmail.com', 'secret');
         $this->assertSame('Richard', $resource->body['user']['name']);
     }
 }

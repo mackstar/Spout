@@ -19,6 +19,7 @@ use Ray\Di\Scope;
  */
 class SessionModule extends AbstractModule
 {
+
     public function configure()
     {
         $this

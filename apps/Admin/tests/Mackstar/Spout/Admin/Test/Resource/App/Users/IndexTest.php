@@ -2,8 +2,10 @@
 
 namespace Mackstar\Spout\Admin\Test\Resource\App\Users;
 
+use Mackstar\Spout\Tools\Security;
 use Ray\Di\Injector;
 use Admin\Module\TestModule;
+use Mackstar\Spout\Admin\Resource\App\Users\Index;
 
 class IndexTest extends \PHPUnit_Framework_TestCase
 {
@@ -12,9 +14,12 @@ class IndexTest extends \PHPUnit_Framework_TestCase
      */
     private $resource;
 
+    private $db;
+
     protected function setUp()
     {
         parent::setUp();
+        $this->db = clone $GLOBALS['DB'];
         $this->resource = clone $GLOBALS['RESOURCE'];
     }
 
@@ -29,12 +34,12 @@ class IndexTest extends \PHPUnit_Framework_TestCase
     public function postUser()
     {
         // resource request
-        $page = $this->resource->post->uri('app://self/users/index')
-            ->withQuery(['name' => 'Richard', 'email' => 'richard.mackstar@gmail.com', 'password' => 'secret', 'role' => 
-                ['id' => 1]])
-            ->eager
-            ->request();
-        $this->assertSame(200, $page->code);
+        $resource = new Index;
+        $resource->setDb($this->db);
+        $resource->setSecurity(new Security());
+        //$resource-setSecurity(new Security());
+        $resource->onPost('richard.mackstar@gmail.com', 'Richard', ['id' => 1], 'secret');
+        $this->assertSame(200, $resource->code);
     }
 
     /**

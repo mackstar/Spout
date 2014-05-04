@@ -10,7 +10,7 @@
 namespace Mackstar\Spout\Provide\Session;
 
 use Ray\Di\ProviderInterface;
-use Symfony\Component\HttpFoundation\Session\Storage\NativeSessionStorage;
+use Symfony\Component\HttpFoundation\Session\Storage\MockArraySessionStorage;
 use Symfony\Component\HttpFoundation\Session\Session;
 use Ray\Di\Di\Inject;
 use Ray\Di\Di\Named;
@@ -21,15 +21,13 @@ use Ray\Di\Di\Named;
  *
  * @package Mackstar.Spout
  */
-class SessionProvider implements ProviderInterface
+class MockSessionProvider implements ProviderInterface
 {
-
     public function get()
     {
-        $storage = new NativeSessionStorage();
+        $storage = new MockArraySessionStorage();
         $session = new Session($storage);
         $session->start();
         return $session;
     }
 }
-

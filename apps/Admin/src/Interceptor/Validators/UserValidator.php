@@ -76,6 +76,7 @@ class UserValidator implements MethodInterceptor
             return $invocation->proceed();
         }
 
+
         return $this->resource->get->uri('app://self/exceptions/validation')
             ->withQuery(['errors' => $this->errors])
             ->eager
