@@ -12,14 +12,18 @@ module.exports = function (config) {
       '../../var/www/js/lib/angular-route.js',
       '../../var/www/js/lib/angular-ui-router.js',
       '../../var/www/js/lib/angular-mocks.js',
-      '../../var/www/js/lib/restangular.min.js',
+      '../../var/www/js/lib/restangular.js',
       'tests/testBase.js',
       '../../var/www/js/apps/**/*.js',
       '../../var/www/js/directives/**/*.js',
       'tests/**/*.js'
     ],
 
-    logLevel: config.LOG_INFO,
+    exclude: [
+      '../../var/www/js/apps/**/routes.js',
+    ],
+
+    logLevel: config.LOG_DEBUG,
 
     autoWatch : true,
     colors : true,

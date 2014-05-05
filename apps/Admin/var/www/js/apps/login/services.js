@@ -2,8 +2,8 @@
 
 app.factory('CurrentUserService', [function() {
   var userState = {
-    isLoggedIn: (window.sp.user)? true : false,
-    user: (window.sp.user)? window.sp.user : null
+    isLoggedIn: (window && window.sp && window.sp.user)? true : false,
+    user: (window && window.sp && window.sp.user)? window.sp.user : null
   };
   return userState;
 }]);
