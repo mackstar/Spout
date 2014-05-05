@@ -11,20 +11,17 @@ describe('Users App', function () {
     beforeEach(function () {
       angular.mock.module('Application');
       inject(
-        function ($rootScope, $controller, _$httpBackend_) {
-
+        function ($rootScope, $controller) {
+          var users = [{"id":1,"name":"tester"},{"id":2,"name":"tester2"}],
+             roles = [{"id": 1, "name": "Admin"},{"id": 2, "name": "Contributor"}];
           scope = $rootScope.$new();
-          httpBackend = _$httpBackend_;
-          httpBackend.whenGET('/users/index').respond(
-            '{"users": [{"id":1,"name":"tester"},{"id":2,"name":"tester2"}], "_model": "users"}'
-          );
-          UsersCtrl = $controller('UsersCtrl', {$scope: scope});
+          UsersCtrl = $controller('UsersCtrl', {$scope: scope, users: users, roles: roles});
+
         }
       );
     });
 
     it('should receive a list of users on load', function () {
-      httpBackend.flush();
       expect(scope.users.length).toBe(2);
     });
 

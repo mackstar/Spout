@@ -28,5 +28,7 @@ describe('Roles Directive', function () {
     expect($element.prop("tagName")).toEqual('SELECT');
     expect($element.find("option").length).toBe(2);
   });
-  
+
+
+
 });

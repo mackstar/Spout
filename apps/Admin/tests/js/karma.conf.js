@@ -23,7 +23,7 @@ module.exports = function (config) {
       '../../var/www/js/apps/**/routes.js',
     ],
 
-    logLevel: config.LOG_DEBUG,
+    logLevel: config.LOG_INFO,
 
     autoWatch : true,
     colors : true,
