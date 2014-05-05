@@ -22,20 +22,17 @@ return [
 			'port' => '3306'
 		],
 		'development' => [
-			'adapter' => str_replace('pdo_', '', $dev['master_db']['driver']),
-			'host' => $dev['master_db']['host'],
-			'name' => $dev['master_db']['dbname'],
-			'user' => $dev['master_db']['user'],
-			'pass' => $dev['master_db']['password'],
+			'adapter' => str_replace('pdo_', '', $test['master_db']['driver']),
+			'host' => $test['master_db']['host'],
+			'name' => $test['master_db']['dbname'],
+			'user' => $test['master_db']['user'],
 			'port' => '3306'
 		],
 		'testing' => [
-			'adapter' => 'sqlite',
+			'adapter' => str_replace('pdo_', '', $test['master_db']['driver']),
 			'host' => 'localhost',
 			'name' => 'test_db',
 			'user' => 'root',
-			'pass' => '',
-			'port' => '3306'
 		]
 	]
 ];

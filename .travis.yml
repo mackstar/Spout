@@ -9,6 +9,7 @@ before_script:
  - npm install
  - composer install
  - wget http://cs.sensiolabs.org/get/php-cs-fixer.phar
+ - grunt migrate -env=testing
 
 script:
  - phpunit --coverage-text

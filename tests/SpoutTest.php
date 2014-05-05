@@ -23,7 +23,7 @@ class SpoutTest extends \PHPUnit_Framework_TestCase
     /**
      * @expectedException \Mackstar\Spout\Exception\LogicException
      */
-    public function test_Exception()
+    public function testException()
     {
         throw new Exception\LogicException;
     }
