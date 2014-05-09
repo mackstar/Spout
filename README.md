@@ -97,21 +97,6 @@ $config = [
 return $config;
 ```
 
-```
-<?php
-
-$config = [
-    'driver' => 'pdo_sqlite',
-    'path' => '../../test_db.sqlite3',
-    'charset' => 'UTF8'
-];
-
-return [
-    'master_db' => $config,
-    'slave_db' => $config
-];
-```
-
 ### Apache
 
 Set your `DocumentRoot` to `"/Users/MackstarMBA/Sites/Mackstar.Spout/apps/Admin/var/www"`
