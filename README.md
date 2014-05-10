@@ -104,13 +104,13 @@ Set your `DocumentRoot` to `"/Users/MackstarMBA/Sites/Mackstar.Spout/apps/Admin/
 ### Command line - from project root.
 
 ```
+$ composer install
 $ npm install -g grunt-cli
 $ npm install
 $ grunt migrate -env={environment} // By default this is development
 $ grunt phpunit // to run PHP tests
 $ grunt karma // to run Javascript tests
 ```
-
 
 
 ### Migration

@@ -497,12 +497,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/koriym/BEAR.Package.git",
-                "reference": "d838a87e563913a66e75dce31e1082ce3037de65"
+                "reference": "d1922a4572d18f6701743ce0417cc34d69afb395"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/koriym/BEAR.Package/zipball/d838a87e563913a66e75dce31e1082ce3037de65",
-                "reference": "d838a87e563913a66e75dce31e1082ce3037de65",
+                "url": "https://api.github.com/repos/koriym/BEAR.Package/zipball/d1922a4572d18f6701743ce0417cc34d69afb395",
+                "reference": "d1922a4572d18f6701743ce0417cc34d69afb395",
                 "shasum": ""
             },
             "require": {
@@ -511,21 +511,23 @@
                 "aura/sql": "2.*",
                 "aura/view": "1.*",
                 "aura/web": "dev-develop-2",
-                "bear/sunday": "0.*",
+                "bear/resource": "dev-develop",
+                "bear/sunday": "dev-feature/0.11.0",
                 "doctrine/dbal": "2.*",
                 "koriym/fusion-cache": "0.*",
                 "pagerfanta/pagerfanta": "1.*",
                 "php": ">=5.4.0",
                 "playmedia/smarty": "3.*",
+                "ray/di": "dev-develop",
                 "symfony/http-foundation": "2.*",
                 "twig/twig": "1.*"
             },
             "provide": {
-                "bear/framework": "0.9.0"
+                "bear/framework": "0.11.0"
             },
             "require-dev": {
-                "bear/demo-apps": "dev-master",
-                "bear/dev-package": "*"
+                "bear/demo-apps": "dev-develop",
+                "bear/dev-package": "dev-develop"
             },
             "suggest": {
                 "bear/phptal-module": "PHPTAL template-engine module"
@@ -562,31 +564,30 @@
                 "hypermedia",
                 "rest"
             ],
-            "time": "2014-04-22 08:18:41"
+            "time": "2014-05-10 06:39:13"
         },
         {
             "name": "bear/resource",
-            "version": "0.10.0",
+            "version": "dev-develop",
             "source": {
                 "type": "git",
                 "url": "https://github.com/koriym/BEAR.Resource.git",
-                "reference": "25169ed7922e30b763369eac6093700590f7a028"
+                "reference": "25e8c0f5fe413fa47fedfdb3616f9d5e0683f017"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/koriym/BEAR.Resource/zipball/25169ed7922e30b763369eac6093700590f7a028",
-                "reference": "25169ed7922e30b763369eac6093700590f7a028",
+                "url": "https://api.github.com/repos/koriym/BEAR.Resource/zipball/25e8c0f5fe413fa47fedfdb3616f9d5e0683f017",
+                "reference": "25e8c0f5fe413fa47fedfdb3616f9d5e0683f017",
                 "shasum": ""
             },
             "require": {
                 "any/serializer": "*",
                 "aura/signal": "1.*",
                 "doctrine/cache": "1.*",
-                "guzzle/guzzle": "3.*",
+                "guzzlehttp/guzzle": "~4.0",
                 "nocarrier/hal": "*",
                 "php": ">=5.4.0",
-                "ray/aop": "1.*",
-                "ray/di": "1.*"
+                "ray/di": "dev-develop"
             },
             "require-dev": {
                 "facebook/xhprof": "dev-master"
@@ -605,7 +606,6 @@
                 {
                     "name": "Akihito Koriyama",
                     "email": "akihito.koriyama@gmail.com",
-                    "homepage": "https://github.com/koriym",
                     "role": "Lead"
                 }
             ],
@@ -620,24 +620,24 @@
                 "rest",
                 "stateless"
             ],
-            "time": "2014-04-03 17:24:15"
+            "time": "2014-04-30 16:34:26"
         },
         {
             "name": "bear/sunday",
-            "version": "0.10.0",
+            "version": "dev-feature/0.11.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/koriym/BEAR.Sunday.git",
-                "reference": "e5519d1bd1e1c7315b58d9fca3591d8347cfa188"
+                "reference": "4a2ebb59b4bf088432e6fcab83bb359eec5e7684"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/koriym/BEAR.Sunday/zipball/e5519d1bd1e1c7315b58d9fca3591d8347cfa188",
-                "reference": "e5519d1bd1e1c7315b58d9fca3591d8347cfa188",
+                "url": "https://api.github.com/repos/koriym/BEAR.Sunday/zipball/4a2ebb59b4bf088432e6fcab83bb359eec5e7684",
+                "reference": "4a2ebb59b4bf088432e6fcab83bb359eec5e7684",
                 "shasum": ""
             },
             "require": {
-                "bear/resource": "0.*",
+                "bear/resource": "dev-develop",
                 "php": ">=5.4.0",
                 "psr/log": "1.*"
             },
@@ -666,7 +666,7 @@
                 "hypermedia",
                 "rest"
             ],
-            "time": "2014-04-04 01:45:21"
+            "time": "2014-04-25 01:47:07"
         },
         {
             "name": "danielstjules/stringy",
@@ -1192,68 +1192,41 @@
             "time": "2013-01-12 18:59:04"
         },
         {
-            "name": "guzzle/guzzle",
-            "version": "v3.9.0",
+            "name": "guzzlehttp/guzzle",
+            "version": "4.0.2",
             "source": {
                 "type": "git",
-                "url": "https://github.com/guzzle/guzzle3.git",
-                "reference": "e4d12d7d6acccf75a5e504114e2df9195e494108"
+                "url": "https://github.com/guzzle/guzzle.git",
+                "reference": "40db53833aaea528347994acd4578d7b9b2211ee"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/guzzle/guzzle3/zipball/e4d12d7d6acccf75a5e504114e2df9195e494108",
-                "reference": "e4d12d7d6acccf75a5e504114e2df9195e494108",
+                "url": "https://api.github.com/repos/guzzle/guzzle/zipball/40db53833aaea528347994acd4578d7b9b2211ee",
+                "reference": "40db53833aaea528347994acd4578d7b9b2211ee",
                 "shasum": ""
             },
             "require": {
-                "ext-curl": "*",
-                "php": ">=5.3.3",
-                "symfony/event-dispatcher": "~2.1"
-            },
-            "replace": {
-                "guzzle/batch": "self.version",
-                "guzzle/cache": "self.version",
-                "guzzle/common": "self.version",
-                "guzzle/http": "self.version",
-                "guzzle/inflection": "self.version",
-                "guzzle/iterator": "self.version",
-                "guzzle/log": "self.version",
-                "guzzle/parser": "self.version",
-                "guzzle/plugin": "self.version",
-                "guzzle/plugin-async": "self.version",
-                "guzzle/plugin-backoff": "self.version",
-                "guzzle/plugin-cache": "self.version",
-                "guzzle/plugin-cookie": "self.version",
-                "guzzle/plugin-curlauth": "self.version",
-                "guzzle/plugin-error-response": "self.version",
-                "guzzle/plugin-history": "self.version",
-                "guzzle/plugin-log": "self.version",
-                "guzzle/plugin-md5": "self.version",
-                "guzzle/plugin-mock": "self.version",
-                "guzzle/plugin-oauth": "self.version",
-                "guzzle/service": "self.version",
-                "guzzle/stream": "self.version"
+                "guzzlehttp/streams": "~1.0",
+                "php": ">=5.4.0"
             },
             "require-dev": {
-                "doctrine/cache": "~1.3",
-                "monolog/monolog": "~1.0",
-                "phpunit/phpunit": "3.7.*",
-                "psr/log": "~1.0",
-                "symfony/class-loader": "~2.1",
-                "zendframework/zend-cache": "2.*,<2.3",
-                "zendframework/zend-log": "2.*,<2.3"
+                "ext-curl": "*",
+                "phpunit/phpunit": "~4.0",
+                "psr/log": "~1.0"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "3.8-dev"
+                    "dev-master": "4.0.x-dev"
                 }
             },
             "autoload": {
-                "psr-0": {
-                    "Guzzle": "src/",
-                    "Guzzle\\Tests": "tests/"
-                }
+                "psr-4": {
+                    "GuzzleHttp\\": "src/"
+                },
+                "files": [
+                    "src/functions.php"
+                ]
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
@@ -1264,10 +1237,6 @@
                     "name": "Michael Dowling",
                     "email": "mtdowling@gmail.com",
                     "homepage": "https://github.com/mtdowling"
-                },
-                {
-                    "name": "Guzzle Community",
-                    "homepage": "https://github.com/guzzle/guzzle/contributors"
                 }
             ],
             "description": "Guzzle is a PHP HTTP client library and framework for building RESTful web service clients",
@@ -1281,7 +1250,60 @@
                 "rest",
                 "web service"
             ],
-            "time": "2014-04-23 21:43:40"
+            "time": "2014-04-16 17:33:22"
+        },
+        {
+            "name": "guzzlehttp/streams",
+            "version": "1.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/guzzle/streams.git",
+                "reference": "cf0c8c33ca95cc147efba4c714f630ee44767180"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/guzzle/streams/zipball/cf0c8c33ca95cc147efba4c714f630ee44767180",
+                "reference": "cf0c8c33ca95cc147efba4c714f630ee44767180",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.4.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~4.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "GuzzleHttp\\Stream\\": "src/"
+                },
+                "files": [
+                    "src/functions.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Michael Dowling",
+                    "email": "mtdowling@gmail.com",
+                    "homepage": "https://github.com/mtdowling"
+                }
+            ],
+            "description": "Provides a simple abstraction over streams of data (Guzzle 4+)",
+            "homepage": "http://guzzlephp.org/",
+            "keywords": [
+                "Guzzle",
+                "stream"
+            ],
+            "time": "2014-04-03 04:48:24"
         },
         {
             "name": "imagine/imagine",
@@ -1423,36 +1445,23 @@
         },
         {
             "name": "nocarrier/hal",
-            "version": "0.9.4",
+            "version": "0.9.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/blongden/hal.git",
-                "reference": "aca65a12a718a36dcb2675eaf0cdc4d64a80f9e9"
+                "reference": "685c938e0be04236b881e1c7a62b61bde0d44dbd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/blongden/hal/zipball/aca65a12a718a36dcb2675eaf0cdc4d64a80f9e9",
-                "reference": "aca65a12a718a36dcb2675eaf0cdc4d64a80f9e9",
+                "url": "https://api.github.com/repos/blongden/hal/zipball/685c938e0be04236b881e1c7a62b61bde0d44dbd",
+                "reference": "685c938e0be04236b881e1c7a62b61bde0d44dbd",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3.0"
             },
             "require-dev": {
-                "mayflower/php-codebrowser": "~1.0@dev",
-                "pdepend/pdepend": "~1.1",
-                "pear/console_commandline": "dev-trunk",
-                "pear/log": "dev-master",
-                "pear/pear_exception": "dev-master",
-                "phpdocumentor/phpdocumentor": "*",
-                "phploc/phploc": "dev-master",
-                "phpmd/phpmd": "~1.4",
-                "phpunit/phpunit": "3.7.*",
-                "sebastian/finder-facade": "dev-master",
-                "sebastian/phpcpd": "~1.4",
-                "squizlabs/php_codesniffer": "~1.4",
-                "theseer/fdomdocument": "dev-master",
-                "zetacomponents/console-tools": "dev-master"
+                "phpunit/phpunit": "4.1.*"
             },
             "type": "library",
             "autoload": {
@@ -1480,7 +1489,7 @@
                 "rest",
                 "xml"
             ],
-            "time": "2013-11-19 11:57:26"
+            "time": "2014-05-06 09:55:16"
         },
         {
             "name": "pagerfanta/pagerfanta",
@@ -1679,16 +1688,16 @@
         },
         {
             "name": "ray/di",
-            "version": "1.3.0",
+            "version": "dev-develop",
             "source": {
                 "type": "git",
                 "url": "https://github.com/koriym/Ray.Di.git",
-                "reference": "2224d647087fe1bd0555418fc5869d9539fb4f4a"
+                "reference": "b7370489cf6b8ccc4a6cbafceb5e95baa8fae03b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/koriym/Ray.Di/zipball/2224d647087fe1bd0555418fc5869d9539fb4f4a",
-                "reference": "2224d647087fe1bd0555418fc5869d9539fb4f4a",
+                "url": "https://api.github.com/repos/koriym/Ray.Di/zipball/b7370489cf6b8ccc4a6cbafceb5e95baa8fae03b",
+                "reference": "b7370489cf6b8ccc4a6cbafceb5e95baa8fae03b",
                 "shasum": ""
             },
             "require": {
@@ -1733,7 +1742,7 @@
                 "injection",
                 "jsr"
             ],
-            "time": "2014-03-31 00:06:54"
+            "time": "2014-05-07 13:03:18"
         },
         {
             "name": "rhumsaa/uuid",
@@ -1796,16 +1805,16 @@
         },
         {
             "name": "robmorgan/phinx",
-            "version": "v0.3.3",
+            "version": "v0.3.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/robmorgan/phinx.git",
-                "reference": "685b6196a92ec74c75f4df8258d02889305edac4"
+                "reference": "5de112662b64d4d6ffa45d4dfc557c2a4c1620cd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/robmorgan/phinx/zipball/685b6196a92ec74c75f4df8258d02889305edac4",
-                "reference": "685b6196a92ec74c75f4df8258d02889305edac4",
+                "url": "https://api.github.com/repos/robmorgan/phinx/zipball/5de112662b64d4d6ffa45d4dfc557c2a4c1620cd",
+                "reference": "5de112662b64d4d6ffa45d4dfc557c2a4c1620cd",
                 "shasum": ""
             },
             "require": {
@@ -1849,7 +1858,7 @@
                 "migrations",
                 "phinx"
             ],
-            "time": "2014-03-22 13:11:11"
+            "time": "2014-04-27 15:25:07"
         },
         {
             "name": "symfony/class-loader",
@@ -2009,62 +2018,6 @@
             "time": "2014-04-27 13:34:57"
         },
         {
-            "name": "symfony/event-dispatcher",
-            "version": "v2.4.4",
-            "target-dir": "Symfony/Component/EventDispatcher",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/symfony/EventDispatcher.git",
-                "reference": "e539602e5455aa086c0e81e604745af7789e4d8a"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/symfony/EventDispatcher/zipball/e539602e5455aa086c0e81e604745af7789e4d8a",
-                "reference": "e539602e5455aa086c0e81e604745af7789e4d8a",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.3.3"
-            },
-            "require-dev": {
-                "symfony/dependency-injection": "~2.0"
-            },
-            "suggest": {
-                "symfony/dependency-injection": "",
-                "symfony/http-kernel": ""
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "2.4-dev"
-                }
-            },
-            "autoload": {
-                "psr-0": {
-                    "Symfony\\Component\\EventDispatcher\\": ""
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Fabien Potencier",
-                    "email": "fabien@symfony.com",
-                    "homepage": "http://fabien.potencier.org",
-                    "role": "Lead Developer"
-                },
-                {
-                    "name": "Symfony Community",
-                    "homepage": "http://symfony.com/contributors"
-                }
-            ],
-            "description": "Symfony EventDispatcher Component",
-            "homepage": "http://symfony.com",
-            "time": "2014-04-16 10:34:31"
-        },
-        {
             "name": "symfony/filesystem",
             "version": "v2.4.4",
             "target-dir": "Symfony/Component/Filesystem",
@@ -2170,17 +2123,17 @@
         },
         {
             "name": "symfony/yaml",
-            "version": "v2.4.3",
+            "version": "v2.4.4",
             "target-dir": "Symfony/Component/Yaml",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/Yaml.git",
-                "reference": "77a41c2835ab7cfe8bf6d15e25d3af8f3eb3bacd"
+                "reference": "65539ecde838f9c0d18b006b2101e3deb4b5c9ff"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/Yaml/zipball/77a41c2835ab7cfe8bf6d15e25d3af8f3eb3bacd",
-                "reference": "77a41c2835ab7cfe8bf6d15e25d3af8f3eb3bacd",
+                "url": "https://api.github.com/repos/symfony/Yaml/zipball/65539ecde838f9c0d18b006b2101e3deb4b5c9ff",
+                "reference": "65539ecde838f9c0d18b006b2101e3deb4b5c9ff",
                 "shasum": ""
             },
             "require": {
@@ -2215,7 +2168,7 @@
             ],
             "description": "Symfony Yaml Component",
             "homepage": "http://symfony.com",
-            "time": "2014-03-12 18:29:58"
+            "time": "2014-04-18 20:37:09"
         },
         {
             "name": "twig/twig",
@@ -2426,12 +2379,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/koriym/BEAR.DevPackage.git",
-                "reference": "600b5f4eb4fde84fb1d47a73584e186dcb581249"
+                "reference": "3843144a978ce4d0075a52f560e594bd200240a7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/koriym/BEAR.DevPackage/zipball/600b5f4eb4fde84fb1d47a73584e186dcb581249",
-                "reference": "600b5f4eb4fde84fb1d47a73584e186dcb581249",
+                "url": "https://api.github.com/repos/koriym/BEAR.DevPackage/zipball/3843144a978ce4d0075a52f560e594bd200240a7",
+                "reference": "3843144a978ce4d0075a52f560e594bd200240a7",
                 "shasum": ""
             },
             "require": {
@@ -2439,6 +2392,7 @@
                 "classpreloader/classpreloader": "1.*",
                 "dg/adminer-custom": "1.*",
                 "facebook/xhprof": "dev-master",
+                "filp/whoops": "1.*",
                 "firephp/firephp-core": "0.*",
                 "phpunit/dbunit": "1.3.*",
                 "phpunit/phpunit": "3.7.*",
@@ -2456,11 +2410,12 @@
                 {
                     "name": "Akihito Koriyama",
                     "email": "akihito.koriyama@gmail.com",
+                    "homepage": "https://github.com/koriym",
                     "role": "Lead"
                 }
             ],
             "description": "dev-require packages for BEAR.Package",
-            "time": "2014-04-18 04:43:02"
+            "time": "2014-05-02 03:00:22"
         },
         {
             "name": "classpreloader/classpreloader",
@@ -2563,6 +2518,64 @@
                 "profiling"
             ],
             "time": "2014-04-22 20:02:16"
+        },
+        {
+            "name": "filp/whoops",
+            "version": "1.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/filp/whoops.git",
+                "reference": "a5865f8f02947590e36206b08368e5b08289a946"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/filp/whoops/zipball/a5865f8f02947590e36206b08368e5b08289a946",
+                "reference": "a5865f8f02947590e36206b08368e5b08289a946",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "require-dev": {
+                "mockery/mockery": "0.9.*"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.1-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Whoops": "src/"
+                },
+                "classmap": [
+                    "src/deprecated"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Filipe Dobreira",
+                    "homepage": "https://github.com/filp",
+                    "role": "Developer"
+                }
+            ],
+            "description": "php error handling for cool kids",
+            "homepage": "https://github.com/filp/whoops",
+            "keywords": [
+                "error",
+                "exception",
+                "handling",
+                "library",
+                "silex-provider",
+                "whoops",
+                "zf2"
+            ],
+            "time": "2014-04-28 04:54:31"
         },
         {
             "name": "firephp/firephp-core",
@@ -2905,20 +2918,22 @@
         },
         {
             "name": "phpunit/phpunit",
-            "version": "3.7.35",
+            "version": "3.7.37",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "83f9537e46346f75ed6925441ac259453213c7cc"
+                "reference": "ae6cefd7cc84586a5ef27e04bae11ee940ec63dc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/83f9537e46346f75ed6925441ac259453213c7cc",
-                "reference": "83f9537e46346f75ed6925441ac259453213c7cc",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/ae6cefd7cc84586a5ef27e04bae11ee940ec63dc",
+                "reference": "ae6cefd7cc84586a5ef27e04bae11ee940ec63dc",
                 "shasum": ""
             },
             "require": {
+                "ext-ctype": "*",
                 "ext-dom": "*",
+                "ext-json": "*",
                 "ext-pcre": "*",
                 "ext-reflection": "*",
                 "ext-spl": "*",
@@ -2934,9 +2949,6 @@
                 "pear-pear.php.net/pear": "1.9.4"
             },
             "suggest": {
-                "ext-json": "*",
-                "ext-simplexml": "*",
-                "ext-tokenizer": "*",
                 "phpunit/php-invoker": "~1.1"
             },
             "bin": [
@@ -2975,7 +2987,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2014-04-21 06:25:54"
+            "time": "2014-04-30 12:24:19"
         },
         {
             "name": "phpunit/phpunit-mock-objects",
@@ -3028,25 +3040,30 @@
         },
         {
             "name": "printo/printo",
-            "version": "0.1.4",
+            "version": "0.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/koriym/print_o.git",
-                "reference": "5964c701e10f9465beb772f865f72703ba52f1b0"
+                "reference": "3ea1907debc1b002f3063be6f5469ed2fb4b4999"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/koriym/print_o/zipball/5964c701e10f9465beb772f865f72703ba52f1b0",
-                "reference": "5964c701e10f9465beb772f865f72703ba52f1b0",
+                "url": "https://api.github.com/repos/koriym/print_o/zipball/3ea1907debc1b002f3063be6f5469ed2fb4b4999",
+                "reference": "3ea1907debc1b002f3063be6f5469ed2fb4b4999",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.4.0"
             },
             "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0.x-dev"
+                }
+            },
             "autoload": {
-                "psr-0": {
-                    "Printo\\": "src/"
+                "psr-4": {
+                    "Koriym\\Printo\\": "src/"
                 },
                 "files": [
                     "src/print_o.php"
@@ -3061,16 +3078,16 @@
                     "name": "Akihito Koriyama",
                     "email": "akihito.koriyama@gmail.com",
                     "homepage": "https://github.com/koriym",
-                    "role": "Developer"
+                    "role": "Lead"
                 }
             ],
             "description": "An object graph visualizer.",
             "homepage": "https://github.com/koriym/print_o",
             "keywords": [
                 "debug",
-                "object graph"
+                "var_dump"
             ],
-            "time": "2013-10-21 13:32:23"
+            "time": "2014-05-10 07:04:20"
         },
         {
             "name": "symfony/finder",
