@@ -29,23 +29,21 @@ class Detail extends ResourceObject
         $resource = $stmt->fetch();
 
         try {
-            $type = $this->resource->get->uri('app://self/resources/types')
+            $resource['type'] = $this->resource->get->uri('app://self/resources/types')
                 ->eager
                 ->withQuery(['slug' => $resource['type']])
-                ->request();
+                ->request()
+                ->body['type'];
         } catch (\Exception $e) {
             var_dump("error:");
             echo($e->getTraceAsString());
         }
 
-        var_dump($type);
-        exit;
-
         $resource['title_label'] = $resource['type']['title_label'];
         $fieldTypes = [];
         $map = [];
         $resource['fields'] = [];
-        foreach ($type->body['type']['fields'] as $resourceField) {
+        foreach ($resource['type']['fields'] as $resourceField) {
             $map[$resourceField['id']] = $resourceField['slug'];
             $fieldType = $resourceField['field_type'];
             $slug = $resourceField['slug'];
