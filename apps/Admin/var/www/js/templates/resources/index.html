@@ -1,5 +1,5 @@
 <div class="btn-group">
-  <button type="button" class="btn btn-default dropdown-toggle  btn-lg" data-toggle="dropdown">
+  <button type="button" class="btn btn-default dropdown-toggle  btn-default" data-toggle="dropdown">
     <span class="glyphicon glyphicon-plus"></span> Add Resource
   </button>
   <ul class="dropdown-menu" role="menu">
@@ -7,9 +7,6 @@
       <a ui-sref="resources.type.add({type: type.slug})">{[type.name]}</a>
     </li>
   </ul>
-  <button type="button" class="btn btn-default btn-lg">
-    <span class="glyphicon glyphicon-plus"></span> Resource Type
-  </button>
 </div>
 
 <div ng-show="resources">

@@ -14,12 +14,10 @@ app.controller('MediaCtrl', function($scope, $rootScope, media) {
   });
 
   $scope.$on('sp.media-deselected', function (event, mediaItem) {
-    if ($scope.selectedMedia == mediaItem) {
+    if ($scope.selectedMedia === mediaItem) {
       $scope.selectedMedia = null;
     }
   });
-
-
 
   $scope.remove = function () {
     $scope.selectedMedia.remove().then(function() {
