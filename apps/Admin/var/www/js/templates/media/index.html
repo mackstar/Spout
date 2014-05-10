@@ -2,9 +2,7 @@
 
 <div class="row">
     <div class="col-md-8 sp-media__viewer-container">
-       <span ng-repeat="mediaItem in media" class="sp-media__viewer-thumbnail">
-            <sp-thumbnail media="mediaItem"></sp-thumbnail>
-       </span>
+       <sp-media-items media="media"></sp-media-items>
     </div>
     <div class="col-md-4">
         <ul class="nav nav-tabs" ng-show="selectedMedia">
