@@ -1,7 +1,7 @@
 <?php
 /**
  * This file is part of the Mackstar.Spout package.
- * 
+ *
  * (c) Richard McIntyre <richard.mackstar@gmail.com>
  *
  * For the full copyright and license information, please view the LICENSE
@@ -60,4 +60,4 @@ class Imagine implements ImageManipulationInterface
         $image = $image->thumbnail($tempBox, ImageInterface::THUMBNAIL_OUTBOUND);
         $image->crop($cropPoint, $box)->save($target);
     }
-} 
+}

@@ -12,8 +12,8 @@ use Ray\Di\Di\Inject;
  *
  * @Db
  */
-class Roles extends ResourceObject{
-
+class Roles extends ResourceObject
+{
     use DbSetterTrait;
 
     protected $table = 'roles';

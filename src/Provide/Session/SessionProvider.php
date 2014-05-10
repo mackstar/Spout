@@ -32,4 +32,3 @@ class SessionProvider implements ProviderInterface
         return $session;
     }
 }
-

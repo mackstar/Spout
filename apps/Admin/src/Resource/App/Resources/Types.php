@@ -71,11 +71,11 @@ class Types extends ResourceObject
      */
     public function onDelete($slug)
     {
-        
+
         $this->db->delete($this->table, ['slug' => $slug]);
         $this->db->delete($this->resourceFieldsTable, ['resource_type' => $slug]);
         $this->code = 204;
         return $this;
     }
-    
+
 }

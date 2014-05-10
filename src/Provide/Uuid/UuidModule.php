@@ -19,4 +19,4 @@ class UuidModule extends AbstractModule
             ->toProvider('Mackstar\Spout\Provide\Uuid\UuidProvider');
     }
 
-} 
+}

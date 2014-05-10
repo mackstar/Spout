@@ -16,35 +16,41 @@ use Mackstar\Spout\Tools\String;
 class StringTest extends \PHPUnit_Framework_TestCase
 {
 
-    public function testInstanciationOfString() {
+    public function testInstanciationOfString()
+    {
         $string = new String();
         $this->assertTrue($string instanceof String);
     }
 
-    public function testInstanciationOfStringWithConstructor() {
+    public function testInstanciationOfStringWithConstructor()
+    {
         $string = new String('string');
         $this->assertEquals($string->getString(), 'string');
     }
 
-    public function testSettingOfString() {
+    public function testSettingOfString()
+    {
         $string = new String();
         $string->setString('string');
         $this->assertEquals($string->getString(), 'string');
     }
 
-    public function testAlreadySingularizedValue() {
+    public function testAlreadySingularizedValue()
+    {
         $string = new String();
         $result = $string->singularize('string');
         $this->assertEquals($result, 'string');
     }
 
-    public function testReturnsStringSetInConstructor() {
+    public function testReturnsStringSetInConstructor()
+    {
         $string = new String('string');
         $result = $string->singularize();
         $this->assertEquals($result, 'string');
     }
 
-    public function testReturnsSingularizedString() {
+    public function testReturnsSingularizedString()
+    {
         $string = new String('roles');
         $result = $string->singularize();
         $this->assertEquals($result, 'role');

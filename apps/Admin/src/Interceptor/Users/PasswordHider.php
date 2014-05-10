@@ -9,7 +9,7 @@ use Ray\Aop\MethodInvocation;
 class PasswordHider implements MethodInterceptor
 {
 
-	private $_passwordField = 'password';
+    private $_passwordField = 'password';
 
     public function invoke(MethodInvocation $invocation)
     {

@@ -15,20 +15,23 @@ use Mackstar\Spout\Interfaces\SecurityInterface;
  */
 class Security implements SecurityInterface
 {
-	public function createSalt() {
-		$cost = 10;
-		$salt = strtr(base64_encode(mcrypt_create_iv(16, MCRYPT_DEV_URANDOM)), '+', '.');
-		return sprintf("$2a$%02d$", $cost) . $salt;
-	}
+    public function createSalt()
+    {
+        $cost = 10;
+        $salt = strtr(base64_encode(mcrypt_create_iv(16, MCRYPT_DEV_URANDOM)), '+', '.');
+        return sprintf("$2a$%02d$", $cost) . $salt;
+    }
 
-	public function encrypt($password, $salt = null) {
-		if (!$salt) {
-			$salt = $this->createSalt();
-		}
-		return crypt($password, $salt);
-	}
+    public function encrypt($password, $salt = null)
+    {
+        if (!$salt) {
+            $salt = $this->createSalt();
+        }
+        return crypt($password, $salt);
+    }
 
-	public function match($password, $hash) {
-		return (crypt($password, $hash) === $hash);
-	}
+    public function match($password, $hash)
+    {
+        return (crypt($password, $hash) === $hash);
+    }
 }

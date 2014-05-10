@@ -2,7 +2,7 @@
 
 use Phinx\Migration\AbstractMigration;
 
-class Menu extends AbstractMigration
+class menu extends AbstractMigration
 {
     /**
      * Migrate Up.

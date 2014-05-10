@@ -15,8 +15,8 @@ use PDO;
  *
  * @Db
  */
-class Index extends ResourceObject{
-
+class Index extends ResourceObject
+{
     use DbSetterTrait;
     use ResourceInject;
 

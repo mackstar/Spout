@@ -19,10 +19,10 @@ class ValidatorProviderTest extends \PHPUnit_Framework_TestCase
     {
         $this->assertTrue(is_array($this->validator));
         $this->assertArrayHasKey('emailaddress', $this->validator);
-    } 
+    }
 
     public function testProvidedValidatorsAreInitialised()
     {
         $this->assertTrue(is_object($this->validator['emailaddress']));
-    }  
+    }
 }

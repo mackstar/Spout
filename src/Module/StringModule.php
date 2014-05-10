@@ -15,9 +15,10 @@ use Ray\Di\AbstractModule;
  */
 class StringModule extends AbstractModule
 {
-	public function configure() {
-		$this
+    public function configure()
+    {
+        $this
             ->bind('Mackstar\Spout\Interfaces\StringInterface')
             ->to('Mackstar\Spout\Tools\String');
-	}
+    }
 }

@@ -2,9 +2,9 @@
 
 use Phinx\Migration\AbstractMigration;
 
-class Media extends AbstractMigration
+class media extends AbstractMigration
 {
-    
+
     /**
      * Migrate Up.
      */

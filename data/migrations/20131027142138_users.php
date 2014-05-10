@@ -2,10 +2,10 @@
 
 use Phinx\Migration\AbstractMigration;
 
-class Users extends AbstractMigration
+class users extends AbstractMigration
 {
 
-    
+
     /**
      * Migrate Up.
      */

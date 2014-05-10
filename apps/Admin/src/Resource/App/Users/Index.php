@@ -14,8 +14,8 @@ use Ray\Di\Di\Inject;
  *
  * @Db
  */
-class Index extends ResourceObject{
-
+class Index extends ResourceObject
+{
     use DbSetterTrait;
 
     protected $table = 'users';

@@ -28,4 +28,3 @@ class SessionModule extends AbstractModule
             ->in(Scope::SINGLETON);
     }
 }
-

@@ -14,7 +14,7 @@ class OuterApiAspect extends AbstractModule
 
     protected function configure()
     {
-    	$this->installPagerAppender();
+        $this->installPagerAppender();
     }
 
     private function installPagerAppender()

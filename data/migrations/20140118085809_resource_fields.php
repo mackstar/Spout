@@ -4,7 +4,7 @@ use Phinx\Migration\AbstractMigration;
 
 class ResourceFields extends AbstractMigration
 {
-    
+
     /**
      * Migrate Up.
      */

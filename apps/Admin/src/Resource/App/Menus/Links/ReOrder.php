@@ -11,8 +11,8 @@ use BEAR\Sunday\Annotation\Db;
  *
  * @Db
  */
-class ReOrder extends ResourceObject {
-
+class ReOrder extends ResourceObject
+{
     use DbSetterTrait;
 
     private $table = 'links';
@@ -23,4 +23,4 @@ class ReOrder extends ResourceObject {
             $this->db->update($this->table, ['weight' => $link['weight']], ['id' => $link['id']]);
         }
     }
-} 
+}

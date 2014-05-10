@@ -4,7 +4,7 @@ use Phinx\Migration\AbstractMigration;
 
 class FieldValuesString extends AbstractMigration
 {
-    
+
     /**
      * Migrate Up.
      */

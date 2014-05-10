@@ -15,9 +15,10 @@ use Ray\Di\AbstractModule;
  */
 class SecurityModule extends AbstractModule
 {
-	public function configure() {
-		$this
+    public function configure()
+    {
+        $this
             ->bind('Mackstar\Spout\Interfaces\SecurityInterface')
             ->to('Mackstar\Spout\Tools\Security');
-	}
+    }
 }

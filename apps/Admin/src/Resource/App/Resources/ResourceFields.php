@@ -11,8 +11,8 @@ use BEAR\Sunday\Annotation\Db;
  *
  * @Db
  */
-class ResourceFields extends ResourceObject{
-
+class ResourceFields extends ResourceObject
+{
     use DbSetterTrait;
 
     protected $table = 'resource_fields';

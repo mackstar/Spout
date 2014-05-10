@@ -11,8 +11,8 @@ use BEAR\Sunday\Annotation\Db;
  *
  * @Db
  */
-class Links extends ResourceObject{
-
+class Links extends ResourceObject
+{
     use DbSetterTrait;
 
     protected $table = 'links';

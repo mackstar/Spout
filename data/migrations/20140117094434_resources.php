@@ -2,7 +2,7 @@
 
 use Phinx\Migration\AbstractMigration;
 
-class Resources extends AbstractMigration
+class resources extends AbstractMigration
 {
     /**
      * Migrate Up.

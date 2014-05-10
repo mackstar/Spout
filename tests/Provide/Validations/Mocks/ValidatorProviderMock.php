@@ -6,7 +6,8 @@ use Mackstar\Spout\Interfaces\ValidatorProviderInterface;
 
 class ValidatorProviderMock implements ValidatorProviderInterface
 {
-	public function get() {
-		return ['emailaddress' => new ValidatorMock];
-	}
+    public function get()
+    {
+        return ['emailaddress' => new ValidatorMock];
+    }
 }
