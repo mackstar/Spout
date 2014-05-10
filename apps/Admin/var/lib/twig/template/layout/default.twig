@@ -13,8 +13,21 @@
   <div class="row header">
     <div class="col-md-3"><img src="/img/logo.png"></div>
     <div class="col-md-8 text-right">
-      <div class="btn-group">
-          <button type="button" class="btn btn-default" ui-sref="resources({start:1})">Resources</button>
+      <div class="btn-group text-left">
+          <div class="btn-group">
+              <button type="button" class="btn btn-default dropdown-toggle  btn-default" data-toggle="dropdown">
+                  <span class="glyphicon glyphicon-chevron-down"></span> Resources
+              </button>
+              <ul class="dropdown-menu">
+
+                  <li>
+                      <a ui-sref="resource-types">Resource Types</a>
+                  </li>
+                  <li>
+                      <a ui-sref="resources({start:1})">Index</a>
+                  </li>
+              </ul>
+          </div>
           <button type="button" class="btn btn-default" ui-sref="media">Media</button>
           <button type="button" class="btn btn-default" ui-sref="menus">Menus</button>
           <button type="button" class="btn btn-default" ui-sref="users">Users</button>
