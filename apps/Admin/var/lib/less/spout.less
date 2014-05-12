@@ -30,27 +30,29 @@ form{
 	margin: 10px;
 }
 
-.animate-show {
-	//border-spacing
-    -webkit-transition: opacity 1s linear;
-    -moz-transition: opacity 1s linear;
-    -ms-transition: opacity 1s linear;
-    -o-transition: opacity 1s linear;
-    transition: opacity 1s linear;
-    -webkit-transition-property: opacity !important;
-}
 
-.animate-show {
+
+.animate-show.ng-hide-add, .animate-show.ng-hide-remove {
+
+  -webkit-transition:all linear 1s;
+  -moz-transition:all linear 1s;
+  -o-transition:all linear 1s;
+  transition:all linear 1s;
   display:block !important;
 }
- 
-.animate-show.ng-hide {
-  opacity:0;
-  z-index: 1050;
+
+.animate-show {
+  z-index: 1060;
 }
 
-.animate-show.ng-animate-active {
-	z-index: 1050;
+.animate-show.ng-hide-add.ng-hide-add-active,
+.animate-show.ng-hide-remove {
+  opacity:0;
+}
+
+.animate-show.ng-hide-add,
+.animate-show.ng-hide-remove.ng-hide-remove-active {
+  opacity:1;
 }
 
 #spinner { 

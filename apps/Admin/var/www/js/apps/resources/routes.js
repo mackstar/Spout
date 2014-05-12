@@ -20,6 +20,7 @@ app.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $ur
   })
   .state('resources.type', {
     url: "/type/:type",
+    authenticate: true,
     template: "<div ui-view></div>",
     controller: 'ResourceTypeResolveCtrl',
     resolve: {
@@ -30,6 +31,7 @@ app.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $ur
   })
   .state('resources.type.add', {
     url: "/add",
+    authenticate: true,
     controller: 'ModalCtrl',
     resolve: {
       options: function () {
@@ -43,6 +45,7 @@ app.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $ur
   })
   .state('resources.type.resource', {
     url: "/resource/:slug/:id",
+    authenticate: true,
     template: "<div ui-view></div>",
     controller: 'ResourceCtrl',
     resolve: {
@@ -53,6 +56,7 @@ app.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $ur
   })
   .state('resources.type.resource.edit', {
     url: "/edit",
+    authenticate: true,
     controller: 'ModalCtrl',
     resolve: {
       options: function () {

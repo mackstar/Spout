@@ -22,10 +22,11 @@ return [
             'port' => '3306'
         ],
         'development' => [
-            'adapter' => str_replace('pdo_', '', $test['master_db']['driver']),
-            'host' => $test['master_db']['host'],
-            'name' => $test['master_db']['dbname'],
-            'user' => $test['master_db']['user'],
+            'adapter' => str_replace('pdo_', '', $prod['master_db']['driver']),
+            'host' => $prod['master_db']['host'],
+            'name' => $prod['master_db']['dbname'],
+            'user' => $prod['master_db']['user'],
+            'pass' => $prod['master_db']['password'],
             'port' => '3306'
         ],
         'testing' => [

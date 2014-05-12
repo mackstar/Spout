@@ -37,6 +37,12 @@ app.controller('ResourceTypesAddCtrl', function ($scope, Restangular, $rootScope
   $scope.close = $modalInstance.close;
 
   $scope.submit = function () {
+
+    if ($scope.form['resource-types'].$invalid) {
+      $rootScope.$emit('sp.message', {title: 'Oops', message: 'The form is not yet complete', type: "danger"});
+      return;
+    }
+
     Restangular.all('resources/types').post($scope.type).then(function () {
       $scope.close();
       $rootScope.$emit('sp.message', {title: 'Added resource type successfully', type: "success"});

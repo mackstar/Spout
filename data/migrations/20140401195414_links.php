@@ -11,17 +11,17 @@ class links extends AbstractMigration
     {
         $table = $this->table('links');
         $table
-            ->addColumn('name', 'string', array('limit' => 35))
-            ->addColumn('url', 'string', array('limit' => 100, 'default' => null))
-            ->addColumn('type', 'string', array('limit' => 8)) // resource, index, url
-            ->addColumn('resource', 'string', array('limit' => 35, 'default' => null)) // Slug
-            ->addColumn('resource_type', 'string', array('limit' => 35, 'default' => null)) // Resource type slug
-            ->addColumn('weight', 'integer', array('limit' => 3))
-            ->addColumn('depth', 'integer', array('limit' => 2))
-            ->addColumn('parent_id', 'integer', array('limit' => 3))
-            ->addColumn('menu', 'string', array('limit' => 35)) // Menu Slug
-            ->addColumn('lft', 'string', array('limit' => 3))
-            ->addColumn('rgt', 'string', array('limit' => 3))
+            ->addColumn('name', 'string', ['limit' => 35])
+            ->addColumn('url', 'string', ['limit' => 100, 'default' => null, 'null' => true])
+            ->addColumn('type', 'string', ['limit' => 8])
+            ->addColumn('resource', 'string', ['limit' => 35, 'default' => null, 'null' => true])
+            ->addColumn('resource_type', 'string', ['limit' => 35, 'default' => null, 'null' => true])
+            ->addColumn('weight', 'integer', ['limit' => 3])
+            ->addColumn('depth', 'integer', ['limit' => 2])
+            ->addColumn('parent_id', 'integer', ['limit' => 3])
+            ->addColumn('menu', 'string', ['limit' => 35])
+            ->addColumn('lft', 'string', ['limit' => 3])
+            ->addColumn('rgt', 'string', ['limit' => 3])
             ->save();
     }
 

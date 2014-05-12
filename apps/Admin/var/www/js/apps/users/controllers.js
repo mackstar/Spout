@@ -56,7 +56,6 @@ app.controller('UserAddCtrl', function ($scope, Restangular, parseFormErrors, $m
   $scope.close = $modalInstance.close;
 
   $scope.submit = function () {
-    console.log("submit");
     if ($scope.form.user.$invalid) {
       $rootScope.$emit('sp.message', {title: 'Oops', message: 'The form is not yet complete', type: "danger"});
       return;

@@ -4,6 +4,7 @@ app.config(['$stateProvider', function ($stateProvider) {
   $stateProvider.state('users', {
     url: "/users",
     templateUrl: '/js/templates/users/index.html',
+    authenticate: true,
     controller: 'UsersCtrl',
     resolve: {
       users: ['Restangular', function (Restangular) {
@@ -16,6 +17,7 @@ app.config(['$stateProvider', function ($stateProvider) {
   }).state('users.user', {
     url: "/user/:email",
     template: "<div ui-view></div>",
+    authenticate: true,
     controller: 'UserCtrl',
     resolve: {
       user: ['Restangular', '$stateParams', function (Restangular, $stateParams) {
@@ -26,6 +28,7 @@ app.config(['$stateProvider', function ($stateProvider) {
     .state('users.user.edit', {
       url: "/edit",
       controller: 'ModalCtrl',
+      authenticate: true,
       resolve: {
         options: function () {
           return {
@@ -38,6 +41,7 @@ app.config(['$stateProvider', function ($stateProvider) {
     }).state('users.add', {
       url: "/add",
       controller: 'ModalCtrl',
+      authenticate: true,
       resolve: {
         options: function () {
           return {
