@@ -5,6 +5,7 @@ app.config(['$stateProvider', function ($stateProvider) {
     url: "/resource/types",
     templateUrl: '/js/templates/resources/types/index.html',
     controller: 'ResourceTypesCtrl',
+    authenticate: true,
     resolve: {
       types: ['Restangular', function (Restangular) {
         return Restangular.all('resources/types').getList();
@@ -15,6 +16,7 @@ app.config(['$stateProvider', function ($stateProvider) {
       url: "/resolve",
       template: "<div ui-view></div>",
       controller: 'ResourceTypesResolveCtrl',
+      authenticate: true,
       resolve: {
         fieldtypes: ['Restangular', function (Restangular) {
           return Restangular.all('resources/fieldtypes').getList();
@@ -24,6 +26,7 @@ app.config(['$stateProvider', function ($stateProvider) {
     .state('resource-types.resolve.add', {
       url: "/add",
       controller: 'ModalCtrl',
+      authenticate: true,
       resolve: {
         options: function () {
           return {
