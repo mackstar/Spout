@@ -12,15 +12,17 @@ class ResourceTypes extends AbstractMigration
     {
         $entityTypes = $this->table('resource_types');
         $entityTypes
-            ->addColumn('name', 'string', array('limit' => 35))
-            ->addColumn('slug', 'string', array('limit' => 35))
-            ->addColumn('title_label', 'string', array('limit' => 35))
-            ->addColumn('categories', 'integer', array('limit' => 1))
-            ->addColumn('tags', 'integer', array('limit' => 1))
+            ->addColumn('name', 'string', ['limit' => 35])
+            ->addColumn('slug', 'string', ['limit' => 35])
+            ->addColumn('title_label', 'string', ['limit' => 35])
+            ->addColumn('categories', 'integer', ['limit' => 1, 'default' => 0])
+            ->addColumn('tags', 'integer', ['limit' => 1, 'default' => 0])
             ->save();
 
-        $this->execute("INSERT INTO `resource_types` (`name`, `slug`, `title_label`, `categories`, `tags`) " .
-            "VALUES ('Blog', 'blog', 'Title', 1, 1)");
+        $this->execute(
+            "INSERT INTO `resource_types` (`name`, `slug`, `title_label`, `categories`, `tags`) " .
+            "VALUES ('Blog', 'blog', 'Title', 1, 1)"
+        );
     }
 
     /**
