@@ -4,7 +4,8 @@ app.directive('spField', function() {
 
   var fieldTemplate =
     '<div sp-string-field ng-if="isType(\'string\')"></div>' +
-      '<div sp-text-field ng-if="isType(\'text\')"></div>';
+    '<div sp-text-field ng-if="isType(\'text\')"></div>' +
+    '<div sp-media-field ng-if="isType(\'media\')"></div>';
 
   return {
     replace: true,
@@ -12,7 +13,16 @@ app.directive('spField', function() {
     template: function() {
       return '<div class="form-group" ng-class="{\'has-error\': form.resource[{[field.slug]}].$invalid}">' +
         '<label for="name">{[field.label]}</label>' +
-        fieldTemplate +
+        '<div ng-switch="field.multiple">' +
+          '<div ng-switch-when="1">' +
+            '<div ng-repeat="key in keys" class="multiple">' +
+              fieldTemplate +
+            '</div>' +
+          '</div>' +
+          '<div ng-switch-default>' +
+            fieldTemplate +
+          '</div>' +
+        '</div>' +
         '<label ng-show="field.multiple" class="multiple-buttons">' +
           '<span class="glyphicon glyphicon-minus-sign" ng-show="showMinusButton()" ng-click="removeField()"></span> ' +
           '<span class="glyphicon glyphicon-plus-sign" ng-click="addField()"></span>' +
@@ -27,7 +37,6 @@ app.directive('spField', function() {
         return fieldType === scope.field.field_type;
       };
 
-      // If this is not a multiple field we do not need to do anything else.
       if (scope.field.multiple === "0") {
         return;
       }
@@ -64,15 +73,9 @@ app.directive('spStringField', function() {
     replace: true,
     transclude: true,
     template: '<div ng-switch="field.multiple">' +
-      '<div ng-switch-when="1">' +
-        '<div ng-repeat="key in keys" class="multiple">' +
-          '<input type="text" ng-model="resource.fields[field.slug][key]" class="form-control" />' +
-        '</div>' +
-      '</div>' +
+      '<input type="text" ng-model="resource.fields[field.slug][key]" class="form-control" ng-switch-when="1" />' +
       '<input type="text" ng-model="resource.fields[field.slug]" class="form-control" ng-switch-default required />' +
-    '</div>',
-    link: function(scope, element, attrs) {
-    }
+    '</div>'
   };
 });
 
@@ -80,8 +83,20 @@ app.directive('spTextField', function() {
   return {
     replace: true,
     transclude: true,
-    template: '<textarea class="form-control" ng-model="resource.fields[field.slug]" rows="6" ></textarea>',
-    link: function(scope, element, attrs) {
+    template: '<textarea class="form-control" ng-model="resource.fields[field.slug]" rows="6" ></textarea>'
+  };
+});
+
+app.directive('spMediaField', function() {
+  return {
+    replace: true,
+    transclude: true,
+    resolve: {
+      media: ["media", "media1"]
+    },
+    template: '<h1>MEDIA</h1>',
+    controller: function (media) {
+      console.log(media);
     }
   };
 });
