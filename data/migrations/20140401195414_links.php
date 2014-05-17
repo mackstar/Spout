@@ -17,11 +17,9 @@ class links extends AbstractMigration
             ->addColumn('resource', 'string', ['limit' => 35, 'default' => null, 'null' => true])
             ->addColumn('resource_type', 'string', ['limit' => 35, 'default' => null, 'null' => true])
             ->addColumn('weight', 'integer', ['limit' => 3])
-            ->addColumn('depth', 'integer', ['limit' => 2])
+            ->addColumn('depth', 'integer', ['limit' => 2, 'default' => null, 'null' => true])
             ->addColumn('parent_id', 'integer', ['limit' => 3])
             ->addColumn('menu', 'string', ['limit' => 35])
-            ->addColumn('lft', 'string', ['limit' => 3])
-            ->addColumn('rgt', 'string', ['limit' => 3])
             ->save();
     }
 
