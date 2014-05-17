@@ -68,6 +68,16 @@ app.directive('spField', function() {
   };
 });
 
+app.directive('multipleField', function() {
+  return {
+    replace: true,
+    scope: {model: "=model"},
+    controller: function (scope) {
+
+    }
+  }
+});
+
 app.directive('spStringField', function() {
   return {
     replace: true,
@@ -91,12 +101,9 @@ app.directive('spMediaField', function() {
   return {
     replace: true,
     transclude: true,
-    resolve: {
-      media: ["media", "media1"]
-    },
-    template: '<h1>MEDIA</h1>',
-    controller: function (media) {
-      console.log(media);
+    template: '<div><h1 ui-sref="resources.add.media">Select Media</h1>' +
+      '</div>',
+    controller: function () {
     }
   };
 });

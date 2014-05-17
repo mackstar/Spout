@@ -15,7 +15,6 @@ app.controller('MenusCtrl', function($scope, $state, menus) {
 
 app.controller('MenusAddCtrl', function($scope, $rootScope) {
   $scope.menu = {};
-  $scope.form = {};
 
   $scope.submit = function () {
     if ($scope.form.menu.$invalid) {

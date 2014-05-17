@@ -2,7 +2,7 @@
 
 app.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
 
-  $urlRouterProvider.otherwise('/resources/1');
+  $urlRouterProvider.otherwise('/resources/2');
 
   $stateProvider.state('resources', {
     url: "/resources/:start",
@@ -18,31 +18,48 @@ app.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $ur
       }]
     }
   })
-  .state('resources.type', {
-    url: "/type/:type",
-    authenticate: true,
-    template: "<div ui-view></div>",
-    controller: 'ResourceTypeResolveCtrl',
-    resolve: {
-      type: ['Restangular', '$stateParams', function (Restangular, $stateParams) {
-        return Restangular.one("resources/types").get({slug: $stateParams.type});
-      }]
-    }
-  })
-  .state('resources.type.add', {
-    url: "/add",
+
+  .state('resources.add', {
+    url: "/type/:type/add",
     authenticate: true,
     controller: 'ModalCtrl',
+    template: "<div ui-view></div>",
     resolve: {
-      options: function () {
+      params: function () {
         return {
           templateUrl: "/js/templates/resources/add.html",
           controller: 'ResourceAddCtrl',
-          onComplete: 'resources'
+          onComplete: '^',
+          resolve: {
+            type: ['Restangular', '$stateParams', function (Restangular, $stateParams) {
+              return Restangular.one("resources/types").get({slug: $stateParams.type});
+            }]
+          }
         };
       }
     }
   })
+  .state('resources.add.media', {
+      url: "/media",
+      authenticate: true,
+      controller: 'ModalCtrl',
+      resolve: {
+        params: function () {
+          return {
+            windowClass: "sp-modal__double",
+            templateUrl: "/js/templates/resources/media.html",
+            controller: 'ResourceMediaAddCtrl',
+            onComplete: '^',
+            reload: false,
+            resolve: {
+              media: ['Restangular', function (Restangular) {
+                return Restangular.all('media/index').getList();
+              }]
+            }
+          };
+        }
+      }
+    })
   .state('resources.type.resource', {
     url: "/resource/:slug/:id",
     authenticate: true,

@@ -5,7 +5,9 @@ app.controller('ResourcesCtrl', function($scope, resources, types, $state, $stat
   $scope.resources = resources;
 
   $scope.$watch('resources._pager.current', function(page){
-    if (page !== undefined) {
+    if (page !== undefined && $stateParams.start !== page) {
+
+      console.log("change page");
       $state.go('resources', {start: page});
     }
   });
@@ -25,11 +27,14 @@ app.controller('ResourceCtrl', function($scope, resource) {
   $scope.resource = resource;
 });
 
-app.controller('ResourceTypeResolveCtrl', function($scope, type) {
-  $scope.type = type;
+app.controller('ResourceMediaAddCtrl', function($scope, media, $modalInstance) {
+  $scope.close = $modalInstance.close;
+  $scope.media = media;
 });
 
-app.controller('ResourceAddCtrl', function($scope, Restangular, $modalInstance, $rootScope) {
+
+app.controller('ResourceAddCtrl', function($scope, Restangular, $modalInstance, $rootScope, type) {
+  $scope.type = type;
   $scope.close = $modalInstance.close;
   $scope.resource = { fields: {}};
   $scope.submit = function () {
