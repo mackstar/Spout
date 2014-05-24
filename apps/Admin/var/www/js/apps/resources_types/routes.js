@@ -12,18 +12,7 @@ app.config(['$stateProvider', function ($stateProvider) {
       }]
     }
   })
-    .state('resource-types.resolve', {
-      url: "/resolve",
-      template: "<div ui-view></div>",
-      controller: 'ResourceTypesResolveCtrl',
-      authenticate: true,
-      resolve: {
-        fieldtypes: ['Restangular', function (Restangular) {
-          return Restangular.all('resources/fieldtypes').getList();
-        }]
-      }
-    })
-    .state('resource-types.resolve.add', {
+    .state('resource-types.add', {
       url: "/add",
       controller: 'ModalCtrl',
       authenticate: true,
@@ -32,7 +21,12 @@ app.config(['$stateProvider', function ($stateProvider) {
           return {
             templateUrl: "/js/templates/resources/types/form.html",
             controller: 'ResourceTypesAddCtrl',
-            onComplete: 'resource-types'
+            onComplete: 'resource-types',
+            resolve: {
+              fieldtypes: ['Restangular', function (Restangular) {
+                return Restangular.all('resources/fieldtypes').getList();
+              }]
+            }
           };
         }
       }

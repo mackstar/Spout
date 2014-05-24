@@ -140,12 +140,10 @@ app.controller('ModalCtrl', function($scope, params, $modal, $state) {
 
   var onCompleteOptions = params.onCompleteOptions || {},
     options = {backdrop: 'static', reload: true, scope: $scope, keyboard: false};
-
   angular.extend(options, params);
   options.scope.form = {};
 
   $modal.open(options).result.then(function() {
-    console.log(options.onComplete);
     return $state.go(options.onComplete, onCompleteOptions, {reload:options.reload});
   });
 

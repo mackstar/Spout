@@ -130,7 +130,6 @@ app.directive('spMediaItems', function () {
   return {
     restrict: 'E',
     templateUrl: '/js/templates/media/media-items.html',
-    scope: { media: "="},
     replace: true
   };
 });

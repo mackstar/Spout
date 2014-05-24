@@ -101,9 +101,7 @@ app.directive('spMediaField', function() {
   return {
     replace: true,
     transclude: true,
-    template: '<div><h1 ui-sref="resources.add.media">Select Media</h1>' +
-      '</div>',
-    controller: function () {
-    }
+    template: '<div><h1 ui-sref=".media">Select Media</h1>' +
+      '</div>'
   };
 });

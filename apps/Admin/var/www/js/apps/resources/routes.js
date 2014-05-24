@@ -53,25 +53,14 @@ app.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $ur
             reload: false,
             resolve: {
               media: ['Restangular', function (Restangular) {
-                return Restangular.all('media/index').getList();
+                return Restangular.all('media/index').getList()
               }]
             }
           };
         }
       }
     })
-  .state('resources.type.resource', {
-    url: "/resource/:slug/:id",
-    authenticate: true,
-    template: "<div ui-view></div>",
-    controller: 'ResourceCtrl',
-    resolve: {
-      resource: ['Restangular', '$stateParams', function (Restangular, $stateParams) {
-        return Restangular.one("resources/detail").get({id:$stateParams.id});
-      }]
-    }
-  })
-  .state('resources.type.resource.edit', {
+  .state('resources.edit', {
     url: "/edit",
     authenticate: true,
     controller: 'ModalCtrl',
@@ -80,7 +69,12 @@ app.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $ur
         return {
           templateUrl: "/js/templates/resources/add.html",
           controller: 'ResourceEditCtrl',
-          onComplete: 'resources'
+          onComplete: 'resources',
+          resolve: {
+            resource: ['Restangular', '$stateParams', function (Restangular, $stateParams) {
+              return Restangular.one("resources/detail").get({id:$stateParams.id});
+            }]
+          }
         };
       }
     }

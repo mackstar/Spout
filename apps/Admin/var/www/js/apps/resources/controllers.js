@@ -28,8 +28,11 @@ app.controller('ResourceCtrl', function($scope, resource) {
 });
 
 app.controller('ResourceMediaAddCtrl', function($scope, media, $modalInstance) {
+  console.log(media);
   $scope.close = $modalInstance.close;
-  $scope.media = media;
+  media.getList().then(function(data){
+    $scope.media = data;
+  });
 });
 
 
