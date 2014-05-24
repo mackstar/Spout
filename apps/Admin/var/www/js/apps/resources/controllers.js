@@ -35,7 +35,6 @@ app.controller('ResourceMediaAddCtrl', function($scope, media, $modalInstance) {
   });
 });
 
-
 app.controller('ResourceAddCtrl', function($scope, Restangular, $modalInstance, $rootScope, type) {
   $scope.type = type;
   $scope.close = $modalInstance.close;

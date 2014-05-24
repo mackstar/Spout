@@ -89,7 +89,7 @@ app.directive('spThumbnail', function (Restangular) {
         img = new Image();
 
       function loadImage() {
-          element[0].src = src;
+        element[0].src = src;
       }
 
       scope.select = function () {
@@ -98,7 +98,7 @@ app.directive('spThumbnail', function (Restangular) {
           return;
         }
         scope.media.selected = false;
-      }
+      };
 
       scope.$watch('media.selected', function (selected, previouslySelected) {
         if (selected) {
