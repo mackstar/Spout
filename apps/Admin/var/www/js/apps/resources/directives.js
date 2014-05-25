@@ -23,7 +23,7 @@ app.directive('spField', function() {
             fieldTemplate +
           '</div>' +
         '</div>' +
-        '<label ng-show="field.multiple" class="multiple-buttons">' +
+        '<label ng-show="showMultiple" class="multiple-buttons">' +
           '<span class="glyphicon glyphicon-minus-sign" ng-show="showMinusButton()" ng-click="removeField()"></span> ' +
           '<span class="glyphicon glyphicon-plus-sign" ng-click="addField()"></span>' +
         '</label>' +
@@ -36,6 +36,8 @@ app.directive('spField', function() {
       scope.isType = function (fieldType) {
         return fieldType === scope.field.field_type;
       };
+
+      scope.showMultiple = (scope.field.multiple === "1" && !scope.isType('media'));
 
       if (scope.field.multiple === "0") {
         return;
@@ -71,10 +73,7 @@ app.directive('spField', function() {
 app.directive('multipleField', function() {
   return {
     replace: true,
-    scope: {model: "=model"},
-    controller: function (scope) {
-
-    }
+    scope: {model: "=model"}
   }
 });
 
@@ -97,11 +96,21 @@ app.directive('spTextField', function() {
   };
 });
 
-app.directive('spMediaField', function() {
+app.directive('spMediaField', function($rootScope) {
   return {
     replace: true,
     transclude: true,
-    template: '<div><h1 ui-sref=".media">Select Media</h1>' +
-      '</div>'
+    template: '<div><button class="btn" ui-sref=".media({field: field.slug})">Select Media</button>' +
+      '<div class="panel-body" ng-show="displayMedia.length"><sp-media-items media="displayMedia"></sp-media-items></div>' +
+      '</div>',
+    link: function(scope) {
+      scope.displayMedia = [];
+      $rootScope.$on('sp.media.selected', function (obj, data) {
+        if (scope.field.slug === data.field) {
+          scope.displayMedia = data.selection;
+          scope.resource.fields[scope.field.slug] = (scope.field.multiple === "1")? data.selection : data.selection[0];
+        }
+      });
+    }
   };
 });

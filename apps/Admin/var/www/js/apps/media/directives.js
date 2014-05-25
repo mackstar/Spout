@@ -129,6 +129,7 @@ app.directive('spThumbnail', function (Restangular) {
 app.directive('spMediaItems', function () {
   return {
     restrict: 'E',
+    scope: { media: "=media" },
     templateUrl: '/js/templates/media/media-items.html',
     replace: true
   };

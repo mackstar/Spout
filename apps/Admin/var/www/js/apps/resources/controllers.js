@@ -27,9 +27,17 @@ app.controller('ResourceCtrl', function($scope, resource) {
   $scope.resource = resource;
 });
 
-app.controller('ResourceMediaAddCtrl', function($scope, media, $modalInstance) {
-  console.log(media);
+app.controller('ResourceMediaAddCtrl', function($scope, media, $modalInstance, field) {
   $scope.close = $modalInstance.close;
+  $scope.submit = function() {
+    var selectedMedia = [];
+    angular.forEach($scope.media, function(mediaItem) {
+      if (mediaItem.selected) {
+        selectedMedia.push(mediaItem);
+      }
+    });
+    $modalInstance.close({emit: { name: 'sp.media.selected', data: {field: field, selection: selectedMedia}}});
+  };
   media.getList().then(function(data){
     $scope.media = data;
   });
@@ -42,8 +50,8 @@ app.controller('ResourceAddCtrl', function($scope, Restangular, $modalInstance, 
   $scope.submit = function () {
     $scope.resource.type = $scope.type;
     Restangular.all('resources/index').post($scope.resource).then(function () {
-      $scope.close();
-      $rootScope.$emit('sp.message', {title: 'Resource added successfully', type: "success"});
+      //$scope.close();
+      //$rootScope.$emit('sp.message', {title: 'Resource added successfully', type: "success"});
     });
   };
 });

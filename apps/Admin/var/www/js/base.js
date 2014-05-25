@@ -136,15 +136,19 @@ app.directive('spSlugTitle', function() {
   };
 });
 
-app.controller('ModalCtrl', function($scope, params, $modal, $state) {
+app.controller('ModalCtrl', function($scope, params, $modal, $state, $rootScope) {
 
   var onCompleteOptions = params.onCompleteOptions || {},
     options = {backdrop: 'static', reload: true, scope: $scope, keyboard: false};
   angular.extend(options, params);
   options.scope.form = {};
 
-  $modal.open(options).result.then(function() {
+  $modal.open(options).result.then(function(result) {
+    if (result && result.emit) {
+      $rootScope.$emit(result.emit.name, result.emit.data);
+    }
     return $state.go(options.onComplete, onCompleteOptions, {reload:options.reload});
+
   });
 
 });

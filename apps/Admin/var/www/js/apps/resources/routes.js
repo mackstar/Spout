@@ -40,7 +40,7 @@ app.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $ur
     }
   })
   .state('resources.add.media', {
-      url: "/media",
+      url: "/media/:field",
       authenticate: true,
       controller: 'ModalCtrl',
       resolve: {
@@ -54,6 +54,9 @@ app.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $ur
             resolve: {
               media: ['Restangular', function (Restangular) {
                 return Restangular.all('media/index').getList()
+              }],
+              field: ['$stateParams', function ($stateParams) {
+                return $stateParams.field;
               }]
             }
           };

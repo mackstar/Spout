@@ -22,6 +22,10 @@ class Index extends ResourceObject
 
     protected $table = 'resources';
 
+    protected $mapping = [
+        'media' => ['uuid' => 'uuid']
+    ];
+
     /**
      * @Link(rel="type", href="app://self/entities/types?slug={slug}")
      * @DbPager(5)
@@ -109,10 +113,19 @@ class Index extends ResourceObject
         return $this;
     }
 
+    /**
+     * This discerns whether a field is multiple or singular and
+     * inserts each of the field values to the database accordingly.
+     *
+     * @param $resource
+     * @param $fields
+     * @param $id
+     */
     private function insertFields($resource, $fields, $id)
     {
         foreach ($resource->body['type']['fields'] as $field) {
-            $table = 'field_values_' . $field['field_type'];
+            $fieldType = $field['field_type'];
+            $table = 'field_values_' . $fieldType;
 
             if (!isset($fields[$field['slug']])) {
                 continue;
@@ -120,21 +133,22 @@ class Index extends ResourceObject
 
             // Single field insert
             if ($field['multiple'] == '0') {
-                $this->db->insert($table, [
-                    'value' => $fields[$field['slug']],
+                $mappedValues = $this->getMapping($fieldType, $fields[$field['slug']]);
+                $this->db->insert($table, array_merge($mappedValues, [
                     'resource_field_id' => $field['id'],
                     'resource_id' => $id
-                ]);
+                ]));
 
-            } else {
+            }
 
-                // Multiple field insert
+            // Multiple field insert
+            if ($field['multiple'] == '1') {
                 foreach ($fields[$field['slug']] as $value) {
-                    $this->db->insert($table, [
-                        'value' => $value,
+                    $mappedValues = $this->getMapping($fieldType, $value);
+                    $this->db->insert($table, array_merge($mappedValues, [
                         'resource_field_id' => $field['id'],
                         'resource_id' => $id
-                    ]);
+                    ]));
                 }
             }
         }
@@ -149,6 +163,27 @@ class Index extends ResourceObject
                 $this->db->delete('field_values_' . $field['field_type'], ['resource_id' => $id]);
             }
         }
+    }
+
+    /**
+     * A method for sorting what field names in the 'field types' table
+     * need be mapped to what input parameters from JSON feed.
+     *
+     * @param $field
+     * @param $value
+     * @return array
+     */
+    private function getMapping($field, $value)
+    {
+        if (!isset($this->mapping[$field])) {
+            return ['value' => $value];
+        }
+        $mapping = $this->mapping[$field];
+        $mappedValues = [];
+        foreach ($mapping as $key => $fieldMapping) {
+            $mappedValues[$key] = $value[$fieldMapping];
+        }
+        return $mappedValues;
     }
 
     private function getType($slug)
