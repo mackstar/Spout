@@ -80,10 +80,11 @@ class Detail extends ResourceObject
                 if (is_null($value)) {
                     $mapping = $this->getReadMapping($resource['fields'][$slug]['type'], $row);
 
-                    $value = $this->resource->get->uri($mapping['uri'])
+                    $response = $this->resource->get->uri($mapping['uri'])
                         ->eager
                         ->withQuery($mapping['query'])
                         ->request();
+                    $value = $response[$response['_model']];
                 }
 
 

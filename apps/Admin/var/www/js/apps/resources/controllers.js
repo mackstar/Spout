@@ -50,8 +50,8 @@ app.controller('ResourceAddCtrl', function($scope, Restangular, $modalInstance, 
   $scope.submit = function () {
     $scope.resource.type = $scope.type;
     Restangular.all('resources/index').post($scope.resource).then(function () {
-      //$scope.close();
-      //$rootScope.$emit('sp.message', {title: 'Resource added successfully', type: "success"});
+      $scope.close();
+      $rootScope.$emit('sp.message', {title: 'Resource added successfully', type: "success"});
     });
   };
 });
@@ -82,4 +82,5 @@ function parseResourceObject(resource) {
       resource.fields[key] = object.values;
     }
   });
+  console.log(resource);
 }

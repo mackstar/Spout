@@ -105,9 +105,14 @@ app.directive('spMediaField', function($rootScope) {
       '</div>',
     link: function(scope) {
       scope.displayMedia = [];
+      if (scope.resource.fields[scope.field.slug].length) {
+        scope.displayMedia = scope.resource.fields[scope.field.slug];
+        console.log(scope.displayMedia);
+      }
       $rootScope.$on('sp.media.selected', function (obj, data) {
         if (scope.field.slug === data.field) {
           scope.displayMedia = data.selection;
+          console.log(scope.displayMedia);
           scope.resource.fields[scope.field.slug] = (scope.field.multiple === "1")? data.selection : data.selection[0];
         }
       });
