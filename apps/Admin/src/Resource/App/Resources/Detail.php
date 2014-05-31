@@ -72,11 +72,12 @@ class Detail extends ResourceObject
         foreach ($fieldTypeRows as $rows) {
             foreach ($rows as $row) {
                 $slug = $map[$row['resource_field_id']];
+                $value = isset($row['value'])? $row['value'] : $row;
 
                 if (isset($resource['fields'][$slug]['values'])) {
-                    $resource['fields'][$slug]['values'][] = $row['value'];
+                    $resource['fields'][$slug]['values'][] = $value ;
                 } else {
-                    $resource['fields'][$slug]['value'] = $row['value'];
+                    $resource['fields'][$slug]['value'] = $value;
                 }
             }
         }

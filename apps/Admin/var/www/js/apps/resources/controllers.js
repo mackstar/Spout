@@ -56,10 +56,11 @@ app.controller('ResourceAddCtrl', function($scope, Restangular, $modalInstance, 
   };
 });
 
-app.controller('ResourceEditCtrl', function($scope, Restangular, $modalInstance, $rootScope) {
-
+app.controller('ResourceEditCtrl', function($scope, type, $modalInstance, $rootScope, resource) {
+  $scope.type = type;
   $scope.close = $modalInstance.close;
 
+  $scope.resource = resource;
   parseResourceObject($scope.resource);
 
   $scope.submit = function () {

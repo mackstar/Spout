@@ -17,7 +17,7 @@ app.config(['$stateProvider', function ($stateProvider) {
       controller: 'ModalCtrl',
       authenticate: true,
       resolve: {
-        options: function () {
+        params: function () {
           return {
             templateUrl: "/js/templates/resources/types/form.html",
             controller: 'ResourceTypesAddCtrl',

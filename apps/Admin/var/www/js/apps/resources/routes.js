@@ -18,9 +18,8 @@ app.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $ur
       }]
     }
   })
-
   .state('resources.add', {
-    url: "/type/:type/add",
+    url: "/add/:type",
     authenticate: true,
     controller: 'ModalCtrl',
     template: "<div ui-view></div>",
@@ -64,18 +63,21 @@ app.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $ur
       }
     })
   .state('resources.edit', {
-    url: "/edit",
+    url: "/edit/:type/:id",
     authenticate: true,
     controller: 'ModalCtrl',
     resolve: {
-      options: function () {
+      params: function () {
         return {
           templateUrl: "/js/templates/resources/add.html",
           controller: 'ResourceEditCtrl',
-          onComplete: 'resources',
+          onComplete: '^',
           resolve: {
             resource: ['Restangular', '$stateParams', function (Restangular, $stateParams) {
               return Restangular.one("resources/detail").get({id:$stateParams.id});
+            }],
+            type: ['Restangular', '$stateParams', function (Restangular, $stateParams) {
+              return Restangular.one("resources/types").get({slug: $stateParams.type});
             }]
           }
         };
