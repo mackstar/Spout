@@ -8,6 +8,7 @@ use BEAR\Package\Module\Database\Dbal\Setter\DbSetterTrait;
 use BEAR\Sunday\Annotation\Db;
 use BEAR\Resource\Annotation\Link;
 use BEAR\Sunday\Annotation\DbPager;
+use Mackstar\Spout\Provide\Resource\FieldMapperTrait;
 use PDO;
 
 /**
@@ -19,12 +20,9 @@ class Index extends ResourceObject
 {
     use DbSetterTrait;
     use ResourceInject;
+    use FieldMapperTrait;
 
     protected $table = 'resources';
-
-    protected $mapping = [
-        'media' => ['uuid' => 'uuid']
-    ];
 
     /**
      * @Link(rel="type", href="app://self/entities/types?slug={slug}")
@@ -43,6 +41,13 @@ class Index extends ResourceObject
         return $this;
     }
 
+    /**
+     * Deletes resource
+     *
+     * @param $id
+     * @param $type
+     * @return $this
+     */
     public function onDelete($id, $type)
     {
         $resource = $this->getType($type);
@@ -60,6 +65,15 @@ class Index extends ResourceObject
         return $this;
     }
 
+    /**
+     * Creates resource
+     *
+     * @param $type
+     * @param $title
+     * @param $slug
+     * @param $fields
+     * @return $this
+     */
     public function onPost($type, $title, $slug, $fields)
     {
         $resource = $this->getType($type['slug']);
@@ -163,27 +177,6 @@ class Index extends ResourceObject
                 $this->db->delete('field_values_' . $field['field_type'], ['resource_id' => $id]);
             }
         }
-    }
-
-    /**
-     * A method for sorting what field names in the 'field types' table
-     * need be mapped to what input parameters from JSON feed.
-     *
-     * @param $field
-     * @param $value
-     * @return array
-     */
-    private function getMapping($field, $value)
-    {
-        if (!isset($this->mapping[$field])) {
-            return ['value' => $value];
-        }
-        $mapping = $this->mapping[$field];
-        $mappedValues = [];
-        foreach ($mapping as $key => $fieldMapping) {
-            $mappedValues[$key] = $value[$fieldMapping];
-        }
-        return $mappedValues;
     }
 
     private function getType($slug)

@@ -96,10 +96,19 @@ class Index extends ResourceObject
         return $this;
     }
 
-    public function onGet()
+    public function onGet($uuid = null)
     {
         $sql = "SELECT * FROM {$this->table}";
-        $this['media'] = $this->db->fetchAll($sql);
+        if (is_null($uuid)) {
+            $this['media'] = $this->db->fetchAll($sql);
+        }
+        if (!is_null($uuid)) {
+            $sql .= " WHERE uuid = :uuid";
+            $stmt = $this->db->prepare($sql);
+            $stmt->bindValue('uuid', $uuid);
+            $stmt->execute();
+            $this['media'] = $stmt->fetch();
+        }
         return $this;
     }
 
