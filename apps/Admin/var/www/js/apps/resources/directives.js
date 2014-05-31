@@ -13,7 +13,7 @@ app.directive('spField', function() {
     template: function() {
       return '<div class="form-group" ng-class="{\'has-error\': form.resource[{[field.slug]}].$invalid}">' +
         '<label for="name">{[field.label]}</label>' +
-        '<div ng-switch="field.multiple">' +
+        '<div ng-switch="showMultiple">' +
           '<div ng-switch-when="1">' +
             '<div ng-repeat="key in keys" class="multiple">' +
               fieldTemplate +
@@ -107,12 +107,10 @@ app.directive('spMediaField', function($rootScope) {
       scope.displayMedia = [];
       if (scope.resource.fields[scope.field.slug].length) {
         scope.displayMedia = scope.resource.fields[scope.field.slug];
-        console.log(scope.displayMedia);
       }
       $rootScope.$on('sp.media.selected', function (obj, data) {
         if (scope.field.slug === data.field) {
           scope.displayMedia = data.selection;
-          console.log(scope.displayMedia);
           scope.resource.fields[scope.field.slug] = (scope.field.multiple === "1")? data.selection : data.selection[0];
         }
       });
