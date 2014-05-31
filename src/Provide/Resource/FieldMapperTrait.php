@@ -25,7 +25,7 @@ trait FieldMapperTrait {
     ];
 
     protected $readMapping = [
-        'media' => [ 'uri' => 'app://self/media/index', 'params' => "{:uuid}"]
+        'media' => [ 'uri' => 'app://self/media/index', 'query' => ['uuid' => '{:uuid}']]
     ];
 
     /**
@@ -36,7 +36,7 @@ trait FieldMapperTrait {
      * @param $value
      * @return array
      */
-    private function getMapping($field, $value)
+    private function getWriteMapping($field, $value)
     {
         if (!isset($this->writeMapping[$field])) {
             return ['value' => $value];
@@ -48,4 +48,30 @@ trait FieldMapperTrait {
         }
         return $mappedValues;
     }
+
+    private function getReadMapping($type, $field)
+    {
+        if (!isset($this->readMapping[$type])) {
+            return;
+        }
+        $mapping = $this->readMapping[$type];
+        foreach ($mapping['query'] as &$param) {
+            $this->getReplacement($param, $field);
+        }
+        return $mapping;
+    }
+
+    private function getReplacement(&$param, $field)
+    {
+        preg_match_all("/\{:([a-zA-Z0-9]+)\}/", $param,  $matches);
+        if (!isset($matches[1])) {
+            return;
+        }
+        foreach ($matches[1] as $match) {
+            $param = preg_replace($param, "/\{:$match\}/", $field[$match]);
+        }
+    }
+
+
+
 } 

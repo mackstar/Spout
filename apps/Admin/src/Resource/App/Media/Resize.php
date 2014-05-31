@@ -36,12 +36,6 @@ class Resize extends ResourceObject
         $this->imageManipulator = $imageManipulator;
     }
 
-    public function onGet()
-    {
-        var_dump($this->imageManipulator);
-        exit;
-    }
-
     public function onPost($media, $width, $height)
     {
         $targetDir = $this->uploadDir . '/media/' . $media['directory'];

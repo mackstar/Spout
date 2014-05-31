@@ -90,6 +90,4 @@ class Index extends ResourceObject
         $this->db->update($this->table, $values, ['id' => $id]);
         return $this;
     }
-
-
 }

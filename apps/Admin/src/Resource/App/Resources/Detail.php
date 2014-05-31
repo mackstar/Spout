@@ -6,6 +6,7 @@ use BEAR\Resource\ResourceObject;
 use BEAR\Package\Module\Database\Dbal\Setter\DbSetterTrait;
 use BEAR\Sunday\Annotation\Db;
 use BEAR\Sunday\Inject\ResourceInject;
+use Mackstar\Spout\Provide\Resource\FieldMapperTrait;
 
 /**
  * FieldTypes
@@ -17,6 +18,7 @@ class Detail extends ResourceObject
 
     use DbSetterTrait;
     use ResourceInject;
+    use FieldMapperTrait;
 
     protected $table = 'resources';
 
@@ -48,6 +50,7 @@ class Detail extends ResourceObject
             $fieldType = $resourceField['field_type'];
             $slug = $resourceField['slug'];
             $resource['fields'][$slug] = [
+                'type' => $fieldType,
                 'label' => $resourceField['label'],
                 'value' => ''
             ];
@@ -72,7 +75,17 @@ class Detail extends ResourceObject
         foreach ($fieldTypeRows as $rows) {
             foreach ($rows as $row) {
                 $slug = $map[$row['resource_field_id']];
-                $value = isset($row['value'])? $row['value'] : $row;
+                $value = isset($row['value'])? $row['value'] : null;
+
+                if (is_null($value)) {
+                    $mapping = $this->getReadMapping($resource['fields'][$slug]['type'], $row);
+
+                    $value = $this->resource->get->uri($mapping['uri'])
+                        ->eager
+                        ->withQuery($mapping['query'])
+                        ->request();
+                }
+
 
                 if (isset($resource['fields'][$slug]['values'])) {
                     $resource['fields'][$slug]['values'][] = $value ;
