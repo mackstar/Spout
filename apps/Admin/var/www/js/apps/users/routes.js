@@ -30,7 +30,7 @@ app.config(['$stateProvider', function ($stateProvider) {
       controller: 'ModalCtrl',
       authenticate: true,
       resolve: {
-        options: function () {
+        params: function () {
           return {
             templateUrl: "/js/templates/users/edit.html",
             controller: 'UserEditCtrl',
@@ -43,7 +43,7 @@ app.config(['$stateProvider', function ($stateProvider) {
       controller: 'ModalCtrl',
       authenticate: true,
       resolve: {
-        options: function () {
+        params: function () {
           return {
             templateUrl: "/js/templates/users/edit.html",
             controller: 'UserAddCtrl',
