@@ -14,7 +14,7 @@ app.directive('spField', function() {
       return '<div class="form-group" ng-class="{\'has-error\': form.resource[{[field.slug]}].$invalid}">' +
         '<label for="name">{[field.label]}</label>' +
         '<div ng-switch="showMultiple">' +
-          '<div ng-switch-when="1">' +
+          '<div ng-switch-when="true">' +
             '<div ng-repeat="key in keys" class="multiple">' +
               fieldTemplate +
             '</div>' +
@@ -42,7 +42,6 @@ app.directive('spField', function() {
       if (scope.field.multiple === "0") {
         return;
       }
-
       scope.keys = [0];
 
       if (!Array.isArray(scope.resource.fields[scope.field.slug])) {
@@ -64,6 +63,7 @@ app.directive('spField', function() {
       };
 
       scope.addField = function () {
+        console.log(scope.keys);
         scope.keys.push(scope.keys.length);
       };
     }
