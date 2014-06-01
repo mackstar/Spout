@@ -63,7 +63,7 @@ trait FieldMapperTrait {
 
     private function getReplacement(&$param, $field)
     {
-        preg_match_all("/\{:([a-zA-Z0-9]+)\}/", $param,  $matches);
+        preg_match_all("/\{:([a-zA-Z0-9]+)\}/", $param, $matches);
         if (!isset($matches[1])) {
             return;
         }

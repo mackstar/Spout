@@ -147,7 +147,7 @@ class Index extends ResourceObject
 
             // Single field insert
             if ($field['multiple'] == '0') {
-                $mappedValues = $this->getMapping($fieldType, $fields[$field['slug']]);
+                $mappedValues = $this->getWriteMapping($fieldType, $fields[$field['slug']]);
                 $this->db->insert($table, array_merge($mappedValues, [
                     'resource_field_id' => $field['id'],
                     'resource_id' => $id
@@ -158,7 +158,7 @@ class Index extends ResourceObject
             // Multiple field insert
             if ($field['multiple'] == '1') {
                 foreach ($fields[$field['slug']] as $value) {
-                    $mappedValues = $this->getMapping($fieldType, $value);
+                    $mappedValues = $this->getWriteMapping($fieldType, $value);
                     $this->db->insert($table, array_merge($mappedValues, [
                         'resource_field_id' => $field['id'],
                         'resource_id' => $id
