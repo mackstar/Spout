@@ -1,8 +1,5 @@
 'use strict';
 
-app.controller('ResourceTypesResolveCtrl', function ($scope, fieldtypes) {
-  $scope.fieldtypes = fieldtypes;
-});
 
 app.controller('ResourceTypesCtrl', function ($scope, $rootScope, types) {
   $scope.types = types;
@@ -14,8 +11,8 @@ app.controller('ResourceTypesCtrl', function ($scope, $rootScope, types) {
   };
 });
 
-app.controller('ResourceTypesAddCtrl', function ($scope, Restangular, $rootScope, $modalInstance) {
-
+app.controller('ResourceTypesAddCtrl', function ($scope, Restangular, $rootScope, $modalInstance, fieldtypes) {
+  $scope.fieldtypes = fieldtypes;
   $scope.form = {};
   $scope.type = {
     title_label: 'Title'
