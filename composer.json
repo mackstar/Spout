@@ -17,7 +17,7 @@
         "rhumsaa/uuid":"2.4",
         "robmorgan/phinx": "*",
         "imagine/imagine": "v0.5.0",
-        "zendframework/zend-validator": "2.1.*"
+        "zendframework/zend-validator": "*"
     },
     "require-dev":{
         "bear/dev-package":"dev-master"
