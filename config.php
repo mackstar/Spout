@@ -31,7 +31,7 @@ return [
             'pass' => $prod['master_db']['password'],
             'port' => '3306'
         ],
-        'testing' => [
+        'test' => [
             'adapter' => str_replace('pdo_', '', $test['master_db']['driver']),
             'host' => 'localhost',
             'name' => 'test_db',
