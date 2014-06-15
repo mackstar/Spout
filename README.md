@@ -112,6 +112,27 @@ $ grunt phpunit // to run PHP tests
 $ grunt karma // to run Javascript tests
 ```
 
+### Create Admin user - only able to do when no user is available
+
+```
+curl -XPOST 'http://localdomain/api/users/index' -d '{
+    "email": "richard.mackstar@gmail.com",
+    "password": "secret",
+    "name": "Richard McIntyre",
+    "role": {
+        "id": "1",
+        "name": "Admin"
+    }
+}';
+```
+
+### Admin Access
+
+You can access the control panel at
+```
+http://localdomain/spoutadmin
+```
+
 
 ### Migration
 ```
