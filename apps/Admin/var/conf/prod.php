@@ -32,6 +32,7 @@ $config = [
     'tmp_dir' => "{$appDir}/var/tmp",
     'log_dir' => "{$appDir}/var/log",
     'lib_dir' => "{$appDir}/var/lib",
+    'resource_dir' => "{$appDir}/src/Resource",
     'upload_dir' => "{$appDir}/var/www/uploads"
 ];
 
