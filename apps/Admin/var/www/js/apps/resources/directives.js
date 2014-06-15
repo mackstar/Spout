@@ -5,7 +5,8 @@ app.directive('spField', function() {
   var fieldTemplate =
     '<div sp-string-field ng-if="isType(\'string\')"></div>' +
     '<div sp-text-field ng-if="isType(\'text\')"></div>' +
-    '<div sp-media-field ng-if="isType(\'media\')"></div>';
+    '<div sp-media-field ng-if="isType(\'media\')"></div>' +
+    '<div sp-resource-field ng-if="isType(\'resource\')"></div>';
 
   return {
     replace: true,
@@ -96,6 +97,46 @@ app.directive('spTextField', function() {
   };
 });
 
+app.directive('spResourceField', function() {
+  return {
+    template:'<div class="input-group" ng-show="!currentField.title">' +
+      '<div class="input-group-btn">' +
+      '<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Resource Type <span class="caret"></span></button>' +
+      '<ul class="dropdown-menu">' +
+      '<li ng-repeat="type in types"><a ng-click="selectType(type)">{[type.name]}</a></li>' +
+      '</ul>' +
+      '</div><!-- /btn-group -->' +
+      '<span class="input-group-addon" ng-show="currentField.type_name">{[currentField.type_name]}</span>' +
+      '<input ng-show="currentField.type" type="text" ng-model="currentField.search" current-field="currentField" class="form-control" auto-complete />' +
+      '</div><!-- /input-group -->' +
+      '<div class="alert alert-success alert-dismissable" ng-show="currentField.title">' +
+      '<button type="button" class="close" ng-click="remove()">&times;</button>' +
+      '{[currentField.type_name]}: {[currentField.title]}</div>',
+    link: function (scope) {
+      //scope.currentfield = scope.resource.fields[scope.field.slug];
+      scope.currentField = { search: '' };
+      scope.selectType = function (type) {
+        scope.currentField.type = type.slug;
+        scope.currentField.type_name = type.name;
+      };
+
+      scope.$watch('currentField', function (field) {
+        scope.resource.fields[scope.field.slug] = field;
+      }, true);
+
+      scope.remove = function () {
+        scope.currentField = { search: '', type: scope.currentField.type, type_name: scope.currentField.type_name };
+      };
+
+      scope.select = function(object) {
+        scope.options = [];
+        scope.ngModel = object.title;
+      };
+
+    }
+  }
+});
+
 app.directive('spMediaField', function($rootScope) {
   return {
     replace: true,
@@ -117,3 +158,4 @@ app.directive('spMediaField', function($rootScope) {
     }
   };
 });
+

@@ -21,10 +21,7 @@ describe('Roles Directive', function () {
     );
   });
 
-
-
   it('should have a select menu', function () {
-
     expect($element.prop("tagName")).toEqual('SELECT');
     expect($element.find("option").length).toBe(2);
   });

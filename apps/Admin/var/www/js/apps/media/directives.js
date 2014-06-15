@@ -76,7 +76,6 @@ app.directive('spFileDropzone', function(Restangular) {
   };
 });
 
-
 app.directive('spThumbnail', function (Restangular) {
   return {
     restrict: 'E',

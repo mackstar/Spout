@@ -6,8 +6,6 @@ app.controller('ResourcesCtrl', function($scope, resources, types, $state, $stat
 
   $scope.$watch('resources._pager.current', function(page){
     if (page !== undefined && $stateParams.start !== page) {
-
-      console.log("change page");
       $state.go('resources', {start: page});
     }
   });

@@ -21,11 +21,13 @@ trait FieldMapperTrait {
      * @var array
      */
     protected $writeMapping = [
-        'media' => ['uuid' => 'uuid']
+        'media' => ['uuid' => 'uuid'],
+        'resource' => ['type' => 'type', 'slug' => 'slug']
     ];
 
     protected $readMapping = [
-        'media' => [ 'uri' => 'app://self/media/index', 'query' => ['uuid' => '{:uuid}']]
+        'media' => [ 'uri' => 'app://self/media/index', 'query' => ['uuid' => '{:uuid}']],
+        'resource' => [ 'uri' => 'app://self/resources/detail', 'query' => ['slug' => '{:slug}', 'type' => '{:type}']]
     ];
 
     /**

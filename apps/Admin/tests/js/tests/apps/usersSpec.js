@@ -3,7 +3,6 @@
 describe('Users App', function () {
 
   var scope,
-    httpBackend,
     UsersCtrl;
 
   describe('Index', function () {

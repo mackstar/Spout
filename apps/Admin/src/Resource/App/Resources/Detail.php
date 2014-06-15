@@ -22,11 +22,12 @@ class Detail extends ResourceObject
 
     protected $table = 'resources';
 
-    public function onGet($id = null)
+    public function onGet($type = null, $slug = null)
     {
-        $sql = "SELECT {$this->table}.* FROM {$this->table} WHERE {$this->table}.`id` = :id";
+        $sql = "SELECT {$this->table}.* FROM {$this->table} WHERE `slug` = :slug AND `type` = :type";
         $stmt = $this->db->prepare($sql);
-        $stmt->bindValue('id', $id);
+        $stmt->bindValue('type', $type);
+        $stmt->bindValue('slug', $slug);
         $stmt->execute();
         $resource = $stmt->fetch();
 
@@ -67,7 +68,7 @@ class Detail extends ResourceObject
             $table = 'field_values_' . $fieldType;
             $sql = "SELECT $table.* FROM $table WHERE $table.`resource_id` = :id";
             $stmt = $this->db->prepare($sql);
-            $stmt->bindValue('id', $id);
+            $stmt->bindValue('id', $resource['id']);
             $stmt->execute();
             $fieldTypeRows[] = $stmt->fetchAll();
         }

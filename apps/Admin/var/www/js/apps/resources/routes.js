@@ -63,7 +63,7 @@ app.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $ur
       }
     })
     .state('resources.edit', {
-      url: "/edit/:type/:id",
+      url: "/edit/:type/:slug",
       authenticate: true,
       template: "<div ui-view></div>",
       controller: 'ModalCtrl',
@@ -75,7 +75,7 @@ app.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $ur
             onComplete: '^',
             resolve: {
               resource: ['Restangular', '$stateParams', function (Restangular, $stateParams) {
-                return Restangular.one("resources/detail").get({id:$stateParams.id});
+                return Restangular.one("resources/detail").get({type:$stateParams.type, slug:$stateParams.slug});
               }],
               type: ['Restangular', '$stateParams', function (Restangular, $stateParams) {
                 return Restangular.one("resources/types").get({slug: $stateParams.type});

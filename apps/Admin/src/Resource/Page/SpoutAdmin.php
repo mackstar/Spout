@@ -11,10 +11,14 @@
 namespace Mackstar\Spout\Admin\Resource\Page;
 
 use BEAR\Resource\ResourceObject;
+use BEAR\Sunday\Inject\ResourceInject;
 
-class SpoutAdmin extends ResourceObject {
+class SpoutAdmin extends ResourceObject
+{
+    use ResourceInject;
 
-    public function onGet() {
+    public function onGet()
+    {
         return $this;
     }
 

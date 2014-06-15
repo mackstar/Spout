@@ -36,7 +36,6 @@ class Index extends ResourceObject
 
         $stmt = $this->db->query($sql);
         $this['resources'] = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        //$this['resources'] = $this->db->fetchAll($sql);
 
         return $this;
     }
