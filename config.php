@@ -1,6 +1,8 @@
 <?php
 
 $configPath = __DIR__ . '/apps/Admin/var/conf/';
+$autoloadPath = __DIR__ . '/apps/Admin/bootstrap';
+require($autoloadPath . '/autoload.php');
 $prod = require($configPath . '/prod.php');
 $dev = require($configPath . '/prod.php');
 $test = require($configPath . '/test.php');
