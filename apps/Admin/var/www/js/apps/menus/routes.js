@@ -27,7 +27,7 @@ app.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $ur
     authenticate: true,
     controller: 'ModalCtrl',
     resolve: {
-      options: ['$stateParams', function ($stateParams) {
+      params: ['$stateParams', function ($stateParams) {
         return {
           templateUrl: "/js/templates/menus/url-form.html",
           controller: 'MenuEditLinkCtrl',
@@ -40,7 +40,7 @@ app.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $ur
     url: "/add",
     controller: 'ModalCtrl',
     resolve: {
-      options: ['$stateParams', function ($stateParams) {
+      params: ['$stateParams', function ($stateParams) {
         return {
           templateUrl: "/js/templates/menus/url-form.html",
           controller: 'MenuAddLinkCtrl',
