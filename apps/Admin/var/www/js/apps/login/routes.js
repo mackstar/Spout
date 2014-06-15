@@ -2,7 +2,7 @@
 
 app.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider, Restangular) {
 
-  //$urlRouterProvider.otherwise('/resources/1');
+  $urlRouterProvider.otherwise('/resources/1');
 
   $stateProvider.state('login', {
       url: "/login",
