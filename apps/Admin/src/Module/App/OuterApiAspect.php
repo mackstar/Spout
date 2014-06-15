@@ -23,7 +23,7 @@ class OuterApiAspect extends AbstractModule
 
         $this->bindInterceptor(
             $this->matcher->subclassesOf('BEAR\Resource\ResourceObject'),
-            $this->matcher->startWith('onGet'),
+            $this->matcher->startsWith('onGet'),
             [$pagerAppender]
         );
     }

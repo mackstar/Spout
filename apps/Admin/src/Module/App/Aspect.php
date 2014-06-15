@@ -34,8 +34,8 @@ class Aspect extends AbstractModule
         $session = $this->requestInjection('\Mackstar\Spout\Admin\Interceptor\Users\Session');
 
         $this->bindInterceptor(
-            $this->matcher->subclassesOf('Mackstar\Spout\Admin\Resource\Page\Resources\Index'),
-            $this->matcher->startWith('onGet'),
+            $this->matcher->subclassesOf('BEAR\Resource\ResourceObject'),
+            $this->matcher->startsWith('onGet'),
             [$session]
         );
     }

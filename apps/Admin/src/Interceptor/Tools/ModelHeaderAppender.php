@@ -28,7 +28,7 @@ class ModelHeaderAppender implements MethodInterceptor
         $names = explode('/', $path);
         $i = count($names);
         $name = $names[$i-1];
-        if ($name === 'index') {
+        if ($name === 'index' || $name === 'search') {
             $name = $names[$i-2];
         }
         if (isset($response->body[$name])) {
@@ -39,6 +39,7 @@ class ModelHeaderAppender implements MethodInterceptor
                 $modelName = $singular;
             }
         }
+
 
         if (isset($modelName)) {
             $response->body['_model'] = $modelName;

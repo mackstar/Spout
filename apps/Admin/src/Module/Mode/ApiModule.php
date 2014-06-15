@@ -24,7 +24,7 @@ class ApiModule extends AbstractModule
         $hider = $this->requestInjection('\Mackstar\Spout\Admin\Interceptor\Users\PasswordHider');
         $this->bindInterceptor(
             $this->matcher->subclassesOf('Mackstar\Spout\Admin\Resource\App\Users\Index'),
-            $this->matcher->startWith('onGet'),
+            $this->matcher->startsWith('onGet'),
             [$hider]
         );
     }
@@ -35,7 +35,7 @@ class ApiModule extends AbstractModule
 
         $this->bindInterceptor(
             $this->matcher->subclassesOf('BEAR\Resource\ResourceObject'),
-            $this->matcher->startWith('onGet'),
+            $this->matcher->startsWith('onGet'),
             [$headerAppender]
         );
     }
