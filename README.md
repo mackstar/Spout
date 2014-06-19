@@ -5,15 +5,15 @@ The resource centric CMS written in BEAR.Sunday and Angular.js
 Why do we need another PHP CMS?
 ---------------------------------------------
 
-* To create an resource centric CMS
-* To make all pages, blog posts, menus and blocks available as resources
-* To integrate Angular.js for a better experience
-* To have a fully responsive CMS
-* To create a CMS with more speed
-* To allow overriding of core CMS activity using DI and AOP
-* To provide a platform that modern PHP developers are more comfortable developing in
-* To maximise integration with othor composer based PHP libraries
-* Everything is resource, you can manipulate anything in any REST client.
+* To create a resource centric CMS.
+* To make all pages, blog posts, menus and blocks available as resources.
+* To integrate Angular.js for a better experience.
+* To have a fully responsive CMS.
+* To create a CMS with more speed.
+* To allow overriding of core CMS activity using DI and AOP.
+* To provide a platform that modern PHP developers are more comfortable developing in.
+* To maximise integration with other composer based PHP libraries.
+* Everything is a resource, you can manipulate anything in any REST client.
 
 Contributing
 ---------------------------------------------
