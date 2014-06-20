@@ -1,8 +1,8 @@
 <?php
 
-namespace Mackstar\Spout\Admin\Test\Interceptor\Validators;
+namespace Mackstar\Spout\App\Test\Interceptor\Validators;
 
-use Mackstar\Spout\Admin\Interceptor\Validators\UserValidator;
+use Mackstar\Spout\App\Interceptor\Validators\UserValidator;
 use Mackstar\Spout\Provide\Validations\ValidatorProvider;
 use Mackstar\Spout\Provide\Validations\Validator;
 use Ray\Aop\ReflectiveMethodInvocation;
@@ -18,7 +18,7 @@ class UserValidatorTest extends \PHPUnit_Framework_TestCase
         $interceptor->setResource(clone $GLOBALS['RESOURCE']);
 
 
-        $target = array(new \Mackstar\Spout\Admin\Resource\App\Users\Index, 'onPost');
+        $target = array(new \Mackstar\Spout\App\Resource\App\Users\Index, 'onPost');
         $args = ['','',['id' => ''],''];
         $invocation = new ReflectiveMethodInvocation($target, $args, [$interceptor]);
 

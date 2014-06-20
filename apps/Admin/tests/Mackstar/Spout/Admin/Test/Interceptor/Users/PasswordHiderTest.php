@@ -1,9 +1,9 @@
 <?php
 
-namespace Mackstar\Spout\Admin\Test\Interceptor\Users;
+namespace Mackstar\Spout\App\Test\Interceptor\Users;
 
-use Mackstar\Spout\Admin\Interceptor\Users\PasswordHider;
-use Mackstar\Spout\Admin\Test\Interceptor\Users\Mocks\UserIndexMock;
+use Mackstar\Spout\App\Interceptor\Users\PasswordHider;
+use Mackstar\Spout\App\Test\Interceptor\Users\Mocks\UserIndexMock;
 use Ray\Aop\ReflectiveMethodInvocation;
 
 class PasswordHiderTest extends \PHPUnit_Framework_TestCase
@@ -12,7 +12,7 @@ class PasswordHiderTest extends \PHPUnit_Framework_TestCase
     public function testHidesPasswordsForSingleUser()
     {
         $interceptor = new PasswordHider;
-        $target = array(new \Mackstar\Spout\Admin\Test\Interceptor\Users\Mocks\UserIndexMock, 'onGet');
+        $target = array(new \Mackstar\Spout\App\Test\Interceptor\Users\Mocks\UserIndexMock, 'onGet');
         $invocation = new ReflectiveMethodInvocation($target, [], [$interceptor]);
         $result = $interceptor->invoke($invocation);
 
@@ -23,7 +23,7 @@ class PasswordHiderTest extends \PHPUnit_Framework_TestCase
     public function testHidesPasswordsForMultipleUsers()
     {
         $interceptor = new PasswordHider;
-        $target = array(new \Mackstar\Spout\Admin\Test\Interceptor\Users\Mocks\UsersIndexMock, 'onGet');
+        $target = array(new \Mackstar\Spout\App\Test\Interceptor\Users\Mocks\UsersIndexMock, 'onGet');
         $invocation = new ReflectiveMethodInvocation($target, [], [$interceptor]);
         $result = $interceptor->invoke($invocation);
 

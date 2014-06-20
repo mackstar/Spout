@@ -1,0 +1,30 @@
+<?php
+
+namespace Mackstar\Spout\App\Module\App;
+
+use BEAR\Package;
+use Ray\Di\AbstractModule;
+use Ray\Di\Injector;
+
+/**
+ * Outer API Aspect
+ */
+class OuterApiAspect extends AbstractModule
+{
+
+    protected function configure()
+    {
+        $this->installPagerAppender();
+    }
+
+    private function installPagerAppender()
+    {
+        $pagerAppender = $this->requestInjection('\Mackstar\Spout\App\Interceptor\Tools\PagerAppender');
+
+        $this->bindInterceptor(
+            $this->matcher->subclassesOf('BEAR\Resource\ResourceObject'),
+            $this->matcher->startsWith('onGet'),
+            [$pagerAppender]
+        );
+    }
+}

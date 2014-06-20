@@ -1,5 +1,5 @@
 <?php
-namespace Mackstar\Spout\Admin\Test;
+namespace Mackstar\Spout\App\Test;
 
 use Ray\Di\Injector;
 use Admin\Module\TestModule;
@@ -62,7 +62,7 @@ class IndexTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers Mackstar\Spout\Admin\Resource\Page\Index::onGet
+     * @covers Mackstar\Spout\App\Resource\Page\Index::onGet
      */
     public function testOnGet()
     {

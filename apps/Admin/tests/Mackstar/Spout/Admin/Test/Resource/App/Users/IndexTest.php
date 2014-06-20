@@ -1,11 +1,11 @@
 <?php
 
-namespace Mackstar\Spout\Admin\Test\Resource\App\Users;
+namespace Mackstar\Spout\App\Test\Resource\App\Users;
 
 use Mackstar\Spout\Tools\Security;
 use Ray\Di\Injector;
 use Admin\Module\TestModule;
-use Mackstar\Spout\Admin\Resource\App\Users\Index;
+use Mackstar\Spout\App\Resource\App\Users\Index;
 
 class IndexTest extends \PHPUnit_Framework_TestCase
 {

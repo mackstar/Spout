@@ -1,6 +1,6 @@
 <?php
 
-namespace Mackstar\Spout\Admin;
+namespace Mackstar\Spout\App;
 
 $id = isset($_SERVER['BEAR_DB_ID']) ? $_SERVER['BEAR_DB_ID'] : 'root';
 $password = isset($_SERVER['BEAR_DB_PASSWORD']) ? $_SERVER['BEAR_DB_PASSWORD'] : '';
@@ -27,13 +27,7 @@ $config = [
         'password' => $slavePassword,
         'charset' => 'UTF8'
     ],
-    // constants
-    'app_name' => __NAMESPACE__,
-    'tmp_dir' => "{$appDir}/var/tmp",
-    'log_dir' => "{$appDir}/var/log",
-    'lib_dir' => "{$appDir}/var/lib",
-    'resource_dir' => "{$appDir}/src/Resource",
-    'upload_dir' => "{$appDir}/var/www/uploads"
+
 ];
 
 

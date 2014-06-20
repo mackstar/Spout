@@ -1,0 +1,18 @@
+<?php
+
+namespace Mackstar\Spout\App\Params;
+
+use BEAR\Resource\ParamProviderInterface;
+use BEAR\Resource\ParamInterface;
+
+class CurrentTime implements ParamProviderInterface
+{
+    /**
+     * {@inheritdoc}
+     */
+    public function __invoke(ParamInterface $param)
+    {
+        $time = date("Y-m-d H:i:s", time());
+        return $param->inject($time);
+    }
+}

@@ -30,6 +30,9 @@ $app = require dirname(__DIR__) . '/instance.php';
 //
 list($method, $pagePath, $query) = $app->router->match();
 
+var_dump($app->router->match());
+exit;
+
 //
 // An attempt to request the page resource is made.
 // Upon failure the appropriate error code is assigned and forwarded to ERROR.

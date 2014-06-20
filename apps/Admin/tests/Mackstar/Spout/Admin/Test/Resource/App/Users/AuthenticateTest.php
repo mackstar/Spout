@@ -1,11 +1,11 @@
 <?php
 
-namespace Mackstar\Spout\Admin\Test\Resource\App\Users;
+namespace Mackstar\Spout\App\Test\Resource\App\Users;
 
 use Mackstar\Spout\Provide\Session\MockSessionProvider;
 use Mackstar\Spout\Tools\Security;
 use Ray\Di\Injector;
-use Mackstar\Spout\Admin\Resource\App\Users\Authenticate;
+use Mackstar\Spout\App\Resource\App\Users\Authenticate;
 use Admin\Module\TestModule;
 
 class AuthenticateTest extends \PHPUnit_Framework_TestCase

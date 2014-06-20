@@ -55,6 +55,9 @@ if ($devHtml) {
 // Calling the match of a BEAR.Sunday compatible router will give us the $method, $pagePath, $query to be used
 // in the page request.
 //
+
+var_dump($app->router);
+exit;
 list($method, $pagePath, $query) = $app->router->match();
 
 

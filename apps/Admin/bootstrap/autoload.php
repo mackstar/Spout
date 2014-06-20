@@ -1,5 +1,5 @@
 <?php
-namespace Mackstar\Spout\Admin;
+namespace Mackstar\Spout\App;
 
 use BEAR\Package\Bootstrap\Bootstrap;
 

@@ -5,7 +5,7 @@
  * @return $app  \BEAR\Sunday\Extension\Application\AppInterface
  * @global $context string configuration mode
  */
-namespace Mackstar\Spout\Admin;
+namespace Mackstar\Spout\App;
 
 use BEAR\Package\Bootstrap\Bootstrap;
 

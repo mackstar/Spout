@@ -1,6 +1,6 @@
 <?php
 
-namespace Mackstar\Spout\Admin\Test\Interceptor\Users\Mocks;
+namespace Mackstar\Spout\App\Test\Interceptor\Users\Mocks;
 
 class UserIndexMock
 {

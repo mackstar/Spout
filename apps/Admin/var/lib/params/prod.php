@@ -1,6 +1,6 @@
 <?php
 
-namespace Mackstar\Spout\Admin;
+namespace Mackstar\Spout\App;
 
 /**
  * Signal Parameter
