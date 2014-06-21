@@ -28,7 +28,10 @@ class AppModule extends AbstractModule
      *
      * @var array
      */
-    private $constants;
+    private $constants = [
+        'app_name' => 'Mackstar\Spout\App',
+        'app_slug' => 'spout'
+    ];
 
     /**
      * @var array
@@ -52,7 +55,8 @@ class AppModule extends AbstractModule
         $appDir = dirname(dirname(dirname(dirname(dirname(dirname(__DIR__))))));
         $this->context = $context;
         $this->appDir = $appDir;
-        $this->constants = require "{$appDir}/var/bootstrap/env/{$context}.php";
+        $this->constants +=  (require "{$appDir}/conf/defaults.php") +
+            (require "{$appDir}/conf/env/{$context}.php");
         $this->params = [];
         parent::__construct();
     }
