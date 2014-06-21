@@ -47,13 +47,13 @@ class AppModule extends AbstractModule
      *
      * @throws \LogicException
      */
-    public function __construct($context = 'prod')
+    public function __construct($context = 'production')
     {
-        $appDir = dirname(dirname(__DIR__));
+        $appDir = dirname(dirname(dirname(dirname(dirname(dirname(__DIR__))))));
         $this->context = $context;
         $this->appDir = $appDir;
-        $this->constants = (require "{$appDir}/var/conf/{$context}.php") + (require "{$appDir}/var/conf/prod.php");
-        $this->params = (require "{$appDir}/var/lib/params/{$context}.php") + (require "{$appDir}/var/lib/params/prod.php");
+        $this->constants = require "{$appDir}/var/bootstrap/env/{$context}.php";
+        $this->params = [];
         parent::__construct();
     }
 
