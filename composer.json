@@ -3,8 +3,8 @@
     "description":"A BEAR.Sunday based CMS",
     "license": "MIT",
     "keywords":[
-    	"PHP",
-    	"CMS"
+        "PHP",
+        "CMS"
     ],
     "authors":[
         {
@@ -22,7 +22,6 @@
     "require-dev":{
         "bear/dev-package":"dev-master"
     },
-    {
     "scripts": {
         "post-update-cmd": "Mackstar\\Spout\\Tools\\Console\\Install::postUpdate"
     },

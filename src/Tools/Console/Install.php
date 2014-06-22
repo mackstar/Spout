@@ -17,7 +17,22 @@ class Install
 {
     public static function postUpdate(Event $event)
     {
-        $composer = $event->getComposer();
-        var_dump($composer);
+        $currentDir = getcwd();
+        $wwwDest = $currentDir . '/var/www/';
+        $wwwSrc = self::getBaseDir() . '/dist/spoutadmin';
+        if (!is_dir($wwwDest)) {
+            echo "No `www` directory found, please make sure it exists at `var/www`";
+            exit();
+        }
+
+        echo `cp -R $wwwSrc $wwwDest`;
+        echo "";
+        echo "Welcome to Mackstar.Spout";
+
+
+    }
+
+    public static function getBaseDir() {
+        return dirname(dirname(dirname(__DIR__)));
     }
 }

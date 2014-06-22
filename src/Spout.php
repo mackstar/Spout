@@ -17,4 +17,5 @@ namespace Mackstar\Spout;
  */
 class Spout
 {
+
 }
