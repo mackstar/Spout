@@ -6,7 +6,7 @@ app.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $ur
 
   $stateProvider.state('resources', {
     url: "/resources/:start",
-    templateUrl: '/js/templates/resources/index.html',
+    templateUrl: '/spout-admin/js/templates/resources/index.html',
     authenticate: true,
     controller: 'ResourcesCtrl',
     resolve: {
@@ -26,7 +26,7 @@ app.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $ur
       resolve: {
         params: function () {
           return {
-            templateUrl: "/js/templates/resources/add.html",
+            templateUrl: "/spout-admin/js/templates/resources/add.html",
             controller: 'ResourceAddCtrl',
             onComplete: '^',
             resolve: {
@@ -39,14 +39,14 @@ app.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $ur
       }
     })
     .state('resources.add.media', {
-      url: "/media/:field",
+      url: "/spout-admin/media/:field",
       authenticate: true,
       controller: 'ModalCtrl',
       resolve: {
         params: function () {
           return {
             windowClass: "sp-modal__double",
-            templateUrl: "/js/templates/resources/media.html",
+            templateUrl: "/spout-admin/js/templates/resources/media.html",
             controller: 'ResourceMediaAddCtrl',
             onComplete: '^',
             reload: false,
@@ -70,7 +70,7 @@ app.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $ur
       resolve: {
         params: function () {
           return {
-            templateUrl: "/js/templates/resources/add.html",
+            templateUrl: "/spout-admin/js/templates/resources/add.html",
             controller: 'ResourceEditCtrl',
             onComplete: '^',
             resolve: {
@@ -93,7 +93,7 @@ app.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $ur
         params: function () {
           return {
             windowClass: "sp-modal__double",
-            templateUrl: "/js/templates/resources/media.html",
+            templateUrl: "/spout-admin/js/templates/resources/media.html",
             controller: 'ResourceMediaAddCtrl',
             onComplete: '^',
             reload: false,

@@ -4,7 +4,7 @@ app.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $ur
 
   $stateProvider.state('menus', {
     url: "/menus",
-    templateUrl: '/js/templates/menus/index.html',
+    templateUrl: '/spout-admin/js/templates/menus/index.html',
     authenticate: true,
     controller: 'MenusCtrl',
     resolve: {
@@ -14,7 +14,7 @@ app.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $ur
     }
   }).state('menus.links', {
     url: "/links/:slug/:parent",
-    templateUrl: '/js/templates/menus/links.html',
+    templateUrl: '/spout-admin/js/templates/menus/links.html',
     authenticate: true,
     controller: 'MenuLinksCtrl',
     resolve: {
@@ -29,7 +29,7 @@ app.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $ur
     resolve: {
       params: ['$stateParams', function ($stateParams) {
         return {
-          templateUrl: "/js/templates/menus/url-form.html",
+          templateUrl: "/spout-admin/js/templates/menus/url-form.html",
           controller: 'MenuEditLinkCtrl',
           onComplete: 'menus.links',
           onCompleteOptions: { slug: $stateParams.slug }

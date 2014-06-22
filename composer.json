@@ -22,9 +22,6 @@
     "require-dev":{
         "bear/dev-package":"dev-master"
     },
-    "scripts": {
-        "post-update-cmd": "Mackstar\\Spout\\Tools\\Console\\Install::postUpdate"
-    },
     "minimum-stability": "dev",
     "prefer-stable": true,
     "autoload":{

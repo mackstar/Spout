@@ -172,7 +172,7 @@ app.directive('spLoadingSpinner', function ($rootScope) {
     restrict: 'E',
     replace: true,
     scope: {},
-    template: '<div style="padding-top: 10px"><img src="/img/spinner.gif" ng-show="loading" /></div>',
+    template: '<div style="padding-top: 10px"><img src="/spout-admin/img/spinner.gif" ng-show="loading" /></div>',
     link: function(scope) {
 
       scope.loading = false;

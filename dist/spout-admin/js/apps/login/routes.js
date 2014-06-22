@@ -7,7 +7,7 @@ app.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $ur
   $stateProvider.state('login', {
       url: "/login",
       controller: 'LoginCtrl',
-      templateUrl: '/js/templates/login/index.html',
+      templateUrl: '/spout-admin/js/templates/login/index.html',
       resolve: {
         authentication: ['Restangular', function (Restangular) {
           return Restangular.all('users/authenticate');
@@ -18,7 +18,7 @@ app.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $ur
       url: "/dashboard",
       controller: "DashboardCtrl",
       authenticate: true,
-      templateUrl: "/js/templates/login/dashboard.html"
+      templateUrl: "/spout-admin/js/templates/login/dashboard.html"
     })
     .state('logout', {
       url: "/logout",

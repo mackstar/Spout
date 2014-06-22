@@ -3,7 +3,7 @@
 app.config(['$stateProvider', function ($stateProvider) {
   $stateProvider.state('resource-types', {
     url: "/resource/types",
-    templateUrl: '/js/templates/resources/types/index.html',
+    templateUrl: '/spout-admin/js/templates/resources/types/index.html',
     controller: 'ResourceTypesCtrl',
     authenticate: true,
     resolve: {
@@ -19,7 +19,7 @@ app.config(['$stateProvider', function ($stateProvider) {
       resolve: {
         params: function () {
           return {
-            templateUrl: "/js/templates/resources/types/form.html",
+            templateUrl: "/spout-admin/js/templates/resources/types/form.html",
             controller: 'ResourceTypesAddCtrl',
             onComplete: 'resource-types',
             resolve: {

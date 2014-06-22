@@ -3,7 +3,7 @@
 app.config(['$stateProvider', function ($stateProvider) {
   $stateProvider.state('users', {
     url: "/users",
-    templateUrl: '/js/templates/users/index.html',
+    templateUrl: '/spout-admin/js/templates/users/index.html',
     authenticate: true,
     controller: 'UsersCtrl',
     resolve: {
@@ -32,7 +32,7 @@ app.config(['$stateProvider', function ($stateProvider) {
       resolve: {
         params: function () {
           return {
-            templateUrl: "/js/templates/users/edit.html",
+            templateUrl: "/spout-admin/js/templates/users/edit.html",
             controller: 'UserEditCtrl',
             onComplete: 'users'
           };
@@ -45,7 +45,7 @@ app.config(['$stateProvider', function ($stateProvider) {
       resolve: {
         params: function () {
           return {
-            templateUrl: "/js/templates/users/edit.html",
+            templateUrl: "/spout-admin/js/templates/users/edit.html",
             controller: 'UserAddCtrl',
             onComplete: 'users'
           };
