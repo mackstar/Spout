@@ -22,14 +22,16 @@ class Bootstrap
      * @param string      $appName
      * @param string      $appDir
      */
-    public static function registerLoader(ClassLoader $loader, $appName, $appDir)
+    public static function registerLoader(ClassLoader $loader, $apps, $appDir)
     {
         /** @var $loader \Composer\Autoload\ClassLoader */
-        $loader->addPsr4($appName . '\\', $appDir . '/src');
-
-        AnnotationRegistry::registerLoader([$loader, 'loadClass']);
-        AnnotationReader::addGlobalIgnoredName('noinspection');
-        AnnotationReader::addGlobalIgnoredName('returns');
+        foreach ($apps['Apps'] as $name => $namespace) {
+            $loader->addPsr4($namespace . '\\', $appDir . '/src');
+            AnnotationRegistry::registerLoader([$loader, 'loadClass']);
+            AnnotationReader::addGlobalIgnoredName('noinspection');
+            AnnotationReader::addGlobalIgnoredName('returns');
+        }
+        
     }
 
     /**
