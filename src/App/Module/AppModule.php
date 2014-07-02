@@ -1,9 +1,16 @@
 <?php
+/**
+ * This file is part of the Mackstar.Spout package.
+ *
+ * (c) Richard McIntyre <richard.mackstar@gmail.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
 
 namespace Mackstar\Spout\App\Module;
 
 use BEAR\Package\Module\Form\AuraForm\AuraFormModule;
-use BEAR\Package\Module\Package\PackageModule;
 use BEAR\Package\Module\Resource\ResourceGraphModule;
 use BEAR\Package\Module\Resource\SignalParamModule;
 use BEAR\Package\Provide as ProvideModule;
@@ -11,11 +18,13 @@ use BEAR\Package\Provide\ResourceView;
 use BEAR\Package\Provide\ResourceView\HalModule;
 use BEAR\Package\Provide\TemplateEngine\Twig\TwigModule;
 use BEAR\Sunday\Module as SundayModule;
-use Ray\Di\AbstractModule;
-use Ray\Di\Injector;
+use Mackstar\Spout\App\Module\App\OuterApiAspect;
 use Mackstar\Spout\App\Module\Mode\DevModule;
 use Mackstar\Spout\App\Module\Mode\ApiModule;
-use Mackstar\Spout\App\Module\App\OuterApiAspect;
+use Mackstar\Spout\Provide\Router\Module as RouterModule;
+use Mackstar\Spout\Module\PackageModule;
+use Ray\Di\AbstractModule;
+use Ray\Di\Injector;
 use Ray\Di\Scope;
 
 /**
@@ -39,24 +48,29 @@ class AppModule extends AbstractModule
     private $params = [];
 
     /**
+     * @var array
+     */
+    private $context = [];
+
+    /**
      * @var string
      */
-    private $context;
+    private $env;
 
     private $appDir;
 
     /**
-     * @param string $context
-     *
-     * @throws \LogicException
+     * @param array $contexts
      */
-    public function __construct($context = 'production')
+    public function __construct($contexts)
     {
+        $this->context = $contexts;
         $appDir = dirname(dirname(dirname(dirname(dirname(dirname(__DIR__))))));
-        $this->context = $context;
         $this->appDir = $appDir;
-        $this->constants +=  (require "{$appDir}/conf/defaults.php") +
-            (require "{$appDir}/conf/env/{$context}.php");
+        $this->constants +=  (require "{$appDir}/conf/defaults.php");
+        foreach ($this->context as $context) {
+            $this->constants += (require "{$appDir}/conf/contexts/{$context}.php");
+        }
         $this->params = [];
         parent::__construct();
     }
@@ -67,7 +81,6 @@ class AppModule extends AbstractModule
     protected function configure()
     {
         // install core package
-
         $this->install(new PackageModule('Mackstar\Spout\App\App', $this->context, $this->constants));
 
         // install view package
@@ -83,12 +96,16 @@ class AppModule extends AbstractModule
         // install application aspect
         $this->install(new App\Aspect($this));
 
+
         // install API module
-        if ($this->context === 'api') {
+        if (in_array('api', $this->context)) {
             // install api output view package
             $this->install(new HalModule($this));
             $this->install(new ApiModule($this));
             $this->install(new OuterApiAspect());
         }
+
+        
+        $this->install(new RouterModule($this));
     }
 }

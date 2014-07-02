@@ -1,9 +1,13 @@
 <?php
 /**
- * This file is part of the Mackstar.Spout
+ * This file is part of the Mackstar.Spout package.
  *
- * @license http://opensource.org/licenses/bsd-license.php BSD
+ * (c) Richard McIntyre <richard.mackstar@gmail.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
  */
+
 namespace Mackstar\Spout\Tools\Console;
 
 use Composer\Script\Event;

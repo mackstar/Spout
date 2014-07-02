@@ -11,7 +11,8 @@
 namespace Mackstar\Spout\Provide\Router;
 
 use Aura\Web\Request\Method;
-use Aura\Router\Router;
+use Aura\Router\Router as ARouter;
+use BEAR\Package\Provide\Router\Adapter\AdapterInterface;
 
 /**
  * Aura.Router (v2)
@@ -32,12 +33,51 @@ final class AuraRouter implements AdapterInterface
     /**
      * @param Router $router
      */
-    public function __construct(Router $router)
+    public function __construct(ARouter $router)
     {
         $this->router = $router;
+        $this->setDefaultRoutes();
     }
 
+    /**
+     * Sets default routes for spout app
+     */
+    private function setDefaultRoutes()
+    {
+        $this->add('spout', [
+            ['spout-admin', '/spout-admin', 'spoutadmin'],
+            ['api', '/api/{path}', null, ['tokens' => ['path' => '.+']]],
+        ]);
+    }
 
+    /**
+     * @return Router $router
+     */
+    public function get()
+    {
+        return $this->router;
+    }
+
+    /**
+     * @return Router $router
+     */
+    public function add($app, $array)
+    {
+        foreach($array as $route) {
+            $values = ['app' => $app];
+            if (isset($route[2]) && !is_null($route[2])) {
+                $values['path'] = $route[2];
+            }
+            $tokens = [];
+
+
+            if (!empty($route[3])) {
+                $values += isset($route[3]['values'])? $route[3]['values'] : [];
+                $tokens += isset($route[3]['tokens'])? $route[3]['tokens'] : [];
+            }
+            $this->router->add($route[0], $route[1])->addValues($values)->addTokens($tokens);
+        }
+    }
 
     /**
      * @param string $path
@@ -53,11 +93,19 @@ final class AuraRouter implements AdapterInterface
         }
         $method = (new Method($globals['_SERVER'], $globals['_POST'], self::METHOD_FILED))->get();
         $params = $route->params;
-        unset($params['path']);
         unset($params['REQUEST_METHOD']);
         $request = ($globals['_SERVER']['REQUEST_METHOD'] === 'GET') ? $globals['_GET'] : $globals['_POST'];
         $query = $params + $request;
-        unset($query[self::METHOD_FILED]);
-        return [strtolower($method), $route->values['path'], $query];
+        //$path = isset($params['path'])? $params['path'] : $route->values['path'];
+        $path = $params['path'];
+        unset(
+            $query[self::METHOD_FILED],
+            $query['controller'],
+            $query['path'], 
+            $query['action'],
+            $query['app']
+        );
+        var_dump($route);
+        return [strtolower($method), $path, $route->values['app'], $query];
     }
 }

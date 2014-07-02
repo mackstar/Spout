@@ -77,11 +77,23 @@ final class Router implements RouterInterface
     /**
      * {@inheritDoc}
      *
+     * @return AdapterInterface $router
+     */
+    public function get()
+    {
+        return $this->router;
+    }
+
+    /**
+     * {@inheritDoc}
+     *
      * @return array [$method, $pageUri, $query]
      */
     public function match()
     {
+
         $globals = $this->globals ? : $GLOBALS;
-        return $this->router->match($globals['_SERVER']['REQUEST_URI'], $globals);
+        $path = parse_url($globals['_SERVER']['REQUEST_URI'], PHP_URL_PATH);
+        return $this->router->match($path, $globals);
     }
 }
