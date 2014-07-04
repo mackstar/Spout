@@ -56,8 +56,6 @@ if ($devHtml) {
 // in the page request.
 //
 
-var_dump($app->router);
-exit;
 list($method, $pagePath, $query) = $app->router->match();
 
 

@@ -65,10 +65,16 @@ class PackageModule extends AbstractModule
 
         // Package Module
         $this->install(new Package\Cache\CacheAspectModule($this));
-        $this->install(new Package\Di\DiCompilerModule($this));
+        $this->install(new \Mackstar\Spout\Module\Di\DiCompilerModule($this));
         $this->install(new Package\Di\DiModule($this));
         $this->install(new DevPackage\ExceptionHandle\ExceptionHandleModule);
-        $this->install(new \Mackstar\Spout\Provide\Resource\Module\ResourceModule($this->config['app_name'], $this->config['resource_dir']));
+
+        // Mackstar Spout Resource Package
+        $this->install(
+            new \Mackstar\Spout\Provide\Resource\Module\ResourceModule(
+                $this->config['app_name'], $this->config['resource_dir']
+            )
+        );
 
         // Resource Module
         //$this->install(new Resource\EmbedResourceModule($this));

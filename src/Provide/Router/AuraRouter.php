@@ -105,7 +105,6 @@ final class AuraRouter implements AdapterInterface
             $query['action'],
             $query['app']
         );
-        var_dump($route);
         return [strtolower($method), $path, $route->values['app'], $query];
     }
 }

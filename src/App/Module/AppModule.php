@@ -37,9 +37,11 @@ class AppModule extends AbstractModule
      *
      * @var array
      */
-    private $constants = [
-        'app_name' => 'Mackstar\Spout\App',
-        'app_slug' => 'spout'
+    private $constants = [ 'apps' => [
+            'spout' => [
+                'namespace' => 'Mackstar\\Spout\\App'
+            ]
+        ]
     ];
 
     /**
@@ -53,6 +55,11 @@ class AppModule extends AbstractModule
     private $context = [];
 
     /**
+     * @var array
+     */
+    private $apps = [];
+
+    /**
      * @var string
      */
     private $env;
@@ -62,7 +69,7 @@ class AppModule extends AbstractModule
     /**
      * @param array $contexts
      */
-    public function __construct($contexts)
+    public function __construct($contexts, $apps)
     {
         $this->context = $contexts;
         $appDir = dirname(dirname(dirname(dirname(dirname(dirname(__DIR__))))));
@@ -71,6 +78,12 @@ class AppModule extends AbstractModule
         foreach ($this->context as $context) {
             $this->constants += (require "{$appDir}/conf/contexts/{$context}.php");
         }
+
+        $this->constants['site_name'] = $apps['site'];
+        $this->constants['app_name'] = $apps['apps'][$apps['default']]['namespace'];
+        $this->constants['default_site'] = $apps['default'];
+        $this->constants['apps']['spout']['path'] = dirname(__DIR__);
+        $this->constants['apps'] += $apps['apps'];
         $this->params = [];
         parent::__construct();
     }

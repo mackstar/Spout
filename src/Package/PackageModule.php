@@ -15,7 +15,6 @@ use BEAR\Package\Provide as Provide;
 use BEAR\Sunday\Module as Sunday;
 use BEAR\Resource\Module as Resource;
 use BEAR\Package\Dev\Module as DevPackage;
-
 use Ray\Di\AbstractModule;
 use Ray\Di\Di\Scope;
 

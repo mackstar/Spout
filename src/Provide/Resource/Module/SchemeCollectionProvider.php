@@ -27,12 +27,7 @@ class SchemeCollectionProvider implements Provide
     /**
      * @var string
      */
-    protected $appName;
-
-    /**
-     * @var string
-     */
-    protected $resourceDir;
+    protected $apps;
 
     /**
      * @var InstanceInterface
@@ -40,21 +35,17 @@ class SchemeCollectionProvider implements Provide
     protected $injector;
 
     /**
-     * @param string $appName
+     * @param string $apps
      *
      * @return void
      *
      * @throws \BEAR\Resource\Exception\AppName
      * @Inject
-     * @Named("appName=app_name,resourceDir=resource_dir")
+     * @Named("apps=apps")
      */
-    public function setApps($appName, $resourceDir)
+    public function setApps($apps)
     {
-        if (! is_string($appName)) {
-            throw new AppName($appName);
-        }
-        $this->appName = $appName;
-        $this->resourceDir = $resourceDir;
+        $this->apps = $apps;
     }
 
     /**
@@ -75,12 +66,30 @@ class SchemeCollectionProvider implements Provide
     public function get()
     {
         $schemeCollection = new SchemeCollection;
-        $pageAdapter = new AppAdapter($this->injector, $this->appName, 'Resource\Page', $this->resourceDir . '/Page');
-        $appAdapter = new AppAdapter($this->injector, $this->appName, 'Resource\App', $this->resourceDir . '/App');
-        $schemeCollection->scheme('page')->host('self')->toAdapter($pageAdapter);
-        $schemeCollection->scheme('app')->host('self')->toAdapter($appAdapter);
+        foreach ($this->apps as $host => $app) {
+            $this->setNewScheme($schemeCollection, $host, $app);
+        }
         $schemeCollection->scheme('http')->host('*')->toAdapter(new HttpAdapter);
-
         return $schemeCollection;
+    }
+
+    /**
+     *
+     */
+    private function setNewScheme(&$schemeCollection, $host, $app) {
+        $pageAdapter = new AppAdapter(
+            $this->injector,
+            $app['namespace'],
+            'Resource\Page',
+            $app['path'] . '/Page'
+        );
+        $appAdapter = new AppAdapter(
+            $this->injector,
+            $app['namespace'],
+            'Resource\App',
+            $app['path'] . '/App'
+        );
+        $schemeCollection->scheme('page')->host($host)->toAdapter($pageAdapter);
+        $schemeCollection->scheme('app')->host($host)->toAdapter($appAdapter);
     }
 }

@@ -13,40 +13,51 @@ namespace Mackstar\Spout\Bootstrap;
 use Composer\Autoload\ClassLoader;
 use Doctrine\Common\Annotations\AnnotationRegistry;
 use Doctrine\Common\Annotations\AnnotationReader;
-use BEAR\Package\Module\Di\DiCompilerProvider;
+use Mackstar\Spout\Module\Di\DiCompilerProvider;
 
 class Bootstrap
 {
     /**
      * @param ClassLoader $loader
-     * @param string      $appName
+     * @param string      $apps
      * @param string      $appDir
      */
-    public static function registerLoader(ClassLoader $loader, $apps, $appDir)
+    public static function registerLoader(ClassLoader $loader, &$apps, $appDir)
     {
-        /** @var $loader \Composer\Autoload\ClassLoader */
-        foreach ($apps['Apps'] as $name => $namespace) {
-            $loader->addPsr4($namespace . '\\', $appDir . '/src');
-            AnnotationRegistry::registerLoader([$loader, 'loadClass']);
-            AnnotationReader::addGlobalIgnoredName('noinspection');
-            AnnotationReader::addGlobalIgnoredName('returns');
+        foreach ($apps['apps'] as &$app) {
+            $namespace = $app['namespace'] . '\\';
+            $prefixes = $loader->getPrefixesPsr4();
+            if (isset($prefixes[$namespace])) {
+                $app['path'] = $prefixes[$namespace][0];
+                continue;
+            }
+            $app['path'] = $loader->getPrefixesPsr4()[$namespace];
         }
-        
+        AnnotationRegistry::registerLoader([$loader, 'loadClass']);
+        AnnotationReader::addGlobalIgnoredName('noinspection');
+        AnnotationReader::addGlobalIgnoredName('returns');
     }
 
     /**
-     * @param $appName
+     * @param $apps
      * @param $context
      * @param $tmpDir
      *
      * @return \BEAR\Sunday\Extension\Application\AppInterface
      */
-    public static function getApp($appName, $context, $tmpDir)
+    public static function getApp($apps, $context, $tmpDir)
     {
+        $appName = $apps['apps'][$apps['default']]['namespace'];
         $extraCacheKey = isset($_SERVER['REQUEST_URI']) ? $_SERVER['REQUEST_METHOD'] . parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH) : '';
-        $diCompiler = (new DiCompilerProvider($appName, $context, $tmpDir))->get($extraCacheKey);
+        $diCompiler = (
+            new DiCompilerProvider(
+                $appName,
+                $context,
+                $tmpDir, 
+                $apps
+            )
+        )->get($extraCacheKey);
         $app = $diCompiler->getInstance('BEAR\Sunday\Extension\Application\AppInterface');
-        /** $app \BEAR\Sunday\Extension\Application\AppInterface */
 
         return $app;
     }
