@@ -22,7 +22,7 @@ class AuthenticateTest extends \PHPUnit_Framework_TestCase
         parent::setUp();
         $this->resource = clone $GLOBALS['RESOURCE'];
         $this->db = clone $GLOBALS['DB'];
-        $this->resource->post->uri('app://self/users/index')
+        $this->resource->post->uri('app://spout/users/index')
             ->withQuery([
                 'name' => 'Richard',
                 'email' => 'richard.mackstar@gmail.com',

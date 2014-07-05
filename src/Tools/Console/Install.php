@@ -33,7 +33,7 @@ class Install
         echo `cp -R $wwwSrc $wwwDest`;
 
         $wwwSrc   = self::getBaseDir() . '/dist/template/layout/*';
-        $wwwDest    = $currentDir . '/lib/twig/template/';
+        $wwwDest  = $currentDir . '/lib/twig/template/';
 
         echo `cp -R $wwwSrc $wwwDest`;
         echo "";

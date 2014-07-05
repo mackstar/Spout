@@ -85,7 +85,7 @@ class UserValidator implements MethodInterceptor
         }
 
 
-        return $this->resource->get->uri('app://self/exceptions/validation')
+        return $this->resource->get->uri('app://spout/exceptions/validation')
             ->withQuery(['errors' => $this->errors])
             ->eager
             ->request();
@@ -93,7 +93,7 @@ class UserValidator implements MethodInterceptor
 
     private function isUniqueEmail($email, $id)
     {
-        $result = $this->resource->get->uri('app://self/users/index')
+        $result = $this->resource->get->uri('app://spout/users/index')
             ->withQuery(['email' => $email])
             ->eager
             ->request();

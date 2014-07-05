@@ -45,6 +45,7 @@ class Installer
         // chmod
         self::recursiveJob("{$skeletonRoot}/var/log", $jobChmod);
         self::recursiveJob("{$skeletonRoot}/var/tmp", $jobChmod);
+        self::recursiveJob("{$skeletonRoot}/var/tmp/twig/", $jobChmod);
 
         // rename file contents
         self::recursiveJob($skeletonRoot, $jobRename);
@@ -60,12 +61,6 @@ class Installer
         // rename tests/Mackstar folder
         rename("{$skeletonRoot}/tests/Mackstar", "{$skeletonRoot}/tests/{$appName}");
 
-        // symlink
-        symlink("{$skeletonRoot}/var/lib/smarty/template", "{$skeletonRoot}/src/{$appName}/Resource/template");
-        symlink("{$skeletonRoot}/src/{$appName}/Module/config", "{$skeletonRoot}/config");
-
-        // remove composer.json
-        unlink("$skeletonRoot/composer.json");
     }
 
     /**

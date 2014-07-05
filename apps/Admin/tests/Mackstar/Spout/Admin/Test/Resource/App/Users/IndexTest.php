@@ -48,7 +48,7 @@ class IndexTest extends \PHPUnit_Framework_TestCase
     public function testGetPostedUser()
     {
         // resource request
-        $resource = $this->resource->get->uri('app://self/users/index')
+        $resource = $this->resource->get->uri('app://spout/users/index')
             ->eager
             ->request();
 
@@ -61,7 +61,7 @@ class IndexTest extends \PHPUnit_Framework_TestCase
     public function testGetPostedUserWithEmailQuery()
     {
         // resource request
-        $resource = $this->resource->get->uri('app://self/users/index')
+        $resource = $this->resource->get->uri('app://spout/users/index')
             ->withQuery(['email' => 'richard.mackstar@gmail.com'])
             ->eager
             ->request();

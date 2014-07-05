@@ -47,7 +47,7 @@ class Index extends ResourceObject
      * @param $uploadDir
      *
      * @Inject
-     * @Named("upload_dir")
+     * @Named("uploadDir=upload_dir")
      */
     public function setUploadDir($uploadDir)
     {
@@ -70,6 +70,7 @@ class Index extends ResourceObject
             $fileName = $uuid. '_' . $file['name'];
             $target = $targetDir . '/' . $fileName;
             $suffix = pathinfo($fileName, PATHINFO_EXTENSION);
+
 
             if (!is_dir($targetDir)) {
                 mkdir($targetDir);

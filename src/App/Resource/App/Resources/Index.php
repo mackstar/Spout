@@ -33,7 +33,7 @@ class Index extends ResourceObject
     protected $table = 'resources';
 
     /**
-     * @Link(rel="type", href="app://self/entities/types?slug={slug}")
+     * @Link(rel="type", href="app://spout/entities/types?slug={slug}")
      * @DbPager(5)
      */
     public function onGet()
@@ -188,7 +188,7 @@ class Index extends ResourceObject
 
     private function getType($slug)
     {
-        return $this->resource->get->uri('app://self/resources/types')
+        return $this->resource->get->uri('app://spout/resources/types')
             ->eager
             ->withQuery(['slug' => $slug])
             ->request();

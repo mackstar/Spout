@@ -40,7 +40,7 @@ class Detail extends ResourceObject
         $resource = $stmt->fetch();
 
         try {
-            $resource['type'] = $this->resource->get->uri('app://self/resources/types')
+            $resource['type'] = $this->resource->get->uri('app://spout/resources/types')
                 ->eager
                 ->withQuery(['slug' => $resource['type']])
                 ->request()

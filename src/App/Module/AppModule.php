@@ -84,6 +84,7 @@ class AppModule extends AbstractModule
         $this->constants['default_site'] = $apps['default'];
         $this->constants['apps']['spout']['path'] = dirname(__DIR__);
         $this->constants['apps'] += $apps['apps'];
+
         $this->params = [];
         parent::__construct();
     }

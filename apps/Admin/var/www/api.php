@@ -63,9 +63,9 @@ if (PHP_SAPI === 'cli') {
 } else {
     $pathInfo = $_SERVER['REQUEST_URI'] ? $_SERVER['REQUEST_URI'] : '/index';
     if (strpos($pathInfo, 'api/') === 1) {
-        $uri = 'app://self' . substr($pathInfo, 4);
+        $uri = 'app://spout' . substr($pathInfo, 4);
     } else {
-        $uri = 'app://self' . $pathInfo;
+        $uri = 'app://spout' . $pathInfo;
     }
 
     $get = array_merge($_GET, $_FILES);

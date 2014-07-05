@@ -29,7 +29,7 @@ class Search extends ResourceObject
     protected $table = 'resources';
 
     /**
-     * @Link(rel="type", href="app://self/entities/types?slug={slug}")
+     * @Link(rel="type", href="app://spout/entities/types?slug={slug}")
      * @DbPager(5)
      */
     public function onGet($q, $type = null)

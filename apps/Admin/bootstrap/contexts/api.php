@@ -44,7 +44,7 @@ if (PHP_SAPI === 'cli') {
     parse_str((isset(parse_url($uri)['query']) ? parse_url($uri)['query'] : ''), $get);
 } else {
     $pathInfo = $_SERVER['REQUEST_URI'] ? $_SERVER['REQUEST_URI'] : '/index';
-    $uri = 'app://self' . $pathInfo;
+    $uri = 'app://spout' . $pathInfo;
     $get = $_GET;
 }
 
