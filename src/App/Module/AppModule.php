@@ -76,7 +76,10 @@ class AppModule extends AbstractModule
         $this->appDir = $appDir;
         $this->constants +=  (require "{$appDir}/conf/defaults.php");
         foreach ($this->context as $context) {
-            $this->constants += (require "{$appDir}/conf/contexts/{$context}.php");
+            $this->constants = array_replace_recursive(
+                $this->constants, 
+                (require "{$appDir}/conf/contexts/{$context}.php")
+            );
         }
 
         $this->constants['site_name'] = $apps['site'];
