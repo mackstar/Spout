@@ -62,6 +62,11 @@ class Bootstrap
         return $app;
     }
 
+    public static function setDefaultRoutes($router)
+    {
+        return $routes;
+    }
+
     public static function clearApp(array $dirs)
     {
         // APC Cache

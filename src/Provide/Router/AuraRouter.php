@@ -45,7 +45,7 @@ final class AuraRouter implements AdapterInterface
     private function setDefaultRoutes()
     {
         $this->add('spout', [
-            ['spout-admin', '/spout-admin', 'spoutadmin'],
+            ['spout-admin', '/spoutadmin', 'spoutadmin'],
             ['api', '/api/{path}', null, ['tokens' => ['path' => '.+']]],
         ]);
     }

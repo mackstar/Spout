@@ -29,9 +29,5 @@
             "Mackstar\\Spout\\": "src/"
         }
     },
-    "extra": {
-        "installer-paths": {
-            "apps/{$name}/": ["type:bearsunday-app"]
-        }
-    }
+    "bin": ["bin/spout"]
 }

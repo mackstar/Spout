@@ -2,7 +2,7 @@
 
 use Phinx\Migration\AbstractMigration;
 
-class links extends AbstractMigration
+class Links extends AbstractMigration
 {
     /**
      * Migrate Up.

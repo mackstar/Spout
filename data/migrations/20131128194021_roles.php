@@ -2,7 +2,7 @@
 
 use Phinx\Migration\AbstractMigration;
 
-class roles extends AbstractMigration
+class Roles extends AbstractMigration
 {
     /**
      * Migrate Up.
