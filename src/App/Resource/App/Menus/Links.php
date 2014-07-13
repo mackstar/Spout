@@ -10,7 +10,7 @@
 
 namespace Mackstar\Spout\App\Resource\App\Menus;
 
-use BEAR\Resource\ResourceObject;
+use Mackstar\Spout\Provide\Resource\ResourceObject;
 use BEAR\Package\Module\Database\Dbal\Setter\DbSetterTrait;
 use BEAR\Sunday\Annotation\Db;
 

@@ -52,12 +52,11 @@ class TwigProvider implements Provide
 
     public function resource($resource, $template)
     {
+        $template = str_replace('.', '/', $template);
         $result = $this->resource->get->uri($resource)
             ->eager
             ->withTemplate($template)
             ->request();
         return $result;
-        //var_dump(get_class($context['resource']));
-        //exit;   
     }
 }

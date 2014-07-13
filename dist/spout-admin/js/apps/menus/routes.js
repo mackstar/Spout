@@ -37,12 +37,12 @@ app.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $ur
       }]
     }
   }).state('menus.links.add', {
-    url: "/add",
+    url: "add",
     controller: 'ModalCtrl',
     resolve: {
       params: ['$stateParams', function ($stateParams) {
         return {
-          templateUrl: "/js/templates/menus/url-form.html",
+          templateUrl: "/spout-admin/js/templates/menus/url-form.html",
           controller: 'MenuAddLinkCtrl',
           onComplete: 'menus.links',
           onCompleteOptions: { slug: $stateParams.slug }
