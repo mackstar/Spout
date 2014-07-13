@@ -36,7 +36,7 @@ class Index extends ResourceObject
      * @Link(rel="type", href="app://spout/entities/types?slug={slug}")
      * @DbPager(5)
      */
-    public function onGet()
+    public function onGet($type = null)
     {
         $sql  = "SELECT {$this->table}.*, type.name as type_name, type.title_label FROM {$this->table} ";
         $sql .= "INNER JOIN resource_types AS type ";

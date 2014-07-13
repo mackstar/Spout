@@ -83,7 +83,7 @@ class PackageModule extends AbstractModule
         $this->install(new Provide\WebResponse\HttpFoundationModule);
         $this->install(new Provide\ConsoleOutput\ConsoleOutputModule);
         //$this->install(new Provide\Router\WebRouterModule);
-        $this->install(new Provide\ResourceView\TemplateEngineRendererModule);
+        $this->install(new \Mackstar\Spout\Provide\ResourceView\TemplateEngineRendererModule);
         $this->install(new Provide\ResourceView\HalModule);
 
         // Contextual Binding

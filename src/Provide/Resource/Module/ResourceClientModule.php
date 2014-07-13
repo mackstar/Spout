@@ -48,7 +48,7 @@ class ResourceClientModule extends AbstractModule
         $this->bind()->annotatedWith('resource_dir')->toInstance($this->resourceDir);
 
         // bind resource client component
-        $this->bind('BEAR\Resource\ResourceInterface')->to('BEAR\Resource\Resource')->in(Scope::SINGLETON);
+        $this->bind('BEAR\Resource\ResourceInterface')->to('Mackstar\Spout\Provide\Resource\Resource')->in(Scope::SINGLETON);
         $this->bind('BEAR\Resource\InvokerInterface')->to('BEAR\Resource\Invoker')->in(Scope::SINGLETON);
         $this->bind('BEAR\Resource\LinkerInterface')->to('BEAR\Resource\Linker')->in(Scope::SINGLETON);
         $this->bind('BEAR\Resource\LoggerInterface')->annotatedWith("resource_logger")->to('BEAR\Resource\Logger');
