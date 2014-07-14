@@ -22,13 +22,6 @@ module.exports = function(grunt) {
       filter: ""
     },
     watch: {
-      admin: {
-        files: ['apps/Admin/**/*.php'],
-        tasks: ['shell:phpunit_admin'],
-        options: {
-          nospawn: true
-        }
-      },
       base: {
         files: ['src/**/*.php', 'tests/**/*.php'],
         tasks: ['shell:phpunit_base'],
@@ -43,34 +36,22 @@ module.exports = function(grunt) {
         stdout: true
       },
       css: {
-        command: "lessc apps/Admin/var/lib/less/bootstrap.less > apps/Admin/var/www/css/bootstrap.min.css --compress"
+        command: "lessc lib/less/bootstrap.less > apps/Admin/var/www/css/bootstrap.min.css --compress"
       },
       migrate: {
         command: "vendor/robmorgan/phinx/bin/phinx --configuration=config.php migrate -e" + env
       },
-      migrate_create: {
-          command: "vendor/robmorgan/phinx/bin/phinx --configuration=config.php create " + name
-      },
-      migrate_rollback: {
-          command: "vendor/robmorgan/phinx/bin/phinx --configuration=config.php rollback -e " + env
-      },
-      phpunit_admin: {
-        command: "cd apps/Admin && phpunit <%= php.filter %>"
-      },
       phpunit_base: {
         command: "phpunit <%= php.filter %>"
-      },
-      phpunit: {
-        command: "phpunit && cd apps/Admin && phpunit"
       }
     },
     karma: {
       unit: {
-        configFile: 'apps/Admin/tests/js/karma.conf.js',
+        configFile: 'tests/js/karma.conf.js',
         reporters: ['dots']
       },
       ci: {
-        configFile: 'apps/Admin/tests/js/karma.conf.js',
+        configFile: 'tests/js/karma.conf.js',
         reporters: ['junit', 'dots'],
         singleRun: true
       },

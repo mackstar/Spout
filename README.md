@@ -2,23 +2,24 @@ Mackstar.Spout
 =======
 The resource centric CMS written in BEAR.Sunday and Angular.js
 
-Why do we need another PHP CMS?
+Why do we need another PHP CMS? How is Spout Different?
 ---------------------------------------------
 
-* To create a resource centric CMS.
-* To make all pages, blog posts, menus and blocks available as resources.
-* To integrate Angular.js for a better experience.
-* To have a fully responsive CMS.
-* To create a CMS with more speed.
-* To allow overriding of core CMS activity using DI and AOP.
-* To provide a platform that modern PHP developers are more comfortable developing in.
+* A resource centric CMS.
+* Pages, blog posts, menus and blocks available as resources.
+* Create your own custom resource types.
+* Angular.JS based single page admin app is provided.
+* The admin app merely is a consumer of the RESTful API that is powering your app.
+* Overriding of core CMS simply by using DI and AOP and adding your own resources.
+* A modern PHP developer friendly setup.
+* Embed content into any PHP app (Laravel, Symfony, Zend Framework etc) All welcome!
 * To maximise integration with other composer based PHP libraries.
 * Everything is a resource, you can manipulate anything in any REST client.
 
 Contributing
 ---------------------------------------------
 
-This project will be hard to get off the ground without some of you pitching in! It is about writing a CMS framework that can be extended but one that developers will love using. Spout has been designed to be easy to test and is very much 'Test driven'. 
+I am looking for others to work with me on this app. Please send your pull requests in!
 
 Other tools
 ---------------------------------------------
@@ -34,15 +35,34 @@ Other tools
 Requirements
 ------------
  * PHP 5.4+
+ * Apache - (will add NGINX examples soon).
 
 Getting started
 ---------------
 
 ## Installation
 
-Edit database configuration files in `apps/Admin/var/conf/{environment}.php` to match up to your database.
+To install Spout you need to checkout [the example app](https://github.com/mackstar/Spout-Site)
 
-### Database
+```
+git clone git@github.com:mackstar/Spout-Site.git {yourapp}
+cd {yourapp}
+composer install
+```
+
+### Contexts
+
+There are various contexts that can be implemented and you may have for example both production and api. You can add any contexts as you wish the default included contexts are as follows:
+
+* api
+* dev
+* test
+* production
+
+### Database Config
+
+Edit database configuration files in `conf/contexts/{context}.php` to match up the context to your database. The context would usually be (dev|test|production). Default base config files are added at `conf/defaults.php`
+
 
 ####SQLite
 
@@ -97,20 +117,20 @@ $config = [
 return $config;
 ```
 
+### Installation command
+
+From inside your site run ./vendor/bin/spout install -e {ENV}
+
 ### Apache
 
-Set your `DocumentRoot` to `"/Users/MackstarMBA/Sites/Mackstar.Spout/apps/Admin/var/www"`
+Set your `DocumentRoot` to `"{DOCUMENT_ROOT}/var/www"`
 
-### Command line - from project root.
+### Contexts
 
-```
-$ composer install
-$ sudo npm install -g grunt-cli
-$ npm install
-$ grunt migrate -env={environment} // By default this is development
-$ grunt phpunit // to run PHP tests
-$ grunt karma // to run Javascript tests
-```
+
+### Routes
+
+Default routing is based on Aura Router
 
 ### Create Admin user - only able to do when no user is available
 
@@ -136,12 +156,12 @@ http://localdomain/spoutadmin
 
 ### Migration
 ```
- $ vendor/robmorgan/phinx/bin/phinx migrate -p php -c config.php -e development
+ $ ./vendor/bin/spout migrate -p php -c config.php -e development
 ```
 
 ### Rollback
 ```
-$ vendor/robmorgan/phinx/bin/phinx rollback -e testing -c config.php -t 0
+$ ./vendor/bin/spout rollback -e testing -c config.php -t 0
 ```
 
 ### Environments
