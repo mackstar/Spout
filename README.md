@@ -119,18 +119,55 @@ return $config;
 
 ### Installation command
 
-From inside your site run ./vendor/bin/spout install -e {ENV}
+From inside your site run ./vendor/bin/spout install -e {CONTEXT}
 
 ### Apache
 
 Set your `DocumentRoot` to `"{DOCUMENT_ROOT}/var/www"`
 
-### Contexts
+### Apps
+
+You can make your website up of more than one Spout app. The other apps you have will be installed via composer. The app settings live in `conf/apps.php`
+
+The example app has been added as `bobscars` and lives in the local `src` directory as the PSR-4 namespace `Bob\BobsCars`.
+
+If for example Bob's cars was reliant on another Spout app called `Bob\BobsCarStock` you can add that the config would look like:
+
+```
+return [
+    'site' => 'Bobs Cars',
+    'apps' => [
+        'bobscars' => ['namespace' => 'Bob\\BobsCars'],
+        'bobsstock' => ['namespace' => 'Bob\\BobsCarStock']
+
+		
+    ],
+    'default' => 'bobscars'
+];
+```
+
+*** Note: JS, CSS and the `www` webroot will not be shared. You will need to arrange the copying of these yourself.***
+
+Resources, Interceptors and Routes will all be available to you normally.
 
 
 ### Routes
 
-Default routing is based on Aura Router
+Default routing is based on Aura Router. Example routes have been added to `conf/routes.php`
+
+```
+$routes->add('bobscars', [
+    ['home', '/', 'index'],
+    ['blog-index', '/blog/', 'blog/index', ['tokens' => ['slug' => '[^/]+']]],
+    ['blog-detail', '/blog/{slug}', 'blog/detail', ['tokens' => ['slug' => '[^/]+']]],
+    ['cardetail', '/cardetail/{id}', 'cars/detail'],
+    ['car_resource', '/api/cardetail/{slug}', 'resources/detail', [
+            'tokens' => ['slug' => '[^/]+'],
+            'values' => ['type' => 'cars']
+        ]
+    ]
+]);
+```
 
 ### Create Admin user - only able to do when no user is available
 
@@ -150,27 +187,16 @@ curl -XPOST 'http://localdomain/api/users/index' -d '{
 
 You can access the control panel at
 ```
-http://localdomain/spoutadmin
+http://{YOURDOMAIN}/spoutadmin
 ```
 
 
 ### Migration
 ```
- $ ./vendor/bin/spout migrate -p php -c config.php -e development
+ $ ./vendor/bin/spout migrate -e {CONTEXT}
 ```
 
 ### Rollback
 ```
-$ ./vendor/bin/spout rollback -e testing -c config.php -t 0
-```
-
-### Environments
-* development
-* testing
-* production
-
-### CSS
-CSS files live in `apps/Admin/var/lib/less` and you can compile the css by running
-```
-grunt css
+$ ./vendor/bin/spout rollback -e {CONTEXT} -t 0
 ```
