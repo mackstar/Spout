@@ -83,10 +83,13 @@ class AppModule extends AbstractModule
         }
 
         $this->constants['site_name'] = $apps['site'];
-        $this->constants['app_name'] = $apps['apps'][$apps['default']]['namespace'];
         $this->constants['default_site'] = $apps['default'];
         $this->constants['apps']['spout']['path'] = dirname(__DIR__);
-        $this->constants['apps'] += $apps['apps'];
+        $this->constants['apps'] = array_replace_recursive(
+            $this->constants['apps'],
+            $apps['apps']
+        );
+        $this->constants['app_name'] = $this->constants['apps'][$apps['default']]['namespace'];
 
         $this->params = [];
         parent::__construct();

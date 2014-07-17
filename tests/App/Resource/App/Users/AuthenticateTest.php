@@ -1,6 +1,6 @@
 <?php
 
-namespace Mackstar\Spout\App\Test\Resource\App\Users;
+namespace Mackstar\Spout\Test\App\Resource\App\Users;
 
 use Mackstar\Spout\Provide\Session\MockSessionProvider;
 use Mackstar\Spout\Tools\Security;
