@@ -2,9 +2,10 @@
 
 $loader = require dirname(__DIR__) . '/vendor/autoload.php';
 /** @var $loader \Composer\Autoload\ClassLoader */
-$loader->addPsr4('Mackstar\Spout\\', [dirname(__DIR__) . "src/"]);
-$loader->addPsr4('Mackstar\Spout\\Test\\', [__DIR__]);
-$loader->addPsr4('Mackstar\Spout\\Test\\TestApp\\', [__DIR__ . '/TestApp']);
+$loader->addPsr4('Mackstar\Spout\\', [dirname(__DIR__) . "/src"]);
+
+$loader->addPsr4('Mackstar\Spout\\Test\\', [__DIR__ . "/src"]);
+$loader->addPsr4('Mackstar\Spout\\Test\\TestApp\\', [__DIR__ . '/src/TestApp']);
 
 
 use Doctrine\DBAL\DriverManager;
@@ -21,6 +22,8 @@ ini_set('error_log', sys_get_temp_dir() . 'app-test.log');
 
 // set the application path into the globals so we can access
 // it in the tests.
+
+
 $GLOBALS['APP_DIR'] = __DIR__;
 
 $config = [
@@ -32,7 +35,10 @@ $config = [
 $apps = [
     'site' => 'Spout Test',
     'apps' => [
-        'spouttest' => ['namespace' => 'Mackstar\Spout\\Test\\TestApp']
+        'spouttest' => [
+            'namespace' => 'Mackstar\Spout\\Test\\TestApp',
+            'app_dir' => __DIR__
+        ]
     ],
     'default' => 'spouttest'
 ];

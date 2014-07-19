@@ -72,13 +72,15 @@ class AppModule extends AbstractModule
     public function __construct($contexts, $apps)
     {
         $this->context = $contexts;
-        $appDir = dirname(dirname(dirname(dirname(dirname(dirname(__DIR__))))));
-        $this->appDir = $appDir;
-        $this->constants +=  (require "{$appDir}/conf/defaults.php");
+        $this->appDir = dirname(dirname(dirname(dirname(dirname(dirname(__DIR__))))));
+        if (isset($apps['apps'][$apps['default']]['app_dir'])) {
+            $this->appDir = $apps['apps'][$apps['default']]['app_dir'];
+        }
+        $this->constants +=  (require "{$this->appDir}/conf/defaults.php");
         foreach ($this->context as $context) {
             $this->constants = array_replace_recursive(
                 $this->constants, 
-                (require "{$appDir}/conf/contexts/{$context}.php")
+                (require "{$this->appDir}/conf/contexts/{$context}.php")
             );
         }
 

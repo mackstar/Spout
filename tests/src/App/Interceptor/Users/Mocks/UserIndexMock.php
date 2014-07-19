@@ -16,15 +16,4 @@ class UserIndexMock
          return $this;
     }
 
-    public function onGetMultiple()
-    {
-         $this->body['users'] = [
-            [
-                'name' => 'Richard',
-                'password' => 'somehash'
-            ]
-        ];
-        return $this;
-    }
-
 }

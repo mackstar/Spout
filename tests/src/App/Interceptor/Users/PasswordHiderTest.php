@@ -24,8 +24,8 @@ class PasswordHiderTest extends \PHPUnit_Framework_TestCase
     {
         $interceptor = new PasswordHider;
         $target = [
-            new \Mackstar\Spout\Test\App\Interceptor\Users\Mocks\UserIndexMock,
-            'onGetMultiple'
+            new \Mackstar\Spout\Test\App\Interceptor\Users\Mocks\UsersIndexMock,
+            'onGet'
         ];
         $invocation = new ReflectiveMethodInvocation($target, [], [$interceptor]);
         $result = $interceptor->invoke($invocation);
