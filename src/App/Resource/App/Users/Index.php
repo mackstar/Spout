@@ -39,6 +39,7 @@ class Index extends ResourceObject
 
     public function onGet($email = null)
     {
+
         $sql = "SELECT * FROM {$this->table}";
 
         if (is_null($email)) {
@@ -63,7 +64,6 @@ class Index extends ResourceObject
         $role,
         $password
     ) {
-
         $this->db->insert('users', [
             'name' => $name,
             'email' => $email,

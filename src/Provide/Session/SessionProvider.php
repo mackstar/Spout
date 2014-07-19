@@ -25,6 +25,18 @@ use Ray\Di\Di\Named;
 class SessionProvider implements ProviderInterface
 {
 
+    /**
+     * @param string $context
+     *
+     * @Inject
+     * @Named("app_context")
+     */
+    public function setContext($context)
+    {
+        $this->context = $context;
+        parent::__construct();
+    }
+
     public function get()
     {
         $storage = new NativeSessionStorage();

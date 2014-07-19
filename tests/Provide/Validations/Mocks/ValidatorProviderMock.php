@@ -1,6 +1,6 @@
 <?php
 
-namespace Mackstar\Spout\Provide\Validations\Mocks;
+namespace Mackstar\Spout\Test\Provide\Validations\Mocks;
 
 use Mackstar\Spout\Interfaces\ValidatorProviderInterface;
 

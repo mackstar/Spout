@@ -111,7 +111,12 @@ class AppModule extends AbstractModule
         $this->install(new AuraFormModule);
 
         // install application dependency
-        $this->install(new App\Dependency);
+        if (in_array('test', $this->context)) {
+            $this->install(new App\TestDependency);
+        } else {
+            $this->install(new App\Dependency);
+        }
+        
 
         // install application aspect
         $this->install(new App\Aspect($this));

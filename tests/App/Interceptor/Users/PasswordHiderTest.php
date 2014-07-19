@@ -12,7 +12,7 @@ class PasswordHiderTest extends \PHPUnit_Framework_TestCase
     public function testHidesPasswordsForSingleUser()
     {
         $interceptor = new PasswordHider;
-        $target = array(new \Mackstar\Spout\Test\App\Interceptor\Users\Mocks\UserIndexMock, 'onGet');
+        $target = [new \Mackstar\Spout\Test\App\Interceptor\Users\Mocks\UserIndexMock, 'onGet'];
         $invocation = new ReflectiveMethodInvocation($target, [], [$interceptor]);
         $result = $interceptor->invoke($invocation);
 
@@ -23,7 +23,10 @@ class PasswordHiderTest extends \PHPUnit_Framework_TestCase
     public function testHidesPasswordsForMultipleUsers()
     {
         $interceptor = new PasswordHider;
-        $target = array(new \Mackstar\Spout\Test\App\Interceptor\Users\Mocks\UserIndexMock, 'onGet');
+        $target = [
+            new \Mackstar\Spout\Test\App\Interceptor\Users\Mocks\UserIndexMock,
+            'onGetMultiple'
+        ];
         $invocation = new ReflectiveMethodInvocation($target, [], [$interceptor]);
         $result = $interceptor->invoke($invocation);
 

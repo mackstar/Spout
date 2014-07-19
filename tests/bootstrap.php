@@ -4,6 +4,8 @@ $loader = require dirname(__DIR__) . '/vendor/autoload.php';
 /** @var $loader \Composer\Autoload\ClassLoader */
 $loader->addPsr4('Mackstar\Spout\\', [dirname(__DIR__) . "src/"]);
 $loader->addPsr4('Mackstar\Spout\\Test\\', [__DIR__]);
+$loader->addPsr4('Mackstar\Spout\\Test\\TestApp\\', [__DIR__ . '/TestApp']);
+
 
 use Doctrine\DBAL\DriverManager;
 use Mackstar\Spout\App\Module\AppModule;
@@ -19,7 +21,7 @@ ini_set('error_log', sys_get_temp_dir() . 'app-test.log');
 
 // set the application path into the globals so we can access
 // it in the tests.
-$GLOBALS['APP_DIR'] = dirname(__DIR__);
+$GLOBALS['APP_DIR'] = __DIR__;
 
 $config = [
     'driver' => 'pdo_sqlite',
@@ -36,6 +38,7 @@ $apps = [
 ];
 
 Bootstrap::registerLoader($loader, $apps, $GLOBALS['APP_DIR']);
+Bootstrap::clearApp([__DIR__ . '/tmp']);
 
 $app = Bootstrap::getApp($apps, ['test'], __DIR__ . '/tmp');
 

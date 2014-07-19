@@ -18,15 +18,14 @@ use Ray\Di\Scope;
  *
  * @package Mackstar.Spout
  */
-class SessionModule extends AbstractModule
+class MockSessionModule extends AbstractModule
 {
 
     public function configure()
     {
         $this
             ->bind('Symfony\Component\HttpFoundation\Session\Session')
-            ->toProvider('Mackstar\Spout\Provide\Session\SessionProvider')
+            ->toProvider('Mackstar\Spout\Provide\Session\MockSessionProvider')
             ->in(Scope::SINGLETON);
-        //var_dump("real");
     }
 }

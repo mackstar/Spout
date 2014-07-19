@@ -1,6 +1,6 @@
 <?php
 
-namespace Mackstar\Spout\Provide\Validations;
+namespace Mackstar\Spout\Test\Provide\Validations;
 
 use Mackstar\Spout\Provide\Validations\Validator;
 
@@ -23,7 +23,10 @@ class ValidatorTest extends \PHPUnit_Framework_TestCase
     public function testCorrectInstanceIsReturnedByGetMethod()
     {
         $result = $this->validator->get('emailaddress');
-        $this->assertInstanceOf('Mackstar\Spout\Provide\Validations\Mocks\ValidatorMock', $result);
+        $this->assertInstanceOf(
+            'Mackstar\Spout\Test\Provide\Validations\Mocks\ValidatorMock',
+            new $result()
+        );
     }
 
     public function testMessagesAreReturnedFromCurrentValidator()

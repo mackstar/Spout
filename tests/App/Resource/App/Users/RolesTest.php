@@ -1,6 +1,6 @@
 <?php
 
-namespace Mackstar\Spout\App\Test\Resource\App\Users;
+namespace Mackstar\Spout\Test\App\Resource\App\Users;
 
 use Ray\Di\Injector;
 use Admin\Module\TestModule;

@@ -1,6 +1,6 @@
 <?php
 
-namespace Mackstar\Spout\App\Test\Resource\App\Users;
+namespace Mackstar\Spout\Test\App\Resource\App\Users;
 
 use Mackstar\Spout\Tools\Security;
 use Ray\Di\Injector;
@@ -37,7 +37,6 @@ class IndexTest extends \PHPUnit_Framework_TestCase
         $resource = new Index;
         $resource->setDb($this->db);
         $resource->setSecurity(new Security());
-        //$resource-setSecurity(new Security());
         $resource->onPost('richard.mackstar@gmail.com', 'Richard', ['id' => 1], 'secret');
         $this->assertSame(200, $resource->code);
     }
