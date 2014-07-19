@@ -10,13 +10,11 @@
 return [
     'master_db' => [
         'driver' => 'pdo_sqlite',
-        'dbname' => dirname(dirname(__DIR__)) . '/test_db.sqlite3',
         'path' => dirname(dirname(__DIR__)) . '/test_db.sqlite3',
         'charset' => 'UTF8'
     ],
     'slave_db' => [
         'driver' => 'pdo_sqlite',
-        'dbname' => dirname(dirname(__DIR__)) . '/test_db.sqlite3',
         'path' => dirname(dirname(__DIR__)) . '/test_db.sqlite3',
         'charset' => 'UTF8'
     ]
