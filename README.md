@@ -139,8 +139,6 @@ return [
     'apps' => [
         'bobscars' => ['namespace' => 'Bob\\BobsCars'],
         'bobsstock' => ['namespace' => 'Bob\\BobsCarStock']
-
-		
     ],
     'default' => 'bobscars'
 ];

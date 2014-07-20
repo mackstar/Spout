@@ -26,6 +26,7 @@ class SpoutApplication extends Application
         parent::__construct("Spout Console", "0.0.1");
 
         $this->add(new Install());
+        $this->add(new PreTest());
 
         // Add migration commands from phinx
         $this->add(new Command\Create());

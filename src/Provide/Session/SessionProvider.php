@@ -34,7 +34,6 @@ class SessionProvider implements ProviderInterface
     public function setContext($context)
     {
         $this->context = $context;
-        parent::__construct();
     }
 
     public function get()
