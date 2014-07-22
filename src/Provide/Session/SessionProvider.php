@@ -7,13 +7,12 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
+
 namespace Mackstar\Spout\Provide\Session;
 
 use Ray\Di\ProviderInterface;
 use Symfony\Component\HttpFoundation\Session\Storage\NativeSessionStorage;
 use Symfony\Component\HttpFoundation\Session\Session;
-use Ray\Di\Di\Inject;
-use Ray\Di\Di\Named;
 
 
 /**

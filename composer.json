@@ -3,8 +3,8 @@
     "description":"A BEAR.Sunday based CMS",
     "license": "MIT",
     "keywords":[
-    	"PHP",
-    	"CMS"
+        "PHP",
+        "CMS"
     ],
     "authors":[
         {
@@ -29,9 +29,5 @@
             "Mackstar\\Spout\\": "src/"
         }
     },
-    "extra": {
-        "installer-paths": {
-            "apps/{$name}/": ["type:bearsunday-app"]
-        }
-    }
+    "bin": ["bin/spout"]
 }

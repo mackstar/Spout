@@ -26,8 +26,8 @@ trait FieldMapperTrait {
     ];
 
     protected $readMapping = [
-        'media' => [ 'uri' => 'app://self/media/index', 'query' => ['uuid' => '{:uuid}']],
-        'resource' => [ 'uri' => 'app://self/resources/detail', 'query' => ['slug' => '{:slug}', 'type' => '{:type}']]
+        'media' => [ 'uri' => 'app://spout/media/index', 'query' => ['uuid' => '{:uuid}']],
+        'resource' => [ 'uri' => 'app://spout/resources/detail', 'query' => ['slug' => '{:slug}', 'type' => '{:type}']]
     ];
 
     /**

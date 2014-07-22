@@ -1,0 +1,34 @@
+{% extends "SpoutAdminLayout.twig" %}
+{% block title %}{{ title }}{% endblock %}
+{% block h1 %}{{ title }}{% endblock %}
+
+{% block js %}
+    <style>
+        .dragOver {
+            background-color:sienna;
+            min-height: 40px;
+        }
+    </style>
+    <script>
+        window.sp = {};
+        window.sp.user = {{ _user|json_encode(constant('JSON_PRETTY_PRINT'))|raw }};
+    </script>
+    <script src="/spout-admin/js/lib/sortable.js"></script>
+    <script src="/spout-admin/js/apps/login/routes.js"></script>
+    <script src="/spout-admin/js/apps/login/controllers.js"></script>
+    <script src="/spout-admin/js/apps/login/services.js"></script>
+    <script src="/spout-admin/js/apps/resources/routes.js"></script>
+    <script src="/spout-admin/js/apps/resources/controllers.js"></script>
+    <script src="/spout-admin/js/apps/resources/directives.js"></script>
+    <script src="/spout-admin/js/apps/resources_types/routes.js"></script>
+    <script src="/spout-admin/js/apps/resources_types/controllers.js"></script>
+    <script src="/spout-admin/js/apps/menus/routes.js"></script>
+    <script src="/spout-admin/js/apps/menus/controllers.js"></script>
+    <script src="/spout-admin/js/apps/media/filters.js"></script>
+    <script src="/spout-admin/js/apps/media/routes.js"></script>
+    <script src="/spout-admin/js/apps/media/directives.js"></script>
+    <script src="/spout-admin/js/apps/media/controllers.js"></script>
+    <script src="/spout-admin/js/apps/users/routes.js"></script>
+    <script src="/spout-admin/js/apps/users/directives.js"></script>
+    <script src="/spout-admin/js/apps/users/controllers.js"></script>
+{% endblock %}

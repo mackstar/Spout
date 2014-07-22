@@ -2,7 +2,7 @@
 
 use Phinx\Migration\AbstractMigration;
 
-class users extends AbstractMigration
+class Users extends AbstractMigration
 {
 
 

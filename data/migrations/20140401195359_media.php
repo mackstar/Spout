@@ -2,7 +2,7 @@
 
 use Phinx\Migration\AbstractMigration;
 
-class media extends AbstractMigration
+class Media extends AbstractMigration
 {
 
     /**
