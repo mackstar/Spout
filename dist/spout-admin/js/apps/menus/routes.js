@@ -37,7 +37,7 @@ app.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $ur
       }]
     }
   }).state('menus.links.add', {
-    url: "add",
+    url: "/add",
     controller: 'ModalCtrl',
     resolve: {
       params: ['$stateParams', function ($stateParams) {

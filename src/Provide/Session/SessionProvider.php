@@ -13,8 +13,6 @@ namespace Mackstar\Spout\Provide\Session;
 use Ray\Di\ProviderInterface;
 use Symfony\Component\HttpFoundation\Session\Storage\NativeSessionStorage;
 use Symfony\Component\HttpFoundation\Session\Session;
-use Ray\Di\Di\Inject;
-use Ray\Di\Di\Named;
 
 
 /**
@@ -24,17 +22,6 @@ use Ray\Di\Di\Named;
  */
 class SessionProvider implements ProviderInterface
 {
-
-    /**
-     * @param string $context
-     *
-     * @Inject
-     * @Named("app_context")
-     */
-    public function setContext($context)
-    {
-        $this->context = $context;
-    }
 
     public function get()
     {

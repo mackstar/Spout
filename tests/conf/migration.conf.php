@@ -3,6 +3,7 @@
 $confDir = __DIR__;
 $map = [
     'path' => 'name',
+    'dbname' => 'name',
     'password' => 'pass',
     'driver' => 'adapter' 
 ];

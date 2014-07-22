@@ -27,6 +27,5 @@ class SessionModule extends AbstractModule
             ->bind('Symfony\Component\HttpFoundation\Session\Session')
             ->toProvider('Mackstar\Spout\Provide\Session\SessionProvider')
             ->in(Scope::SINGLETON);
-        //var_dump("real");
     }
 }
