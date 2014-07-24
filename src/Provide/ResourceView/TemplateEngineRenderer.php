@@ -82,8 +82,6 @@ class TemplateEngineRenderer implements TemplateEngineRendererInterface
         }
 
         
-        $resourceObject->view = $this->templateEngineAdapter->fetch($templatePath);
-
-        return $resourceObject->view;
+        return $this->templateEngineAdapter->fetch($templatePath);
     }
 }

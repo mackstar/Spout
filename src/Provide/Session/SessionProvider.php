@@ -27,7 +27,7 @@ class SessionProvider implements ProviderInterface
     {
         $storage = new NativeSessionStorage();
         $session = new Session($storage);
-        $session->start();
+        //$session->start();
         return $session;
     }
 }

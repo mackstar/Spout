@@ -79,7 +79,7 @@ app.directive('spFileDropzone', function(Restangular) {
 app.directive('spThumbnail', function (Restangular) {
   return {
     restrict: 'E',
-    template: "<img src='/img/spinner.gif' ng-click='select()' />",
+    template: "<img src='/spout-admin/img/spinner.gif' ng-click='select()' />",
     scope: { media: "=media"},
     replace: true,
     link: function(scope, element, attrs) {
@@ -129,7 +129,7 @@ app.directive('spMediaItems', function () {
   return {
     restrict: 'E',
     scope: { media: "=media" },
-    templateUrl: '/js/templates/media/media-items.html',
+    templateUrl: '/spout-admin/js/templates/media/media-items.html',
     replace: true
   };
 });
