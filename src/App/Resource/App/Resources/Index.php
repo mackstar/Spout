@@ -10,7 +10,7 @@
 
 namespace Mackstar\Spout\App\Resource\App\Resources;
 
-use BEAR\Resource\ResourceObject;
+use Mackstar\Spout\Provide\Resource\ResourceObject;
 use BEAR\Sunday\Inject\ResourceInject;
 use BEAR\Package\Module\Database\Dbal\Setter\DbSetterTrait;
 use BEAR\Sunday\Annotation\Db;
