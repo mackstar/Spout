@@ -89,11 +89,15 @@ class RunMigration extends AbstractCommand
         $configFilePath = $this->locateConfigFile($input);
 
         $configArray = include($configFilePath);
+        $location = $input->getOption('location')?: "local";
+
         if ($input->getOption('location') == 'spout') {
             $configArray['paths']['migrations'] = dirname(dirname(__DIR__)) . '/data/migrations';
         }
+        $migrationTable = $configArray['environments']['default_migration_table'];
+        $migrationTable = 'sp_migration_' . $location;
+        $configArray['environments']['default_migration_table'] = $migrationTable;
         $config = new Config($configArray, $configFilePath);
-
 
         $this->setConfig($config);
     }
