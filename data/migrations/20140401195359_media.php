@@ -17,11 +17,11 @@ class Media extends AbstractMigration
                 'default' => null,
                 'null' => true
             ])
-            ->addColumn('directory', 'string', ['limit' => 2]
-            ->addColumn('file', 'string', ['limit' => 150]
-            ->addColumn('suffix', 'string', ['limit' => 5]
-            ->addColumn('type', 'string', ['limit' => 10]
-            ->addIndex(['uuid'], ['unique' => true]
+            ->addColumn('directory', 'string', ['limit' => 2])
+            ->addColumn('file', 'string', ['limit' => 150])
+            ->addColumn('suffix', 'string', ['limit' => 5])
+            ->addColumn('type', 'string', ['limit' => 10])
+            ->addIndex(['uuid'], ['unique' => true])
             ->save();
     }
 

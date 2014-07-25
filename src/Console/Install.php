@@ -57,15 +57,14 @@ class Install extends Command
 
         // Copy files
         $this->copyFiles($adminSrc, $adminDest);
-        $this->copyFiles($migrationSrc, $migrationDest);
         $this->copyFiles($layoutSrc, $layoutDest);
 
-        $command = $this->getApplication()->find('migrate');
+        $command = $this->getApplication()->find('run-migration');
 
         $arguments = [
-            'command' => 'migrate',
+            'command' => 'run-migration',
             '--environment'    => $input->getOption('environment'),
-            '-c'  => 'var/bootstrap/migrations.conf.php'
+            '--location'  => 'spout'
         ];
 
         $input = new ArrayInput($arguments);
@@ -81,10 +80,6 @@ class Install extends Command
         // Admin assets
         $adminSrc       =   $spout . '/dist/spout-admin';
         $adminDest      =   $current . '/var/www/';
-
-        // Migrations
-        $migrationSrc   =   $spout . '/data/migrations/';
-        $migrationDest  =   $current . '/lib/migrations/';
 
         // Layout files
         $layoutSrc      =   $spout . '/dist/template/layout/*';
