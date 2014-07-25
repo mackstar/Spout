@@ -12,10 +12,10 @@ class FieldValuesResource extends AbstractMigration
     {
         $table = $this->table('field_values_resource');
         $table
-            ->addColumn('resource_id', 'integer', array('limit' => 10))
-            ->addColumn('resource_field_id', 'integer', array('limit' => 10))
-            ->addColumn('type', 'string', array('limit' => 20))
-            ->addColumn('slug', 'string', array('limit' => 50))
+            ->addColumn('resource_id', 'integer', ['limit' => 10])
+            ->addColumn('resource_field_id', 'integer', ['limit' => 10])
+            ->addColumn('type', 'string', ['limit' => 20])
+            ->addColumn('slug', 'string', ['limit' => 50])
             ->addIndex(['resource_id'])
             ->save();
     }

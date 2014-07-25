@@ -39,7 +39,7 @@ foreach($contexts as $key => &$file) {
 $migrationConf = [
 
     'paths' => [
-        'migrations' => 'data/migrations'
+        'migrations' => dirname(dirname(__DIR__)) . '/data/migrations'
     ],
     'environments' => [
         'default_migration_table' => 'phinxlog',

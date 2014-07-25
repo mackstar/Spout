@@ -11,8 +11,8 @@ class Menu extends AbstractMigration
     {
         $table = $this->table('menus');
         $table
-            ->addColumn('name', 'string', array('limit' => 35))
-            ->addColumn('slug', 'string', array('limit' => 35))
+            ->addColumn('name', 'string', ['limit' => 35])
+            ->addColumn('slug', 'string', ['limit' => 35])
             ->save();
     }
 

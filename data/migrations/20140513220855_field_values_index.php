@@ -13,9 +13,9 @@ class FieldValuesIndex extends AbstractMigration
     {
         $table = $this->table('field_values_index');
         $table
-            ->addColumn('resource_id', 'integer', array('limit' => 10))
-            ->addColumn('resource_field_id', 'integer', array('limit' => 10))
-            ->addColumn('uuid', 'string', array('limit' => 36))
+            ->addColumn('resource_id', 'integer', ['limit' => 10])
+            ->addColumn('resource_field_id', 'integer', ['limit' => 10])
+            ->addColumn('uuid', 'string', ['limit' => 36])
             ->save();
     }
 

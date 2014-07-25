@@ -11,13 +11,17 @@ class Media extends AbstractMigration
     public function up()
     {
         $roles = $this->table('media');
-        $roles->addColumn('uuid', 'string', array('limit' => 36))
-            ->addColumn('title', 'string', array('limit' => 30, 'default' => null, 'null' => true))
-            ->addColumn('directory', 'string', array('limit' => 2))
-            ->addColumn('file', 'string', array('limit' => 150))
-            ->addColumn('suffix', 'string', array('limit' => 5))
-            ->addColumn('type', 'string', array('limit' => 10))
-            ->addIndex(array('uuid'), array('unique' => true))
+        $roles->addColumn('uuid', 'string', ['limit' => 36])
+            ->addColumn('title', 'string', [
+                'limit' => 30,
+                'default' => null,
+                'null' => true
+            ])
+            ->addColumn('directory', 'string', ['limit' => 2]
+            ->addColumn('file', 'string', ['limit' => 150]
+            ->addColumn('suffix', 'string', ['limit' => 5]
+            ->addColumn('type', 'string', ['limit' => 10]
+            ->addIndex(['uuid'], ['unique' => true]
             ->save();
     }
 

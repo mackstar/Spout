@@ -11,9 +11,9 @@ class Resources extends AbstractMigration
     {
         $table = $this->table('resources');
         $table
-            ->addColumn('slug', 'string', array('limit' => 35))
-            ->addColumn('type', 'string', array('limit' => 25))
-            ->addColumn('title', 'string', array('limit' => 255))
+            ->addColumn('slug', 'string', ['limit' => 35])
+            ->addColumn('type', 'string', ['limit' => 25])
+            ->addColumn('title', 'string', ['limit' => 255])
             ->save();
     }
 

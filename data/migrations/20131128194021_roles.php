@@ -10,8 +10,8 @@ class Roles extends AbstractMigration
     public function up()
     {
         $roles = $this->table('roles');
-        $roles->addColumn('name', 'string', array('limit' => 30))
-              ->addColumn('weight', 'integer', array('limit' => 2))
+        $roles->addColumn('name', 'string', ['limit' => 30])
+              ->addColumn('weight', 'integer', ['limit' => 2])
               ->save();
 
 

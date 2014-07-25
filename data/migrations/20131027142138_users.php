@@ -12,11 +12,11 @@ class Users extends AbstractMigration
     public function up()
     {
         $users = $this->table('users');
-        $users->addColumn('name', 'string', array('limit' => 100))
-              ->addColumn('email', 'string', array('limit' => 30))
-              ->addColumn('password', 'string', array('limit' => 60))
-              ->addColumn('role_id', 'integer', array('limit' => 2))
-              ->addIndex(array('email'), array('unique' => true))
+        $users->addColumn('name', 'string', ['limit' => 100])
+              ->addColumn('email', 'string', ['limit' => 30])
+              ->addColumn('password', 'string', ['limit' => 60])
+              ->addColumn('role_id', 'integer', ['limit' => 2])
+              ->addIndex(['email'], ['unique' => true])
               ->save();
     }
 

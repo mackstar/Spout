@@ -11,9 +11,9 @@ class FieldTypes extends AbstractMigration
     {
         $table = $this->table('field_types');
         $table
-            ->addColumn('name', 'string', array('limit' => 35)) // eg String
-            ->addColumn('slug', 'string', array('limit' => 35))
-            ->addIndex(array('slug'), array('unique' => true))
+            ->addColumn('name', 'string', ['limit' => 35]) // eg String
+            ->addColumn('slug', 'string', ['limit' => 35])
+            ->addIndex(['slug'], ['unique' => true])
             ->save();
 
         $this->execute("INSERT INTO `field_types` (`name`, `slug`) VALUES ('String', 'string')");
