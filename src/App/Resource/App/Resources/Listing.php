@@ -41,9 +41,15 @@ class Listing extends ResourceObject
             ->setParameter('type', $type)
             ->orderBy($sort, $direction);
 
+        if (!is_null($limit)) {
+            $queryBuilder->setMaxResults($limit);
+        }
+        if (!is_null($offset)) {
+            $queryBuilder->setFirstResult($offset);
+        }
+
         $stmt = $queryBuilder->execute();
         $this['resources'] = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
 
         return $this;
     }
