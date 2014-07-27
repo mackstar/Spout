@@ -30,11 +30,6 @@ class SpoutApplication extends Application
         $this->add(new CreateMigration());
         $this->add(new RunMigration());
         $this->add(new RollbackMigration());
-
-        // Add migration commands from phinx
-        $this->add(new Command\Create());
-        $this->add(new Command\Migrate());
-        $this->add(new Command\Rollback());
     }
      
     /**
