@@ -33,7 +33,6 @@ app.directive('spDropTarget', ['$rootScope', function($rootScope) {
 
       el.bind("dragenter", function(e) {
         // this / e.target is the current hover target.
-        console.log("drag enter");
         angular.element(e.target).addClass('lvl-over');
 
       });
@@ -43,7 +42,6 @@ app.directive('spDropTarget', ['$rootScope', function($rootScope) {
       });
 
       el.bind("drop", function(e) {
-        console.log("drop");
         if (e.preventDefault) {
           e.preventDefault(); // Necessary. Allows us to drop.
         }

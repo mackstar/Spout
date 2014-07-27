@@ -80,5 +80,4 @@ function parseResourceObject(resource) {
       resource.fields[key] = object.values;
     }
   });
-  console.log(resource);
 }
