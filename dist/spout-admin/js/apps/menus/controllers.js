@@ -1,13 +1,11 @@
 'use strict';
 
 app.controller('MenusCtrl', function($scope, $state, menus) {
-  console.log(menus);
   $scope.menus = menus;
 
   $scope.remove = function(menu) {
     var index = $scope.menus.indexOf(menu);
     if (confirm("Are you sure you want to destroy this menu?")) {
-      console.log($scope.menus[index]);
       $scope.menus[index].remove({slug: menu.slug}).then(function() {
         $scope.menus.splice(index, 1);
       });
@@ -23,10 +21,9 @@ app.controller('MenusAddCtrl', function($scope, $rootScope) {
       $rootScope.$emit('sp.message', {title: 'Oops', message: 'Form not yet complete.', type: "danger"});
       return;
     }
-    $scope.menus.post($scope.menu).then(function(object) {
-      console.log(object);
+    $scope.menus.post($scope.menu).then(function(response) {
       $rootScope.$emit('sp.message', {title: 'Yeah!', message: 'Menu added.', type: "success"});
-      $scope.menus.push(object);
+      $scope.menus.push(response);
       $scope.form.menu.$setPristine();
       $scope.menu = {};
     });
