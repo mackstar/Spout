@@ -71,7 +71,7 @@ Edit database configuration files in `conf/contexts/{context}.php` to match up t
 
 $config = [
     'driver' => 'pdo_sqlite',
-    'path' => '../../test_db.sqlite3', // sets DB location to root path
+    'path' => __DIR__ . '/test_db.sqlite3', // sets DB location to root path
     'charset' => 'UTF8'
 ];
 
