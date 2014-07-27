@@ -32,10 +32,13 @@ class Index extends ResourceObject
         $slug
     ) {
 
-        $this->db->insert('menus', [
+        $properties = [
             'name' => $name,
             'slug' => $slug
-        ]);
+        ];
+        $this->db->insert('menus', $properties);
+        $this['menu'] = $properties;
+        $this['_model'] = 'menu';
         return $this;
     }
 
