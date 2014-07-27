@@ -83,7 +83,7 @@ class Install extends Command
 
         // Layout files
         $layoutSrc      =   $spout . '/dist/template/layout/*';
-        $layoutDest     =   $current . '/lib/twig/templates/';
+        $layoutDest     =   $current . '/lib/twig/template/';
 
         $this->paths = compact(
             'current',
