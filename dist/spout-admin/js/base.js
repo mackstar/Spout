@@ -122,7 +122,7 @@ app.directive('spSlugTitle', function() {
 
       scope.$watch('model.' + src, function() {
         if (stop || typeof scope.model === 'undefined' || typeof scope.model[src] === 'undefined') return;
-        slug = scope.model[src].toLowerCase().replace(/[^a-z0-9]/g, "-");
+        slug = scope.model[src].toLowerCase().replace(/[\s]/g, "-");
         scope.model.slug = slug;
       });
 
