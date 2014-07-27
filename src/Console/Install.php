@@ -60,10 +60,11 @@ class Install extends Command
         $this->copyFiles($layoutSrc, $layoutDest);
 
         $command = $this->getApplication()->find('run-migration');
+        $env = $input->getOption('environment')?: 'dev';
 
         $arguments = [
             'command' => 'run-migration',
-            '--environment'    => $input->getOption('environment'),
+            '--environment'    => $env,
             '--location'  => 'spout'
         ];
 

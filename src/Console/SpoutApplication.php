@@ -29,6 +29,7 @@ class SpoutApplication extends Application
         $this->add(new PreTest());
         $this->add(new CreateMigration());
         $this->add(new RunMigration());
+        $this->add(new RollbackMigration());
 
         // Add migration commands from phinx
         $this->add(new Command\Create());
