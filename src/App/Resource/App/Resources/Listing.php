@@ -26,12 +26,15 @@ class Listing extends ResourceObject
 
     protected $table = 'resources';
 
+    protected $listingTable = 'resource_index_listings';
+
     public function onGet(
         $type,
         $sort = 'id',
         $direction = 'ASC',
         $limit = null,
-        $offset = null
+        $offset = null,
+        $fields = null
     )
     {
         $queryBuilder = $this->db->createQueryBuilder();
@@ -53,4 +56,6 @@ class Listing extends ResourceObject
 
         return $this;
     }
+
+
 }

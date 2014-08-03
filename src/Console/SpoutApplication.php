@@ -30,6 +30,8 @@ class SpoutApplication extends Application
         $this->add(new CreateMigration());
         $this->add(new RunMigration());
         $this->add(new RollbackMigration());
+
+         $this->add(new Command\Create());
     }
      
     /**
