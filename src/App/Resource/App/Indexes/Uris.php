@@ -8,7 +8,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Mackstar\Spout\App\Resource\App\Resources;
+namespace Mackstar\Spout\App\Resource\App\Indexes;
 
 use Mackstar\Spout\Provide\Resource\ResourceObject;
 use BEAR\Package\Module\Database\Dbal\Setter\DbSetterTrait;
@@ -37,7 +37,15 @@ class Uris extends ResourceObject
             ->setParameter('index', $index);
 
         $stmt = $queryBuilder->execute();
-        $this['uris'] = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $uris = [];
+        foreach($result as $record) {
+            if (!isset($uris[$record['key']])) {
+                $uris[$record['key']] = [];
+            }
+            $uris[$record['key']][] = $record;
+        }
+        $this['uris'] = $uris;
 
         return $this;
     }

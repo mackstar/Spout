@@ -39,10 +39,15 @@ class Index extends ResourceObject
         if (!is_null($slug)) {
             $queryBuilder->where('i.slug = :slug')
                 ->setParameter('slug', $slug);
-            $this['uris'] = $this->resource->get->uri('app://spout/indexes/uris')
+
+            $stmt = $queryBuilder->execute();
+            $index = $stmt->fetch(PDO::FETCH_ASSOC);
+            $index['uris'] = $this->resource->get->uri('app://spout/indexes/uris')
                 ->eager
                 ->withQuery(['index' => $slug])
-                ->request();
+                ->request()['uris'];
+            $this['index'] = $index;
+            return $this;
         }
 
         $stmt = $queryBuilder->execute();
