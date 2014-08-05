@@ -4,9 +4,16 @@
 
     <div class="col-md-3">
         <ul class="nav nav-tabs">
-            <li><h3>Add Index </h3></li>
+
+            <li>
+                <h3 ng-show="!index.id">Add Index </h3>
+                <h3 ng-show="index.id">Edit Index </h3>
+            </li>
             <li class="active link" ng-click="submit()">
                 <span class="glyphicon glyphicon-ok"></span>
+            </li>
+            <li class="cancel link" ng-click="remove()" ng-show="index.id">
+                <span class="glyphicon glyphicon-trash"></span>
             </li>
         </ul>
         <form name="form.index" novalidate>
@@ -22,14 +29,13 @@
             </div>
         </form>
 
-
     </div>
 
     <div class="col-md-3">
         <div class="list-group">
-            <a class="list-group-item" ng-repeat="index in indexes" ui-sref="indexes.uris({ slug: index.slug })">
-            <h4 class="list-group-item-heading">{[index.title]}</h4>
-            <p class="list-group-item-text">{[index.slug]}</p>
+            <a class="list-group-item" ng-repeat="currentindex in indexes" ng-click="select(currentindex)" ng-class="{'active': index.id===currentindex.id}">
+            <h4 class="list-group-item-heading">{[currentindex.title]}</h4>
+            <p class="list-group-item-text">{[currentindex.slug]}</p>
           </a>
         </div>
     </div>

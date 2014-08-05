@@ -12,7 +12,7 @@ app.config(['$stateProvider', function ($stateProvider) {
       }]
     }
   }).state('indexes.uris', {
-    url: "/indexes/:slug",
+    url: "/:slug",
     templateUrl: "/spout-admin/js/templates/indexes/uris.html",
     authenticate: true,
     controller: 'IndexesUrisCtrl',
