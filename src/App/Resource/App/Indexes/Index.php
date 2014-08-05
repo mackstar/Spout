@@ -62,7 +62,17 @@ class Index extends ResourceObject
             'slug' => $slug,
             'title' => $title
         ]);
+        $this['index'] = [
+            'slug' => $slug,
+            'title' => $title
+        ];
         return $this;
     }
 
+    public function onDelete($slug)
+    {
+        $this->db->delete($this->table, ['slug' => $slug]);
+        $this->code = 204;
+        return $this;
+    }
 }

@@ -1,0 +1,43 @@
+<h1>Indexes</h1>
+
+<div class="row">
+
+    <div class="col-md-3">
+        <ul class="nav nav-tabs">
+            <li><h3>Add Index </h3></li>
+            <li class="active link" ng-click="submit()">
+                <span class="glyphicon glyphicon-ok"></span>
+            </li>
+        </ul>
+        <form name="form.index" novalidate>
+            <div class="form-group" ng-class="{'has-error': form.index.title.$invalid}">
+                <label for="menu-name">Title</label>
+                <input type="text" ng-model="index.title" name="title" class="form-control" id="menu-name" placeholder="Index Title" required>
+                <formfield-error-msg msg="Title Cannot Be Blank" field="form.index.title" />
+            </div>
+            <div class="form-group" ng-class="{'has-error': form.index.slug.$invalid}">
+                <label for="menu-slug">Slug</label>
+                <input type="text" ng-model="index.slug" model="menu" name="slug" class="form-control" id="menu-slug" placeholder="Slug" sp-slug-title="title" required>
+                <formfield-error-msg msg="Slug Cannot Be Blank" field="form.index.slug" />
+            </div>
+        </form>
+
+
+    </div>
+
+    <div class="col-md-3">
+        <div class="list-group">
+            <a class="list-group-item" ng-repeat="index in indexes" ui-sref="indexes.uris({ slug: index.slug })">
+            <h4 class="list-group-item-heading">{[index.title]}</h4>
+            <p class="list-group-item-text">{[index.slug]}</p>
+          </a>
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <div ui-view></div>
+    </div>
+
+
+    
+</div>

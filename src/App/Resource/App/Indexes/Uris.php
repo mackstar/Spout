@@ -28,8 +28,7 @@ class Uris extends ResourceObject
 
     public function onGet(
         $index
-    )
-    {
+    ) {
         $queryBuilder = $this->db->createQueryBuilder();
         $queryBuilder->select('u.*')
             ->from($this->table, 'u')
@@ -39,11 +38,8 @@ class Uris extends ResourceObject
         $stmt = $queryBuilder->execute();
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
         $uris = [];
-        foreach($result as $record) {
-            if (!isset($uris[$record['key']])) {
-                $uris[$record['key']] = [];
-            }
-            $uris[$record['key']][] = $record;
+        foreach ($result as $record) {
+            $uris[$record['key']] = $record;
         }
         $this['uris'] = $uris;
 
@@ -54,19 +50,36 @@ class Uris extends ResourceObject
         $index,
         $uri,
         $key
-    )
-    {
+    ) {
         $this->db->insert($this->table, [
-            'index' => $index,
-            'uri' => $uri,
-            'key' => $key
+            '`index`' => $index,
+            '`uri`' => $uri,
+            '`key`' => $key
         ]);
+
+        $this['id'] = $this->db->lastInsertId();
+        return $this;
+    }
+
+    public function onPut(
+        $id,
+        $index,
+        $uri,
+        $key
+    ) {
+        
+        $this->db->update($this->table, [
+            '`index`' => $index,
+            '`uri`' => $uri,
+            '`key`' => $key
+        ], ['id' => $id]);
 
         return $this;
     }
 
-
+    public function onDelete($id)
+    {
+        $this->db->delete($this->table, ['id' => $id]);
+        return $this;
+    }
 }
-
-
-

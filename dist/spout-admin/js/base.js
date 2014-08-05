@@ -12,6 +12,13 @@ app.run(function(Restangular, $rootScope) {
     return null;
   };
 
+  Restangular.setRequestInterceptor(function(elem, operation) {
+    if (operation === "remove") {
+      return undefined;
+    } 
+    return elem;
+  });
+
   Restangular.setResponseInterceptor(function(data) {
     if (data.message) {
       $rootScope.$emit('message', {message: data.message});

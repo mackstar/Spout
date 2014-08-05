@@ -1,0 +1,38 @@
+<div>
+
+    <ul class="nav nav-tabs">
+        <li>
+            <h3 ng-show="!uri.id">Add URI </h3>
+            <h3 ng-show="uri.id">Edit URI </h3>
+        </li>
+
+        <li class="active link" ng-click="submit()">
+            <span class="glyphicon glyphicon-ok"></span>
+        </li>
+
+        <li class="cancel link" ng-click="remove()" ng-show="uri.id">
+            <span class="glyphicon glyphicon-trash"></span>
+        </li>
+    </ul>
+
+    <form name="form.uri" novalidate>
+        <div class="row">
+        <div class="col-md-4" ng-class="{'has-error': form.uri.key.$invalid}">
+            <input type="text" ng-model="uri.key" name="key" class="form-control" id="uri-key" placeholder="Key" required>
+            <formfield-error-msg msg="Key Cannot Be Blank" field="form.uri.key" />
+        </div>
+        <div class="col-md-8" ng-class="{'has-error': form.uri.uri.$invalid}">
+            <input type="text" ng-model="uri.uri" model="uri.uri" name="uri" class="form-control" id="uri-uri" placeholder="URI (eg. app://spout/resources/..)" required>
+            <formfield-error-msg msg="URI cannot be blank" field="form.uri.uri" />
+        </div>
+        </div>
+    </form>
+
+</div>
+
+<div class="list-group">
+  <a class="list-group-item" ng-repeat="(key, indexuri) in index.uris" ng-click="select(indexuri)" ng-class="{'active': indexuri.id===uri.id}">
+    <h4 class="list-group-item-heading">{[indexuri.key]}</h4>
+    <p class="list-group-item-text">{[indexuri.uri]}</p>
+  </a>
+</div>
