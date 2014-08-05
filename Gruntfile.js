@@ -28,6 +28,13 @@ module.exports = function(grunt) {
         options: {
           nospawn: true
         }
+      },
+      admin: {
+        files: ['dist/**/*'],
+        tasks: ['shell:copy_admin_assets'],
+        options: {
+          nospawn: true
+        }
       }
     },
 
@@ -43,6 +50,9 @@ module.exports = function(grunt) {
       },
       phpunit_base: {
         command: "phpunit <%= php.filter %>"
+      },
+      copy_admin_assets: {
+        command: "cp -R dist/spout-admin/* ../../../var/www/spout-admin/"
       }
     },
     karma: {
