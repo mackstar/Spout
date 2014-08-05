@@ -94,7 +94,7 @@ final class AuraRouter implements AdapterInterface
         $method = (new Method($globals['_SERVER'], $globals['_POST'], self::METHOD_FILED))->get();
         $params = $route->params;
         unset($params['REQUEST_METHOD']);
-        $request = ($globals['_SERVER']['REQUEST_METHOD'] === 'GET') ? $globals['_GET'] : $globals['_POST'];
+        $request = ($globals['_SERVER']['REQUEST_METHOD'] === 'GET' || $globals['_SERVER']['REQUEST_METHOD'] === 'DELETE' ) ? $globals['_GET'] : $globals['_POST'];
         $query = $params + $request;
 
         if($globals['_FILES']) {
