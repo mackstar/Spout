@@ -1,6 +1,6 @@
 'use strict';
 
-app.directive('spFileDropzone', function(Restangular) {
+app.directive('spFileDropzone', function(Restangular, $stateParams) {
   return {
     restrict: 'A',
     link: function(scope, element, attrs) {
@@ -57,6 +57,7 @@ app.directive('spFileDropzone', function(Restangular) {
         reader.readAsDataURL(file);
 
         var formData = new FormData();
+        formData.append('folder', $stateParams.folder);
         formData.append('name', file.name);
         formData.append('file', file);
 
@@ -128,7 +129,7 @@ app.directive('spThumbnail', function (Restangular) {
 app.directive('spMediaItems', function () {
   return {
     restrict: 'E',
-    scope: { media: "=media" },
+    scope: { media: "=media", folders: "=folders" },
     templateUrl: '/spout-admin/js/templates/media/media-items.html',
     replace: true
   };

@@ -60,7 +60,8 @@ class Index extends ResourceObject
      * @throws \Exception
      */
     public function onPost(
-        $file
+        $file,
+        $folder
     ) {
         if (!$file['error'] && is_uploaded_file($file['tmp_name'])) {
 
@@ -91,6 +92,7 @@ class Index extends ResourceObject
 
         $media = [
             'uuid' => $uuid,
+            'folder' => $folder,
             'directory' => $uuidDir,
             'file' => $fileName,
             'type' => 'media',
@@ -119,24 +121,6 @@ class Index extends ResourceObject
             $this['media'] = $stmt->fetch();
         }
         return $this;
-    }
-
-    public function onDelete($uuid, $directory)
-    {
-        $dir = $this->uploadDir . '/media/' . $directory;
-        $files = scandir($dir);
-        foreach ($files as $file) {
-            if (strpos($file, $uuid) !== false) {
-                unlink($dir. '/' . $file);
-            }
-        }
-        $files = scandir($dir);
-        if (count($files) === 0) {
-            rmdir($dir);
-        }
-
-        $this->db->delete($this->table, ['uuid' => $uuid]);
-        $this->code = 204;
     }
 
     public function onPut($uuid, $title)

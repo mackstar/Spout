@@ -1,0 +1,17 @@
+<div class="row">
+
+  <ul class="nav nav-tabs">
+    <li class="active link" ng-click="submit()"><span class="glyphicon glyphicon-ok"></span></li>
+    <li class="cancel link" ng-click="close()"><span class="glyphicon glyphicon-remove"></span></li>
+  </ul>
+
+  <form name="form.folder" novalidate>
+
+    <div class="form-group" ng-class="{'has-error': form.folder.name.$invalid}">
+      <label for="name">Name</label>
+      <input type="text" id="name" ng-model="folder.name" class="form-control" name="name" placeholder="Enter a folder name" required>
+      <formfield-error-msg msg="Folder name should not be blank" field="form.folder.name" />
+    </div>
+
+  </form>
+</div>

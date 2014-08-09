@@ -1,5 +1,21 @@
 <div>
-    <span ng-repeat="mediaItem in media" class="sp-media__viewer-thumbnail">
-        <sp-thumbnail media="mediaItem"></sp-thumbnail>
-    </span>
+    <ul class="sp-media__viewer">
+        <li class="sp-media__viewer-thumbnail">
+            <a href="#" ui-sref=".add-folder">
+                <p class="h2 text-center"><span class="glyphicon glyphicon-plus-sign"></span></p>
+                <p class="h3 text-center"> New Folder</p>
+            </a>
+        </li>
+        <li ng-repeat="mediaItem in media" class="sp-media__viewer-thumbnail">
+                <sp-thumbnail media="mediaItem"></sp-thumbnail>
+            
+        </li>
+        <li ng-repeat="folder in folders" class="sp-media__viewer-thumbnail">
+            <a href="#" ui-sref="media({folder: folder.id})">
+                <p class="h2 text-center"><span class="glyphicon glyphicon-folder-open"></span></p>
+                <p class="h3 text-center">{[folder.name]}</p>
+            </a>
+        </li>
+    </ul>
+   
 </div>

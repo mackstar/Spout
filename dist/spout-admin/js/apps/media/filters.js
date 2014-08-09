@@ -1,4 +1,5 @@
 'use strict';
+
 app.filter('mediaFileName', function () {
   return function (media) {
     if (!media) {

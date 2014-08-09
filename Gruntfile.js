@@ -35,6 +35,13 @@ module.exports = function(grunt) {
         options: {
           nospawn: true
         }
+      },
+      css: {
+        files: ['*/**/*.less'],
+        tasks: ['shell:css'],
+        options: {
+          nospawn: true
+        }
       }
     },
 
@@ -43,7 +50,7 @@ module.exports = function(grunt) {
         stdout: true
       },
       css: {
-        command: "lessc lib/less/bootstrap.less > apps/Admin/var/www/css/bootstrap.min.css --compress"
+        command: "lessc lib/less/bootstrap.less > dist/spout-admin/css/bootstrap.min.css --compress"
       },
       migrate: {
         command: "vendor/robmorgan/phinx/bin/phinx --configuration=config.php migrate -e" + env
