@@ -95,7 +95,7 @@ class PackageModule extends AbstractModule
             $this->install(new Package\Resource\DevResourceModule($this));
             $this->install(new Provide\ApplicationLogger\DevApplicationLoggerModule($this));
         }
-        $this->install(new Package\Database\Dbal\DbalModule($this));
+        $this->install(new \Mackstar\Spout\Module\Database\Dbal\DbalModule($this));
         if ($this->context === 'prod') {
             $this->install(new Package\Cache\CacheAspectModule($this));
         }

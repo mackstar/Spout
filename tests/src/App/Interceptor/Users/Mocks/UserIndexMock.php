@@ -7,6 +7,8 @@ class UserIndexMock
 
     public $body = [];
 
+    public $uri;
+
     public function onGet()
     {
          $this->body['user'] = [

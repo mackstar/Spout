@@ -15,7 +15,7 @@ use BEAR\Package\Module\Database\Dbal\Setter\DbSetterTrait;
 use BEAR\Sunday\Annotation\Db;
 
 /**
- * Add
+ * Index
  *
  * @Db
  */
