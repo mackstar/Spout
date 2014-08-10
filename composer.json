@@ -17,7 +17,9 @@
         "rhumsaa/uuid":"2.4",
         "robmorgan/phinx": "*",
         "imagine/imagine": "v0.5.0",
-        "zendframework/zend-validator": "*"
+        "zendframework/zend-validator": "*",
+        "aptoma/twig-markdown": "0.2.*",
+        "michelf/php-markdown": "~1.3"
     },
     "require-dev":{
         "bear/dev-package":"dev-master"
