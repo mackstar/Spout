@@ -10,6 +10,9 @@
 
 namespace Mackstar\Spout\Provide\TemplateEngine\Twig;
 
+use Aptoma\Twig\Extension\MarkdownExtension;
+use Aptoma\Twig\Extension\MarkdownEngine;
+use Aptoma\Twig\TokenParser\MarkdownTokenParser;
 use BEAR\Sunday\Inject\LibDirInject;
 use BEAR\Sunday\Inject\TmpDirInject;
 use BEAR\Sunday\Inject\ResourceInject;
@@ -42,6 +45,12 @@ class TwigProvider implements Provide
             'autoescape' => false,
         ]);
         $twig->addExtension(new \Twig_Extension_Debug());
+
+        /* Add MarkDown Compatibility */
+        $engine = new MarkdownEngine\MichelfMarkdownEngine();
+        $twig->addExtension(new MarkdownExtension($engine));
+        $twig->addTokenParser(new MarkdownTokenParser($engine));
+
         $function = new \Twig_SimpleFunction(
             'resource',
             [$this, 'resource']
