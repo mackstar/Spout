@@ -38,8 +38,11 @@ class Imagine implements ImageManipulationInterface
         $this->imagine = new GdImagine();
     }
 
-
-    public function resize($source, $target, $width, $height)
+    /**
+     *
+     *
+     */
+    public function resize($source, $target, $width, $height, $crop = 'center')
     {
         $image = $this->imagine->open($source);
         $box = new Box($width, $height);
@@ -50,14 +53,19 @@ class Imagine implements ImageManipulationInterface
         if (
             $srcBox->getWidth() > $srcBox->getHeight() &&
             $heightBasedWidth >= $width
-        ) {
+        ){
             $width  = $heightBasedWidth;
             $height =  $box->getHeight();
             $cropPoint = new Point((max($width - $box->getWidth(), 0)) / 2, 0);
         } else {
             $width  = $box->getWidth();
             $height =  $srcBox->getHeight() * ($box->getWidth() / $srcBox->getWidth());
-            $cropPoint = new Point(0, (max($height - $box->getHeight(), 0)) / 2);
+            if ($crop == 'top') {
+                $cropPoint = new Point(0, 0);
+            }
+            if ($crop == 'center') {
+                $cropPoint = new Point(0, (max($height - $box->getHeight(), 0)) / 2);
+            }
         }
         $tempBox = new Box($width, $height);
         $image = $image->thumbnail($tempBox, ImageInterface::THUMBNAIL_INSET);
