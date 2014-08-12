@@ -43,12 +43,15 @@ class Imagine implements ImageManipulationInterface
     {
         $image = $this->imagine->open($source);
         $box = new Box($width, $height);
-        //$image->resize(new Box($width, $height));
-        //$image->save($target);
-
         $srcBox = $image->getSize();
-        if ($srcBox->getWidth() > $srcBox->getHeight()) {
-            $width  = $srcBox->getWidth()*($box->getHeight()/$srcBox->getHeight());
+
+        $heightBasedWidth = $srcBox->getWidth()*($box->getHeight()/$srcBox->getHeight());
+
+        if (
+            $srcBox->getWidth() > $srcBox->getHeight() &&
+            $heightBasedWidth >= $width
+        ) {
+            $width  = $heightBasedWidth;
             $height =  $box->getHeight();
             $cropPoint = new Point((max($width - $box->getWidth(), 0)) / 2, 0);
         } else {
@@ -57,7 +60,7 @@ class Imagine implements ImageManipulationInterface
             $cropPoint = new Point(0, (max($height - $box->getHeight(), 0)) / 2);
         }
         $tempBox = new Box($width, $height);
-        $image = $image->thumbnail($tempBox, ImageInterface::THUMBNAIL_OUTBOUND);
+        $image = $image->thumbnail($tempBox, ImageInterface::THUMBNAIL_INSET);
         $image->crop($cropPoint, $box)->save($target);
     }
 }
