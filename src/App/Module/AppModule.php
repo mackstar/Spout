@@ -77,12 +77,15 @@ class AppModule extends AbstractModule
             $this->appDir = $apps['apps'][$apps['default']]['app_dir'];
         }
         $this->constants +=  (require "{$this->appDir}/conf/defaults.php");
+        $params = (require "{$this->appDir}/conf/params.php");
         foreach ($this->context as $context) {
             $this->constants = array_replace_recursive(
                 $this->constants, 
                 (require "{$this->appDir}/conf/contexts/{$context}.php")
             );
+            $this->params += $params[$context];
         }
+        $this->params += $params['prod'];
 
         $this->constants['site_name'] = $apps['site'];
         $this->constants['default_site'] = $apps['default'];
@@ -93,7 +96,6 @@ class AppModule extends AbstractModule
         );
         $this->constants['app_name'] = $this->constants['apps'][$apps['default']]['namespace'];
 
-        $this->params = [];
         parent::__construct();
     }
 
