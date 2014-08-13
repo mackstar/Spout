@@ -26,6 +26,8 @@ class Listing extends ResourceObject
 
     protected $table = 'resources';
 
+    public $links = [];
+
     protected $listingTable = 'resource_index_listings';
 
     public function onGet(

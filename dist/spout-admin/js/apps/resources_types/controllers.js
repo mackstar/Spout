@@ -4,7 +4,7 @@
 app.controller('ResourceTypesCtrl', function ($scope, $rootScope, types) {
   $scope.types = types;
   $scope.delete = function (type) {
-    type.remove().then(function () {
+    type.remove({slug: type.slug}).then(function () {
       $rootScope.$emit('sp.message', {title: 'Type removed successfully', type: "success"});
       $rootScope.$emit('types.reload', true);
     });

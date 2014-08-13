@@ -18,7 +18,6 @@ class ResourceFields extends AbstractMigration
             ->addColumn('slug', 'string', ['limit' => 35])
             ->addColumn('multiple', 'integer', ['limit' => 1])
             ->addColumn('weight', 'integer', ['limit' => 10])
-            ->addIndex(['field_type', 'slug'], ['unique' => true])
             ->save();
 
         $stub = "INSERT INTO `resource_fields` " .
