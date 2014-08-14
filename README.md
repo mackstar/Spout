@@ -121,6 +121,12 @@ return $config;
 
 From inside your site run ./vendor/bin/spout install -e {CONTEXT}
 
+### PHP Built in Webserver
+
+```
+php -S localhost:8080 -t var/www var/www/index.php
+```
+
 ### Apache
 
 Set your `DocumentRoot` to `"{DOCUMENT_ROOT}/var/www"`
@@ -170,7 +176,7 @@ $routes->add('bobscars', [
 ### Create Admin user - only able to do when no user is available
 
 ```
-curl -XPOST 'http://localdomain/api/users/index' -d '{
+curl -XPOST 'http://localhost:8080/api/users/index' -d '{
     "email": "richard.mackstar@gmail.com",
     "password": "secret",
     "name": "Richard McIntyre",
