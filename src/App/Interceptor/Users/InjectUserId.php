@@ -15,7 +15,8 @@ use Ray\Aop\MethodInvocation;
 use Ray\Di\Di\Inject;
 use Symfony\Component\HttpFoundation\Session\Session as PhpSession;
 
-class Session implements MethodInterceptor
+
+class InjectUserId implements MethodInterceptor
 {
 
     private $session;
@@ -31,10 +32,11 @@ class Session implements MethodInterceptor
 
     public function invoke(MethodInvocation $invocation)
     {
+        
+        $user = $this->session->get('user');
         $object = $invocation->getThis();
-        $user = 
-        $response = $invocation->proceed();
-        $response->body['_user'] = $this->session->get('user');
-        return $response;
+        $object->setUserId($user['id']);
+        return $invocation->proceed();
+
     }
 }

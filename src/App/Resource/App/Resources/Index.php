@@ -17,18 +17,22 @@ use BEAR\Sunday\Annotation\Db;
 use BEAR\Resource\Annotation\Link;
 use BEAR\Sunday\Annotation\DbPager;
 use Mackstar\Spout\Provide\Resource\FieldMapperTrait;
+use Mackstar\Spout\Provide\Resource\UserIdSetterTrait;
+use Mackstar\Spout\App\Annotation\UserIdInject;
 use PDO;
 
 /**
  * Resources Index
  *
  * @Db
+ * @UserIdInject
  */
 class Index extends ResourceObject
 {
     use DbSetterTrait;
     use ResourceInject;
     use FieldMapperTrait;
+    use UserIdSetterTrait;
 
     protected $table = 'resources';
 
@@ -81,13 +85,20 @@ class Index extends ResourceObject
      * @param $fields
      * @return $this
      */
-    public function onPost($type, $title, $slug, $fields)
+    public function onPost($now, $type, $title, $slug, $fields)
     {
         $resource = $this->getType($type['slug']);
         $this->db->beginTransaction();
 
         try {
-            $this->db->insert('resources', ['title' => $title, 'type' => $type['slug'], 'slug' => $slug]);
+            $this->db->insert('resources', [
+                'title' => $title,
+                'type' => $type['slug'],
+                'slug' => $slug,
+                'created' => $now,
+                'updated' => $now,
+                'user_id' => $this->user_id
+            ]);
             $id = $this->db->lastInsertId();
             $this->insertFields($resource, $fields, $id);
             $this->db->commit();
