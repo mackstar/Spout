@@ -22,6 +22,12 @@ class AddCreatedUpdatedToResources extends AbstractMigration
      */
     public function down()
     {
+        $table = $this->table('resources');
+        $table
+            ->removeColumn('user_id')
+            ->removeColumn('created')
+            ->removeColumn('updated')
+            ->save();
 
     }
 }

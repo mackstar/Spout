@@ -31,8 +31,6 @@ class Session implements MethodInterceptor
 
     public function invoke(MethodInvocation $invocation)
     {
-        $object = $invocation->getThis();
-        $user = 
         $response = $invocation->proceed();
         $response->body['_user'] = $this->session->get('user');
         return $response;
