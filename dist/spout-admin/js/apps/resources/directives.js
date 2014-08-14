@@ -93,7 +93,10 @@ app.directive('spTextField', function() {
   return {
     replace: true,
     transclude: true,
-    template: '<textarea class="form-control" ng-model="resource.fields[field.slug]" rows="6" ></textarea>'
+    template: '<div ng-switch="field.multiple">' +
+      '<textarea class="form-control" ng-model="resource.fields[field.slug][key]" rows="6" ng-switch-when="1"></textarea>' +
+      '<textarea class="form-control" ng-model="resource.fields[field.slug][key]" rows="6" ng-switch-default></textarea>' +
+    '</div>'
   };
 });
 
