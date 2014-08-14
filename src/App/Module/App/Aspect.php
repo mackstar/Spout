@@ -24,7 +24,6 @@ class Aspect extends AbstractModule
     {
         $this->installFormValidators();
         $this->installUserSessionAppender();
-        $this->installUserAccess();
         $this->installInjectUserId();
     }
 
@@ -36,17 +35,6 @@ class Aspect extends AbstractModule
             $this->matcher->subclassesOf('Mackstar\Spout\App\Resource\App\Users\Index'),
             $this->matcher->annotatedWith('Mackstar\Spout\App\Annotation\Form'),
             [$userValidator]
-        );
-    }
-
-    private function installUserAccess()
-    {
-        $access = $this->requestInjection('\Mackstar\Spout\App\Interceptor\Users\Access');
-
-        $this->bindInterceptor(
-            $this->matcher->subclassesOf('BEAR\Resource\ResourceObject'),
-            $this->matcher->startsWith('on'),
-            [$access]
         );
     }
 

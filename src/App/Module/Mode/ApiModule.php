@@ -24,6 +24,7 @@ class ApiModule extends AbstractModule
     {
         $this->installPasswordEncryptor();
         $this->installModelHeaderAppender();
+        $this->installUserAccess();
     }
 
     private function installPasswordEncryptor()
@@ -34,6 +35,17 @@ class ApiModule extends AbstractModule
             $this->matcher->subclassesOf('Mackstar\Spout\App\Resource\App\Users\Index'),
             $this->matcher->startsWith('onGet'),
             [$hider]
+        );
+    }
+
+    private function installUserAccess()
+    {
+        $access = $this->requestInjection('\Mackstar\Spout\App\Interceptor\Users\Access');
+
+        $this->bindInterceptor(
+            $this->matcher->subclassesOf('BEAR\Resource\ResourceObject'),
+            $this->matcher->startsWith('on'),
+            [$access]
         );
     }
 
