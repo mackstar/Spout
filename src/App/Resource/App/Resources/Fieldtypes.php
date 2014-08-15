@@ -19,7 +19,7 @@ use BEAR\Sunday\Annotation\Db;
  *
  * @Db
  */
-class FieldTypes extends ResourceObject
+class Fieldtypes extends ResourceObject
 {
     use DbSetterTrait;
 
