@@ -23,7 +23,6 @@ class ApiModule extends AbstractModule
     protected function configure()
     {
         $this->installPasswordEncryptor();
-        $this->installModelHeaderAppender();
         $this->installUserAccess();
     }
 
@@ -48,17 +47,4 @@ class ApiModule extends AbstractModule
             [$access]
         );
     }
-
-    private function installModelHeaderAppender()
-    {
-        $headerAppender = $this->requestInjection('\Mackstar\Spout\App\Interceptor\Tools\ModelHeaderAppender');
-
-        $this->bindInterceptor(
-            $this->matcher->subclassesOf('BEAR\Resource\ResourceObject'),
-            $this->matcher->startsWith('onGet'),
-            [$headerAppender]
-        );
-    }
-
-
 }

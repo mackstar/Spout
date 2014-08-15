@@ -93,7 +93,9 @@ class Detail extends ResourceObject
                         ->eager
                         ->withQuery($mapping['query'])
                         ->request();
-                    $value = $response[$response['_model']];
+                    if (isset($response['_model'])) {
+                        $value = $response[$response['_model']];
+                    }
                 }
 
 
