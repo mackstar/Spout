@@ -13,7 +13,7 @@ namespace Mackstar\Spout\App\Resource\Page;
 use BEAR\Resource\ResourceObject;
 use BEAR\Sunday\Inject\ResourceInject;
 
-class SpoutAdmin extends ResourceObject
+class Spoutadmin extends ResourceObject
 {
     use ResourceInject;
 
