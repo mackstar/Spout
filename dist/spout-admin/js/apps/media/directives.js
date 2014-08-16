@@ -131,6 +131,11 @@ app.directive('spMediaItems', function () {
     restrict: 'E',
     scope: { media: "=media", folders: "=folders" },
     templateUrl: '/spout-admin/js/templates/media/media-items.html',
-    replace: true
+    replace: true,
+    link: function(scope, element, attrs) {
+      if (attrs.spHideAddFolders !== undefined) {
+        scope.hideAddFolder = true;
+      }
+    }
   };
 });

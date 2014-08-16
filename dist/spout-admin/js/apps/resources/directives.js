@@ -144,7 +144,7 @@ app.directive('spMediaField', function($rootScope) {
   return {
     replace: true,
     transclude: true,
-    template: '<div><button class="btn" ui-sref=".media({field: field.slug})">Select Media</button>' +
+    template: '<div><button class="btn" ui-sref=".media({field: field.slug, folder: 0})">Select Media</button>' +
       '<div class="panel-body" ng-show="displayMedia.length"><sp-media-items media="displayMedia"></sp-media-items></div>' +
       '</div>',
     link: function(scope) {
