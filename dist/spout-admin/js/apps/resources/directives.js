@@ -104,24 +104,31 @@ app.directive('spResourceField', function() {
   return {
     template:'<div class="input-group" ng-show="!currentField.title">' +
       '<div class="input-group-btn">' +
-      '<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Resource Type <span class="caret"></span></button>' +
-      '<ul class="dropdown-menu">' +
-      '<li ng-repeat="type in types"><a ng-click="selectType(type)">{[type.name]}</a></li>' +
-      '</ul>' +
+        '<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Resource Type <span class="caret"></span></button>' +
+        '<ul class="dropdown-menu">' +
+          '<li ng-repeat="type in types"><a ng-click="selectType(type)">{[type.name]}</a></li>' +
+        '</ul>' +
       '</div><!-- /btn-group -->' +
       '<span class="input-group-addon" ng-show="currentField.type_name">{[currentField.type_name]}</span>' +
-      '<input ng-show="currentField.type" type="text" ng-model="currentField.search" current-field="currentField" class="form-control" auto-complete />' +
-      '</div><!-- /input-group -->' +
-      '<div class="alert alert-success alert-dismissable" ng-show="currentField.title">' +
+        '<input ng-show="currentField.type" type="text" ng-model="currentField.search" current-field="currentField" class="form-control" auto-complete />' +
+    '</div><!-- /input-group -->' +
+    '<div class="alert alert-success alert-dismissable" ng-show="currentField.title">' +
       '<button type="button" class="close" ng-click="remove()">&times;</button>' +
-      '{[currentField.type_name]}: {[currentField.title]}</div>',
+      '{[currentField.type_name]}: {[currentField.title]}' +
+    '</div>',
     link: function (scope) {
-      //scope.currentfield = scope.resource.fields[scope.field.slug];
+
       scope.currentField = { search: '' };
+
       scope.selectType = function (type) {
         scope.currentField.type = type.slug;
         scope.currentField.type_name = type.name;
       };
+
+      if (scope.resource.fields[scope.field.slug]) {
+        scope.currentField = scope.resource.fields[scope.field.slug].value;
+        scope.selectType(scope.currentField.type);
+      }
 
       scope.$watch('currentField', function (field) {
         scope.resource.fields[scope.field.slug] = field;
