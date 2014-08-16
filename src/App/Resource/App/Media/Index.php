@@ -128,10 +128,4 @@ class Index extends ResourceObject
         return $this;
     }
 
-    public function onPut($uuid, $title)
-    {
-        $this->db->update($this->table, ['title' => $title], ['uuid' => $uuid]);
-        return $this;
-    }
-
 }

@@ -45,6 +45,12 @@ class Listing extends ResourceObject
         return $this;
     }
 
+    public function onPut($uuid, $title, $caption)
+    {
+        $this->db->update($this->table, ['title' => $title, 'caption' => $caption], ['uuid' => $uuid]);
+        return $this;
+    }
+
     public function onDelete($uuid, $directory)
     {
         $dir = $this->uploadDir . '/media/' . $directory;
