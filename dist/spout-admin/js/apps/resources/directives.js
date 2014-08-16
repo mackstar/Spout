@@ -151,7 +151,7 @@ app.directive('spMediaField', function($rootScope) {
       var images = scope.resource.fields[scope.field.slug];
       scope.displayMedia = [];
       if (!angular.isArray(images)) {
-        images = [images];
+        images = [images.value];
       }
       if (images.length) {
         scope.displayMedia = images;
