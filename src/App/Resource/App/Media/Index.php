@@ -10,9 +10,10 @@
 
 namespace Mackstar\Spout\App\Resource\App\Media;
 
-use Mackstar\Spout\Provide\Resource\ResourceObject;
 use BEAR\Package\Module\Database\Dbal\Setter\DbSetterTrait;
 use BEAR\Sunday\Annotation\Db;
+use BEAR\Sunday\Inject\ResourceInject;
+use Mackstar\Spout\Provide\Resource\ResourceObject;
 use Ray\Di\Di\Inject;
 use Ray\Di\Di\Named;
 use Rhumsaa\Uuid\Uuid;
@@ -26,6 +27,7 @@ class Index extends ResourceObject
 {
 
     use DbSetterTrait;
+    use ResourceInject;
 
     protected $table = 'media';
 
@@ -63,32 +65,35 @@ class Index extends ResourceObject
         $file,
         $folder
     ) {
-        if (!$file['error'] && is_uploaded_file($file['tmp_name'])) {
-
-            $uuid = (string) $this->uuid;
-            $uuidDir = substr($uuid, 0, 2);
-            $targetDir = $this->uploadDir . '/media/' . $uuidDir;
-            $fileName = $uuid. '_' . $file['name'];
-            $target = $targetDir . '/' . $fileName;
-            $suffix = pathinfo($fileName, PATHINFO_EXTENSION);
-
-
-            if (!is_dir($targetDir)) {
-                mkdir($targetDir);
-            }
-
-            if (!@move_uploaded_file($file['tmp_name'], $target)) {
-                $error = error_get_last();
-                throw new \Exception(sprintf(
-                    'Could not move the file "%s" to "%s" (%s)',
-                    $file['tmp_name'],
-                    $target,
-                    strip_tags($error['message'])
-                ));
-            }
-
-            @chmod($target, 0666 & ~umask());
+        if ($file['error'] || !is_uploaded_file($file['tmp_name'])) {
+            return $this->resource->get->uri('app://spout/exceptions/mediaupload')
+                ->eager
+                ->request();
         }
+
+        $uuid = (string) $this->uuid;
+        $uuidDir = substr($uuid, 0, 2);
+        $targetDir = $this->uploadDir . '/media/' . $uuidDir;
+        $fileName = $uuid. '_' . $file['name'];
+        $target = $targetDir . '/' . $fileName;
+        $suffix = pathinfo($fileName, PATHINFO_EXTENSION);
+
+
+        if (!is_dir($targetDir)) {
+            mkdir($targetDir);
+        }
+
+        if (!@move_uploaded_file($file['tmp_name'], $target)) {
+            $error = error_get_last();
+            throw new \Exception(sprintf(
+                'Could not move the file "%s" to "%s" (%s)',
+                $file['tmp_name'],
+                $target,
+                strip_tags($error['message'])
+            ));
+        }
+
+        @chmod($target, 0666 & ~umask());
 
         $media = [
             'uuid' => $uuid,
