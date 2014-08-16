@@ -60,7 +60,7 @@ app.controller('ResourceAddCtrl', function($scope, Restangular, $modalInstance, 
 app.controller('ResourceEditCtrl', function($scope, type, $modalInstance, $rootScope, resource) {
   $scope.type = type;
   $scope.close = $modalInstance.close;
-
+  $scope.hideAddFolder = true;
   $scope.resource = resource;
   parseResourceObject($scope.resource);
 

@@ -101,8 +101,11 @@ app.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $ur
             onComplete: '^',
             reload: false,
             resolve: {
-              media: ['Restangular', function (Restangular) {
-                return Restangular.all('media/index').getList()
+              media: ['Restangular', '$stateParams', function (Restangular, $stateParams) {
+                return Restangular.all('media/listing').getList({folder: $stateParams.folder });
+              }],
+              folders: ['Restangular', '$stateParams', function (Restangular, $stateParams) {
+                return Restangular.all('media/folders').getList({parent: $stateParams.folder});
               }],
               field: ['$stateParams', function ($stateParams) {
                 return $stateParams.field;

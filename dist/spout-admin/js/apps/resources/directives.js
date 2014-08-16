@@ -145,12 +145,16 @@ app.directive('spMediaField', function($rootScope) {
     replace: true,
     transclude: true,
     template: '<div><button class="btn" ui-sref=".media({field: field.slug, folder: 0})">Select Media</button>' +
-      '<div class="panel-body" ng-show="displayMedia.length"><sp-media-items media="displayMedia"></sp-media-items></div>' +
+      '<div class="panel-body" ng-show="displayMedia.length"><sp-media-items media="displayMedia" sp-hide-add-folders></sp-media-items></div>' +
       '</div>',
     link: function(scope) {
+      var images = scope.resource.fields[scope.field.slug];
       scope.displayMedia = [];
-      if (scope.resource.fields[scope.field.slug].length) {
-        scope.displayMedia = scope.resource.fields[scope.field.slug];
+      if (!angular.isArray(images)) {
+        images = [images];
+      }
+      if (images.length) {
+        scope.displayMedia = images;
       }
       $rootScope.$on('sp.media.selected', function (obj, data) {
         if (scope.field.slug === data.field) {
