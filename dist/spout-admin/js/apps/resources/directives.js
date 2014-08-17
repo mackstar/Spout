@@ -6,6 +6,7 @@ app.directive('spField', function() {
     '<div sp-string-field ng-if="isType(\'string\')"></div>' +
     '<div sp-text-field ng-if="isType(\'text\')"></div>' +
     '<div sp-media-field ng-if="isType(\'media\')"></div>' +
+    '<div sp-boolean-field ng-if="isType(\'boolean\')"></div>' +
     '<div sp-resource-field ng-if="isType(\'resource\')"></div>';
 
   return {
@@ -97,6 +98,24 @@ app.directive('spTextField', function() {
       '<textarea class="form-control" ng-model="resource.fields[field.slug][key]" rows="6" ng-switch-when="1"></textarea>' +
       '<textarea class="form-control" ng-model="resource.fields[field.slug]" rows="6" ng-switch-default></textarea>' +
     '</div>'
+  };
+});
+
+app.directive('spBooleanField', function() {
+  return {
+    replace: true,
+    transclude: true,
+    template: '<div><div class="radio">' +
+      '<label>' +
+      '<input type="radio" ng-model="resource.fields[field.slug]" ng-value="1">' +
+      'True' +
+      '</label>' +
+    '</div><div class="radio">' +
+      '<label>' +
+      '<input type="radio" ng-model="resource.fields[field.slug]" ng-value="0">' +
+      'False' +
+      '</label>' +
+    '</div></div>'
   };
 });
 

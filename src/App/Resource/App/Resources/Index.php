@@ -38,7 +38,7 @@ class Index extends ResourceObject
 
     /**
      * @Link(rel="type", href="app://spout/entities/types?slug={slug}")
-     * @DbPager(5)
+     * @DbPager(20)
      */
     public function onGet($type = null)
     {
