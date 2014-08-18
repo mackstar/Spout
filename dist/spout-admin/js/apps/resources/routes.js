@@ -2,7 +2,7 @@
 
 app.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
 
-  $urlRouterProvider.otherwise('/resources/2');
+  $urlRouterProvider.otherwise('/resources/1');
 
   $stateProvider.state('resources', {
     url: "/resources/:start",
@@ -39,7 +39,7 @@ app.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $ur
       }
     })
     .state('resources.add.media', {
-      url: "/spout-admin/media/:field/:folder",
+      url: "/media/:field",
       authenticate: true,
       controller: 'ModalCtrl',
       resolve: {
@@ -52,10 +52,10 @@ app.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $ur
             reload: false,
             resolve: {
               media: ['Restangular', '$stateParams', function (Restangular, $stateParams) {
-                return Restangular.all('media/listing').getList({folder: $stateParams.folder });
+                return Restangular.all('media/listing').getList({folder: 0 });
               }],
               folders: ['Restangular', '$stateParams', function (Restangular, $stateParams) {
-                return Restangular.all('media/folders').getList({parent: $stateParams.folder});
+                return Restangular.all('media/folders').getList({parent: "0"});
               }],
               field: ['$stateParams', function ($stateParams) {
                 return $stateParams.field;

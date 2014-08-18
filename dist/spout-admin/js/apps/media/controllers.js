@@ -14,6 +14,10 @@ app.controller('MediaCtrl', function($scope, $rootScope, media, folders) {
     $scope.selectedMedia = mediaItem;
   });
 
+  $rootScope.$on('sp.media.folder-change', function(event, data) {
+    $scope.selectedMedia.selected = false;
+  });
+
   $scope.$on('sp.media-deselected', function (event, mediaItem) {
     if ($scope.selectedMedia === mediaItem) {
       $scope.selectedMedia = null;

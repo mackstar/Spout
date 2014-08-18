@@ -1,10 +1,12 @@
 'use strict';
 
-app.directive('spFileDropzone', function(Restangular, $stateParams) {
+app.directive('spFileDropzone', function(Restangular, $rootScope) {
   return {
     restrict: 'A',
     link: function(scope, element, attrs) {
       var checkSize, isTypeValid, processDragOverOrEnter, validMimeTypes;
+
+      scope.folder = 0;
       processDragOverOrEnter = function(event) {
         if (event != null) {
           event.preventDefault();
@@ -32,6 +34,11 @@ app.directive('spFileDropzone', function(Restangular, $stateParams) {
       };
       element.bind('dragover', processDragOverOrEnter);
       element.bind('dragenter', processDragOverOrEnter);
+
+      $rootScope.$on('sp.media.folder-change', function(event, data) {
+        scope.folder = data.folder;
+      });
+
       return element.bind('drop', function(event) {
         var file, name, reader, size, type;
 
@@ -57,10 +64,9 @@ app.directive('spFileDropzone', function(Restangular, $stateParams) {
         reader.readAsDataURL(file);
 
         var formData = new FormData();
-        formData.append('folder', $stateParams.folder);
+        formData.append('folder', scope.folder);
         formData.append('name', file.name);
         formData.append('file', file);
-
 
 
         Restangular.all('media')
@@ -126,13 +132,29 @@ app.directive('spThumbnail', function (Restangular) {
   }
 });
 
-app.directive('spMediaItems', function () {
+app.directive('spMediaItems', function ($state, $stateParams, Restangular, $rootScope) {
   return {
     restrict: 'E',
     scope: { media: "=media", folders: "=folders" },
     templateUrl: '/spout-admin/js/templates/media/media-items.html',
     replace: true,
     link: function(scope, element, attrs) {
+
+      scope.folder = 0;
+
+      scope.changeFolder = function (id) {
+        var params = {folder: id};
+        scope.folder = id;
+        $rootScope.$emit('sp.media.folder-change', params);
+
+        params = angular.extend($stateParams, params);
+        scope.folders.getList({parent: $stateParams.folder}).then(function (folders) {
+          scope.folders = folders;
+        });
+        scope.media.getList({folder: $stateParams.folder}).then(function (media) {
+          scope.media = media;
+        });
+      }
       if (attrs.spHideAddFolders !== undefined) {
         scope.hideAddFolder = true;
       }

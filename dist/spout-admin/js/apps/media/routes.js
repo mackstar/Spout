@@ -2,24 +2,21 @@
 
 app.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
   $stateProvider.state('media', {
-    url: "/media/:folder",
+    url: "/media",
     authenticate: true,
     templateUrl: '/spout-admin/js/templates/media/index.html',
     controller: 'MediaCtrl',
-    params: {
-      folder: { value: 0 }
-    },
     resolve: {
       media: ['Restangular', '$stateParams', function (Restangular, $stateParams) {
-        return Restangular.all('media/listing').getList({folder: $stateParams.folder });
+        return Restangular.all('media/listing').getList({folder: 0 });
       }],
       folders: ['Restangular', '$stateParams', function (Restangular, $stateParams) {
-        return Restangular.all('media/folders').getList({parent: $stateParams.folder});
+        return Restangular.all('media/folders').getList({parent: 0 });
       }]
     }
   })
   .state('media.add-folder', {
-    url: "/add-folder",
+    url: "/add-folder/:folder",
     authenticate: true,
     controller: 'ModalCtrl',
     resolve: {

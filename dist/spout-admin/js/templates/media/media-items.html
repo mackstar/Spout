@@ -5,13 +5,13 @@
             
         </li>
         <li ng-repeat="folder in folders" class="sp-media__viewer-thumbnail">
-            <a href="#" ui-sref="media({folder: folder.id})">
+            <a ng-click='changeFolder(folder.id)'>
                 <p class="h2 text-center"><span class="glyphicon glyphicon-folder-open"></span></p>
                 <p class="h3 text-center">{[folder.name]}</p>
             </a>
         </li>
         <li class="sp-media__viewer-thumbnail" ng-show="!hideAddFolder">
-            <a href="#" ui-sref=".add-folder">
+            <a ui-sref=".add-folder({folder: folder})">
                 <p class="h2 text-center"><span class="glyphicon glyphicon-plus-sign"></span></p>
                 <p class="h3 text-center"> New Folder</p>
             </a>
