@@ -1,5 +1,5 @@
 <div>
-    <ol class="breadcrumb">
+    <ol class="breadcrumb" ng-show="!hideMediaBreadcrumbs">
         <li ng-repeat="breadcrumb in breadcrumbs"><a ng-click="changeFolder(breadcrumb)">{[breadcrumb.name]}</a></li>
     </ol>
     <ul class="sp-media__viewer">

@@ -170,6 +170,10 @@ app.directive('spMediaItems', function ($state, $stateParams, Restangular, $root
       if (attrs.spHideAddFolders !== undefined) {
         scope.hideAddFolder = true;
       }
+
+      if (attrs.spHideMediaBreadcrumbs !== undefined) {
+        scope.hideMediaBreadcrumbs = true;
+      }
     }
   };
 });
