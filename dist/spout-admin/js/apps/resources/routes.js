@@ -55,7 +55,7 @@ app.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $ur
                 return Restangular.all('media/listing').getList({folder: 0 });
               }],
               folders: ['Restangular', '$stateParams', function (Restangular, $stateParams) {
-                return Restangular.all('media/folders').getList({parent: "0"});
+                return Restangular.all('media/folders').getList({parent: 0});
               }],
               field: ['$stateParams', function ($stateParams) {
                 return $stateParams.field;

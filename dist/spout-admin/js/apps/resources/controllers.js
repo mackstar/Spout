@@ -25,12 +25,20 @@ app.controller('ResourceCtrl', function($scope, resource) {
   $scope.resource = resource;
 });
 
-app.controller('ResourceMediaAddCtrl', function($scope, media, $modalInstance, field, folders) {
+app.controller('ResourceMediaAddCtrl', function($scope, media, $modalInstance, field, folders, $rootScope) {
   $scope.close = $modalInstance.close;
   $scope.folders = folders;
+
+  $scope.media = media;
+
+  $rootScope.$on('sp.media.updated', function(event, data) {
+    $scope.media = data;
+  });
+
   $scope.submit = function() {
     var selectedMedia = [];
     $scope.folders = folders;
+
     angular.forEach($scope.media, function(mediaItem) {
       if (mediaItem.selected) {
         selectedMedia.push(mediaItem);
@@ -38,9 +46,6 @@ app.controller('ResourceMediaAddCtrl', function($scope, media, $modalInstance, f
     });
     $modalInstance.close({emit: { name: 'sp.media.selected', data: {field: field, selection: selectedMedia}}});
   };
-  media.getList().then(function(data){
-    $scope.media = data;
-  });
 });
 
 app.controller('ResourceAddCtrl', function($scope, Restangular, $modalInstance, $rootScope, type) {

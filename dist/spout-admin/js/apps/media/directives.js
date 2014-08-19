@@ -152,7 +152,7 @@ app.directive('spMediaItems', function ($state, $stateParams, Restangular, $root
           scope.folders = folders;
         });
         scope.media.getList({folder: $stateParams.folder}).then(function (media) {
-          scope.media = media;
+          $rootScope.$emit('sp.media.updated', media);
         });
       }
       if (attrs.spHideAddFolders !== undefined) {
