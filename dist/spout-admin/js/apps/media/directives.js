@@ -142,10 +142,22 @@ app.directive('spMediaItems', function ($state, $stateParams, Restangular, $root
 
       scope.folder = 0;
 
-      scope.changeFolder = function (id) {
-        var params = {folder: id};
-        scope.folder = id;
+      scope.breadcrumbs = [{folder: 0, name: 'Top'}];
+
+      scope.changeFolder = function (folder) {
+        var params = {folder: folder.id};
+        scope.folder = folder.id;
+
         $rootScope.$emit('sp.media.folder-change', params);
+
+
+        angular.forEach(scope.breadcrumbs, function(breadcrumb, index) {
+          if (breadcrumb.id === folder.id) {
+            scope.breadcrumbs.splice(index, scope.breadcrumbs.length - index);
+          }
+        });
+
+        scope.breadcrumbs.push(folder);
 
         params = angular.extend($stateParams, params);
         scope.folders.getList({parent: $stateParams.folder}).then(function (folders) {
