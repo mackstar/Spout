@@ -52,6 +52,9 @@ class Types extends ResourceObject
     }
 
 
+    /**
+     * @Transactional
+     */
     public function onPost($name, $slug, $title_label, $resource_fields)
     {
         $this->db->beginTransaction();
@@ -74,9 +77,6 @@ class Types extends ResourceObject
         return $this;
     }
 
-    /**
-     * @Transactional
-     */
     public function onDelete($slug)
     {
 
