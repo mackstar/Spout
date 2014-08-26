@@ -176,6 +176,8 @@ app.directive('spMediaField', function($rootScope) {
     link: function(scope) {
       var images = scope.resource.fields[scope.field.slug];
       scope.displayMedia = [];
+
+
       if (!angular.isArray(images) && images) {
         images = [images.value];
       }
@@ -184,9 +186,13 @@ app.directive('spMediaField', function($rootScope) {
         images = [];
       }
 
+      scope.resource.fields[scope.field.slug] = (scope.field.multiple === "1")? images : images[0];
+
       if (images.length) {
         scope.displayMedia = images;
       }
+
+
       $rootScope.$on('sp.media.selected', function (obj, data) {
         if (scope.field.slug === data.field) {
           scope.displayMedia = data.selection;
