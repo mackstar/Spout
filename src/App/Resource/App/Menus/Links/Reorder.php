@@ -19,7 +19,7 @@ use BEAR\Sunday\Annotation\Db;
  *
  * @Db
  */
-class ReOrder extends ResourceObject
+class Reorder extends ResourceObject
 {
     use DbSetterTrait;
 
