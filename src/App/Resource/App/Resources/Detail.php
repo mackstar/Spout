@@ -32,12 +32,18 @@ class Detail extends ResourceObject
 
     public function onGet($type = null, $slug = null)
     {
+        $this['_model'] = 'resource';
+        
         $sql = "SELECT {$this->table}.* FROM {$this->table} WHERE `slug` = :slug AND `type` = :type";
         $stmt = $this->db->prepare($sql);
         $stmt->bindValue('type', $type);
         $stmt->bindValue('slug', $slug);
         $stmt->execute();
         $resource = $stmt->fetch();
+        if (!$resource) {
+            $this['resource'] = [];
+            return $this;
+        }
 
         try {
             $resource['type'] = $this->resource->get->uri('app://spout/resources/types')
@@ -106,7 +112,6 @@ class Detail extends ResourceObject
                 }
             }
         }
-        $this['_model'] = 'resource';
         $this['resource'] = $resource;
         return $this;
     }
