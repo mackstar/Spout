@@ -27,7 +27,7 @@ trait FieldMapperTrait {
 
     protected $readMapping = [
         'media' => [ 'uri' => 'app://spout/media/index', 'query' => ['uuid' => '{:uuid}']],
-        'resource' => [ 'uri' => 'app://spout/resources/detail', 'query' => ['slug' => '{:slug}', 'type' => '{:type}']]
+        'resource' => [ 'uri' => 'app://spout/resources/embedded', 'query' => ['slug' => '{:slug}', 'type' => '{:type}']]
     ];
 
     /**
@@ -73,7 +73,4 @@ trait FieldMapperTrait {
             $param = preg_replace($param, "/\{:$match\}/", $field[$match]);
         }
     }
-
-
-
 } 
