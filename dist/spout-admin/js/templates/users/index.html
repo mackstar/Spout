@@ -22,11 +22,12 @@
       <td>{[user.name]}</td>
       <td>{[user.email]}</td>
       <td>
-        <a href="#" ng-click="delete(user)">
-          <span class="glyphicon glyphicon-trash"></span>&nbsp;</a>
-        <a href="#" ng-click="edit(user)">
+        <button type="button" class="btn btn-default btn-sm" ng-click="delete(user)">
+          <span class="glyphicon glyphicon-trash"></span>
+        </button>
+        <button type="button" class="btn btn-default btn-sm" ng-click="edit(user)">
           <span class="glyphicon glyphicon-pencil" ></span>
-        </a>
+        </button>
       </td>
     </tr>
   </tbody>
