@@ -7,7 +7,9 @@ app.directive('spField', function() {
     '<div sp-text-field ng-if="isType(\'text\')"></div>' +
     '<div sp-media-field ng-if="isType(\'media\')"></div>' +
     '<div sp-boolean-field ng-if="isType(\'boolean\')"></div>' +
-    '<div sp-resource-field ng-if="isType(\'resource\')"></div>';
+    '<div sp-resource-field ng-if="isType(\'resource\')"></div>'+
+    '<div sp-date-field ng-if="isType(\'date\')"></div>'+
+    '<div sp-time-field ng-if="isType(\'time\')"></div>';
 
   return {
     replace: true,
@@ -116,6 +118,63 @@ app.directive('spBooleanField', function() {
       'False' +
       '</label>' +
     '</div></div>'
+  };
+});
+
+app.directive('spDateField', function() {
+  return {
+    replace: true,
+    transclude: true,
+    template: '<p class="input-group">'+
+      '<input type="text" class="form-control" '+
+          'datepicker-popup '+
+          'ng-model="resource.fields[field.slug]" '+
+          'is-open="opened" '+
+          'datepicker-options="{[dateOptions]}" />'+
+      '<span class="input-group-btn">'+
+        '<button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>'+
+      '</span>'+
+    '</p>',
+    link: function ($scope) {
+        $scope.currentField = $scope.resource.fields[$scope.field.slug];
+
+        $scope.today = function() {
+          $scope.currentField = new Date();
+        };
+        if (!$scope.currentField) {
+          $scope.today();
+        }
+
+        $scope.clear = function () {
+          $scope.currentField = null;
+        };
+
+        $scope.open = function($event) {
+          $event.preventDefault();
+          $event.stopPropagation();
+          $scope.opened = true;
+        };
+        $scope.dateOptions = {
+          formatYear: 'yy',
+          startingDay: 1,
+          showWeeks: false,
+          ngModel: 'currentField'
+        };
+    },
+  };
+});
+
+app.directive('spTimeField', function() {
+  return {
+    replace: true,
+    template: '<div class="input-group">'+
+      ' <timepicker ng-model="mytime" ng-change="changed()" hour-step="hstep" minute-step="mstep" show-meridian="ismeridian"></timepicker>'+
+    '</div>',
+    link: function ($scope) {
+
+
+    }
+
   };
 });
 

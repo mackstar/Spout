@@ -163,6 +163,12 @@ class Index extends ResourceObject
                 continue;
             }
 
+            if ($fieldType == 'date') {
+                $fields[$field['slug']] = date('Y-m-d', strtotime($fields[$field['slug']]));
+
+            }
+
+
             // Single field insert
             if ($field['multiple'] == '0') {
                 $mappedValues = $this->getWriteMapping($fieldType, $fields[$field['slug']]);
