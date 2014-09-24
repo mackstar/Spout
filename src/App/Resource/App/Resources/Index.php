@@ -165,7 +165,10 @@ class Index extends ResourceObject
 
             if ($fieldType == 'date') {
                 $fields[$field['slug']] = date('Y-m-d', strtotime($fields[$field['slug']]));
+            }
 
+            if ($fieldType == 'time') {
+                $fields[$field['slug']] = date('H:i:s', strtotime($fields[$field['slug']]));
             }
 
 

@@ -67,7 +67,6 @@ app.directive('spField', function() {
       };
 
       scope.addField = function () {
-        console.log(scope.keys);
         scope.keys.push(scope.keys.length);
       };
     }
@@ -121,14 +120,14 @@ app.directive('spBooleanField', function() {
   };
 });
 
-app.directive('spDateField', function() {
+app.directive('spDateField', function($filter) {
   return {
     replace: true,
     transclude: true,
     template: '<p class="input-group">'+
       '<input type="text" class="form-control" '+
           'datepicker-popup '+
-          'ng-model="resource.fields[field.slug]" '+
+          'ng-model="currentField" '+
           'is-open="opened" '+
           'datepicker-options="{[dateOptions]}" />'+
       '<span class="input-group-btn">'+
@@ -144,6 +143,10 @@ app.directive('spDateField', function() {
         if (!$scope.currentField) {
           $scope.today();
         }
+
+        $scope.$watch('currentField', function (date) {
+          $scope.resource.fields[$scope.field.slug] = $filter('date')(date, 'yyyy-MM-dd');
+        });
 
         $scope.clear = function () {
           $scope.currentField = null;
@@ -164,14 +167,42 @@ app.directive('spDateField', function() {
   };
 });
 
-app.directive('spTimeField', function() {
+app.directive('spTimeField', function($filter) {
   return {
     replace: true,
     template: '<div class="input-group">'+
-      ' <timepicker ng-model="mytime" ng-change="changed()" hour-step="hstep" minute-step="mstep" show-meridian="ismeridian"></timepicker>'+
+      ' <timepicker ng-model="currentTime" hour-step="hstep" minute-step="mstep" show-meridian="ismeridian"></timepicker>'+
     '</div>',
     link: function ($scope) {
 
+      var roundedTime = function() {
+        var time = 1000 * 60 * 5,
+          date = new Date();
+          
+        return new Date(Math.round(date.getTime() / time) * time);
+
+      },
+      timeFromValue = function(time) {
+        var values = time.split(':'),
+          date = new Date();
+
+        date.setHours(values[0]);
+        date.setMinutes(values[1]);
+        return date;
+
+      }
+      $scope.hstep = 1;
+      $scope.mstep = 5;
+
+      if (!$scope.resource.fields[$scope.field.slug]) {
+        $scope.currentTime = roundedTime();
+      } else {
+        $scope.currentTime = timeFromValue($scope.resource.fields[$scope.field.slug]);
+      }
+
+      $scope.$watch('currentTime', function (time) {
+        $scope.resource.fields[$scope.field.slug] = $filter('date')(time, 'HH:mm:ss');
+      });
 
     }
 

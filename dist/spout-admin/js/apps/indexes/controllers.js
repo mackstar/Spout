@@ -25,7 +25,6 @@ app.controller('IndexesCtrl', function($scope, $rootScope, $state, indexes) {
     }
     $scope.indexes.remove({slug: $scope.index.slug}).then(function() {
       angular.forEach($scope.indexes, function(index, key) {
-        console.log(index, key, $scope.index.slug);
         if ($scope.index.slug == index.slug) {
           $scope.indexes.splice(key, 1);
         }

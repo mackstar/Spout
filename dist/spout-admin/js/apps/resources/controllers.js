@@ -3,7 +3,6 @@
 app.controller('ResourcesCtrl', function($scope, resources, types, $state, $stateParams, $rootScope) {
   $scope.types = types;
   $scope.resources = resources;
-  console.log(resources);
 
   $scope.$watch('resources._pager.current', function(page){
     if (page !== undefined && $stateParams.start !== page) {
