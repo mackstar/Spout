@@ -98,6 +98,7 @@ class Group extends ResourceObject
             }
             $qb->where($orx);
             $qb->having('resource_count >= ' . ($i/2));
+            $qb->groupBy('resource_id');
             $stmt = $qb->execute();
             $response = $stmt->fetchAll();
 
@@ -126,6 +127,7 @@ class Group extends ResourceObject
                 $ids[] = $id;
             }
         }
+
         return $ids;
 
     }
