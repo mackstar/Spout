@@ -51,9 +51,6 @@ class Resourcefields extends ResourceObject
         return $this;
     }
 
-    /**
-     * @Transactional
-     */
     public function onPost($resource_type, $field_type, $label, $slug, $multiple, $weight)
     {
 
