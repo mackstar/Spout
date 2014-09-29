@@ -59,7 +59,7 @@ class Imagine implements ImageManipulationInterface
             $srcBox->getWidth() > $srcBox->getHeight() &&
             $heightBasedWidth >= $width
         ){
-            $width  = $heightBasedWidth;
+            $width  = ceil($heightBasedWidth);
             $height =  $box->getHeight();
             $cropPoint = new Point((max($width - $box->getWidth(), 0)) / 2, 0);
         } else {
