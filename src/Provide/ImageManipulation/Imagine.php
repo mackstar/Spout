@@ -23,6 +23,11 @@ class Imagine implements ImageManipulationInterface
 
     protected $imagine;
 
+    /**
+     * Contrsuructor choosing either imagick or gmagick depending
+     * on availability.
+     *
+     */
     public function __construct()
     {
         if (extension_loaded('imagick')) {
@@ -59,14 +64,16 @@ class Imagine implements ImageManipulationInterface
             $cropPoint = new Point((max($width - $box->getWidth(), 0)) / 2, 0);
         } else {
             $width  = $box->getWidth();
-            $height =  $srcBox->getHeight() * ($box->getWidth() / $srcBox->getWidth());
+            $height =  ceil($srcBox->getHeight() * ($box->getWidth() / $srcBox->getWidth()));
             if ($crop == 'top') {
                 $cropPoint = new Point(0, 0);
             }
             if ($crop == 'center') {
                 $cropPoint = new Point(0, (max($height - $box->getHeight(), 0)) / 2);
             }
+
         }
+
         $tempBox = new Box($width, $height);
         $image = $image->thumbnail($tempBox, ImageInterface::THUMBNAIL_INSET);
         $image->crop($cropPoint, $box)->save($target);
