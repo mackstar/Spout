@@ -48,15 +48,14 @@ class Bootstrap
     public static function getApp($apps, $context, $tmpDir)
     {
         $appName = $apps['apps'][$apps['default']]['namespace'];
-        $extraCacheKey = isset($_SERVER['REQUEST_URI']) ? $_SERVER['REQUEST_METHOD'] . parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH) : '';
         $diCompiler = (
             new DiCompilerProvider(
                 $appName,
                 $context,
-                $tmpDir, 
+                $tmpDir,
                 $apps
             )
-        )->get($extraCacheKey);
+        )->get();
         $app = $diCompiler->getInstance('BEAR\Sunday\Extension\Application\AppInterface');
 
         return $app;
