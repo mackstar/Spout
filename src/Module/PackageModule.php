@@ -65,7 +65,7 @@ class PackageModule extends AbstractModule
 
         // Package Module
         $this->install(new Package\Cache\CacheAspectModule($this));
-        $this->install(new \Mackstar\Spout\Module\Di\DiCompilerModule($this));
+        //$this->install(new \Mackstar\Spout\Module\Di\DiCompilerModule($this));
         $this->install(new Package\Di\DiModule($this));
         $this->install(new DevPackage\ExceptionHandle\ExceptionHandleModule);
 

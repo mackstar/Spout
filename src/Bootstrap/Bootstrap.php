@@ -13,7 +13,11 @@ namespace Mackstar\Spout\Bootstrap;
 use Composer\Autoload\ClassLoader;
 use Doctrine\Common\Annotations\AnnotationRegistry;
 use Doctrine\Common\Annotations\AnnotationReader;
-use Mackstar\Spout\Module\Di\DiCompilerProvider;
+use Doctrine\Common\Cache\ApcCache;
+use Mackstar\Spout\App\Module\AppModule;
+use Ray\Di\Injector;
+use Ray\Di\ModuleCacheInjector;
+
 
 class Bootstrap
 {
@@ -47,18 +51,27 @@ class Bootstrap
      */
     public static function getApp($apps, $context, $tmpDir)
     {
-        $appName = $apps['apps'][$apps['default']]['namespace'];
-        $extraCacheKey = isset($_SERVER['REQUEST_URI']) ? $_SERVER['REQUEST_METHOD'] . parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH) : '';
-        $diCompiler = (
-            new DiCompilerProvider(
-                $appName,
-                $context,
-                $tmpDir, 
-                $apps
-            )
-        )->get($extraCacheKey);
-        $app = $diCompiler->getInstance('BEAR\Sunday\Extension\Application\AppInterface');
+        $app = self::getModuleCachedApp($apps, $context, $tmpDir);
+        return $app;
+    }
 
+        /**
+     * @param string $appName
+     * @param string $context
+     * @param string $tmpDir
+     * @param Cache $cache
+     *
+     * @return \BEAR\Sunday\Extension\Application\AppInterface
+     */
+    public static function getModuleCachedApp($apps, $context, $tmpDir)
+    {
+        $cache = new ApcCache;
+        $cacheKey = 'module-' . $apps['default'] . $context[0];
+        $moduleProvider = function () use ($context, $apps) {return new AppModule($context, $apps);};
+        $injector = ModuleCacheInjector::create($moduleProvider, $cache, $cacheKey, $tmpDir);
+        $app = $injector->getInstance('BEAR\Sunday\Extension\Application\AppInterface');
+
+        /** $app \BEAR\Sunday\Extension\Application\AppInterface */
         return $app;
     }
 
