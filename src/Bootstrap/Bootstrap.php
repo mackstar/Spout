@@ -51,7 +51,8 @@ class Bootstrap
      */
     public static function getApp($apps, $context, $tmpDir)
     {
-        $app = self::getModuleCachedApp($apps, $context, $tmpDir);
+        $injector = Injector::create([new AppModule($context, $apps)]);
+        $app = $injector->getInstance('BEAR\Sunday\Extension\Application\AppInterface');
         return $app;
     }
 
