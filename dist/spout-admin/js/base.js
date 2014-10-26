@@ -120,6 +120,10 @@ app.directive('spSlugTitle', function() {
           slug,
           src = attrs.spSlugTitle || 'title';
 
+      if (attrs.spEditMode === 'true') {
+        return;
+      }
+
       scope.$watch('model.' + src, function() {
         if (stop || typeof scope.model === 'undefined' || typeof scope.model[src] === 'undefined') return;
         slug = scope.model[src].toLowerCase().replace(/[\s]/g, "-");

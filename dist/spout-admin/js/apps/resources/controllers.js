@@ -69,6 +69,8 @@ app.controller('ResourceEditCtrl', function($scope, type, $modalInstance, $rootS
   $scope.resource = resource;
   parseResourceObject($scope.resource);
 
+  $scope.editMode = true;
+
   $scope.submit = function () {
     $scope.resource.type = $scope.type;
     $scope.resource.route = 'resources/index';
