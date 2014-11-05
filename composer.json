@@ -28,7 +28,8 @@
     "prefer-stable": true,
     "autoload":{
         "psr-4":{
-            "Mackstar\\Spout\\": "src/"
+            "Mackstar\\Spout\\": "src/",
+            "Mackstar\\Spout\\Test\\": "tests/src/"
         }
     },
     "bin": ["bin/spout"]

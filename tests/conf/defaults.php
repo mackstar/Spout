@@ -11,6 +11,7 @@
 $appDir = dirname(__DIR__);
 
 return [
+    'timezone' => 'Asia/Tokyo',
     'tmp_dir' => dirname(__DIR__) . '/var/tmp',
     'upload_dir' => dirname(__DIR__) . '/var/www/uploads',
     'resource_dir' => dirname(__DIR__),
