@@ -9,7 +9,12 @@
  * file that was distributed with this source code.
  */
 
-require __DIR__ . '/../../../autoload.php';
+$autoload = __DIR__ . '/../../../autoload.php';
+if (!is_file($autoload)) {
+    $autoload = dirname(__DIR__) . '/vendor/autoload.php';
+}
+
+require $autoload;
 
 $app = new Mackstar\Spout\Console\SpoutApplication();
 $app->run();
