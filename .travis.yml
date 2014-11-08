@@ -14,7 +14,6 @@ before_script:
 
 script:
  - phpunit --coverage-text
- - grunt build
 
 notifications:
   email: false

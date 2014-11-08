@@ -99,7 +99,7 @@ module.exports = function(grunt) {
   grunt.registerTask('css', ['shell:css']);
   grunt.registerTask('phpunit', ['shell:phpunit']);
 
-  grunt.registerTask('build', ['karma:ci', 'phpunit']);
+  grunt.registerTask('build', ['karma:ci']);
 
 
 };
