@@ -1,3 +1,5 @@
+[![Build Status](https://secure.travis-ci.org/mackstar/Spout.png?branch=master)](http://travis-ci.org/mackstar/Spout)
+
 Mackstar.Spout
 =======
 The resource centric CMS written in BEAR.Sunday and Angular.js
