@@ -3,7 +3,7 @@
 <phpunit bootstrap="tests/bootstrap.php"
          backupGlobals="false"
          backupStaticAttributes="false"
-         verbose="true"
+         verbose="false"
 		 colors="true">
   <testsuites>
     <testsuite name="Mackstar.Spout">
