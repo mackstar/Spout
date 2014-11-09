@@ -219,7 +219,7 @@ app.directive('spResourceField', function() {
         '</ul>' +
       '</div><!-- /btn-group -->' +
       '<span class="input-group-addon" ng-show="currentField.type_name">{[currentField.type_name]}</span>' +
-        '<input ng-show="currentField.type" type="text" ng-model="currentField.search" current-field="currentField" class="form-control" auto-complete />' +
+        '<input ng-show="currentField.type" type="text" ng-model="currentField.search" current-field="currentField" class="form-control" sp-auto-complete />' +
     '</div><!-- /input-group -->' +
     '<div class="alert alert-success alert-dismissable" ng-show="currentField.title">' +
       '<button type="button" class="close" ng-click="remove()">&times;</button>' +

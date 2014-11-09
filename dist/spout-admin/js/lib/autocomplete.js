@@ -2,7 +2,7 @@
 
 angular.module('mackstar.autocomplete', [])
 
-  .directive('autoCompleteOptions', function() {
+  .directive('spAutoCompleteOptions', function() {
     return {
       restrict:'EA',
       replace: true,
@@ -23,7 +23,7 @@ angular.module('mackstar.autocomplete', [])
     };
   })
 
-  .directive('autoComplete', function($compile, $http) {
+  .directive('spAutoComplete', function($compile, $http) {
     return {
       restrict:'EA',
       replace: false,
@@ -32,7 +32,7 @@ angular.module('mackstar.autocomplete', [])
         currentField: '='
       },
       link: function (scope, element) {
-        var el = $compile("<div auto-complete-options style='position: absolute'></div>")(scope);
+        var el = $compile("<div sp-auto-complete-options style='position: absolute'></div>")(scope);
         element.parent().append(el);
 
         scope.$watch('ngModel', function (search) {

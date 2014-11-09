@@ -1,7 +1,6 @@
 'use strict';
 
-var app = angular.module('spout', ['ngRoute', 'restangular', 'ngAnimate', 'ui.bootstrap', 'ui.router', 'mackstar.autocomplete']);
-
+var app = angular.module('spout', ['ngRoute', 'restangular', 'ngAnimate', 'ui.bootstrap', 'ui.router', 'mackstar.autocomplete', 'ngTagsInput']);
 app.config(function($interpolateProvider) {
   $interpolateProvider.startSymbol('{[').endSymbol(']}');
 });

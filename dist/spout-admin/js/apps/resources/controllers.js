@@ -21,7 +21,7 @@ app.controller('ResourcesCtrl', function($scope, resources, types, $state, $stat
   };
 });
 
-app.controller('ResourceCtrl', function($scope, resource) {
+app.controller('ResourceCtrl', function($scope, resource, $http) {
   $scope.resource = resource;
 });
 
@@ -34,6 +34,9 @@ app.controller('ResourceMediaAddCtrl', function($scope, media, $modalInstance, f
   $rootScope.$on('sp.media.updated', function(event, data) {
     $scope.media = data;
   });
+
+
+
 
   $scope.submit = function() {
     var selectedMedia = [];
@@ -51,8 +54,16 @@ app.controller('ResourceMediaAddCtrl', function($scope, media, $modalInstance, f
 app.controller('ResourceAddCtrl', function($scope, Restangular, $modalInstance, $rootScope, type) {
   $scope.type = type;
   $scope.close = $modalInstance.close;
-  $scope.resource = { fields: {}};
+  $scope.resource = { fields: {}}
+  $scope.resource.tags = [];
   $scope.hideAddFolder = true;
+
+
+  $scope.loadTags = function(query) {
+    return Restangular.all('tags/search').getList({q: query});
+  };
+
+
   $scope.submit = function () {
     $scope.resource.type = $scope.type;
     Restangular.all('resources/index').post($scope.resource).then(function () {
