@@ -15,9 +15,17 @@ use BEAR\Package\Module\Database\Dbal\Setter\DbSetterTrait;
 use BEAR\Sunday\Annotation\Db;
 use PDO;
 
+/**
+ * FieldTypes
+ *
+ * @Db
+ */
 class Search extends ResourceObject
 {
 
+    use DbSetterTrait;
+
+    private $table = 'tags';
 
     public function onGet($q)
     {
