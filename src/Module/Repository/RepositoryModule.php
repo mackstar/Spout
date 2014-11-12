@@ -8,32 +8,30 @@
  * file that was distributed with this source code.
  */
 
-namespace Mackstar\Spout\App\Module\App;
+namespace Mackstar\Spout\Module\Repository;
 
 use BEAR\Package;
 use Ray\Di\AbstractModule;
 use Ray\Di\Injector;
 
-/**
- * Application Aspect
- */
 class RepositoryModule extends AbstractModule
 {
 
+    private $repositories = [
+        'Tags'
+    ];
+
     protected function configure()
     {
-
+        foreach($this->repositories as $repository) {
+            $this->loadRepository($repository);
+        }
     }
 
-    private function installFormValidators()
-    {
-        $this->requestInjection('Mackstar\Spout\Provide\Validations\Validator');
-        $userValidator = $this->requestInjection('Mackstar\Spout\App\Interceptor\Validators\UserValidator');
-        $this->bindInterceptor(
-            $this->matcher->subclassesOf('Mackstar\Spout\App\Resource\App\Users\Index'),
-            $this->matcher->annotatedWith('Mackstar\Spout\App\Annotation\Form'),
-            [$userValidator]
-        );
+    private function loadRepository($name) {
+        $class = "Mackstar\\Spout\\Module\\Repository\\Repositories\\{$name}Repository";
+        $this->bind()
+            ->annotatedWith($name . 'Repository')->to($class);
     }
 
 }

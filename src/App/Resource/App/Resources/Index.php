@@ -87,6 +87,9 @@ class Index extends ResourceObject
      */
     public function onPost($now, $type, $title, $slug, $fields, $tags)
     {
+        var_dump($tags);
+        exit;
+
         $resource = $this->getType($type['slug']);
         $this->db->beginTransaction();
 

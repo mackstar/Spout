@@ -11,39 +11,27 @@
 namespace Mackstar\Spout\App\Resource\App\Tags;
 
 use Mackstar\Spout\Provide\Resource\ResourceObject;
-use BEAR\Package\Module\Database\Dbal\Setter\DbSetterTrait;
-use BEAR\Sunday\Annotation\Db;
-use PDO;
+use Mackstar\Spout\Module\Repository\RepositoryAbstract;
+use Ray\Di\Di\Inject;
+use Ray\Di\Di\Named;
 
-/**
- * FieldTypes
- *
- * @Db
- */
 class Search extends ResourceObject
 {
 
-    use DbSetterTrait;
+    private $tagsRepository;
 
-    private $table = 'tags';
+    /**
+     * @Inject
+     * @Named("repository=TagsRepository")
+     */
+    public function setTagsRepository($repository) {
+        $this->tagsRepository = $repository;
+    }
+
 
     public function onGet($q)
     {
-        if (strlen($q) < 2) {
-            $this['resources'] = [];
-            return $this;
-        }
-
-        $queryBuilder = $this->db->createQueryBuilder();
-        $queryBuilder ->select('t.id', 't.name', 't.slug as text')
-            ->from($this->table, 't')
-            ->where('t.slug LIKE :q')
-            ->orWhere('t.name LIKE :q')
-            ->setParameter('q', "%{$q}%");
-
-        $stmt = $queryBuilder->execute();
-        $this['tags'] = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
+        $this['tags'] = (strlen($q) < 2)? [] : $this->tagsRepository->search($q);
         return $this;
     }
 }

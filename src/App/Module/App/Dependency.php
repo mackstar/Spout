@@ -17,6 +17,8 @@ use Mackstar\Spout\Provide\Validations\ValidationModule;
 use Mackstar\Spout\Provide\Session\SessionModule;
 use Mackstar\Spout\Provide\Uuid\UuidModule;
 use Mackstar\Spout\Provide\ImageManipulation\ImageManipulationModule;
+use Mackstar\Spout\Module\Repository\RepositoryModule;
+
 
 /**
  * Application Dependency
@@ -28,6 +30,7 @@ class Dependency extends AbstractModule
      */
     protected function configure()
     {
+        $this->install(new RepositoryModule($this));
         $this->install(new SecurityModule($this));
         $this->install(new StringModule($this));
         $this->install(new ValidationModule($this));

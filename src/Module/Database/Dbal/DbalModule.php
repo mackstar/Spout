@@ -35,13 +35,19 @@ class DbalModule extends AbstractModule
         $dbInjector = $this->requestInjection(__NAMESPACE__ . '\Interceptor\DbInjector');
         $this->bindInterceptor(
             $this->matcher->annotatedWith('BEAR\Sunday\Annotation\Db'),
-            $this->matcher->startWith('on'),
+            $this->matcher->startsWith('on'),
+            [$dbInjector]
+        );
+
+        $this->bindInterceptor(
+            $this->matcher->subclassesOf('Mackstar\Spout\Module\Repository\RepositoryAbstract'),
+            $this->matcher->logicalNot($this->matcher->startsWith('setDb')),
             [$dbInjector]
         );
 
         $this->bindInterceptor(
             $this->matcher->annotatedWith('BEAR\Sunday\Annotation\Db'),
-            $this->matcher->startWith('invoke'),
+            $this->matcher->startsWith('invoke'),
             [$dbInjector]
         );
     }
