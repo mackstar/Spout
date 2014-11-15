@@ -95,7 +95,6 @@ class Index extends ResourceObject
         $this->db->delete($this->table, ['id' => $id]);
         $this->deleteFields($id, $resource);
         $this->resourceTagsRepository->delete($id);
-        $this->db->commit();
         return $this;
     }
 

@@ -22,6 +22,8 @@ class RepositoryModule extends AbstractModule
 
     protected function configure()
     {
+        $this->bind('Cocur\Slugify\SlugifyInterface')
+            ->to('Cocur\Slugify\Slugify');
         foreach($this->repositories as $repository) {
             $this->loadRepository($repository);
         }
