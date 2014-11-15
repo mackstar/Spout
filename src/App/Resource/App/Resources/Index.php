@@ -20,6 +20,8 @@ use Mackstar\Spout\Provide\Resource\FieldMapperTrait;
 use Mackstar\Spout\Provide\Resource\UserIdSetterTrait;
 use Mackstar\Spout\App\Annotation\UserIdInject;
 use PDO;
+use Ray\Di\Di\Inject;
+use Ray\Di\Di\Named;
 
 /**
  * Resources Index
@@ -33,6 +35,34 @@ class Index extends ResourceObject
     use ResourceInject;
     use FieldMapperTrait;
     use UserIdSetterTrait;
+
+    private $tagsRepository;
+    private $resourceTagsRepository;
+    private $resourcesRepository;
+
+    /**
+     * @Inject
+     * @Named("repository=ResourceTagsRepository")
+     */
+    public function setResourceTagsRepository($repository) {
+        $this->resourceTagsRepository = $repository;
+    }
+
+    /**
+     * @Inject
+     * @Named("repository=ResourceTagsRepository")
+     */
+    public function setResourcesRepository($repository) {
+        $this->resourcesRepository = $repository;
+    }
+
+    /**
+     * @Inject
+     * @Named("repository=TagsRepository")
+     */
+    public function setTagsRepository($repository) {
+        $this->tagsRepository = $repository;
+    }
 
     protected $table = 'resources';
 
@@ -62,17 +92,10 @@ class Index extends ResourceObject
     public function onDelete($id, $type)
     {
         $resource = $this->getType($type);
-        $this->db->beginTransaction();
-
-        try {
-            $this->db->delete($this->table, ['id' => $id]);
-            $this->deleteFields($id, $resource);
-            $this->db->commit();
-        } catch (\Exception $e) {
-            $this->db->rollback();
-            echo $e->getMessage();
-        }
-
+        $this->db->delete($this->table, ['id' => $id]);
+        $this->deleteFields($id, $resource);
+        $this->resourceTagsRepository->delete($id);
+        $this->db->commit();
         return $this;
     }
 
@@ -87,11 +110,7 @@ class Index extends ResourceObject
      */
     public function onPost($now, $type, $title, $slug, $fields, $tags)
     {
-        var_dump($tags);
-        exit;
-
         $resource = $this->getType($type['slug']);
-        $this->db->beginTransaction();
 
         try {
             $this->db->insert('resources', [
@@ -102,10 +121,10 @@ class Index extends ResourceObject
                 'updated' => $now,
                 'user_id' => $this->user_id
             ]);
-            $id = $this->db->lastInsertId();
-            $this->insertFields($resource, $fields, $id);
-            $this->db->commit();
 
+            $id = $this->db->lastInsertId();
+            $this->createTags($tags, $id);
+            $this->insertFields($resource, $fields, $id);
         } catch (\Exception $e) {
             $this->db->rollback();
             echo $e->getMessage();
@@ -127,25 +146,40 @@ class Index extends ResourceObject
      * @param $title
      * @param $slug
      * @param $fields
+     * @param $tags
      * @return $this
      */
-    public function onPut($id, $type, $title, $slug, $fields)
+    public function onPut($id, $type, $title, $slug, $fields, $tags)
     {
         $resource = $this->getType($type['slug']);
-        $this->db->beginTransaction();
-
         try {
             $this->db->update('resources', ['title' => $title, 'slug' => $slug], ['id' => $id]);
             $this->deleteFields($id, $resource);
+            $this->createTags($tags, $id);
             $this->insertFields($resource, $fields, $id);
             $this->db->commit();
 
         } catch (\Exception $e) {
-            $this->db->rollback();
             echo $e->getMessage();
         }
 
         return $this;
+    }
+
+    /**
+     * Removes all tags for the resource and re-adds them
+     * using a join table
+     *
+     * @param $tags
+     * @param $id
+     */
+    private function createTags($tags, $id) {
+        $this->resourceTagsRepository->delete($id);
+        foreach($tags as $tag) {
+            $tagId = $this->tagsRepository->insert($tag);
+            $this->resourceTagsRepository->join($id, $tagId);
+        }
+        $this->resourceTagsRepository->clearOrphans();
     }
 
     /**

@@ -7,18 +7,17 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-
 namespace Mackstar\Spout\Module\Repository;
 
-use BEAR\Package;
 use Ray\Di\AbstractModule;
-use Ray\Di\Injector;
 
 class RepositoryModule extends AbstractModule
 {
 
     private $repositories = [
-        'Tags'
+        'Tags',
+        'ResourceTags',
+        'Resources'
     ];
 
     protected function configure()
@@ -33,5 +32,4 @@ class RepositoryModule extends AbstractModule
         $this->bind()
             ->annotatedWith($name . 'Repository')->to($class);
     }
-
 }

@@ -27,7 +27,14 @@ class TagsRepository extends RepositoryAbstract implements SearchRepositoryInter
         return $qb->execute()->fetchAll();
     }
 
-    public function insertUnique($properties) {
-
+    public function insert($properties) {
+        if (isset($properties['id'])) {
+            return $properties['id'];
+        }
+        $this->db->insert($this->table, [
+            'slug' => $properties['slug'],
+            'name' => $properties['name']
+        ]);
+        return $this->db->lastInsertId();
     }
 }

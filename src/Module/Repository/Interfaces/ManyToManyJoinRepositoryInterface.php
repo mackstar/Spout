@@ -7,15 +7,11 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-namespace Mackstar\Spout\Module\Repository;
+namespace Mackstar\Spout\Module\Repository\Interfaces;
 
-use BEAR\Package\Module\Database\Dbal\Setter\DbSetterTrait;
-
-abstract class RepositoryAbstract
+interface ManyToManyJoinRepositoryInterface 
 {
-    use DbSetterTrait;
+    public function join($id, $id);
 
-    protected function getQb() {
-        return $this->db->createQueryBuilder();
-    }
+    public function clearOrphans();
 }
