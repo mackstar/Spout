@@ -15,10 +15,10 @@ use BEAR\Package\Module\Database\Dbal\Setter\DbSetterTrait;
 use BEAR\Sunday\Annotation\Db;
 use BEAR\Sunday\Inject\ResourceInject;
 use Mackstar\Spout\Provide\Resource\FieldMapperTrait;
+use Ray\Di\Di\Inject;
+use Ray\Di\Di\Named;
 
 /**
- * FieldTypes
- *
  * @Db
  */
 class Detail extends ResourceObject
@@ -27,6 +27,14 @@ class Detail extends ResourceObject
     use DbSetterTrait;
     use ResourceInject;
     use FieldMapperTrait;
+
+    /**
+     * @Inject
+     * @Named("repository=ResourceTagsRepository")
+     */
+    public function setResourceTagsRepository($repository) {
+        $this->resourceTagsRepository = $repository;
+    }
 
     protected $table = 'resources';
 
@@ -55,7 +63,7 @@ class Detail extends ResourceObject
             var_dump("error:");
             echo($e->getTraceAsString());
         }
-
+        $resource['tags'] = $this->resourceTagsRepository->getTags($resource['id']);
         $resource['title_label'] = $resource['type']['title_label'];
         $fieldTypes = [];
         $map = [];

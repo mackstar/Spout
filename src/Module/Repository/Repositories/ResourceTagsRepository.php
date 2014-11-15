@@ -40,4 +40,14 @@ class ResourceTagsRepository extends RepositoryAbstract implements ManyToManyJoi
             "WHERE {$this->table}.tag_id IS NULL"
         );
     }
+
+    public function getTags($resourceId) {
+        $qb = $this->getQb();
+        $qb->select('t.id', 't.name', 't.slug')
+            ->from($this->tagsTable, 't')
+            ->innerJoin('t', $this->table, 'rt', 't.id = rt.tag_id')
+            ->where('rt.resource_id = :resource')
+            ->setParameter(':resource', $resourceId);
+        return $qb->execute()->fetchAll();
+    }
 }
