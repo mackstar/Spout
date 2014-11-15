@@ -15,6 +15,7 @@ use BEAR\Package\Module\Database\Dbal\Setter\DbSetterTrait;
 use BEAR\Sunday\Annotation\Db;
 use BEAR\Resource\Annotation\Link;
 use BEAR\Sunday\Annotation\DbPager;
+use PDO;
 
 /**
  * Resources Index
