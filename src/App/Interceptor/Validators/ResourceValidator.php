@@ -17,16 +17,12 @@ use Ray\Aop\MethodInvocation;
 use Mackstar\Spout\Interfaces\ValidatorInterface;
 use Ray\Di\Di\Inject;
 
-/**
- * UserValidator
- */
-class UserValidator implements MethodInterceptor
+class ResourceValidator implements MethodInterceptor
 {
-    const EMAIL = 0;
-    const NAME = 1;
-    const ROLE = 2;
-    const PASSWORD = 3;
-    const ID = 3;
+    const ID = 0;
+    const TYPE = 1;
+    const TITLE = 2;
+    const SLUG = 3;
 
     use ResourceInject;
 
@@ -48,6 +44,7 @@ class UserValidator implements MethodInterceptor
         $this->validator = $validator;
     }
 
+
     public function invoke(MethodInvocation $invocation)
     {
         (array) $args = $invocation->getArguments();
@@ -56,30 +53,25 @@ class UserValidator implements MethodInterceptor
 
         $id = ($method == 'onPut')?  $args[self::ID] : null;
 
-        if (!$validator->get('emailaddress')->isValid($args[self::EMAIL])) {
-            $this->errors['email'] = $validator->getMessages()[0];
+        if (!$validator->get('notempty')->isValid($args[self::TITLE])) {
+            $this->errors['title'] = $validator->getMessages()[0];
         }
 
-        if (!$validator->get('notempty')->isValid($args[self::NAME])) {
-            $this->errors['name'] = $validator->getMessages()[0];
+        if (!$validator->get('notempty')->isValid($args[self::TYPE]['id'])) {
+            $this->errors['type'] = $validator->getMessages()[0];
         }
 
-        if (!$validator->get('notempty')->isValid($args[self::ROLE]['id'])) {
-            $this->errors['role'] = $validator->getMessages()[0];
+        if (!$validator->get('notempty')->isValid($args[self::TYPE]['id'])) {
+            $this->errors['type'] = $validator->getMessages()[0];
         }
 
-        if ($method == 'onPost' && !$validator->get('notempty')->isValid($args[self::PASSWORD])) {
-            $this->errors['password'] = $validator->getMessages()[0];
-        }
-
-        if (!isset($this->errors['email']) && !$this->isUniqueEmail($args[self::EMAIL], $id)) {
-            $this->errors['email'] = 'Email address already exists.';
+        if (empty($this->errors) && !$this->isUniqueResourceName($args[self::TYPE]['slug'], $args[self::SLUG], $id)) {
+            $this->errors['slug'] = 'The slug has already been taken for this media type.';
         }
 
         if (implode('', $this->errors)  == '') {
             return $invocation->proceed();
         }
-
 
         return $this->resource->get->uri('app://spout/exceptions/validation')
             ->withQuery(['errors' => $this->errors])
@@ -87,16 +79,16 @@ class UserValidator implements MethodInterceptor
             ->request();
     }
 
-    private function isUniqueEmail($email, $id)
+    private function isUniqueResourceName($type, $slug, $id = null)
     {
-        $result = $this->resource->get->uri('app://spout/users/index')
-            ->withQuery(['email' => $email])
+        $result = $this->resource->get->uri('app://spout/resources/detail')
+            ->withQuery(['type' => $type, 'slug' => $slug])
             ->eager
             ->request();
 
         return (
-            $result->body['user'] == false ||
-                ($id && $result->body['user']['id'] == $id)
+            $result->body['resource'] == false ||
+                (!is_null($id) && $result->body['resource']['id'] == $id)
 
         );
 

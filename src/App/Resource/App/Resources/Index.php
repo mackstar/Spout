@@ -19,6 +19,7 @@ use BEAR\Sunday\Annotation\DbPager;
 use Mackstar\Spout\Provide\Resource\FieldMapperTrait;
 use Mackstar\Spout\Provide\Resource\UserIdSetterTrait;
 use Mackstar\Spout\App\Annotation\UserIdInject;
+use Mackstar\Spout\App\Annotation\Form;
 use PDO;
 use Ray\Di\Di\Inject;
 use Ray\Di\Di\Named;
@@ -94,6 +95,7 @@ class Index extends ResourceObject
     /**
      * Creates resource
      *
+     * @Form
      * @param $type
      * @param $title
      * @param $slug
@@ -134,6 +136,7 @@ class Index extends ResourceObject
      *
      * @todo add versioning.
      *
+     * @Form
      * @param $id
      * @param $type
      * @param $title

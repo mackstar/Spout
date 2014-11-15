@@ -37,6 +37,13 @@ class Aspect extends AbstractModule
             $this->matcher->annotatedWith('Mackstar\Spout\App\Annotation\Form'),
             [$userValidator]
         );
+
+        $resourceValidator = $this->requestInjection('Mackstar\Spout\App\Interceptor\Validators\ResourceValidator');
+        $this->bindInterceptor(
+            $this->matcher->subclassesOf('Mackstar\Spout\App\Resource\App\Resources\Index'),
+            $this->matcher->annotatedWith('Mackstar\Spout\App\Annotation\Form'),
+            [$resourceValidator]
+        );
     }
 
     private function installInjectUserId()
