@@ -16,5 +16,12 @@ class ResourcesRepository extends RepositoryAbstract
 {
     private $table = 'resources';
 
-
+    public function getById($id) {
+        $qb = $this->getQb();
+        $qb ->select('r.*')
+            ->from($this->table, 'r')
+            ->where('r.id = :id')
+            ->setParameter('id', $id);
+        return $qb->execute()->fetch();
+    }
 }

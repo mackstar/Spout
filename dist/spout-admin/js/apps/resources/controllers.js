@@ -57,12 +57,17 @@ app.controller('ResourceAddCtrl', function($scope, Restangular, $modalInstance, 
   $scope.resource = { fields: {}}
   $scope.resource.tags = [];
   $scope.hideAddFolder = true;
-
+  $scope.resetCategory = function() {
+    $scope.resource.category = {
+      type: 'category',
+      type_name: 'Category'
+    };
+  };
+  $scope.resetCategory();
 
   $scope.loadTags = function(query) {
     return Restangular.all('tags/search').getList({q: query});
   };
-
 
   $scope.submit = function () {
     $scope.resource.type = $scope.type;
@@ -73,12 +78,23 @@ app.controller('ResourceAddCtrl', function($scope, Restangular, $modalInstance, 
   };
 });
 
-app.controller('ResourceEditCtrl', function($scope, type, $modalInstance, $rootScope, resource) {
+app.controller('ResourceEditCtrl', function($scope, type, $modalInstance, $rootScope, resource, Restangular) {
   $scope.type = type;
   $scope.close = $modalInstance.close;
   $scope.hideAddFolder = true;
   $scope.resource = resource;
   parseResourceObject($scope.resource);
+
+  $scope.resetCategory = function() {
+    $scope.resource.category = {
+      type: 'category',
+      type_name: 'Category'
+    };
+  };
+
+  $scope.loadTags = function(query) {
+    return Restangular.all('tags/search').getList({q: query});
+  };
 
   $scope.editMode = true;
 

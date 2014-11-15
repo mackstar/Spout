@@ -50,14 +50,6 @@ class Index extends ResourceObject
 
     /**
      * @Inject
-     * @Named("repository=ResourceTagsRepository")
-     */
-    public function setResourcesRepository($repository) {
-        $this->resourcesRepository = $repository;
-    }
-
-    /**
-     * @Inject
      * @Named("repository=TagsRepository")
      */
     public function setTagsRepository($repository) {
@@ -108,7 +100,7 @@ class Index extends ResourceObject
      * @param $fields
      * @return $this
      */
-    public function onPost($now, $type, $title, $slug, $fields, $tags)
+    public function onPost($now, $type, $title, $slug, $fields, $tags = [], $category = null)
     {
         $resource = $this->getType($type['slug']);
 
@@ -119,7 +111,8 @@ class Index extends ResourceObject
                 'slug' => $slug,
                 'created' => $now,
                 'updated' => $now,
-                'user_id' => $this->user_id
+                'user_id' => $this->user_id,
+                'category_id' => isset($category['id'])? $category['id'] : ''
             ]);
 
             $id = $this->db->lastInsertId();
@@ -149,11 +142,11 @@ class Index extends ResourceObject
      * @param $tags
      * @return $this
      */
-    public function onPut($id, $type, $title, $slug, $fields, $tags)
+    public function onPut($id, $type, $title, $slug, $fields, $tags = [], $category = [])
     {
         $resource = $this->getType($type['slug']);
         try {
-            $this->db->update('resources', ['title' => $title, 'slug' => $slug], ['id' => $id]);
+            $this->db->update('resources', ['title' => $title, 'slug' => $slug, 'category_id' => isset($category['id'])? $category['id'] : ''], ['id' => $id]);
             $this->deleteFields($id, $resource);
             $this->createTags($tags, $id);
             $this->insertFields($resource, $fields, $id);

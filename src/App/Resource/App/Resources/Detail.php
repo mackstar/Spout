@@ -36,6 +36,14 @@ class Detail extends ResourceObject
         $this->resourceTagsRepository = $repository;
     }
 
+    /**
+     * @Inject
+     * @Named("repository=ResourcesRepository")
+     */
+    public function setResourcesRepository($repository) {
+        $this->resourcesRepository = $repository;
+    }
+
     protected $table = 'resources';
 
     public function onGet($type = null, $slug = null)
@@ -63,6 +71,7 @@ class Detail extends ResourceObject
             var_dump("error:");
             echo($e->getTraceAsString());
         }
+        $resource['category'] = $this->resourcesRepository->getById($resource['category_id']);
         $resource['tags'] = $this->resourceTagsRepository->getTags($resource['id']);
         $resource['title_label'] = $resource['type']['title_label'];
         $fieldTypes = [];
