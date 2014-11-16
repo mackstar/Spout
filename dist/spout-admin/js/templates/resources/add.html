@@ -22,14 +22,14 @@
         <formfield-error-msg msg="Slug should not be blank" field="form.resource.slug" />
       </div>
 
-      <div class="form-group sp-tags">
+      <div class="form-group sp-tags" ng-show="type.tags">
         <label>Tags</label>
         <tags-input ng-model="resource.tags" display-property="name">
           <auto-complete source="loadTags($query)"></auto-complete>
         </tags-input>
       </div>
 
-      <div class="form-group">
+      <div class="form-group" ng-show="type.categories">
         <label>Category</label>
         <input type="text" ng-model="resource.category.search" current-field="resource.category" class="form-control" sp-auto-complete ng-show="!resource.category.title" />
 

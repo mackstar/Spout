@@ -23,6 +23,22 @@
       <formfield-error-msg msg="Slug should not be blank" field="form.resource-types.title_label" />
     </div>
 
+    <div class="form-group">
+      <div class="checkbox">
+        <label>
+          <input type="checkbox" ng-model="type.categories" ng-true-value="1" ng-false-value="0"> Allow categories?
+        </label>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="checkbox">
+        <label>
+          <input type="checkbox" ng-model="type.tags" ng-true-value="1" ng-false-value="0"> Allow Tags?
+        </label>
+      </div>
+    </div>
+
     <div class="btn-group form-group">
       <button type="button" class="btn btn-default dropdown-toggle btn-lg" data-toggle="dropdown">
         <span class="glyphicon glyphicon-plus"></span> Add Field
