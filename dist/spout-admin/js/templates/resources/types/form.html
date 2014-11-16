@@ -60,14 +60,15 @@
         <label class="sr-only">Key</label>
         <input type="text" sp-slug-title="label" model="resource_field" ng-model="resource_field.slug" class="form-control" placeholder="Key - a unique identifier for this field">
       </div>
-      <div class="checkbox">
+
+
+      <div class="checkbox" ng-show="resource_field.field_type.multiple">
         <label>
-          <input type="checkbox" ng-model="resource_field.multiple" ng-true-value="1" ng-false-value="0"> Multiple?
+          <input type="checkbox" ng-model="resource_field.multiple" ng-true-value="1" ng-false-value="0"> Multiple? | 
         </label>
       </div>
-      {[resource_field.multiple]}
       <div class="checkbox">
-        <label>| Type: {[resource_field.field_type.name]}</label>
+        <label>Type: {[resource_field.field_type.name]}</label>
       </div>
     </div>
   </form>
