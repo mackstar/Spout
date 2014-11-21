@@ -18,8 +18,6 @@ use BEAR\Sunday\Annotation\DbPager;
 use PDO;
 
 /**
- * Resources Index
- *
  * @Db
  */
 class Search extends ResourceObject

@@ -9,7 +9,8 @@ app.directive('spField', function() {
     '<div sp-boolean-field ng-if="isType(\'boolean\')"></div>' +
     '<div sp-resource-field ng-if="isType(\'resource\')"></div>'+
     '<div sp-date-field ng-if="isType(\'date\')"></div>'+
-    '<div sp-time-field ng-if="isType(\'time\')"></div>';
+    '<div sp-time-field ng-if="isType(\'time\')"></div>'+
+    '<div sp-date-time-field ng-if="isType(\'datetime\')"></div>';
 
   return {
     replace: true,
@@ -144,9 +145,11 @@ app.directive('spDateField', function($filter) {
           $scope.today();
         }
 
-        $scope.$watch('currentField', function (date) {
-          $scope.resource.fields[$scope.field.slug] = $filter('date')(date, 'yyyy-MM-dd');
-        });
+        if ($scope.field.field_type === 'date') {
+          $scope.$watch('currentField', function (date) {
+            $scope.resource.fields[$scope.field.slug] = $filter('date')(date, 'yyyy-MM-dd');
+          });
+        }
 
         $scope.clear = function () {
           $scope.currentField = null;
@@ -178,11 +181,10 @@ app.directive('spTimeField', function($filter) {
       var roundedTime = function() {
         var time = 1000 * 60 * 5,
           date = new Date();
-          
         return new Date(Math.round(date.getTime() / time) * time);
 
-      },
-      timeFromValue = function(time) {
+      };
+      $scope.timeFromValue = function(time) {
         var values = time.split(':'),
           date = new Date();
 
@@ -190,19 +192,64 @@ app.directive('spTimeField', function($filter) {
         date.setMinutes(values[1]);
         return date;
 
-      }
+      };
       $scope.hstep = 1;
       $scope.mstep = 5;
 
       if (!$scope.resource.fields[$scope.field.slug]) {
         $scope.currentTime = roundedTime();
       } else {
-        $scope.currentTime = timeFromValue($scope.resource.fields[$scope.field.slug]);
+        $scope.currentTime = $scope.timeFromValue($scope.resource.fields[$scope.field.slug]);
+      }
+
+      if ($scope.field.field_type === 'date') {
+        $scope.$watch('currentTime', function (time) {
+          $scope.resource.fields[$scope.field.slug] = $filter('date')(time, 'HH:mm:ss');
+        });
+      }
+
+
+
+
+    }
+
+  };
+});
+
+app.directive('spDateTimeField', function($filter) {
+  return {
+    replace: true,
+    template: '<div>'+
+      '<div sp-date-field></div>'+
+      '<div sp-time-field></div>'+
+    '</div>',
+    link: function ($scope) {
+      var currentDate,
+        currentTime,
+        dateTime;
+
+      if($scope.resource.fields[$scope.field.slug]) {
+        dateTime = $scope.resource.fields[$scope.field.slug].split(' ');
+        $scope.currentTime = $scope.timeFromValue(dateTime[1]);
+        $scope.currentField = dateTime[0];
+      }
+
+      function updateDatetime() {
+        if(currentDate && currentTime) {
+          $scope.resource.fields[$scope.field.slug] = currentDate + ' ' + currentTime;
+        }
       }
 
       $scope.$watch('currentTime', function (time) {
-        $scope.resource.fields[$scope.field.slug] = $filter('date')(time, 'HH:mm:ss');
+        currentTime = $filter('date')(time, 'HH:mm:ss');
+        updateDatetime();
       });
+
+      $scope.$watch('currentField', function (date) {
+        currentDate = $filter('date')(date, 'yyyy-MM-dd');
+        updateDatetime();
+      });
+
 
     }
 
