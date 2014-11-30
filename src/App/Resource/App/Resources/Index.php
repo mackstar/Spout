@@ -69,8 +69,13 @@ class Index extends ResourceObject
         $sql .= "INNER JOIN resource_types AS type ";
         $sql .= "ON type.slug = {$this->table}.type";
 
-        $stmt = $this->db->query($sql);
-        $this['resources'] = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        if (!is_null($type)) {
+            $sql .= " WHERE {$this->table}.type = :type";
+        } 
+        $stmt = $this->db->prepare($sql);
+        $stmt->bindValue("type", $type);
+        $stmt->execute();
+        $this['resources'] = $stmt->fetchAll();
 
         return $this;
     }
@@ -114,14 +119,13 @@ class Index extends ResourceObject
                 'created' => $now,
                 'updated' => $now,
                 'user_id' => $this->user_id,
-                'category_id' => isset($category['id'])? $category['id'] : ''
+                'category_id' => isset($category['id'])? $category['id'] : null
             ]);
 
             $id = $this->db->lastInsertId();
             $this->createTags($tags, $id);
             $this->insertFields($resource, $fields, $id);
         } catch (\Exception $e) {
-            $this->db->rollback();
             echo $e->getMessage();
         }
 

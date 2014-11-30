@@ -11,8 +11,11 @@ class AddCategoriesToResource extends AbstractMigration
     public function up()
     {
         $table = $this->table('resources');
-        $table->addColumn('category_id', 'integer', ['limit' => 10])
-            ->save();
+        $table->addColumn('category_id', 'integer', [
+            'limit' => 10,
+            'default' => null,
+            'null' => true]
+        )->save();
     }
 
     /**

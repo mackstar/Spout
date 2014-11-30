@@ -207,12 +207,7 @@ app.directive('spTimeField', function($filter) {
           $scope.resource.fields[$scope.field.slug] = $filter('date')(time, 'HH:mm:ss');
         });
       }
-
-
-
-
     }
-
   };
 });
 
