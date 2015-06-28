@@ -12,7 +12,7 @@
         }
     ],
     "require":{
-        "bear/package":"dev-develop",
+        "bear/package": "~1.0",
         "danielstjules/stringy": "1.*",
         "rhumsaa/uuid":"2.4",
         "robmorgan/phinx": "*",
