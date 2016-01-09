@@ -57,13 +57,6 @@ class Links extends ResourceObject
     public function onDelete($id, $menu = null)
     {
         $removal = ['id' => $id];
-
-        /**
-         * I cant remember why I added this.
-         */
-        //if ($menu) {
-        //    $removal = ['menu' => $menu];
-        //}
         $this->db->delete($this->table, $removal);
         $this->code = 204;
         return $this;
