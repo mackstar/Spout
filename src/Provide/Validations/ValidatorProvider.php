@@ -10,7 +10,6 @@
 
 namespace Mackstar\Spout\Provide\Validations;
 
-use Fuel\Validation\Validator as ValidatorClass;
 use Mackstar\Spout\Interfaces\ValidatorProviderInterface;
 
 /**
