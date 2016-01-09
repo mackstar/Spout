@@ -47,7 +47,7 @@ class Links extends ResourceObject
             $this['link'] = $stmt->fetch();
         }
         if (!$id) {
-            $stmt = $this->db->executeQuery("SELECT * FROM {$this->table} WHERE menu = ? ORDER BY `weight`", array($menu));
+            $stmt = $this->db->executeQuery("SELECT * FROM {$this->table} WHERE menu = ? ORDER BY `parent_id`, `weight`", array($menu));
             $this['links'] = $stmt->fetchAll();
         }
 
