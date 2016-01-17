@@ -29,15 +29,20 @@ class Listing extends ResourceObject
 
     protected $listingTable = 'resource_index_listings';
 
+    private static $ALLOWED_CONDITIONALS = ['gt', 'gte', 'lt', 'gte', 'eq'];
+
     public function onGet(
         $type,
         $sort = 'id',
         $direction = 'ASC',
         $limit = null,
         $offset = null,
-        $fields = null
+        $fields = null,
+        $conditional = null,
+        $conditionalValue = null
     )
     {
+        /** @var /Doctrine\DBAL\Query\QueryBuilder $qb */
         $qb = $this->db->createQueryBuilder();
         $qb->select('r.*')
             ->from($this->table, 'r')
@@ -45,7 +50,6 @@ class Listing extends ResourceObject
             ->setParameter('type', $type);
 
         if (!in_array($sort, ['title', 'slug', 'created', 'updated', 'id'])) {
-
             $field = $this->db->createQueryBuilder();
             $field->select('rf.*')
                 ->from('resource_fields', 'rf')
@@ -65,9 +69,17 @@ class Listing extends ResourceObject
         }
 
         $qb->orderBy($sort, $direction);
-
         if (!is_null($limit)) {
             $qb->setMaxResults($limit);
+        }
+        if (!is_null($conditional) &&
+            !is_null($conditionalValue) &&
+            in_array($conditional, self::$ALLOWED_CONDITIONALS)
+        ) {
+            $qb->andWhere(
+                $qb->expr()->{$conditional}($sort, ':conditionalValue')
+            );
+            $qb->setParameter('conditionalValue', $conditionalValue);
         }
         if (!is_null($offset)) {
             $qb->setFirstResult($offset);
@@ -77,6 +89,4 @@ class Listing extends ResourceObject
 
         return $this;
     }
-
-
 }
