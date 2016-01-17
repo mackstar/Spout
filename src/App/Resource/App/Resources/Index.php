@@ -71,7 +71,7 @@ class Index extends ResourceObject
 
         if (!is_null($type)) {
             $sql .= " WHERE {$this->table}.type = :type";
-        } 
+        }
         $stmt = $this->db->prepare($sql);
         $stmt->bindValue("type", $type);
         $stmt->execute();
@@ -153,7 +153,7 @@ class Index extends ResourceObject
     {
         $resource = $this->getType($type['slug']);
         try {
-            $this->db->update('resources', ['title' => $title, 'slug' => $slug, 'category_id' => isset($category['id'])? $category['id'] : ''], ['id' => $id]);
+            $this->db->update('resources', ['title' => $title, 'slug' => $slug, 'category_id' => isset($category['id'])? $category['id'] : null], ['id' => $id]);
             $this->deleteFields($id, $resource);
             $this->createTags($tags, $id);
             $this->insertFields($resource, $fields, $id);
